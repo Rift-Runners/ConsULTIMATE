@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Página Principal</title>
+        <link href="resources/bootstrap.css" rel="stylesheet"/>
+        <link href="resources/style.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <div class="row row-eq-height">
+            <div class="col-md-2 test-background2"></div>
+            <div class="col-md-10 test-background1 text-center">
+                <h:form>
+                    <div class="login">
+                        <div class="login-space">
+                            <h:outputLabel for="loginUsuario" value="Usuário: "/>
+                            <h:inputText id="loginUsuario" value="#{pessoa.usuario}"/>
+                        </div>
+                        <div class="login-space">
+                            <h:outputLabel for="loginSenha" value="Senha: "/>
+                            <h:inputSecret id="loginSenha" value="#{pessoa.senha}" />
+                        </div>
+                        <div class="login-space">
+                            <h:link value="Registre-se!" outcome="registrar" />
+                            <h:commandButton action="#{pessoa.entrar()}" id="loginBtn" value="Entrar" />     
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            <div class="col-md-2 test-background2"></div>
+        </div>
+        <script src="resources/jquery-2.2.1.js"></script>
+        <script src="resources/bootstrap.js"></script>
+    </h:body>
+</html>
+
