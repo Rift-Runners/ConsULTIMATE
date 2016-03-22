@@ -15,15 +15,15 @@
                     <div class="login">
                         <div class="login-space">
                             <h:outputLabel for="loginUsuario" value="Usuário: "/>
-                            <h:inputText id="loginUsuario" value="#{pessoa.usuario}"/>
+                            <h:inputText id="loginUsuario" value="#{pessoaController.usuario}"/>
                         </div>
                         <div class="login-space">
                             <h:outputLabel for="loginSenha" value="Senha: "/>
-                            <h:inputSecret id="loginSenha" value="#{pessoa.senha}" />
+                            <h:inputSecret id="loginSenha" value="#{pessoaController.senha}" />
                         </div>
                         <div class="login-space">
                             <h:link value="Registre-se!" outcome="registrar" />
-                            <h:commandButton action="#{pessoa.entrar()}" id="loginBtn" value="Entrar" />     
+                            <h:commandButton action="#{pessoaController.autenticar()}" id="loginBtn" value="Entrar" />     
                         </div>
                     </div>
                 </h:form>

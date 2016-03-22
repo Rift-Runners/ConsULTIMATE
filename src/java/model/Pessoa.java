@@ -5,30 +5,16 @@
  */
 package model;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
-
 /**
  *
- * @author Guilherme
+ * @author 631420063
  */
-@ManagedBean
-@RequestScoped
 public class Pessoa {
+    
+    private String nome, cidade, uf, endereco, telefone, email, usuario, senha;
 
-    private String categoria, cnpj, descricao, area, cpf, rg, nome, 
-            sexo, cidade, uf, endereco, telefone, email, usuario, senha;
-    
-    public Pessoa() {
-    }
-    
-    //Cliente
-    public Pessoa(String categoria, String cpf, String rg, String nome, String sexo, String cidade, String uf, String endereco, String telefone, String email, String usuario, String senha) {
-        this.categoria = categoria;
-        this.cpf = cpf;
-        this.rg = rg;
+    public Pessoa(String nome, String cidade, String uf, String endereco, String telefone, String email, String usuario, String senha) {
         this.nome = nome;
-        this.sexo = sexo;
         this.cidade = cidade;
         this.uf = uf;
         this.endereco = endereco;
@@ -36,71 +22,6 @@ public class Pessoa {
         this.email = email;
         this.usuario = usuario;
         this.senha = senha;
-    }
-    
-    //Consultor
-    public Pessoa(String categoria, String cnpj, String descricao, String area, String nome, String sexo, String cidade, String uf, String endereco, String telefone, String email, String usuario, String senha) {
-        this.categoria = categoria;
-        this.cnpj = cnpj;
-        this.descricao = descricao;
-        this.area = area;
-        this.nome = nome;
-        this.sexo = sexo;
-        this.cidade = cidade;
-        this.uf = uf;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
-        this.usuario = usuario;
-        this.senha = senha;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public String getArea() {
-        return area;
-    }
-
-    public void setArea(String area) {
-        this.area = area;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
     }
 
     public String getNome() {
@@ -109,14 +30,6 @@ public class Pessoa {
 
     public void setNome(String nome) {
         this.nome = nome;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getCidade() {
@@ -174,4 +87,6 @@ public class Pessoa {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+    
 }
