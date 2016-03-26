@@ -1,3 +1,20 @@
+/*"Configurando" as fontes
+-----------------------------------------------*/
+@font-face {
+    font-family: "TrackType";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/Track/Track.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "Exo";
+    font-style: normal;
+    font-weight: normal;
+    src: url("../fonts/Exo/Exo-Regular.otf") format("opentype");
+}
+/*-----------------------------------------------*/
+
 a:hover {
     text-decoration: none;
 }
@@ -20,10 +37,10 @@ a:hover {
 }
 
 .row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display:         flex;
 }
 
 .no-margin{

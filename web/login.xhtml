@@ -24,9 +24,13 @@
                             <h:outputLabel for="loginSenha" value="Senha: "/>
                             <h:inputSecret id="loginSenha" value="#{mainController.senha}" />
                         </div>
-                        <div class="login-space">
+                        <div class="login-space">                           
+                            <h:commandButton action="#{mainController.logar()}" id="loginBtn" value="Entrar" />   
+                            <h:messages errorStyle="color:red"/>
+                            <br/>
                             <h:link value="Registre-se!" outcome="cadastro" />
-                            <h:commandButton action="#{mainController.logar()}" id="loginBtn" value="Entrar" />     
+                            <br/>
+                            <h:link value="Esqueceu sua senha?" outcome="esqueceu-senha" />
                         </div>
                     </div>
                 </h:form>

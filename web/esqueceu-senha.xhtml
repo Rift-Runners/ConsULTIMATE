@@ -3,14 +3,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
-        <title>Página Principal</title>
-        <link href="resources/css/bootstrap.css" rel="stylesheet"/>
+        <meta charset="utf-8"/>
+        <title>Recuperar Senha</title>
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet"/>
     </h:head>
     <h:body>
         <div id="header"></div>
 
-        <h1 class="tracktype-font">HOME!</h1>
+        <h:form>
+            <h:outputLabel for="emailRecupera" value="Email cadastrado: "/>
+            <h:inputText id="emailRecupera" value="#{mainController.emailRecuperaSenha}"/>                       
+            <h:commandButton action="#{mainController.enviaDados()}" id="loginBtn" value="Enviar" /> 
+            <h:messages errorStyle="color:red"/>
+        </h:form>
 
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
@@ -21,4 +27,3 @@
         </script>
     </h:body>
 </html>
-
