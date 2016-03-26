@@ -3,23 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package model;
+package model.Entity;
 
 /**
  *
- * @author 631420063
+ * @author Guilherme
  */
-public class Pessoa {
-    
-    private String nome, cidade, uf, endereco, telefone, email, usuario, senha;
+public class Cliente {
 
-    public Pessoa(String nome, String cidade, String uf, String endereco, String telefone, String email, String usuario, String senha) {
+    private String nome, cidade, uf, endereco, telefone, email, cpf, rg, sexo, usuario, senha;
+
+    public Cliente() {
+        
+    }
+
+    public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String sexo, String usuario, String senha) {
         this.nome = nome;
         this.cidade = cidade;
         this.uf = uf;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.sexo = sexo;
         this.usuario = usuario;
         this.senha = senha;
     }
@@ -72,6 +79,30 @@ public class Pessoa {
         this.email = email;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getSexo() {
+        return sexo;
+    }
+
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
+    }
+
     public String getUsuario() {
         return usuario;
     }
@@ -87,6 +118,5 @@ public class Pessoa {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-    
-    
+
 }

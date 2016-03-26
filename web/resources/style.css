@@ -18,9 +18,21 @@ a:hover {
 .test-background2{
     background-color: #faebcc;
 }
+
 .row-eq-height {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
   display:         flex;
+}
+
+.no-margin{
+    margin: 0px;
+}
+
+.perfil{
+    display: none;
+}
+.perfil-selecionado{
+    display: block !important;
 }

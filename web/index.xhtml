@@ -8,6 +8,8 @@
         <link href="resources/style.css" rel="stylesheet"/>
     </h:head>
     <h:body>
+        <div id="header"></div>
+
         <div class="row row-eq-height">
             <div class="col-md-2 test-background2"></div>
             <div class="col-md-10 test-background1 text-center">
@@ -15,23 +17,29 @@
                     <div class="login">
                         <div class="login-space">
                             <h:outputLabel for="loginUsuario" value="Usuário: "/>
-                            <h:inputText id="loginUsuario" value="#{pessoaController.usuario}"/>
+                            <h:inputText id="loginUsuario" value="#{mainController.usuario}"/>
                         </div>
                         <div class="login-space">
                             <h:outputLabel for="loginSenha" value="Senha: "/>
-                            <h:inputSecret id="loginSenha" value="#{pessoaController.senha}" />
+                            <h:inputSecret id="loginSenha" value="#{mainController.senha}" />
                         </div>
                         <div class="login-space">
-                            <h:link value="Registre-se!" outcome="registrar" />
-                            <h:commandButton action="#{pessoaController.autenticar()}" id="loginBtn" value="Entrar" />     
+                            <h:link value="Registre-se!" outcome="cadastro" />
+                            <h:commandButton action="#{mainController.logar()}" id="loginBtn" value="Entrar" />     
                         </div>
                     </div>
                 </h:form>
             </div>
             <div class="col-md-2 test-background2"></div>
         </div>
+
         <script src="resources/jquery-2.2.1.js"></script>
         <script src="resources/bootstrap.js"></script>
+        <script>
+            $(function () {
+                $("#header").load("template/header.html");
+            });
+        </script>
     </h:body>
 </html>
 
