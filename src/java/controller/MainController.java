@@ -83,7 +83,7 @@ public class MainController {
     }
 
     public String logar() {
-        for (Cliente clienteCadastrado : listasDeDados.getlistaClientes()) {
+        for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getUsuario().equals(usuario)) {
                 if (clienteCadastrado.getSenha().equals(senha)) {
                     return "indexCons";

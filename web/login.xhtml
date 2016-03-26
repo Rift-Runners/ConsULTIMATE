@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <meta charset="utf-8"/>
+        <title>Login</title>
+        <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <div id="header"></div>
+        
+        <div class="row row-eq-height">
+            <div class="col-md-2 test-background2"></div>
+            <div class="col-md-10 test-background1 text-center">
+                <h:form>
+                    <div class="login">
+                        <div class="login-space">
+                            <h:outputLabel for="loginUsuario" value="Usuário: "/>
+                            <h:inputText id="loginUsuario" value="#{mainController.usuario}"/>
+                        </div>
+                        <div class="login-space">
+                            <h:outputLabel for="loginSenha" value="Senha: "/>
+                            <h:inputSecret id="loginSenha" value="#{mainController.senha}" />
+                        </div>
+                        <div class="login-space">
+                            <h:link value="Registre-se!" outcome="cadastro" />
+                            <h:commandButton action="#{mainController.logar()}" id="loginBtn" value="Entrar" />     
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+            <div class="col-md-2 test-background2"></div>
+        </div>
+
+        <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/bootstrap.js"></script>
+        <script>
+            $(function () {
+                $("#header").load("template/header.html");
+            });
+        </script>
+    </h:body>
+</html>
+

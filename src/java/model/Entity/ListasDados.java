@@ -7,6 +7,7 @@ package model.Entity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 /**
  *
@@ -14,8 +15,9 @@ import java.util.Arrays;
  */
 public class ListasDados {
 
-    private ArrayList<Cliente> listaClientes;
-    private ArrayList<Consultor> listaConsultores;
+    private List<Cliente> listaClientes;
+    private List<Consultor> listaConsultores;
+    private List<Admin> listaAdmin;
 
     /**
      * Creates a new instance of ListasDados
@@ -25,6 +27,8 @@ public class ListasDados {
         populaListaClientes();
         listaConsultores = new ArrayList<>();
         populaListaConsultores();
+        listaAdmin = new ArrayList<>();
+        populaListaAdmin();
     }
 
     public void populaListaClientes() {
@@ -45,6 +49,10 @@ public class ListasDados {
         listaConsultores.addAll(Arrays.asList(consultores));
     }
 
+    private void populaListaAdmin() {
+        listaAdmin.add(new Admin("admin", "admin", true));
+    }
+
     public void adicionarCliente(Cliente cliente) {
         listaClientes.add(cliente);
     }
@@ -53,11 +61,15 @@ public class ListasDados {
         listaConsultores.add(consultor);
     }
 
-    public ArrayList<Cliente> getlistaClientes() {
+    public List<Cliente> getListaClientes() {
         return listaClientes;
     }
 
-    public ArrayList<Consultor> getListaConsultores() {
+    public List<Consultor> getListaConsultores() {
         return listaConsultores;
+    }
+
+    public List<Admin> getListaAdmin() {
+        return listaAdmin;
     }
 }
