@@ -116,7 +116,7 @@ public class MainController {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getUsuario().equals(usuario)) {
                 if (clienteCadastrado.getSenha().equals(senha)) {
-                    return "indexCons";
+                    return "indexCli";
                 }
             }
         }
@@ -124,7 +124,7 @@ public class MainController {
         for (Consultor consultorCadastrado : listasDeDados.getListaConsultores()) {
             if (consultorCadastrado.getUsuario().equals(usuario)) {
                 if (consultorCadastrado.getSenha().equals(senha)) {
-                    return "indexCli";
+                    return "indexCons";
                 }
             }
         }
