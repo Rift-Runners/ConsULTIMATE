@@ -1,4 +1,11 @@
+# Jetbrains
 .idea/
+*.iml
+*.iws
+
+# Netbeans
 nbproject/
 /build/
 /dist/
+build.xml
+nbbuild.xml
