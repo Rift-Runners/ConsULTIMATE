@@ -34,12 +34,27 @@ public class LoginFilter implements Filter {
         String url = req.getRequestURI();
 
         if (session == null || !session.isLogged) {
-            if (url.contains("indexCli.xhtml") || url.contains("indexCons.xhtml")) {
+            if (url.contains("indexCli.xhtml") || url.contains("indexCons.xhtml") || url.contains("dashboard.xhtml")) {
                 resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/login.xhtml");
             } else {
                 chain.doFilter(request, response);
             }
         } else {
+            if (url.contains("dashboard.xhtml")) {
+                if (session.clienteIsLogged || session.consultorIsLogged) {
+                    resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
+                }
+            }
+            if (url.contains("indexCli.xhtml")) {
+                if (session.consultorIsLogged || session.adminIsLogged) {
+                    resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
+                }
+            }
+            if (url.contains("indexCons.xhtml")) {
+                if (session.clienteIsLogged || session.adminIsLogged) {
+                    resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
+                }
+            }
             if (url.contains("cadastro.xhtml") || url.contains("login.xhtml") || url.contains("esqueceu-senha.xhtml")) {
                 resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
             } else if (url.contains("logout.xhtml")) {
@@ -48,7 +63,6 @@ public class LoginFilter implements Filter {
             } else {
                 chain.doFilter(request, response);
             }
-
         }
     }
 

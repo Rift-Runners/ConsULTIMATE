@@ -111,32 +111,4 @@ public class MainController {
         this.consultor = new Consultor();
         return "indexCons";
     }
-
-    public String logar() {
-        for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
-            if (clienteCadastrado.getUsuario().equals(usuario)) {
-                if (clienteCadastrado.getSenha().equals(senha)) {
-                    return "indexCli";
-                }
-            }
-        }
-
-        for (Consultor consultorCadastrado : listasDeDados.getListaConsultores()) {
-            if (consultorCadastrado.getUsuario().equals(usuario)) {
-                if (consultorCadastrado.getSenha().equals(senha)) {
-                    return "indexCons";
-                }
-            }
-        }
-        for (Admin adminCadastrado : listasDeDados.getListaAdmin()) {
-            if (adminCadastrado.getUsuario().equals(usuario)) {
-                if (adminCadastrado.getSenha().equals(senha)) {
-                    return "indexAdmin";
-                }
-            }
-        }
-
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário e/ou senha inválidos.", null));
-        return "login";
-    }
 }
