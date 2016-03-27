@@ -11,6 +11,8 @@
         <div id="header"></div>
 
         <h1 class="tracktype-font">HOME!</h1>
+        <h:outputText rendered="#{sessionBean.isLogged}" value="Olá, #{sessionBean.usuario}!"/>
+        <h:commandButton rendered="#{sessionBean.isLogged}" value="Sair" action="#{sessionBean.sair()}"/>
 
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>

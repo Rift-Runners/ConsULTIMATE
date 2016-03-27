@@ -18,14 +18,16 @@
                     <div class="login">
                         <div class="login-space">
                             <h:outputLabel for="loginUsuario" value="Usuário: "/>
-                            <h:inputText id="loginUsuario" value="#{mainController.usuario}"/>
+                            <h:inputText id="loginUsuario" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.usuario}"/>
+                            <h:message for="loginUsuario" class="error-message"/>
                         </div>
                         <div class="login-space">
                             <h:outputLabel for="loginSenha" value="Senha: "/>
-                            <h:inputSecret id="loginSenha" value="#{mainController.senha}" />
+                            <h:inputSecret id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
+                            <h:message for="loginSenha" class="error-message"/>
                         </div>
                         <div class="login-space">                           
-                            <h:commandButton action="#{mainController.logar()}" id="loginBtn" value="Entrar" />  
+                            <h:commandButton action="#{sessionBean.action()}" id="loginBtn" value="Entrar" />  
                             <h:messages errorStyle="color:red"/>
                             <br/>
                             <h:link value="Registre-se!" outcome="cadastro" />
