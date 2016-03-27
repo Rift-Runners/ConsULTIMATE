@@ -6,8 +6,8 @@
 package model.Entity;
 
 /**
- *
- * @author Guilherme
+ * @author Guilherme Matuella
+ * @author Diego Peixoto
  */
 public class Admin {
 

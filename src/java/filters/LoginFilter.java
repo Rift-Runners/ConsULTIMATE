@@ -17,8 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Guilherme
+ * @author Guilherme Matuella
+ * @author Diego Peixoto
  */
 public class LoginFilter implements Filter {
 

@@ -10,8 +10,8 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- *
- * @author 631420063
+ * @author Guilherme Matuella
+ * @author Diego Peixoto
  */
 public class ListasDados {
 

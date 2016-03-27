@@ -6,8 +6,8 @@
 package model.Entity;
 
 /**
- *
- * @author 631420063
+ * @author Guilherme Matuella
+ * @author Diego Peixoto
  */
 public class Consultor{
 

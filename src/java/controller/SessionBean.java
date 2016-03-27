@@ -16,8 +16,8 @@ import model.Entity.Consultor;
 import model.Entity.ListasDados;
 
 /**
- *
- * @author Guilherme
+ * @author Guilherme Matuella
+ * @author Diego Peixoto
  */
 @ManagedBean(name = "sessionBean")
 @SessionScoped

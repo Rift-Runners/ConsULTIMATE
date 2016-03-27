@@ -9,14 +9,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import model.Entity.Admin;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
 
 /**
- *
- * @author 631420063
+ * @author Guilherme Matuella
+ * @author Diego Peixoto
  */
 @ManagedBean(eager = true)
 @ApplicationScoped
