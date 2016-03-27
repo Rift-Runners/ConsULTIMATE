@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <meta charset="utf-8"/>
+        <title>Serviços</title>
+        <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet"/>
+    </h:head>
+    <h:body>
+        <div id="header"></div>
+        <div class="row row-eq-height">
+            <div class="col-md-1" style="background-color: #269abc"></div>
+            <div class="col-md-2" style="padding: 0px;">
+                <ul class="nav nav-pills nav-stacked">
+                    <li role="presentation" id="clientes-cadastrados-btn"><a href="#">Clientes Cadastrados</a></li>
+                    <li role="presentation" id="consultores-cadastrados-btn"><a href="#">Consultores Cadastrados</a></li>
+                    <li role="presentation"><a href="#">Etcetera</a></li>
+                </ul>
+            </div>
+            <div class="col-md-8" style="background-color: #afd9ee">
+                <div id="clientes-cadastrados" class="escondido">
+                    <h:outputLabel class="text-center" value="Clientes cadastrados:"/>
+                    <table class="table">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cidade</th>
+                            <th>UF</th>
+                            <th>Endereço</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>CPF</th>
+                            <th>RG</th>
+                            <th>Sexo</th>
+                            <th>Usuário</th>
+                            <th>Senha</th>
+                        </tr>
+                        <ui:repeat var="cliente" value="#{mainController.listasDeDados.listaClientes}">
+                            <tr>
+                                <td><h:outputText value="#{cliente.nome}"/></td>
+                                <td><h:outputText value="#{cliente.cidade}"/></td>
+                                <td><h:outputText value="#{cliente.uf}"/></td>
+                                <td><h:outputText value="#{cliente.endereco}"/></td>
+                                <td><h:outputText value="#{cliente.telefone}"/></td>
+                                <td><h:outputText value="#{cliente.email}"/></td>
+                                <td><h:outputText value="#{cliente.cpf}"/></td>
+                                <td><h:outputText value="#{cliente.rg}"/></td>
+                                <td><h:outputText value="#{cliente.sexo}"/></td>
+                                <td><h:outputText value="#{cliente.usuario}"/></td>
+                                <td><h:outputText value="#{cliente.senha}"/></td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </div>
+
+                <div id="consultores-cadastrados" class="escondido">
+                    <h:outputLabel value="Consultores cadastrados:"/>
+                    <table class="table">
+                        <tr>
+                            <th>Nome</th>
+                            <th>Cidade</th>
+                            <th>UF</th>
+                            <th>Endereço</th>
+                            <th>Telefone</th>
+                            <th>Email</th>
+                            <th>Categoria</th>
+                            <th>CNPJ</th>
+                            <th>Descrição</th>
+                            <th>Área</th>
+                            <th>Usuário</th>
+                            <th>Senha</th>
+                        </tr>
+                        <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
+                            <tr>
+                                <td><h:outputText value="#{consultor.nome}"/></td>
+                                <td><h:outputText value="#{consultor.cidade}"/></td>
+                                <td><h:outputText value="#{consultor.uf}"/></td>
+                                <td><h:outputText value="#{consultor.endereco}"/></td>
+                                <td><h:outputText value="#{consultor.telefone}"/></td>
+                                <td><h:outputText value="#{consultor.email}"/></td>
+                                <td><h:outputText value="#{consultor.categoria}"/></td>
+                                <td><h:outputText value="#{consultor.cnpj}"/></td>
+                                <td><h:outputText value="#{consultor.descricao}"/></td>
+                                <td><h:outputText value="#{consultor.area}"/></td>
+                                <td><h:outputText value="#{consultor.usuario}"/></td>
+                                <td><h:outputText value="#{consultor.senha}"/></td>
+                            </tr>
+                        </ui:repeat>
+                    </table>
+                </div>
+            </div>
+            <div class="col-md-1" style="background-color: #269abc"></div>
+        </div>
+
+        <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/dashboard.js"></script>
+        <script>
+            $(function () {
+                $("#header").load("template/header.html");
+            });
+        </script>
+    </h:body>
+</html>

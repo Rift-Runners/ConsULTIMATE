@@ -17,7 +17,7 @@
         <button type="button" class="btn btn-primary perfil-consultor">Consultor</button>
 
         <!--Cliente-->
-        <h:form id="formulario-cliente" class="perfil">
+        <h:form id="formulario-cliente" class="escondido">
             <h:outputLabel for="clienteNome" value="Nome (Pessoa Física): "/>
             <h:inputText id="clienteNome" value="#{mainController.cliente.nome}"/>
             <br/>
@@ -57,7 +57,7 @@
         </h:form>
 
         <!--Consultor-->
-        <h:form id="formulario-consultor" class="perfil">
+        <h:form id="formulario-consultor" class="escondido">
             <h:outputLabel for="consultorNome" value="Nome (Pessoa Jurídica): "/>
             <h:inputText id="consultorNome" value="#{mainController.consultor.nome}"/>
             <br/>
@@ -100,7 +100,7 @@
 
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
-        <script src="resources/js/application.js"></script>
+        <script src="resources/js/cadastro.js"></script>
         <script>
             $(function () {
                 $("#header").load("template/header.html");

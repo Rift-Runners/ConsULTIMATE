@@ -47,9 +47,10 @@ a:hover {
     margin: 0px;
 }
 
-.perfil{
+.escondido{
     display: none;
 }
-.perfil-selecionado{
+
+.visivel{
     display: block !important;
 }

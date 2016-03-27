@@ -106,7 +106,7 @@ public class MainController {
         return "indexCli";
     }
 
-    public String registarConsultor() {
+    public String registrarConsultor() {
         listasDeDados.adicionarConsultor(consultor);
         this.consultor = new Consultor();
         return "indexCons";
