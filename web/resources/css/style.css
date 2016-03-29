@@ -8,12 +8,18 @@
 }
 
 @font-face {
-    font-family: "Exo";
+    font-family: "PlayfairDisplay";
     font-style: normal;
     font-weight: normal;
-    src: url("../fonts/Exo/Exo-Regular.otf") format("opentype");
+    src: url("../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf") format("truetype");
 }
 /*-----------------------------------------------*/
+body{
+    font-family: PlayfairDisplay !important;   
+}
+.font-tracktype{
+    font-family: TrackType !important;   
+}
 
 a:hover {
     text-decoration: none;

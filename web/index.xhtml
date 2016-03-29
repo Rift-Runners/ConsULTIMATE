@@ -11,6 +11,9 @@
         <div id="header"></div>
 
         <h1>HOME!</h1>
+        <p><b>Teste bold!</b></p>
+        <p><i>Teste itálico!</i></p>
+        <p>Teste normal!</p>
         <h:outputText rendered="#{sessionBean.consultorIsLogged || sessionBean.clienteIsLogged || sessionBean.adminIsLogged}" value="Olá, #{sessionBean.usuario}!"/>
         <br/>
         <h:outputText rendered="#{sessionBean.consultorIsLogged}" value="Opções de Consultor"/>
