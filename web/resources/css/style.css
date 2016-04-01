@@ -27,6 +27,26 @@ body{
     padding: 20px 0px;
     cursor: pointer; 
 }
+.div-tipo-cadastro{
+    padding: 20px 0px;
+    font-size: 20px;
+}
+
+.botao-tipo-cadastro{
+    font-family: TrackType !important;
+    font-size: 30px;
+    border: white solid 2px;
+}
+
+.botao-tipo-cadastro:hover{
+    border-color: black;
+}
+
+.botao-cadastrar{
+    font-family: TrackType !important;
+    font-size: 30px;
+    float: right;
+}
 
 .conteudo-funcionalidade{
 }
