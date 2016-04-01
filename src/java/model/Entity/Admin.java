@@ -20,6 +20,8 @@ public class Admin {
         this.administrador = administrador;
     }
 
+    public Admin() {}
+
     public String getUsuario() {
         return usuario;
     }

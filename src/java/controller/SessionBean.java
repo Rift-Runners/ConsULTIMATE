@@ -133,7 +133,7 @@ public class SessionBean implements Serializable {
                 }
             }
         }
-        
+
         for (Admin adminCadastrado : listasDeDados.getListaAdmin()) {
             if (adminCadastrado.getUsuario().equals(usuario)) {
                 if (adminCadastrado.getSenha().equals(senha)) {

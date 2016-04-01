@@ -8,12 +8,25 @@
         <link href="resources/css/style.css" rel="stylesheet"/>
     </h:head>
     <h:body>
-        <div id="header"></div>
+        <!-- Header user identification -->
+        <h:panelGroup rendered="#{!sessionBean.isLogged}">
+            <div id="header"></div>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{sessionBean.clienteIsLogged}">
+            <div id="headerCliente"></div>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{sessionBean.consultorIsLogged}">
+            <div id="headerConsultor"></div>
+        </h:panelGroup>
+        <h:panelGroup rendered="#{sessionBean.adminIsLogged}">
+            <div id="headerAdmin"></div>
+        </h:panelGroup>
 
         <h1>HOME!</h1>
         <p><b>Teste bold!</b></p>
         <p><i>Teste itálico!</i></p>
         <p>Teste normal!</p>
+        
         <h:outputText rendered="#{sessionBean.consultorIsLogged || sessionBean.clienteIsLogged || sessionBean.adminIsLogged}" value="Olá, #{sessionBean.usuario}!"/>
         <br/>
         <h:outputText rendered="#{sessionBean.consultorIsLogged}" value="Opções de Consultor"/>
@@ -26,11 +39,7 @@
 
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
-        <script>
-            $(function () {
-                $("#header").load("template/header.html");
-            });
-        </script>
+        <script src="resources/js/header-loader.js"></script>
     </h:body>
 </html>
 
