@@ -16,7 +16,7 @@
 /*-----------------------------------------------*/
 body{
     font-family: PlayfairDisplay !important;
-    padding-top: 70px; //Necessário para o header não sobrepor o conteúdo do body 
+    padding-top: 51px; //Necessário para o header não sobrepor o conteúdo do body 
 }
 
 .servico-funcionalidade-titulo{

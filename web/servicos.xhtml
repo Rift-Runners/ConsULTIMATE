@@ -10,7 +10,7 @@
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
     </h:head>
     <h:body>
-        <div id="header"></div>
+        <ui:include src="templates/header.xhtml"/>
 
         <div class="row" style="background-color: white;">
             <div class="col-md-3">
@@ -76,10 +76,5 @@
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/servicos.js"></script>
-        <script>
-            $(function () {
-                $("#header").load("template/header.html");
-            });
-        </script>
     </h:body>
 </html>
