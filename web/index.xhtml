@@ -11,10 +11,106 @@
     <h:body>
         <ui:include src="templates/header.xhtml"/>
 
-        <h1>HOME!</h1>
-        <p><b>Teste bold!</b></p>
-        <p><i>Teste itálico!</i></p>
-        <p>Teste normal!</p>
+        <div class="main-header">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">
+                    <p class="title">ConsULTIMATE</p>
+                    <div class="embed-responsive embed-responsive-16by9 video">
+                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lAkuJXGldrM"></iframe>
+                    </div>
+                </div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+        <div id="quem-somos">
+            <div class="row">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">QUEM SOMOS</div>
+                <div class="col-md-4"></div>
+            </div>
+        </div>
+
+        <div id="servicos">
+            <div class="row" style="background-color: white;">
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h1 class="servico-funcionalidade-titulo" style="background-color: grey;">Gratuito!</h1>
+                        <div class="conteudo-funcionalidade">
+                            <div class="servico-funcionalidade"><p>Funcionalidade 1</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 2</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 3</p></div>
+                            <div class="servico-funcionalidade">
+                                <button type="button" class="btn btn-success" style="font-size: 40px;">Registre-se</button>
+                            </div>
+                            <div class="servico-funcionalidade"><p>Diferença de valores.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h1 class="servico-funcionalidade-titulo" style="background-color: rgba(213, 196, 43, 0.4);">Gold!</h1>
+                        <div class="conteudo-funcionalidade">
+                            <div class="servico-funcionalidade"><p>Funcionalidade 1</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 2</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 3</p></div>
+                            <div class="servico-funcionalidade">
+                                <button type="button" class="btn btn-success" style="font-size: 40px;">Registre-se</button>
+                            </div>
+                            <div class="servico-funcionalidade"><p>Diferença de valores.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h1 class="servico-funcionalidade-titulo" style="background-color: lightsteelblue;">Platinum!</h1>
+                        <div class="conteudo-funcionalidade">
+                            <div class="servico-funcionalidade"><p>Funcionalidade 1</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 2</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 3</p></div>
+                            <div class="servico-funcionalidade">
+                                <button type="button" class="btn btn-success" style="font-size: 40px;">Registre-se</button>
+                            </div>
+                            <div class="servico-funcionalidade"><p>Diferença de valores.</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="text-center">
+                        <h1 class="servico-funcionalidade-titulo" style="background-color: #afd9ee;">Diamond!</h1>
+                        <div class="conteudo-funcionalidade">
+                            <div class="servico-funcionalidade"><p>Funcionalidade 1</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 2</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 3</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 4</p></div>
+                            <div class="servico-funcionalidade"><p>Funcionalidade 5</p></div>
+                            <div class="servico-funcionalidade">
+                                <button type="button" class="btn btn-success" style="font-size: 40px;">Registre-se</button>
+                            </div>
+                            <div class="servico-funcionalidade"><p>Diferença de valores.</p></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="redes-sociais">
+            <div class="row">
+                <div class="col-md-3">twitter</div>
+                <div class="col-md-3">fb</div>
+                <div class="col-md-3">linkedin</div>
+                <div class="col-md-3">google+</div>
+            </div>
+        </div>
+
+        <div id="contato">
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-6">CONTATO</div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
 
         <h:outputText rendered="#{sessionBean.consultorIsLogged || sessionBean.clienteIsLogged || sessionBean.adminIsLogged}" value="Olá, #{sessionBean.usuario}!"/>
         <br/>
@@ -28,6 +124,7 @@
 
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/servicos.js"></script>
     </h:body>
 </html>
 
