@@ -19,6 +19,13 @@ body{
     padding-top: 51px; //Necessário para o header não sobrepor o conteúdo do body 
 }
 
+//Ajusta um problema com a navbar estática do bootstrap e âncoras
+#quem-somos, #contato,
+#servicos{
+    padding-top: 50px;
+    margin-top: -50px;
+}
+
 .main-header {
     position: relative;
     width: 100%;
