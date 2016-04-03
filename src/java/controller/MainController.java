@@ -21,7 +21,7 @@ import model.Entity.ListasDados;
 @ApplicationScoped
 public class MainController {
 
-    private String usuario, senha, emailRecuperaSenha;
+    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete;
     private ListasDados listasDeDados;
     private Consultor consultor;
     private Cliente cliente;
@@ -80,6 +80,18 @@ public class MainController {
         this.emailRecuperaSenha = emailRecuperaSenha;
     }
 
+    public String getTempSenhaRepete() {
+        return tempSenhaRepete;
+    }
+
+    public void setTempSenhaRepete(String tempSenhaRepete) {
+        this.tempSenhaRepete = tempSenhaRepete;
+    }
+
+    public boolean confirmaSenha(String senha, String repeteSenha) {
+        return senha.equals(repeteSenha);
+    }
+
     public String enviaDados() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getEmail().equals(emailRecuperaSenha)) {
@@ -100,14 +112,20 @@ public class MainController {
     }
 
     public String registrarCliente() {
-        listasDeDados.adicionarCliente(cliente);
-        this.cliente = new Cliente();
-        return "indexCli";
+        if (confirmaSenha(cliente.getSenha(), tempSenhaRepete)) {
+            listasDeDados.adicionarCliente(cliente);
+            this.cliente = new Cliente();
+            return "indexCli";
+        }
+        return "";
     }
 
     public String registrarConsultor() {
-        listasDeDados.adicionarConsultor(consultor);
-        this.consultor = new Consultor();
-        return "indexCons";
+        if (confirmaSenha(consultor.getSenha(), tempSenhaRepete)) {
+            listasDeDados.adicionarConsultor(consultor);
+            this.consultor = new Consultor();
+            return "indexCons";
+        }
+        return "";
     }
 }

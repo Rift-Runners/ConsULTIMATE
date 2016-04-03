@@ -16,8 +16,41 @@
 /*-----------------------------------------------*/
 body{
     font-family: PlayfairDisplay !important;
+    padding-top: 51px; //Necessário para o header não sobrepor o conteúdo do body 
 }
 
+//Ajusta um problema com a navbar estática do bootstrap e âncoras
+#quem-somos, #contato,
+#servicos{
+    padding-top: 50px;
+    margin-top: -50px;
+}
+
+.main-header {
+    position: relative;
+    width: 100%;
+    min-height: auto;
+    text-align: center;
+    color: #fff;
+    background-image: url(../images/Consult3.jpg);
+    background-position: center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+.main-header .title{
+    color: #0C0A86;
+    font-size: 70px;
+    font-family: TrackType;
+    padding: 30px 0px;
+}
+
+.main-header .video{
+    border: white 2px solid;
+    margin-bottom: 100px; //É preciso fazer 100% da tela (altura), como?
+}
 .servico-funcionalidade-titulo{
     font-size: 50px;
     font-family: TrackType;
@@ -25,6 +58,26 @@ body{
     margin: 0px;
     padding: 20px 0px;
     cursor: pointer; 
+}
+.div-tipo-cadastro{
+    padding: 20px 0px;
+    font-size: 20px;
+}
+
+.botao-tipo-cadastro{
+    font-family: TrackType !important;
+    font-size: 30px;
+    border: white solid 2px;
+}
+
+.botao-tipo-cadastro:hover{
+    border-color: black;
+}
+
+.botao-cadastrar{
+    font-family: TrackType !important;
+    font-size: 30px;
+    float: right;
 }
 
 .conteudo-funcionalidade{
