@@ -112,7 +112,7 @@
             </div>
         </div>
 
-        <h:outputText rendered="#{sessionBean.consultorIsLogged || sessionBean.clienteIsLogged || sessionBean.adminIsLogged}" value="Olá, #{sessionBean.usuario}!"/>
+        <h:outputText rendered="#{sessionBean.isLogged}" value="Olá, #{sessionBean.usuario}!"/>
         <br/>
         <h:outputText rendered="#{sessionBean.consultorIsLogged}" value="Opções de Consultor"/>
         <br/>

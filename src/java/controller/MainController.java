@@ -127,6 +127,5 @@ public class MainController {
             return "indexCons";
         }
         return "";
-
     }
 }

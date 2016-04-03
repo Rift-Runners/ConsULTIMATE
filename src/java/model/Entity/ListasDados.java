@@ -18,6 +18,7 @@ public class ListasDados {
     private List<Cliente> listaClientes;
     private List<Consultor> listaConsultores;
     private List<Admin> listaAdmin;
+    private List<String> listaCategorias;
 
     /**
      * Creates a new instance of ListasDados
@@ -27,6 +28,8 @@ public class ListasDados {
         populaListaClientes();
         listaConsultores = new ArrayList<>();
         populaListaConsultores();
+        listaCategorias = new ArrayList<>();
+        populaListaCategorias();
         listaAdmin = new ArrayList<>();
         populaListaAdmin();
     }
@@ -49,6 +52,13 @@ public class ListasDados {
         listaConsultores.addAll(Arrays.asList(consultores));
     }
 
+    public void populaListaCategorias() {
+        String[] categorias = new String[]{
+            "Tecnologia da Informação", "Engenharia", "Artes"
+        };
+        listaCategorias.addAll(Arrays.asList(categorias));
+    }
+
     private void populaListaAdmin() {
         listaAdmin.add(new Admin("admin", "admin", true));
     }
@@ -59,6 +69,14 @@ public class ListasDados {
 
     public void adicionarConsultor(Consultor consultor) {
         listaConsultores.add(consultor);
+    }
+
+    public void adicionarCategoria(String categoria) {
+        listaCategorias.add(categoria);
+    }
+
+    public List<String> getListaCategorias() {
+        return listaCategorias;
     }
 
     public List<Cliente> getListaClientes() {
