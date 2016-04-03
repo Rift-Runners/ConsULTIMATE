@@ -23,13 +23,26 @@ public class MainController {
 
     private String usuario, senha, emailRecuperaSenha, tempSenhaRepete;
     private ListasDados listasDeDados;
-    private Consultor consultor;
+    private Consultor consultor, consultorVisualizado;
     private Cliente cliente;
 
     public MainController() {
         consultor = new Consultor();
         cliente = new Cliente();
+        consultorVisualizado = new Consultor();
         listasDeDados = new ListasDados();
+    }
+
+    public Consultor getConsultorVisualizado() {
+        return consultorVisualizado;
+    }
+    
+    public void setConsultorVisualizado(Consultor consultorVisualizado) {
+        this.consultorVisualizado = consultorVisualizado;
+    }
+
+    public String visualizaConsultor() {
+        return "consultor-detalhes";
     }
 
     public ListasDados getListasDeDados() {

@@ -143,3 +143,10 @@ no-padding{
     font-family: sans-serif;
     font-size: 18px;
 }
+
+.consultor-lista{
+    padding: 20px;
+    margin-bottom: 2px;
+    border: black solid 2px;
+    border-radius: 5px;
+}
