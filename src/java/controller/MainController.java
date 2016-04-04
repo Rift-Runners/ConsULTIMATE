@@ -11,6 +11,7 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
@@ -114,7 +115,12 @@ public class MainController {
     public boolean confirmaSenha(String senha, String repeteSenha) {
         return senha.equals(repeteSenha);
     }
-
+    
+    public boolean isPaginaPrincipal(){
+        HttpServletRequest servletRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return servletRequest.getRequestURI().contains("index");
+    }
+    
     public List<Consultor> consultoresPorArea(){
         List<Consultor> consultoresSelecionados = new ArrayList<>();
         for (Consultor cons : listasDeDados.getListaConsultores()) {
