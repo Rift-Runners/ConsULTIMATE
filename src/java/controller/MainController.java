@@ -5,6 +5,8 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -105,6 +107,12 @@ public class MainController {
         return senha.equals(repeteSenha);
     }
 
+    public List<Consultor> consultoresPorArea(){
+        List<Consultor> consultoresSelecionados = new ArrayList<>();
+        
+        return consultoresSelecionados;
+    } 
+    
     public String enviaDados() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getEmail().equals(emailRecuperaSenha)) {
