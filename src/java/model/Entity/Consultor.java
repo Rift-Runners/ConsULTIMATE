@@ -14,7 +14,6 @@ public class Consultor{
     private String nome, cidade, uf, endereco, telefone, email, categoria, cnpj, descricao, area, usuario, senha;
 
     public Consultor(){
-        
     }
     
     public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String categoria, String cnpj, String descricao, String area, String usuario, String senha) {

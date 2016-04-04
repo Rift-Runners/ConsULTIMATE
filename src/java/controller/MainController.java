@@ -23,7 +23,7 @@ import model.Entity.ListasDados;
 @ApplicationScoped
 public class MainController {
 
-    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete;
+    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete, consultoresAreaSelecionada;
     private ListasDados listasDeDados;
     private Consultor consultor, consultorVisualizado;
     private Cliente cliente;
@@ -33,6 +33,14 @@ public class MainController {
         cliente = new Cliente();
         consultorVisualizado = new Consultor();
         listasDeDados = new ListasDados();
+    }
+
+    public String getConsultoresAreaSelecionada() {
+        return consultoresAreaSelecionada;
+    }
+
+    public void setConsultoresAreaSelecionada(String consultoresAreaSelecionada) {
+        this.consultoresAreaSelecionada = consultoresAreaSelecionada;
     }
 
     public Consultor getConsultorVisualizado() {
@@ -109,7 +117,9 @@ public class MainController {
 
     public List<Consultor> consultoresPorArea(){
         List<Consultor> consultoresSelecionados = new ArrayList<>();
-        
+        for (Consultor cons : listasDeDados.getListaConsultores()) {
+            if(cons.getArea().equals(consultoresAreaSelecionada)) consultoresSelecionados.add(cons);
+        }
         return consultoresSelecionados;
     } 
     

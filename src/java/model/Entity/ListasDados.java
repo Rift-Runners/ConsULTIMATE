@@ -47,7 +47,13 @@ public class ListasDados {
         Consultor[] consultores = new Consultor[]{
             new Consultor("d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d"),
             new Consultor("e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e"),
-            new Consultor("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f")
+            new Consultor("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f"),
+            new Consultor("Teste1", "Teste1", "Teste1", "Teste1", "Teste1", "Teste1",
+            "Teste1", "Teste1", "Teste1", "Tecnologia da Informação", "Teste1", "Teste1"),
+            new Consultor("Teste2", "Teste2", "Teste2", "Teste2", "Teste2", "Teste2",
+            "Teste2", "Teste2", "Teste2", "Artes", "Teste2", "Teste2"),
+            new Consultor("Teste3", "Teste3", "Teste3", "Teste3", "Teste3", "Teste3",
+            "Teste3", "Teste3", "Teste3", "Engenharia", "Teste3", "Teste3")
         };
         listaConsultores.addAll(Arrays.asList(consultores));
     }
