@@ -147,4 +147,11 @@ public class SessionBean implements Serializable {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário e/ou senha inválidos.", null));
         return "login.xhtml";
     }
+
+    public String sair() {
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        contexto.getExternalContext().invalidateSession();
+        return ("login.xhtml?faces-redirect=true");
+    }
+
 }

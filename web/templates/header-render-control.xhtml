@@ -13,11 +13,11 @@
         <li><a href="#">Minha Conta</a></li>
         <!-- Cliente -->
         <h:panelGroup rendered="#{sessionBean.clienteIsLogged}">
-            <li><a href="#">Consultorias</a></li>
+            <li><a href="meus-consultores.xhtml">Consultorias</a></li>
         </h:panelGroup>
         <!-- Consultor -->
         <h:panelGroup rendered="#{sessionBean.consultorIsLogged}">
-            <li><a href="#">Clientes</a></li>
+            <li><a href="meus-clientes.xhtml">Clientes</a></li>
         </h:panelGroup>
         <li><a href="logout.xhtml">Sair</a></li>
     </h:panelGroup>
