@@ -12,6 +12,7 @@ package model.Entity;
 public class Cliente {
 
     private String nome, cidade, uf, endereco, telefone, email, cpf, rg, sexo, usuario, senha;
+    private double saldo;
 
     public Cliente() {
         
@@ -29,6 +30,15 @@ public class Cliente {
         this.sexo = sexo;
         this.usuario = usuario;
         this.senha = senha;
+        this.saldo = 0d;
+    }
+
+    public double getSaldo() {
+        return saldo;
+    }
+
+    public void setSaldo(double saldo) {
+        this.saldo = saldo;
     }
 
     public String getNome() {

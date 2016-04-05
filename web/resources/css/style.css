@@ -16,10 +16,10 @@
 /*-----------------------------------------------*/
 body{
     font-family: PlayfairDisplay !important;
-    padding-top: 51px; //Necessário para o header não sobrepor o conteúdo do body 
+    padding-top: 51px; /*Necessário para o header não sobrepor o conteúdo do body */
 }
 
-//Ajusta um problema com a navbar estática do bootstrap e âncoras
+/*Ajusta um problema com a navbar estática do bootstrap e âncoras*/
 #quem-somos, #contato,
 #servicos{
     padding-top: 50px;
@@ -49,7 +49,7 @@ body{
 
 .main-header .video{
     border: white 2px solid;
-    margin-bottom: 100px; //É preciso fazer 100% da tela (altura), como?
+    margin-bottom: 100px; /*É preciso fazer 100% da tela (altura), como?*/
 }
 .servico-funcionalidade-titulo{
     font-size: 50px;
