@@ -150,3 +150,22 @@ no-padding{
     border: black solid 2px;
     border-radius: 5px;
 }
+
+/* Minha conta */
+.botao-mostrar-dados-alterado{
+    float: left;
+}
+
+.botao-alterar-dados{
+    display: none;
+    float: right;
+}
+
+.saldo{
+    font-size: 20px;
+}
+
+.add-saldo{
+    margin-top: 10px;
+    font-size: 16px;
+}

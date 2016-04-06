@@ -5,55 +5,137 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Minha conta</title>
+        <link href="resources/css/bootstrap.css" rel="stylesheet"/>
+        <link href="resources/css/style.css" rel="stylesheet"/>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
-        <div class="row">
-            <div class="col-md-2 col-md-offset-1">
-                <div id="saldo">
-                    <h:form>
-                        <h:outputText rendered="#{sessionBean.clienteLogged}" value="#{sessionBean.cliente.saldo}"/>
-                    </h:form>
+        <h:form rendered="#{sessionBean.clienteLogged}">
+            <div class="row">
+                <div class="col-md-2 col-md-offset-1">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Saldo</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <h:outputText class="saldo" value="R$ #{sessionBean.cliente.saldo}"/>
+                            <button type="button" class="btn btn-info add-saldo">Adicionar saldo!</button>
+                        </div>
+                    </div>
                 </div>
+                <div class="col-md-8"></div>
             </div>
-            <div class="col-md-8"></div>
-        </div>
+        </h:form>
         <div class="row">
             <div class="col-md-1"/>
             <div class="col-md-6">
-                
+
             </div>
             <div class="col-md-1"/>
             <div class="col-md-3">
-                <h:form rendered="#{sessionBean.clienteLogged}">
-                    <p class="text-center">Dados Pessoais</p>
-                    <table class="table table-bordered table-hover">
-                        <tr>
-                            <td>Nome:</td>
-                            <td><h:outputText value="#{sessionBean.cliente.nome}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td><h:outputText value="#{sessionBean.cliente.email}"/></td>
-                        </tr>
-                    </table>
-                </h:form>
-                <h:form rendered="#{sessionBean.consultorLogged}">
-                    <p class="text-center">Dados Pessoais</p>
-                    <table class="table table-bordered table-hover">
-                        <tr>
-                            <td>Nome:</td>
-                            <td><h:outputText value="#{sessionBean.consultor.nome}"/></td>
-                        </tr>
-                        <tr>
-                            <td>Email:</td>
-                            <td><h:outputText value="#{sessionBean.consultor.email}"/></td>
-                        </tr>
-                    </table>
-                </h:form>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title text-center">Dados Pessoais</h3>
+                    </div>
+                    <div class="panel-body">
+                        <h:form rendered="#{sessionBean.clienteLogged}">
+                            <table id="tabela-dados" class="table">
+                                <tr>
+                                    <td>Nome:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.nome}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.email}"/></td>
+                                </tr>              
+                                <tr class="escondido">
+                                    <td>Endereço:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.endereco}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>Cidade:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.cidade}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>UF:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.uf}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>Telefone:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.telefone}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>CPF:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.cpf}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>RG:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.rg}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>Sexo:</td>
+                                    <td><h:outputText value="#{sessionBean.cliente.sexo}"/></td>
+                                </tr>
+                            </table>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
+                                <button type="button" class="btn btn-info botao-alterar-dados">Salvar alterações!</button>
+                            </div>
+                        </h:form>
+
+
+                        <h:form rendered="#{sessionBean.consultorLogged}">
+                            <table id="tabela-dados" class="table">
+                                <tr>
+                                    <td>Nome:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.nome}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.email}"/></td>
+                                </tr>
+                                <tr>
+                                    <td>Área:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.area}"/></td>
+                                </tr> 
+                                <tr>
+                                    <td>Descrição:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.descricao}"/></td>
+                                </tr> 
+                                <tr class="escondido">
+                                    <td>Endereço:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.endereco}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>Cidade:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.cidade}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>UF:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.uf}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>Telefone:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.telefone}"/></td>
+                                </tr>
+                                <tr class="escondido">
+                                    <td>CPNJ:</td>
+                                    <td><h:outputText value="#{sessionBean.consultor.cnpj}"/></td>
+                                </tr>
+                            </table>
+                            <div class="text-center">
+                                <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
+                                <button type="button" class="btn btn-info botao-alterar-dados">Salvar alterações!</button>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
             </div>
             <div class="col-md-1"/>
         </div>
+        <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/minha-conta.js"></script>
     </h:body>
 </html>
 

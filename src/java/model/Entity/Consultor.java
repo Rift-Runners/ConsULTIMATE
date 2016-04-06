@@ -11,19 +11,18 @@ package model.Entity;
  */
 public class Consultor{
 
-    private String nome, cidade, uf, endereco, telefone, email, categoria, cnpj, descricao, area, usuario, senha;
+    private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
 
     public Consultor(){
     }
     
-    public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String categoria, String cnpj, String descricao, String area, String usuario, String senha) {
+    public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha) {
         this.nome = nome;
         this.cidade = cidade;
         this.uf = uf;
         this.endereco = endereco;
         this.telefone = telefone;
         this.email = email;
-        this.categoria = categoria;
         this.cnpj = cnpj;
         this.descricao = descricao;
         this.area = area;
@@ -77,14 +76,6 @@ public class Consultor{
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getCategoria() {
-        return categoria;
-    }
-
-    public void setCategoria(String categoria) {
-        this.categoria = categoria;
     }
 
     public String getCnpj() {
