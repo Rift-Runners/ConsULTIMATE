@@ -5,6 +5,9 @@
  */
 package model.Entity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author Guilherme Matuella
  * @author Diego Peixoto
@@ -12,7 +15,8 @@ package model.Entity;
 public class Consultor{
 
     private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
-
+    private List<Transacao> transacoesEfetuadas;
+    
     public Consultor(){
     }
     
@@ -28,6 +32,7 @@ public class Consultor{
         this.area = area;
         this.usuario = usuario;
         this.senha = senha;
+        this.transacoesEfetuadas = new ArrayList();
     }
 
     public String getNome() {
@@ -117,4 +122,12 @@ public class Consultor{
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public List<Transacao> getTransacoesEfetuadas() {
+        return transacoesEfetuadas;
+    }
+
+    public void addTransacao(Transacao transacao) {
+        this.transacoesEfetuadas.add(transacao);
+    }   
 }
