@@ -6,7 +6,9 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -47,7 +49,7 @@ public class MainController {
     public Consultor getConsultorVisualizado() {
         return consultorVisualizado;
     }
-    
+
     public void setConsultorVisualizado(Consultor consultorVisualizado) {
         this.consultorVisualizado = consultorVisualizado;
     }
@@ -115,20 +117,26 @@ public class MainController {
     public boolean confirmaSenha(String senha, String repeteSenha) {
         return senha.equals(repeteSenha);
     }
-    
-    public boolean isPaginaPrincipal(){
-        HttpServletRequest servletRequest = (HttpServletRequest)FacesContext.getCurrentInstance().getExternalContext().getRequest();
+
+    public boolean isPaginaPrincipal() {
+        HttpServletRequest servletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         return servletRequest.getRequestURI().contains("index");
     }
-    
-    public List<Consultor> consultoresPorArea(){
-        List<Consultor> consultoresSelecionados = new ArrayList<>();
-        for (Consultor cons : listasDeDados.getListaConsultores()) {
-            if(cons.getArea().equals(consultoresAreaSelecionada)) consultoresSelecionados.add(cons);
-        }
-        return consultoresSelecionados;
-    } 
-    
+
+//    public Map<String, List<Consultor>> mapeiaConsultores() {
+//        Map<String, List<Consultor>> mapaDeConsultores = new HashMap();
+//        for (Consultor cons : listasDeDados.getListaConsultores()) {
+//            if(mapaDeConsultores.containsKey(cons.getArea())){
+//                mapaDeConsultores.get(cons.getArea()).add(cons);
+//            } else{
+//                List<Consultor> primeiroConsultor = new ArrayList();
+//                primeiroConsultor.add(cons);
+//                mapaDeConsultores.put(cons.getArea(), primeiroConsultor);
+//            }
+//        }
+//        return mapaDeConsultores;
+//    }
+
     public String enviaDados() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getEmail().equals(emailRecuperaSenha)) {

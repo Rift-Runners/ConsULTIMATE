@@ -11,12 +11,13 @@
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
+
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
-                <label>Selecione a área:</label>
                 <h:form>
                     <h:selectOneMenu class="form-control" id="categoria" value="#{mainController.consultoresAreaSelecionada}">
-                        <f:selectItems value="#{mainController.listasDeDados.listaAreas}" var="categoria" 
+                        <f:selectItem itemValue="" itemLabel="Selecione uma área"/>  
+                        <f:selectItems value="#{mainController.listasDeDados.listaAreas}" var="area" 
                                        itemLabel="#{area}" itemValue="#{area}" />
                     </h:selectOneMenu>
                 </h:form>
@@ -34,9 +35,9 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 col-md-offset-1">    
-                <ui:repeat var="consultor" value="#{mainController.consultoresPorArea()}">
-                    <div class="consultor-lista">
+            <div class="col-md-10 col-md-offset-1 consultores">   
+                <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
+                    <div class="#{consultor.area} consultor-lista escondido">
                         <h:outputText value="#{consultor.nome}"/><br/>
                         <h:outputText value="#{consultor.cidade}"/><br/>
                         <h:outputText value="#{consultor.uf}"/><br/>
@@ -51,12 +52,13 @@
             </div>
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>
-        <script>
-            $(function () {
-                $("#categoria").change(function () {
-                    alert("Você mudou de categoria, mas ainda não está implementado...");
-                });
-            });
+        <script type="text/javascript">
+            $("select").change(function () {
+                var option = $(this).find("option:selected").text();
+
+                $(this).closest("body").find(".consultores").find("div").hide(700);
+                $(this).closest("body").find("." + option).show(700);
+            }).change();
         </script>
     </h:body>
 </html>
