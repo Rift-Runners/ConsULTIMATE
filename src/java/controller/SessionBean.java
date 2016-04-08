@@ -19,7 +19,6 @@ import model.Entity.ListasDados;
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-
 @Named
 @SessionScoped
 public class SessionBean implements Serializable {
@@ -30,6 +29,7 @@ public class SessionBean implements Serializable {
     private Admin admin;
     private ListasDados listasDeDados;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
+    private double valorSaldo;
 
     /**
      * Creates a new instance of SessionBean
@@ -110,6 +110,32 @@ public class SessionBean implements Serializable {
 
     public void setAdminLogged(boolean adminLogged) {
         this.adminLogged = adminLogged;
+    }
+
+    public ListasDados getListasDeDados() {
+        return listasDeDados;
+    }
+
+    public void setListasDeDados(ListasDados listasDeDados) {
+        this.listasDeDados = listasDeDados;
+    }
+
+    public double getValorSaldo() {
+        return valorSaldo;
+    }
+
+    public void setValorSaldo(double valorSaldo) {
+        this.valorSaldo = valorSaldo;
+    }
+
+    public String adicionarSaldo() {
+        for (Cliente c : listasDeDados.getListaClientes()) {
+            if (c.getUsuario().equals(cliente.getUsuario())) {
+                c.setSaldo(c.getSaldo()+valorSaldo);
+            }
+        }
+        valorSaldo = 0d;
+        return "minha-conta.xhtml?faces-redirect=true";
     }
 
     public String entrar() {
