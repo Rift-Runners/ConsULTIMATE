@@ -14,9 +14,13 @@
     src: url("../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf") format("truetype");
 }
 /*-----------------------------------------------*/
+html{
+    height: 100%;
+}
 body{
+    height: 100%;
     font-family: PlayfairDisplay !important;
-    padding-top: 51px; /*Necessário para o header não sobrepor o conteúdo do body */
+    padding-top:51px;
 }
 
 /*Ajusta um problema com a navbar estática do bootstrap e âncoras*/
@@ -28,16 +32,21 @@ body{
 
 .main-header {
     position: relative;
-    width: 100%;
-    min-height: auto;
+    height:100%;
     text-align: center;
-    color: #fff;
+}
+
+.main-header::after {
+    content: "";
     background-image: url(../images/Consult3.jpg);
-    background-position: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
     background-size: cover;
-    -o-background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;   
+    position: absolute;
 }
 
 .main-header .title{
@@ -117,7 +126,7 @@ body{
     margin: 0px;
 }
 
-no-padding{
+.no-padding{
     padding: 0px;
 }
 
@@ -159,6 +168,24 @@ no-padding{
 .add-saldo{
     margin-top: 10px;
     font-size: 16px;
+}
+
+.minha-conta-background {
+    position: relative;
+    height:100%;
+}
+
+.minha-conta-background::after {
+    content: "";
+    background-image: url(../images/Consult1.jpg);
+    background-size: cover;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
 }
 
 /* Login */
