@@ -6,6 +6,8 @@
 package controller;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -14,6 +16,7 @@ import model.Entity.Admin;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
+import model.Entity.Transacao;
 
 /**
  * @author Guilherme Matuella
@@ -25,7 +28,7 @@ public class SessionBean implements Serializable {
 
     private String usuario, senha;
     private Cliente cliente;
-    private Consultor consultor;
+    private Consultor consultor, consultorVisualizado;
     private Admin admin;
     private ListasDados listasDeDados;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
@@ -38,6 +41,7 @@ public class SessionBean implements Serializable {
         listasDeDados = new ListasDados();
         cliente = new Cliente();
         consultor = new Consultor();
+        consultorVisualizado = new Consultor();
     }
 
     public String getUsuario() {
@@ -128,13 +132,41 @@ public class SessionBean implements Serializable {
         this.valorSaldo = valorSaldo;
     }
 
+    public Consultor getConsultorVisualizado() {
+        return consultorVisualizado;
+    }
+
+    public void setConsultorVisualizado(Consultor consultorVisualizado) {
+        this.consultorVisualizado = consultorVisualizado;
+    }
+
+    public String visualizaConsultor() {
+        return "consultor-detalhes.xhtml";
+    }
+
     public String adicionarSaldo() {
         for (Cliente c : listasDeDados.getListaClientes()) {
             if (c.getUsuario().equals(cliente.getUsuario())) {
-                c.setSaldo(c.getSaldo()+valorSaldo);
+                c.setSaldo(c.getSaldo() + valorSaldo);
             }
         }
         valorSaldo = 0d;
+        return "minha-conta.xhtml?faces-redirect=true";
+    }
+
+    public String criarTransacao() {
+        for (Cliente cli : listasDeDados.getListaClientes()) {
+            if (cli.getUsuario().equals(cliente.getUsuario())) {
+                for (Consultor cons : listasDeDados.getListaConsultores()) {
+                    if (cons.getUsuario().equals(consultorVisualizado.getUsuario())) {
+                        if (cli.getSaldo() >= 100) {
+                            cli.setSaldo(cli.getSaldo() - 100);
+                            cli.addTransacao(new Transacao(cli, cons, 100, 1, Date.valueOf(LocalDate.now()), "fdas"));
+                        }
+                    }
+                }
+            }
+        }
         return "minha-conta.xhtml?faces-redirect=true";
     }
 

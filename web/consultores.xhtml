@@ -43,8 +43,8 @@
                         <h:outputText value="#{consultor.uf}"/><br/>
                         <h:outputText value="#{consultor.descricao}"/><br/>
                         <h:form>
-                            <h:commandButton class="btn btn-primary" action="#{mainController.visualizaConsultor()}" value="Saiba mais!">
-                                <f:setPropertyActionListener target="#{mainController.consultorVisualizado}" value="#{consultor}" />
+                            <h:commandButton class="btn btn-primary" action="#{sessionBean.visualizaConsultor()}" value="Saiba mais!">
+                                <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
                             </h:commandButton>
                         </h:form>
                     </div>

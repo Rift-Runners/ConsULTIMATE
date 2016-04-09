@@ -28,13 +28,12 @@ public class MainController {
 
     private String usuario, senha, emailRecuperaSenha, tempSenhaRepete, consultoresAreaSelecionada;
     private ListasDados listasDeDados;
-    private Consultor consultor, consultorVisualizado;
+    private Consultor consultor;
     private Cliente cliente;
 
     public MainController() {
         consultor = new Consultor();
         cliente = new Cliente();
-        consultorVisualizado = new Consultor();
         listasDeDados = new ListasDados();
     }
 
@@ -45,19 +44,7 @@ public class MainController {
     public void setConsultoresAreaSelecionada(String consultoresAreaSelecionada) {
         this.consultoresAreaSelecionada = consultoresAreaSelecionada;
     }
-
-    public Consultor getConsultorVisualizado() {
-        return consultorVisualizado;
-    }
-
-    public void setConsultorVisualizado(Consultor consultorVisualizado) {
-        this.consultorVisualizado = consultorVisualizado;
-    }
-
-    public String visualizaConsultor() {
-        return "consultor-detalhes";
-    }
-
+    
     public ListasDados getListasDeDados() {
         return listasDeDados;
     }
@@ -173,4 +160,5 @@ public class MainController {
         }
         return "";
     }
+  
 }

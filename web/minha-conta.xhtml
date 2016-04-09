@@ -36,42 +36,19 @@
                     <div class="panel-body">
                         <h:form rendered="#{sessionBean.clienteLogged}">
                             <table id="tabela-dados" class="table">
-                                <tr>
-                                    <td>Nome:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.nome}"/></td>
-                                </tr>
-                                <tr>
-                                    <td>Email:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.email}"/></td>
-                                </tr>              
-                                <tr class="escondido">
-                                    <td>Endereço:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.endereco}"/></td>
-                                </tr>
-                                <tr class="escondido">
-                                    <td>Cidade:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.cidade}"/></td>
-                                </tr>
-                                <tr class="escondido">
-                                    <td>UF:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.uf}"/></td>
-                                </tr>
-                                <tr class="escondido">
-                                    <td>Telefone:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.telefone}"/></td>
-                                </tr>
-                                <tr class="escondido">
-                                    <td>CPF:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.cpf}"/></td>
-                                </tr>
-                                <tr class="escondido">
-                                    <td>RG:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.rg}"/></td>
-                                </tr>
-                                <tr class="escondido">
-                                    <td>Sexo:</td>
-                                    <td><h:outputText value="#{sessionBean.cliente.sexo}"/></td>
-                                </tr>
+                                <ui:repeat var="transacao" value="#{sessionBean.cliente.transacoesEfetuadas}">
+                                    <tr>
+                                        <td>Nome do consultor:</td>
+                                        <td><h:outputText value="#{transacao.consultor.nome}"/></td>
+                                        <td>Quantidade de horas:</td>
+                                        <td><h:outputText value="#{transacao.horas}"/></td>
+                                        <td>Valor total:</td>
+                                        <td><h:outputText value="#{transacao.valor}"/></td>
+                                        <td>Data da transação:</td>
+                                        <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                    </tr>
+                                    
+                                </ui:repeat>                             
                             </table>
                             <div class="text-center">
                                 <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
