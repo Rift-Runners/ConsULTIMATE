@@ -26,17 +26,16 @@
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                 <h:inputText p:placeholder="Usuário" class="form-control"
                                              id="loginUsuario" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.usuario}"/>
-                                <h:message for="loginUsuario" class="error-message"/>
                             </div>
+                            <h:message for="loginUsuario" class="error-message"/>
                             <div class="input-group margin-bottom10">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                 <h:inputSecret p:placeholder="Senha" class="form-control"
                                                id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
-                                <h:message for="loginSenha" class="error-message"/>
                             </div>
+                            <h:message for="loginSenha" class="error-message"/>
                             <div class="login-space text-center margin-bottom25">                           
                                 <h:commandButton class="btn btn-info btn-lg" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
-                                <h:messages errorStyle="color:red"/>
                             </div>
                             <h:link class="btn registre-link" value="Registre-se!" outcome="cadastro" />
                             <h:link class="btn esqueceu-link" value="Esqueceu sua senha?" outcome="esqueceu-senha" />
