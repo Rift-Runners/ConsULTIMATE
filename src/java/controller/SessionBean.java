@@ -6,29 +6,33 @@
 package controller;
 
 import java.io.Serializable;
+import java.sql.Date;
+import java.time.LocalDate;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 import model.Entity.Admin;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
+import model.Entity.Transacao;
 
 /**
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-@ManagedBean(name = "sessionBean")
+@Named
 @SessionScoped
 public class SessionBean implements Serializable {
 
     private String usuario, senha;
     private Cliente cliente;
-    private Consultor consultor;
+    private Consultor consultor, consultorVisualizado;
     private Admin admin;
     private ListasDados listasDeDados;
-    public boolean isLogged, clienteIsLogged, consultorIsLogged, adminIsLogged;
+    private boolean logged, clienteLogged, consultorLogged, adminLogged;
+    private double valorSaldo;
 
     /**
      * Creates a new instance of SessionBean
@@ -37,6 +41,7 @@ public class SessionBean implements Serializable {
         listasDeDados = new ListasDados();
         cliente = new Cliente();
         consultor = new Consultor();
+        consultorVisualizado = new Consultor();
     }
 
     public String getUsuario() {
@@ -79,44 +84,98 @@ public class SessionBean implements Serializable {
         this.admin = admin;
     }
 
-    public boolean isIsLogged() {
-        return isLogged;
+    public boolean isLogged() {
+        return logged;
     }
 
-    public void setIsLogged(boolean isLogged) {
-        this.isLogged = isLogged;
+    public void setLogged(boolean logged) {
+        this.logged = logged;
     }
 
-    public boolean isClienteIsLogged() {
-        return clienteIsLogged;
+    public boolean isClienteLogged() {
+        return clienteLogged;
     }
 
-    public void setClienteIsLogged(boolean clienteIsLogged) {
-        this.clienteIsLogged = clienteIsLogged;
+    public void setClienteLogged(boolean clienteLogged) {
+        this.clienteLogged = clienteLogged;
     }
 
-    public boolean isConsultorIsLogged() {
-        return consultorIsLogged;
+    public boolean isConsultorLogged() {
+        return consultorLogged;
     }
 
-    public void setConsultorIsLogged(boolean consultorIsLogged) {
-        this.consultorIsLogged = consultorIsLogged;
+    public void setConsultorLogged(boolean consultorLogged) {
+        this.consultorLogged = consultorLogged;
     }
 
-    public boolean isAdminIsLogged() {
-        return adminIsLogged;
+    public boolean isAdminLogged() {
+        return adminLogged;
     }
 
-    public void setAdminIsLogged(boolean adminIsLogged) {
-        this.adminIsLogged = adminIsLogged;
+    public void setAdminLogged(boolean adminLogged) {
+        this.adminLogged = adminLogged;
+    }
+
+    public ListasDados getListasDeDados() {
+        return listasDeDados;
+    }
+
+    public void setListasDeDados(ListasDados listasDeDados) {
+        this.listasDeDados = listasDeDados;
+    }
+
+    public double getValorSaldo() {
+        return valorSaldo;
+    }
+
+    public void setValorSaldo(double valorSaldo) {
+        this.valorSaldo = valorSaldo;
+    }
+
+    public Consultor getConsultorVisualizado() {
+        return consultorVisualizado;
+    }
+
+    public void setConsultorVisualizado(Consultor consultorVisualizado) {
+        this.consultorVisualizado = consultorVisualizado;
+    }
+
+    public String visualizaConsultor() {
+        return "consultor-detalhes.xhtml";
+    }
+
+    public String adicionarSaldo() {
+        for (Cliente c : listasDeDados.getListaClientes()) {
+            if (c.getUsuario().equals(cliente.getUsuario())) {
+                c.setSaldo(c.getSaldo() + valorSaldo);
+            }
+        }
+        valorSaldo = 0d;
+        return "minha-conta.xhtml?faces-redirect=true";
+    }
+
+    public String criarTransacao() {
+        for (Cliente cli : listasDeDados.getListaClientes()) {
+            if (cli.getUsuario().equals(cliente.getUsuario())) {
+                for (Consultor cons : listasDeDados.getListaConsultores()) {
+                    if (cons.getUsuario().equals(consultorVisualizado.getUsuario())) {
+                        if (cli.getSaldo() >= 100) {
+                            cli.setSaldo(cli.getSaldo() - 100);
+                            cli.addTransacao(new Transacao(cli, cons, 100, 1, Date.valueOf(LocalDate.now()), "fdas"));
+                        }
+                    }
+                }
+            }
+        }
+        return "minha-conta.xhtml?faces-redirect=true";
     }
 
     public String entrar() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getUsuario().equals(usuario)) {
                 if (clienteCadastrado.getSenha().equals(senha)) {
-                    clienteIsLogged = true;
-                    isLogged = true;
+                    clienteLogged = true;
+                    logged = true;
                     cliente = clienteCadastrado;
                     return "index.xhtml?faces-redirect=true";
                 }
@@ -126,8 +185,8 @@ public class SessionBean implements Serializable {
         for (Consultor consultorCadastrado : listasDeDados.getListaConsultores()) {
             if (consultorCadastrado.getUsuario().equals(usuario)) {
                 if (consultorCadastrado.getSenha().equals(senha)) {
-                    consultorIsLogged = true;
-                    isLogged = true;
+                    consultorLogged = true;
+                    logged = true;
                     consultor = consultorCadastrado;
                     return "index.xhtml?faces-redirect=true";
                 }
@@ -137,8 +196,8 @@ public class SessionBean implements Serializable {
         for (Admin adminCadastrado : listasDeDados.getListaAdmin()) {
             if (adminCadastrado.getUsuario().equals(usuario)) {
                 if (adminCadastrado.getSenha().equals(senha)) {
-                    adminIsLogged = true;
-                    isLogged = true;
+                    adminLogged = true;
+                    logged = true;
                     admin = adminCadastrado;
                     return "index.xhtml?faces-redirect=true";
                 }
@@ -146,5 +205,11 @@ public class SessionBean implements Serializable {
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário e/ou senha inválidos.", null));
         return "login.xhtml";
+    }
+
+    public String sair() {
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        contexto.getExternalContext().invalidateSession();
+        return ("login.xhtml?faces-redirect=true");
     }
 }

@@ -18,7 +18,7 @@ public class ListasDados {
     private List<Cliente> listaClientes;
     private List<Consultor> listaConsultores;
     private List<Admin> listaAdmin;
-    private List<String> listaCategorias;
+    private List<String> listaAreas;
 
     /**
      * Creates a new instance of ListasDados
@@ -28,8 +28,8 @@ public class ListasDados {
         populaListaClientes();
         listaConsultores = new ArrayList<>();
         populaListaConsultores();
-        listaCategorias = new ArrayList<>();
-        populaListaCategorias();
+        listaAreas = new ArrayList<>();
+        populaListaAreas();
         listaAdmin = new ArrayList<>();
         populaListaAdmin();
     }
@@ -45,18 +45,24 @@ public class ListasDados {
 
     public void populaListaConsultores() {
         Consultor[] consultores = new Consultor[]{
-            new Consultor("d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d"),
-            new Consultor("e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e"),
-            new Consultor("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f")
+            new Consultor("d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d"),
+            new Consultor("e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e"),
+            new Consultor("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f"),
+            new Consultor("Teste1", "Teste1", "Teste1", "Teste1", "Teste1",
+            "Teste1", "Teste1", "Teste1", "Tecnologia da Informação", "Teste1", "Teste1"),
+            new Consultor("Teste2", "Teste2", "Teste2", "Teste2", "Teste2",
+            "Teste2", "Teste2", "Teste2", "Artes", "Teste2", "Teste2"),
+            new Consultor("Teste3", "Teste3", "Teste3", "Teste3", "Teste3",
+            "Teste3", "Teste3", "Teste3", "Engenharia", "Teste3", "Teste3")
         };
         listaConsultores.addAll(Arrays.asList(consultores));
     }
 
-    public void populaListaCategorias() {
+    public void populaListaAreas() {
         String[] categorias = new String[]{
             "Tecnologia da Informação", "Engenharia", "Artes"
         };
-        listaCategorias.addAll(Arrays.asList(categorias));
+        listaAreas.addAll(Arrays.asList(categorias));
     }
 
     private void populaListaAdmin() {
@@ -71,12 +77,12 @@ public class ListasDados {
         listaConsultores.add(consultor);
     }
 
-    public void adicionarCategoria(String categoria) {
-        listaCategorias.add(categoria);
+    public void adicionarArea(String area) {
+        listaAreas.add(area);
     }
 
-    public List<String> getListaCategorias() {
-        return listaCategorias;
+    public List<String> getListaAreas() {
+        return listaAreas;
     }
 
     public List<Cliente> getListaClientes() {

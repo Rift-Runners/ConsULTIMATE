@@ -5,10 +5,15 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
@@ -21,7 +26,7 @@ import model.Entity.ListasDados;
 @ApplicationScoped
 public class MainController {
 
-    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete;
+    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete, consultoresAreaSelecionada;
     private ListasDados listasDeDados;
     private Consultor consultor;
     private Cliente cliente;
@@ -32,6 +37,14 @@ public class MainController {
         listasDeDados = new ListasDados();
     }
 
+    public String getConsultoresAreaSelecionada() {
+        return consultoresAreaSelecionada;
+    }
+
+    public void setConsultoresAreaSelecionada(String consultoresAreaSelecionada) {
+        this.consultoresAreaSelecionada = consultoresAreaSelecionada;
+    }
+    
     public ListasDados getListasDeDados() {
         return listasDeDados;
     }
@@ -92,6 +105,25 @@ public class MainController {
         return senha.equals(repeteSenha);
     }
 
+    public boolean isPaginaPrincipal() {
+        HttpServletRequest servletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return servletRequest.getRequestURI().contains("index");
+    }
+
+//    public Map<String, List<Consultor>> mapeiaConsultores() {
+//        Map<String, List<Consultor>> mapaDeConsultores = new HashMap();
+//        for (Consultor cons : listasDeDados.getListaConsultores()) {
+//            if(mapaDeConsultores.containsKey(cons.getArea())){
+//                mapaDeConsultores.get(cons.getArea()).add(cons);
+//            } else{
+//                List<Consultor> primeiroConsultor = new ArrayList();
+//                primeiroConsultor.add(cons);
+//                mapaDeConsultores.put(cons.getArea(), primeiroConsultor);
+//            }
+//        }
+//        return mapaDeConsultores;
+//    }
+
     public String enviaDados() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getEmail().equals(emailRecuperaSenha)) {
@@ -128,4 +160,5 @@ public class MainController {
         }
         return "";
     }
+  
 }

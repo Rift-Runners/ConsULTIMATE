@@ -4,25 +4,28 @@
                 xmlns:h="http://xmlns.jcp.org/jsf/html"
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <!-- Não logado -->
-    <h:panelGroup rendered="#{!sessionBean.isLogged}">
+    <h:panelGroup rendered="#{!sessionBean.logged}">
         <li><a href="login.xhtml">Entrar</a></li>
         <li><a href="cadastro.xhtml">Cadastre-se!</a></li>
     </h:panelGroup>
-    <!-- Cliente -->
-    <h:panelGroup rendered="#{sessionBean.clienteIsLogged}">
-        <li><a href="#">Minha Conta</a></li>
-        <li><a href="#">Consultorias</a></li>
-        <li><a href="#">Sair</a></li>
+
+    <h:panelGroup rendered="#{sessionBean.clienteLogged || sessionBean.consultorLogged}">
+        <li><a href="minha-conta.xhtml">Minha Conta</a></li>
+        <li>
+            <h:form>
+                <h:commandLink value="Sair" action="#{sessionBean.sair()}"/>
+            </h:form>
+        </li>
     </h:panelGroup>
-    <!-- Consultor -->
-    <h:panelGroup rendered="#{sessionBean.consultorIsLogged}">
-        <li><a href="#">Minha Conta</a></li>
-        <li><a href="#">Clientes</a></li>
-        <li><a href="#">Sair</a></li>
-    </h:panelGroup>
+
     <!-- Admin -->
-    <h:panelGroup rendered="#{sessionBean.adminIsLogged}">
+    <h:panelGroup rendered="#{sessionBean.adminLogged}">
         <li><a href="dashboard.xhtml">Dashboard</a></li>
+        <li>
+            <h:form>
+                <h:commandLink value="Sair" action="#{sessionBean.sair()}"/>
+            </h:form>
+        </li>
     </h:panelGroup>
 </ui:composition>
 
