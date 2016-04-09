@@ -12,38 +12,40 @@
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
-
-        <div class="row row-eq-height">
-            <div class="col-md-4"></div>
-            <div class="col-md-4">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h1 class="panel-title text-center">Login</h1>
-                    </div>
-                    <div class="panel-body">
-                        <h:form>
-                            <div class="input-group margin-top20-bottom15">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                <h:inputText p:placeholder="Usuário" class="form-control"
-                                             id="loginUsuario" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.usuario}"/>
-                            </div>
-                            <h:message for="loginUsuario" class="error-message"/>
-                            <div class="input-group margin-bottom10">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                <h:inputSecret p:placeholder="Senha" class="form-control"
-                                               id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
-                            </div>
-                            <h:message for="loginSenha" class="error-message"/>
-                            <div class="login-space text-center margin-bottom25">                           
-                                <h:commandButton class="btn btn-info btn-lg" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
-                            </div>
-                            <h:link class="btn registre-link" value="Registre-se!" outcome="cadastro" />
-                            <h:link class="btn esqueceu-link" value="Esqueceu sua senha?" outcome="esqueceu-senha" />
-                        </h:form>
+        
+        <div class="login-background no-margin no-padding">
+            <div class="row row-eq-height login-form">
+                <div class="col-md-4"></div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h1 class="panel-title text-center">Login</h1>
+                        </div>
+                        <div class="panel-body">
+                            <h:form>
+                                <div class="input-group margin-top20-bottom15">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                    <h:inputText p:placeholder="Usuário" class="form-control"
+                                                 id="loginUsuario" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.usuario}"/>
+                                </div>
+                                <h:message for="loginUsuario" class="error-message"/>
+                                <div class="input-group margin-bottom10">
+                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                    <h:inputSecret p:placeholder="Senha" class="form-control"
+                                                   id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
+                                </div>
+                                <h:message for="loginSenha" class="error-message"/>
+                                <div class="login-space text-center margin-bottom25">                           
+                                    <h:commandButton class="btn btn-info btn-lg" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
+                                </div>
+                                <h:link class="btn registre-link" value="Registre-se!" outcome="cadastro" />
+                                <h:link class="btn esqueceu-link" value="Esqueceu sua senha?" outcome="esqueceu-senha" />
+                            </h:form>
+                        </div>
                     </div>
                 </div>
+                <div class="col-md-4"></div>
             </div>
-            <div class="col-md-4"></div>
         </div>
 
         <script src="resources/js/jquery-2.2.1.js"></script>
