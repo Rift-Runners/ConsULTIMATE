@@ -87,6 +87,7 @@ body{
     font-family: TrackType !important;
     font-size: 30px;
     float: right;
+    margin-top: 15px;
 }
 
 .conteudo-funcionalidade{
@@ -168,7 +169,7 @@ body{
 
 .consultores-background::after {
     content: "";
-    background-image: url(../images/Consult4.jpg);
+    background-image: url(../images/consultores.jpg);
     background-size: cover;
     opacity: 0.3;
     top: 0;
@@ -265,3 +266,22 @@ body{
     font-size: 16px;
 }
 /*END - Login */
+/*Cadastre-se*/
+.cadastrese-background {
+    position: relative;
+    height:100%;
+}
+
+.cadastrese-background::after {
+    content: "";
+    background-image: url(../images/login.jpg);
+    background-size: cover;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+/*END - Cadastre-se*/
