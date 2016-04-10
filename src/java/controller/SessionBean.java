@@ -216,4 +216,5 @@ public class SessionBean implements Serializable {
     public String perguntarConsultor() {
         return "index.xhtml?faces-redirect=true";
     }
+    
 }
