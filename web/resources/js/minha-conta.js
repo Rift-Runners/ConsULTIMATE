@@ -1,7 +1,3 @@
-$('.tabela-editavel').editableTableWidget();
-$('.tabela-editavel').editableTableWidget({editor: $('<textarea>')});
-
-
 $(".botao-mostrar-dados").click(function () {
     $(this).closest("div").prev().find(".escondido").toggle("slow");
     $(this).toggleClass(".botao-mostrar-dados-alterado");

@@ -91,39 +91,39 @@
                         </div>
                         <div class="panel-body">
                             <h:form rendered="#{sessionBean.clienteLogged}">
-                                <table id="tabela-dados" class="table table-hover tabela-editavel">
+                                <table id="tabela-dados" class="table table-hover">
                                     <tbody>
                                         <tr>
                                             <th>Nome:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.nome}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.nome}"/></td>
                                         </tr>
                                         <tr>
                                             <th>Email:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.email}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.email}"/></td>
                                         </tr>              
                                         <tr class="escondido">
                                             <th>Endereço:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.endereco}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.endereco}"/></td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>Cidade:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.cidade}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.cidade}"/></td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>UF:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.uf}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.uf}"/></td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>Telefone:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.telefone}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.telefone}"/></td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>CPF:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.cpf}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.cpf}"/></td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>RG:</th>
-                                            <td><h:outputText value="#{sessionBean.cliente.rg}"/></td>
+                                            <td><h:inputText value="#{sessionBean.cliente.rg}"/></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -144,46 +144,47 @@
                             <h:form rendered="#{sessionBean.consultorLogged}">
                                 <table id="tabela-dados" class="table">
                                     <tr>
-                                        <td>Nome:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.nome}"/></td>
+                                        <th>Nome:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.nome}"/></td>
                                     </tr>
                                     <tr>
-                                        <td>Email:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.email}"/></td>
+                                        <th>Email:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.email}"/></td>
                                     </tr>
                                     <tr>
-                                        <td>Área:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.area}"/></td>
+                                        <th>Área:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.area}"/></td>
                                     </tr> 
                                     <tr>
-                                        <td>Descrição:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.descricao}"/></td>
+                                        <th>Descrição:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.descricao}"/></td>
                                     </tr> 
                                     <tr class="escondido">
-                                        <td>Endereço:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.endereco}"/></td>
+                                        <th>Endereço:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.endereco}"/></td>
                                     </tr>
                                     <tr class="escondido">
-                                        <td>Cidade:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.cidade}"/></td>
+                                        <th>Cidade:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.cidade}"/></td>
                                     </tr>
                                     <tr class="escondido">
-                                        <td>UF:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.uf}"/></td>
+                                        <th>UF:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.uf}"/></td>
                                     </tr>
                                     <tr class="escondido">
-                                        <td>Telefone:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.telefone}"/></td>
+                                        <th>Telefone:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.telefone}"/></td>
                                     </tr>
                                     <tr class="escondido">
-                                        <td>CPNJ:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.cnpj}"/></td>
+                                        <th>CPNJ:</th>
+                                        <td><h:inputText value="#{sessionBean.consultor.cnpj}"/></td>
                                     </tr>
                                 </table>
                                 <div class="text-center">
                                     <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-
-                                    <button type="button" class="btn btn-info botao-alterar-dados">Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i></button>
+                                    <h:commandLink action="#{sessionBean.editarConta()}" styleClass="btn btn-info botao-alterar-dados">
+                                        Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
+                                    </h:commandLink>  
                                     <div class="text-center">
                                         <h:commandLink id="logoutButton" action="#{sessionBean.deletarConta()}" styleClass="btn btn-danger">
                                             <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
@@ -199,7 +200,6 @@
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
-        <script src="resources/js/mindmup-editabletable.js"></script>
         <script src="resources/js/minha-conta.js"></script>
     </h:body>
 </html>
