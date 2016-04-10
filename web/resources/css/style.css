@@ -219,6 +219,10 @@ body{
 }
 /*END - Consultor-detalhes*/
 /* Minha conta */
+.botao-mostrar-dados{
+    margin-bottom: 15px;
+}
+
 .botao-mostrar-dados-alterado{
     float: left;
 }

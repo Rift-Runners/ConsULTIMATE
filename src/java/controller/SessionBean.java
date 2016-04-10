@@ -216,5 +216,49 @@ public class SessionBean implements Serializable {
     public String perguntarConsultor() {
         return "index.xhtml?faces-redirect=true";
     }
-    
+
+    public String deletarConta() {
+        Cliente clienteDeletado = new Cliente();
+        Consultor consultorDeletado = new Consultor();
+
+        if (clienteLogged) {
+            for (Cliente cli : listasDeDados.getListaClientes()) {
+                if (cli.getUsuario().equals(cliente.getUsuario())) {
+                    clienteDeletado = cli;
+                }
+            }
+            listasDeDados.deletarCliente(clienteDeletado);
+        } else {
+            for (Consultor cons : listasDeDados.getListaConsultores()) {
+                if (cons.getUsuario().equals(consultor.getUsuario())) {
+                    consultorDeletado = cons;
+                }
+            }
+            listasDeDados.deletarConsultor(consultorDeletado);
+        }
+        return sair();
+    }
+
+    public String editarConta() {
+        Cliente clienteEditado = new Cliente();
+        Consultor consultorEditado = new Consultor();
+
+        if (clienteLogged) {
+            for (Cliente cli : listasDeDados.getListaClientes()) {
+                if (cli.getUsuario().equals(cliente.getUsuario())) {
+                    clienteEditado = cli;
+                }
+            }
+            listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), clienteEditado);
+        } else {
+            for (Consultor cons : listasDeDados.getListaConsultores()) {
+                if (cons.getUsuario().equals(consultor.getUsuario())) {
+                    consultorEditado = cons;
+                }
+            }
+            listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultorEditado);
+        }
+        
+        return "minha-conta.xhtml?faces-redirect=true";
+    }
 }

@@ -49,33 +49,33 @@ public class ListasDados {
             new Consultor("e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e"),
             new Consultor("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f"),
             new Consultor("Teste1", "Teste1", "Teste1", "Teste1", "Teste1",
-            "Teste1", "Teste1", "Teste1", "Tecnologia da Informação", "Teste1", "Teste1"),
+            "Teste1", "Teste1", "Teste1", "TI", "Teste1", "Teste1"),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-                    + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-                    + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-                    + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-                    + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-                    + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-                    + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblblBlablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblblBlablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-                    + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblblBlablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblblBlablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
             new Consultor("Teste3", "Teste3", "Teste3", "Teste3", "Teste3",
             "Teste3", "Teste3", "Teste3", "Engenharia", "Teste3", "Teste3")
         };
@@ -84,7 +84,7 @@ public class ListasDados {
 
     public void populaListaAreas() {
         String[] categorias = new String[]{
-            "Tecnologia da Informação", "Engenharia", "Artes"
+            "TI", "Engenharia", "Artes"
         };
         listaAreas.addAll(Arrays.asList(categorias));
     }
@@ -103,6 +103,14 @@ public class ListasDados {
 
     public void adicionarArea(String area) {
         listaAreas.add(area);
+    }
+
+    public void deletarCliente(Cliente cliente) {
+        listaClientes.remove(cliente);
+    }
+
+    public void deletarConsultor(Consultor consultor) {
+        listaConsultores.remove(consultor);
     }
 
     public List<String> getListaAreas() {
