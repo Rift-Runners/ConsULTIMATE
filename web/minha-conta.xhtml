@@ -38,15 +38,17 @@
                         <div class="panel-body">
                             <h:form rendered="#{sessionBean.clienteLogged}">
                                 <table id="tabela-dados" class="table">
+                                    <tr class="text-center">
+                                        <th>Nome do consultor</th>
+                                        <th>Quantidade de horas</th>
+                                        <th>Valor total</th>
+                                        <th>Data da transação</th>
+                                    </tr>
                                     <ui:repeat var="transacao" value="#{sessionBean.cliente.transacoesEfetuadas}">
-                                        <tr style="border: #000 solid 3px;">
-                                            <td>Nome do consultor:</td>
+                                        <tr>
                                             <td><h:outputText value="#{transacao.consultor.nome}"/></td>
-                                            <td>Quantidade de horas:</td>
                                             <td><h:outputText value="#{transacao.horas}"/></td>
-                                            <td>Valor total:</td>
                                             <td><h:outputText value="#{transacao.valor}"/></td>
-                                            <td>Data da transação:</td>
                                             <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
                                         </tr>
                                     </ui:repeat>                             
@@ -59,46 +61,23 @@
 
                             <h:form rendered="#{sessionBean.consultorLogged}">
                                 <table id="tabela-dados" class="table">
-                                    <tr>
-                                        <td>Nome:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.nome}"/></td>
+                                    <tr class="text-center">
+                                        <th>Nome do cliente</th>
+                                        <th>Quantidade de horas</th>
+                                        <th>Valor total</th>
+                                        <th>Data da transação</th>
                                     </tr>
-                                    <tr>
-                                        <td>Email:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.email}"/></td>
-                                    </tr>
-                                    <tr>
-                                        <td>Área:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.area}"/></td>
-                                    </tr> 
-                                    <tr>
-                                        <td>Descrição:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.descricao}"/></td>
-                                    </tr> 
-                                    <tr class="escondido">
-                                        <td>Endereço:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.endereco}"/></td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <td>Cidade:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.cidade}"/></td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <td>UF:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.uf}"/></td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <td>Telefone:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.telefone}"/></td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <td>CPNJ:</td>
-                                        <td><h:outputText value="#{sessionBean.consultor.cnpj}"/></td>
-                                    </tr>
+                                    <ui:repeat var="transacao" value="#{sessionBean.consultor.transacoesEfetuadas}">
+                                        <tr>
+                                            <td><h:outputText value="#{transacao.cliente.nome}"/></td>
+                                            <td><h:outputText value="#{transacao.horas}"/></td>
+                                            <td><h:outputText value="#{transacao.valor}"/></td>
+                                            <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                        </tr>
+                                    </ui:repeat>     
                                 </table>
                                 <div class="text-center">
                                     <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                    <button type="button" class="btn btn-info botao-alterar-dados">Salvar alterações! <i class="glyphicon glyphicon-floppy-saved"></i></button>
                                 </div>
                             </h:form>
                         </div>
@@ -112,47 +91,49 @@
                         </div>
                         <div class="panel-body">
                             <h:form rendered="#{sessionBean.clienteLogged}">
-                                <table id="tabela-dados" class="table table-hover">
+                                <table id="tabela-dados" class="table table-hover tabela-editavel">
                                     <tbody>
                                         <tr>
-                                            <td>Nome:</td>
+                                            <th>Nome:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.nome}"/></td>
                                         </tr>
                                         <tr>
-                                            <td>Email:</td>
+                                            <th>Email:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.email}"/></td>
                                         </tr>              
                                         <tr class="escondido">
-                                            <td>Endereço:</td>
+                                            <th>Endereço:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.endereco}"/></td>
                                         </tr>
                                         <tr class="escondido">
-                                            <td>Cidade:</td>
+                                            <th>Cidade:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.cidade}"/></td>
                                         </tr>
                                         <tr class="escondido">
-                                            <td>UF:</td>
+                                            <th>UF:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.uf}"/></td>
                                         </tr>
                                         <tr class="escondido">
-                                            <td>Telefone:</td>
+                                            <th>Telefone:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.telefone}"/></td>
                                         </tr>
                                         <tr class="escondido">
-                                            <td>CPF:</td>
+                                            <th>CPF:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.cpf}"/></td>
                                         </tr>
                                         <tr class="escondido">
-                                            <td>RG:</td>
+                                            <th>RG:</th>
                                             <td><h:outputText value="#{sessionBean.cliente.rg}"/></td>
                                         </tr>
                                     </tbody>
                                 </table>
                                 <div class="text-center">
                                     <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                    <button type="button" class="btn btn-info botao-alterar-dados">Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i></button>
+                                    <h:commandLink action="#{sessionBean.editarConta()}" styleClass="btn btn-info botao-alterar-dados">
+                                        Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
+                                    </h:commandLink>  
                                     <div class="text-center">
-                                        <h:commandLink id="logoutButton" action="adicionar-saldo.xhtml" styleClass="btn btn-danger">
+                                        <h:commandLink id="logoutButton" action="#{sessionBean.deletarConta()}" styleClass="btn btn-danger">
                                             <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
                                         </h:commandLink>      
                                     </div>
@@ -201,7 +182,13 @@
                                 </table>
                                 <div class="text-center">
                                     <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                    <button type="button" class="btn btn-info botao-alterar-dados">Salvar alterações!</button>
+
+                                    <button type="button" class="btn btn-info botao-alterar-dados">Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i></button>
+                                    <div class="text-center">
+                                        <h:commandLink id="logoutButton" action="#{sessionBean.deletarConta()}" styleClass="btn btn-danger">
+                                            <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
+                                        </h:commandLink>      
+                                    </div>
                                 </div>
                             </h:form>
                         </div>
@@ -212,6 +199,7 @@
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/mindmup-editabletable.js"></script>
         <script src="resources/js/minha-conta.js"></script>
     </h:body>
 </html>

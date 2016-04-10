@@ -216,5 +216,27 @@ public class SessionBean implements Serializable {
     public String perguntarConsultor() {
         return "index.xhtml?faces-redirect=true";
     }
-    
+
+    public String deletarConta() {
+        Cliente clienteDeletado = new Cliente();
+        Consultor consultorDeletado = new Consultor();
+
+        if (clienteLogged) {
+            for (Cliente cli : listasDeDados.getListaClientes()) {
+                if (cli.getUsuario().equals(cliente.getUsuario())) {
+                    clienteDeletado = cliente;
+                }
+            }
+            listasDeDados.deletarCliente(clienteDeletado);
+        } else {
+            for (Consultor cons : listasDeDados.getListaConsultores()) {
+                if (cons.getUsuario().equals(consultor.getUsuario())) {
+                    consultorDeletado = consultor;
+                }
+            }
+            listasDeDados.deletarConsultor(consultorDeletado);
+        }
+        return sair();
+    }
+
 }

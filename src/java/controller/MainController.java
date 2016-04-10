@@ -5,10 +5,6 @@
  */
 package controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -109,20 +105,6 @@ public class MainController {
         HttpServletRequest servletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         return servletRequest.getRequestURI().contains("index");
     }
-
-//    public Map<String, List<Consultor>> mapeiaConsultores() {
-//        Map<String, List<Consultor>> mapaDeConsultores = new HashMap();
-//        for (Consultor cons : listasDeDados.getListaConsultores()) {
-//            if(mapaDeConsultores.containsKey(cons.getArea())){
-//                mapaDeConsultores.get(cons.getArea()).add(cons);
-//            } else{
-//                List<Consultor> primeiroConsultor = new ArrayList();
-//                primeiroConsultor.add(cons);
-//                mapaDeConsultores.put(cons.getArea(), primeiroConsultor);
-//            }
-//        }
-//        return mapaDeConsultores;
-//    }
 
     public String enviaDados() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
