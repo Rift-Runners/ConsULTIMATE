@@ -39,15 +39,15 @@
                 </h:form>
             </div>
             <div class="row">
-                <div class="col-md-10 col-md-offset-1 consultores">   
+                <div class="col-md-10 col-md-offset-1 consultores"> 
                     <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
-                        <div class="#{consultor.area} consultor-lista">
-                            <h:outputText value="#{consultor.nome}"/><br/>
-                            <h:outputText value="#{consultor.cidade}"/><br/>
-                            <h:outputText value="#{consultor.uf}"/><br/>
-                            <h:outputText value="#{consultor.descricao}"/><br/>
+                        <div class="#{consultor.area} consultor-lista" style="padding-bottom: 60px; font-size:18px;">
+                                <h:outputText class="consultor-info" value="Nome: #{consultor.nome}"/>
+                                <h:outputText class="consultor-info" value="Cidade: #{consultor.cidade}/#{consultor.uf}"/>
+                                <h:outputText class="consultor-info" value="Telefone: #{consultor.telefone}"/><br/><br/>
+                                <h:outputText class="consultor-info" value="Descrição: #{consultor.descricao}"/>
                             <h:form>
-                                <h:commandButton class="btn btn-primary" action="#{sessionBean.visualizaConsultor()}" value="Saiba mais!">
+                                <h:commandButton style="float: right;" class="btn btn-primary btn-lg" action="#{sessionBean.visualizaConsultor()}" value="Saiba mais!">
                                     <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
                                 </h:commandButton>
                             </h:form>

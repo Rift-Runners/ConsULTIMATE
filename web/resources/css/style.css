@@ -19,6 +19,7 @@ html{
 }
 body{
     height: 100%;
+    min-height: 100% !important;
     font-family: PlayfairDisplay !important;
     padding-top:51px;
 }
@@ -115,12 +116,25 @@ body{
 .font-size20{
     font-size: 20px;
 }
+
+.boldfont-size16{
+    font-weight: bold;
+    font-size: 16px;
+}
+.table-padding-bottom10 tr td{
+    padding-bottom: 10px;
+}
+
 .margin-bottom25{
     margin-bottom: 25px;
 }
 
+.padding-top100{
+    padding-top: 100px;
+}
+
 .margin-bottom10{
-    margin-bottom: 10px;
+    margin-bottom: 10px !important;
 }
 
 .margin-top20-bottom15{
@@ -162,24 +176,48 @@ body{
     display: none;
     background: rgba(226, 226, 226, 0.75);
 }
+
+.consultor-info{
+    padding: 0% 5%;
+}
+
 .consultores-background {
-    position: relative;
     height:100%;
+    overflow: auto;
 }
 
 .consultores-background::after {
     content: "";
-    background-image: url(../images/consultores.jpg);
+    background-image: url(../images/consultores2.jpg);
     background-size: cover;
-    opacity: 0.3;
+    opacity: 0.5;
     top: 0;
     left: 0;
     bottom: 0;
     right: 0;
     position: absolute;
-    z-index: -1;   
+    z-index: -1;
 }
 /*END - Consultores*/
+/* Consultor-detalhes*/
+.consultor-detalhes-background {
+    position: relative;
+    height:100%;
+}
+
+.consultor-detalhes-background::after {
+    content: "";
+    background-image: url(../images/consultores.jpg);
+    background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;   
+    position: absolute;
+}
+/*END - Consultor-detalhes*/
 /* Minha conta */
 .botao-mostrar-dados-alterado{
     float: left;
@@ -234,26 +272,6 @@ body{
     right: 0;
     position: absolute;
     z-index: -1;   
-}
-
-.login-form{
-    min-height: 100%;
-    min-height: 100vh; 
-    display: -webkit-box;
-    display: -moz-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align : center;
-    -webkit-align-items : center;
-    -moz-box-align : center;
-    -ms-flex-align : center;
-    align-items : center;
-    -webkit-box-pack : center;
-    -moz-box-pack : center;
-    -ms-flex-pack : center;
-    -webkit-justify-content : center;
-    justify-content : center;
 }
 
 .registre-link{
