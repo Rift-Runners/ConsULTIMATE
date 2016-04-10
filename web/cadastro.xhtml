@@ -14,20 +14,24 @@
     <h:body>
         <ui:include src="templates/header.xhtml"/>
 
-
-        <div class="row row-eq-height">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
-                <div class="text-center div-tipo-cadastro" >
-                    <h:outputLabel value="Tipo de cadastro"/>
-                    <div>
-                        <button type="button" class="btn btn-primary perfil-cliente botao-tipo-cadastro">Cliente</button>
-                        <button type="button" class="btn btn-primary perfil-consultor botao-tipo-cadastro">Consultor</button>
+        <div class="login-background" style="color: #000; font-size: 18px">
+            <div class="row row-eq-height">
+                <div class="col-md-2"></div>
+                <div class="col-md-8">
+                    <div class="text-center div-tipo-cadastro" >
+                        <h:outputLabel value="Tipo de cadastro"/>
+                        <div>
+                            <button type="button" class="btn btn-primary perfil-cliente botao-tipo-cadastro">Cliente</button>
+                            <button type="button" class="btn btn-primary perfil-consultor botao-tipo-cadastro">Consultor</button>
+                        </div>
                     </div>
                 </div>
-
-                <form id="formulario-cliente" class="escondido">
-                    <h:form>
+                <div class="col-md-2"></div>
+            </div>
+            <h:form id="formulario-cliente" class="escondido">
+                <div class="row row-eq-height">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <h:outputLabel for="clienteNome" value="Nome (Pessoa Física):"/>
                             <h:inputText class="form-control" id="clienteNome" value="#{mainController.cliente.nome}" p:placeholer="Nome"/>
@@ -52,6 +56,8 @@
                             <h:outputLabel for="clienteEmail" value="Email:"/>
                             <h:inputText class="form-control" id="clienteEmail" value="#{mainController.cliente.email}"/>
                         </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <h:outputLabel for="clienteCpf" value="CPF:"/>
                             <h:inputText class="form-control" id="clienteCpf" value="#{mainController.cliente.cpf}"/>
@@ -59,13 +65,6 @@
                         <div class="form-group">
                             <h:outputLabel for="clienteRg" value="RG:"/>
                             <h:inputText class="form-control" id="clienteRg" value="#{mainController.cliente.rg}"/>
-                        </div>
-                        <div class="form-group">
-                            <h:outputLabel for="clienteSexo" value="Sexo:"/>
-                            <h:selectOneRadio id="clienteSexo" value="#{mainController.cliente.sexo}">
-                                <f:selectItem itemValue="Masculino" itemLabel="Masculino" />
-                                <f:selectItem itemValue="Feminino" itemLabel="Feminino" />	   			
-                            </h:selectOneRadio>	
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteUsuario" value="Usuário:"/>
@@ -79,17 +78,16 @@
                             <h:outputLabel for="clienteRepeteSenha" value="Repita a senha:"/>
                             <h:inputSecret class="form-control" id="clienteRepeteSenha" value="#{mainController.tempSenhaRepete}"/>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">Foto(?)</label>
-                            <input type="file" id="exampleInputFile"/>
-                            <p class="help-block">Example block-level help text here.</p>
-                        </div>
                         <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarCliente()}" value="Cadastrar!"/>
-                    </h:form>
-                </form>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </h:form>
 
-                <form id="formulario-consultor" class="escondido">
-                    <h:form>
+            <h:form id="formulario-consultor" class="escondido">
+                <div class="row row-eq-height">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
                         <div class="form-group">
                             <h:outputLabel for="consultorNome" value="Nome (Pessoa Jurídica):"/>
                             <h:inputText class="form-control" id="consultorNome" value="#{mainController.consultor.nome}"/>
@@ -114,8 +112,10 @@
                             <h:outputLabel for="consultorEmail" value="Email:"/>
                             <h:inputText class="form-control" id="consultorEmail" value="#{mainController.consultor.email}"/>
                         </div>
+                    </div>
+                    <div class="col-md-4">
                         <div class="form-group">
-                            <h:outputLabel for="consultorArea" value="Area:"/>
+                            <h:outputLabel for="consultorArea" value="Área:"/>
                             <h:selectOneMenu class="form-control" id="consultorCategoria" value="#{mainController.consultor.area}">
                                 <f:selectItem itemValue="Tecnologia da Informação" itemLabel="Tecnologia da Informação" />
                                 <f:selectItem itemValue="Engenharia" itemLabel="Engenharia" />
@@ -138,16 +138,12 @@
                             <h:outputLabel for="consultorRepeteSenha" value="Repita a senha:"/>
                             <h:inputSecret class="form-control" id="consultorRepeteSenha" value="#{mainController.tempSenhaRepete}"/>
                         </div>
-                        <div class="form-group">
-                            <label for="exampleInputFile">Foto(?)</label>
-                            <input type="file" id="exampleInputFile"/>
-                            <p class="help-block">Example block-level help text here.</p>
-                        </div>
                         <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarConsultor()}" value="Cadastrar!"/>
-                    </h:form>
-                </form>
-            </div>
-            <div class="col-md-2"></div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
+            </h:form>
+
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>

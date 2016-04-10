@@ -14,9 +14,14 @@
     src: url("../fonts/PlayfairDisplay/PlayfairDisplay-Regular.ttf") format("truetype");
 }
 /*-----------------------------------------------*/
+html{
+    height: 100%;
+}
 body{
+    height: 100%;
+    min-height: 100% !important;
     font-family: PlayfairDisplay !important;
-    padding-top: 51px; /*Necessário para o header não sobrepor o conteúdo do body */
+    padding-top:51px;
 }
 
 /*Ajusta um problema com a navbar estática do bootstrap e âncoras*/
@@ -28,16 +33,21 @@ body{
 
 .main-header {
     position: relative;
-    width: 100%;
-    min-height: auto;
+    height:100%;
     text-align: center;
-    color: #fff;
+}
+
+.main-header::after {
+    content: "";
     background-image: url(../images/Consult3.jpg);
-    background-position: center;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
     background-size: cover;
-    -o-background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;   
+    position: absolute;
 }
 
 .main-header .title{
@@ -78,6 +88,7 @@ body{
     font-family: TrackType !important;
     font-size: 30px;
     float: right;
+    margin-top: 15px;
 }
 
 .conteudo-funcionalidade{
@@ -94,27 +105,6 @@ body{
     font-family: TrackType !important;   
 }
 
-a:hover {
-    text-decoration: none;
-}
-
-.login{
-    display: inline-block;
-}
-
-.login-space{
-    padding: 5px;
-    margin: 10px 10px;
-}
-
-.test-background1{
-    background-color: #f0ad4e;
-    padding: 300px;
-}
-.test-background2{
-    background-color: #faebcc;
-}
-
 .row-eq-height {
     display: -webkit-box;
     display: -webkit-flex;
@@ -122,11 +112,44 @@ a:hover {
     display:         flex;
 }
 
+/*Utils*/
+.font-size20{
+    font-size: 20px;
+}
+
+.boldfont-size16{
+    font-weight: bold;
+    font-size: 16px;
+}
+.table-padding-bottom10 tr td{
+    padding-bottom: 10px;
+}
+
+.margin-bottom25{
+    margin-bottom: 25px;
+}
+
+.padding-top100{
+    padding-top: 100px;
+}
+
+.margin-bottom10{
+    margin-bottom: 10px !important;
+}
+
+.margin-top20-bottom15{
+    margin: 20px 0px 15px 0px;
+}
+
+.padding-top40-bottom25{
+    padding: 40px 0px 25px 0px;
+}
+
 .no-margin{
     margin: 0px;
 }
 
-no-padding{
+.no-padding{
     padding: 0px;
 }
 
@@ -143,14 +166,58 @@ no-padding{
     font-family: sans-serif;
     font-size: 18px;
 }
-
+/*END - Utils*/
+/*Consultores*/
 .consultor-lista{
     padding: 20px;
     margin-bottom: 2px;
     border: black solid 2px;
     border-radius: 5px;
+    display: none;
+    background: rgba(226, 226, 226, 0.75);
 }
 
+.consultor-info{
+    padding: 0% 5%;
+}
+
+.consultores-background {
+    height:100%;
+    overflow: auto;
+}
+
+.consultores-background::after {
+    content: "";
+    background-image: url(../images/consultores2.jpg);
+    background-size: cover;
+    opacity: 0.5;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+}
+/*END - Consultores*/
+/* Consultor-detalhes*/
+.consultor-detalhes-background {
+    position: relative;
+    height:100%;
+}
+
+.consultor-detalhes-background::after {
+    content: "";
+    background-image: url(../images/consultores.jpg);
+    background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;   
+    position: absolute;
+}
+/*END - Consultor-detalhes*/
 /* Minha conta */
 .botao-mostrar-dados-alterado{
     float: left;
@@ -169,3 +236,70 @@ no-padding{
     margin-top: 10px;
     font-size: 16px;
 }
+
+.minha-conta-background {
+    position: relative;
+    height:100%;
+}
+
+.minha-conta-background::after {
+    content: "";
+    background-image: url(../images/Consult1.jpg);
+    background-size: cover;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+/*END - Minha conta */
+/* Login */
+.login-background {
+    position: relative;
+    height:100%;
+}
+
+.login-background::after {
+    content: "";
+    background-image: url(../images/login.jpg);
+    background-size: cover;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+
+.registre-link{
+    float: left;
+    font-size: 16px;
+}
+
+.esqueceu-link{
+    float: right;
+    font-size: 16px;
+}
+/*END - Login */
+/*Cadastre-se*/
+.cadastrese-background {
+    position: relative;
+    height:100%;
+}
+
+.cadastrese-background::after {
+    content: "";
+    background-image: url(../images/login.jpg);
+    background-size: cover;
+    opacity: 0.8;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+/*END - Cadastre-se*/

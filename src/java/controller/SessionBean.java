@@ -210,6 +210,10 @@ public class SessionBean implements Serializable {
     public String sair() {
         FacesContext contexto = FacesContext.getCurrentInstance();
         contexto.getExternalContext().invalidateSession();
-        return ("login.xhtml?faces-redirect=true");
+        return "login.xhtml?faces-redirect=true";
+    }
+
+    public String perguntarConsultor() {
+        return "index.xhtml?faces-redirect=true";
     }
 }

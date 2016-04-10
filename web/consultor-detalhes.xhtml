@@ -2,36 +2,72 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>#{sessionBean.consultorVisualizado.nome}</title>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
-        <div>
-            <table>
-                <tr>
-                    <td>Nome:</td>
-                    <td>#{sessionBean.consultorVisualizado.nome}</td>
-                </tr>
-                <tr>
-                    <td>Email:</td>
-                    <td>#{sessionBean.consultorVisualizado.email}</td>
-                </tr>
-                <tr>
-                    <td>UF:</td>
-                    <td>#{sessionBean.consultorVisualizado.uf}</td>
-                </tr>
-                <tr>
-                    <td>Cidade:</td>
-                    <td>#{sessionBean.consultorVisualizado.cidade}</td>
-                </tr>                
-            </table>
+        <div class="consultor-detalhes-background">
+            <div class="row padding-top100">
+                <div class="col-md-1"></div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h3 class="panel-title text-center">Dados de #{sessionBean.consultorVisualizado.nome}</h3>
+                        </div>
+                        <div class="panel-body text-center">
+                            <table class="table-padding-bottom10">
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>#{sessionBean.consultorVisualizado.email}</td>
+                                </tr>
+                                <tr>
+                                    <td>Cidade:</td>
+                                    <td>#{sessionBean.consultorVisualizado.cidade}</td>
+                                </tr>
+                                <tr>
+                                    <td>UF:</td>
+                                    <td>#{sessionBean.consultorVisualizado.uf}</td>
+                                </tr>
+                                <tr>
+                                    <td>Endereço:</td>
+                                    <td>#{sessionBean.consultorVisualizado.endereco}</td>
+                                </tr>                            
+                                <tr>
+                                    <td>CNPJ:</td>
+                                    <td>#{sessionBean.consultorVisualizado.cnpj}</td>
+                                </tr>                
+                                <tr>
+                                    <td>Área:</td>
+                                    <td>#{sessionBean.consultorVisualizado.area}</td>
+                                </tr>                
+                                <tr>
+                                    <td>Descrição:</td>
+                                    <td>#{sessionBean.consultorVisualizado.descricao}</td>
+                                </tr>                
+                            </table>
+                        </div>
+                        <h:form class="text-center">
+                            <h:commandButton class="btn btn-info btn-lg margin-bottom25" value="Contratar" action="#{sessionBean.criarTransacao()}"/>
+                        </h:form>
+                    </div>
+                </div>
+                <div class="col-md-2"></div>
+                <div class="col-md-4">
+                    
+                    <h3>Dúvidas?</h3>
+                    <p class="boldfont-size16">Envie sua pergunta para #{sessionBean.consultorVisualizado.nome}!</p>
+                    <textarea class="form-control margin-bottom25" placeholder="Comentário" rows="10"></textarea>
+                    <h:form class="text-center">
+                        <h:commandButton class="btn btn-info btn-lg" value="Enviar!" action="#{sessionBean.perguntarConsultor()}"/>
+                    </h:form>
+                </div>
+                <div class="col-md-1"></div>
+            </div>
         </div>
-        <h:form>
-            <h:commandButton class="btn btn-info add-saldo" value="Contratar" action="#{sessionBean.criarTransacao()}"/>
-        </h:form>
+        <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/bootstrap.js"></script>
     </h:body>
 </html>
 

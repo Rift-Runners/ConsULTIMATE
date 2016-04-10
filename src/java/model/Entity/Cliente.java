@@ -14,7 +14,7 @@ import java.util.List;
  */
 public class Cliente {
 
-    private String nome, cidade, uf, endereco, telefone, email, cpf, rg, sexo, usuario, senha;
+    private String nome, cidade, uf, endereco, telefone, email, cpf, rg, usuario, senha;
     private List<Transacao> transacoesEfetuadas;
     private double saldo;
 
@@ -22,7 +22,7 @@ public class Cliente {
         
     }
 
-    public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String sexo, String usuario, String senha) {
+    public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha) {
         this.nome = nome;
         this.cidade = cidade;
         this.uf = uf;
@@ -31,7 +31,6 @@ public class Cliente {
         this.email = email;
         this.cpf = cpf;
         this.rg = rg;
-        this.sexo = sexo;
         this.usuario = usuario;
         this.senha = senha;
         this.saldo = 0d;
@@ -108,14 +107,6 @@ public class Cliente {
 
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-    public String getSexo() {
-        return sexo;
-    }
-
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
     }
 
     public String getUsuario() {
