@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author Diego Peixoto
  */
 @WebFilter(filterName = "FiltroCliente", description = "Filtro dedicado ao controle dos clientes e seus respectivos acessos",
-        urlPatterns = {"/faces/adicionar-saldo.xhtml", "/faces/consultor-detalhes.xhtml"})
+        urlPatterns = {"/faces/adicionar-saldo.xhtml", "/faces/consultor-detalhes.xhtml", "/faces/consultores.xhtml"})
 public class FiltroCliente implements Filter {
 
     @Inject
