@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <meta charset="utf-8"/>
         <title>Serviços</title>
@@ -33,7 +35,6 @@
                             <th>Email</th>
                             <th>CPF</th>
                             <th>RG</th>
-                            <th>Sexo</th>
                             <th>Usuário</th>
                             <th>Senha</th>
                         </tr>
@@ -47,7 +48,6 @@
                                 <td><h:outputText value="#{cliente.email}"/></td>
                                 <td><h:outputText value="#{cliente.cpf}"/></td>
                                 <td><h:outputText value="#{cliente.rg}"/></td>
-                                <td><h:outputText value="#{cliente.sexo}"/></td>
                                 <td><h:outputText value="#{cliente.usuario}"/></td>
                                 <td><h:outputText value="#{cliente.senha}"/></td>
                             </tr>
@@ -65,7 +65,6 @@
                             <th>Endereço</th>
                             <th>Telefone</th>
                             <th>Email</th>
-                            <th>Categoria</th>
                             <th>CNPJ</th>
                             <th>Descrição</th>
                             <th>Área</th>
@@ -80,7 +79,6 @@
                                 <td><h:outputText value="#{consultor.endereco}"/></td>
                                 <td><h:outputText value="#{consultor.telefone}"/></td>
                                 <td><h:outputText value="#{consultor.email}"/></td>
-                                <td><h:outputText value="#{consultor.categoria}"/></td>
                                 <td><h:outputText value="#{consultor.cnpj}"/></td>
                                 <td><h:outputText value="#{consultor.descricao}"/></td>
                                 <td><h:outputText value="#{consultor.area}"/></td>

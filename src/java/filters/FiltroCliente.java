@@ -22,9 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-@WebFilter(filterName = "FiltroUsuario", description = "Filtro dedicado ao controle dos usuários e seus respectivos acessos",
-        urlPatterns = {"/faces/minha-conta.xhtml"})
-public class FiltroUsuario implements Filter {
+@WebFilter(filterName = "FiltroCliente", description = "Filtro dedicado ao controle dos clientes e seus respectivos acessos",
+        urlPatterns = {"/faces/adicionar-saldo.xhtml", "/faces/consultor-detalhes.xhtml"})
+public class FiltroCliente implements Filter {
 
     @Inject
     private SessionBean session;
@@ -40,7 +40,7 @@ public class FiltroUsuario implements Filter {
 
         if (session == null) {
             resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
-        } else if (session.isClienteLogged() || session.isConsultorLogged()) {
+        } else if (session.isClienteLogged()) {
             chain.doFilter(request, response);
         } else {
             resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
