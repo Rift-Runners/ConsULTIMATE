@@ -17,6 +17,7 @@ import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
 import model.Entity.Transacao;
+import utils.Validators;
 
 /**
  * @author Guilherme Matuella
@@ -33,6 +34,7 @@ public class SessionBean implements Serializable {
     private ListasDados listasDeDados;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
     private double valorSaldo;
+    private Validators validador;
 
     /**
      * Creates a new instance of SessionBean
@@ -42,6 +44,7 @@ public class SessionBean implements Serializable {
         cliente = new Cliente();
         consultor = new Consultor();
         consultorVisualizado = new Consultor();
+        validador = new Validators();
     }
 
     public String getUsuario() {
@@ -249,14 +252,15 @@ public class SessionBean implements Serializable {
                     clienteEditado = cli;
                 }
             }
-            listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), clienteEditado);
+            listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), cliente);
         } else {
             for (Consultor cons : listasDeDados.getListaConsultores()) {
                 if (cons.getUsuario().equals(consultor.getUsuario())) {
                     consultorEditado = cons;
                 }
             }
-            listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultorEditado);
+            
+            listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultor);
         }
         
         return "minha-conta.xhtml?faces-redirect=true";
