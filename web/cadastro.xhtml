@@ -19,7 +19,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="text-center div-tipo-cadastro" >
-                        <h:outputLabel value="Tipo de cadastro"/>
+                        <h:outputLabel class="font-tracktype" value="Tipo de cadastro"/>
                         <div>
                             <button type="button" class="btn btn-primary perfil-cliente botao-tipo-cadastro">Cliente</button>
                             <button type="button" class="btn btn-primary perfil-consultor botao-tipo-cadastro">Consultor</button>
@@ -168,13 +168,13 @@
                         <div class="form-group">
                             <h:outputLabel for="consultorArea" value="Área:"/>
                             <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
-                                             class="form-control" id="consultorCategoria" 
+                                             class="form-control" id="consultorArea" 
                                              value="#{mainController.consultor.area}">
                                 <f:selectItem itemValue="TI" itemLabel="TI" />
                                 <f:selectItem itemValue="Engenharia" itemLabel="Engenharia" />
                                 <f:selectItem itemValue="Artes" itemLabel="Artes" />
                             </h:selectOneMenu>	
-                            <h:message for="consultorCategoria" class="error-message"/>
+                            <h:message for="consultorArea" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorDescricao" value="Descrição:"/>

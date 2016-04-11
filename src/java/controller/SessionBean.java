@@ -161,7 +161,7 @@ public class SessionBean implements Serializable {
                     if (cons.getUsuario().equals(consultorVisualizado.getUsuario())) {
                         if (cli.getSaldo() >= 100) {
                             cli.setSaldo(cli.getSaldo() - 100);
-                            cli.addTransacao(new Transacao(cli, cons, 100, 1, Date.valueOf(LocalDate.now()), "fdas"));
+                            cli.addTransacao(new Transacao(cli, cons, 100, 1, Date.valueOf(LocalDate.now())));
                         }
                     }
                 }
@@ -261,4 +261,5 @@ public class SessionBean implements Serializable {
         
         return "minha-conta.xhtml?faces-redirect=true";
     }
+    
 }

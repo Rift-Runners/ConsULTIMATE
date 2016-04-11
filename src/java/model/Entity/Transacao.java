@@ -18,17 +18,13 @@ public class Transacao {
     private double valor;
     private int horas;
     private Date dataDaCompra;
-//    Detalhes da transação combinada entre o cliente 
-//    e o consultor -> o consultor settará e o cliente deve aceitar antes de finalizar a compra.
-    private String detalhes;
 
-    public Transacao(Cliente cliente, Consultor consultor, double valor, int horas, Date dataDaCompra, String detalhes) {
+    public Transacao(Cliente cliente, Consultor consultor, double valor, int horas, Date dataDaCompra) {
         this.cliente = cliente;
         this.consultor = consultor;
         this.valor = valor;
         this.horas = horas;
         this.dataDaCompra = dataDaCompra;
-        this.detalhes = detalhes;
     }
 
     public Cliente getCliente() {
@@ -69,14 +65,6 @@ public class Transacao {
 
     public void setDataDaCompra(Date dataDaCompra) {
         this.dataDaCompra = dataDaCompra;
-    }
-
-    public String getDetalhes() {
-        return detalhes;
-    }
-
-    public void setDetalhes(String detalhes) {
-        this.detalhes = detalhes;
     }
 
 }
