@@ -1,4 +1,9 @@
 $(function () {
+    $(".ufMask").mask('SS');
+    $(".cpfMask").mask('000.000.000-00', {reverse: true});
+    $(".rgMask").mask('AAAAAAAAAA', {reverse: true});
+    $(".telefoneMask").mask('(00) 0000-0000');
+    
     $(".perfil-cliente").click(function () {
         $(this).addClass("btn-primary");
         $(this).closest("body").find(".perfil-consultor").removeClass("btn-primary");

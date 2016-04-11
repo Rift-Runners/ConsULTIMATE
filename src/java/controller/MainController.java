@@ -129,16 +129,17 @@ public class MainController {
         if (confirmaSenha(cliente.getSenha(), tempSenhaRepete)) {
             listasDeDados.adicionarCliente(cliente);
             this.cliente = new Cliente();
-            return "indexCli";
+            return "contato.xhtml?faces-redirect=true";
         }
-        return "";
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
+        return "cadastro.xhtml";
     }
 
     public String registrarConsultor() {
         if (confirmaSenha(consultor.getSenha(), tempSenhaRepete)) {
             listasDeDados.adicionarConsultor(consultor);
             this.consultor = new Consultor();
-            return "indexCons";
+            return "contato.xhtml?faces-redirect=true";
         }
         return "";
     }
