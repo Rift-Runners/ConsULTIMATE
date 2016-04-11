@@ -130,14 +130,10 @@ public class MainController {
 
     public String registrarCliente() {
         if (confirmaSenha(cliente.getSenha(), tempSenhaRepete)) {
-            if (validador.validaEmail(cliente.getEmail())) {
-                if (validador.validaSenha(cliente.getSenha())) {
-                    if (validador.validaUsuario(cliente.getUsuario())) {
-                        listasDeDados.adicionarCliente(cliente);
-                        this.cliente = new Cliente();
-                        return "login.xhtml?faces-redirect=true";
-                    }
-                }
+            if (validador.validaCliente(cliente)) {
+                listasDeDados.adicionarCliente(cliente);
+                this.cliente = new Cliente();
+                return "login.xhtml?faces-redirect=true";
             }
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
@@ -146,14 +142,10 @@ public class MainController {
 
     public String registrarConsultor() {
         if (confirmaSenha(consultor.getSenha(), tempSenhaRepete)) {
-            if (validador.validaEmail(consultor.getEmail())) {
-                if (validador.validaSenha(consultor.getSenha())) {
-                    if (validador.validaUsuario(consultor.getUsuario())) {
-                        listasDeDados.adicionarConsultor(consultor);
-                        this.consultor = new Consultor();
-                        return "login.xhtml?faces-redirect=true";
-                    }
-                }
+            if (validador.validaConsultor(consultor)) {
+                listasDeDados.adicionarConsultor(consultor);
+                this.consultor = new Consultor();
+                return "login.xhtml?faces-redirect=true";
             }
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));

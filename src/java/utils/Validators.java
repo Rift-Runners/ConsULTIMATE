@@ -6,6 +6,8 @@
 package utils;
 
 import java.util.regex.Pattern;
+import model.Entity.Cliente;
+import model.Entity.Consultor;
 
 /**
  *
@@ -30,5 +32,27 @@ public class Validators {
 
     public boolean validaSenha(String senhaInput) {
         return (senhaInput.length() > 5 || senhaInput.length() < 17);
+    }
+    
+    public boolean validaCliente(Cliente cli){
+        if(validaEmail(cli.getEmail())){
+            if(validaUsuario(cli.getUsuario())){
+                if(validaSenha(cli.getSenha())){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    public boolean validaConsultor(Consultor cons){
+        if(validaEmail(cons.getEmail())){
+            if(validaUsuario(cons.getUsuario())){
+                if(validaSenha(cons.getSenha())){
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 }

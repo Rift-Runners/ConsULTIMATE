@@ -17,6 +17,7 @@ import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
 import model.Entity.Transacao;
+import org.primefaces.context.RequestContext;
 import utils.Validators;
 
 /**
@@ -252,18 +253,26 @@ public class SessionBean implements Serializable {
                     clienteEditado = cli;
                 }
             }
-            listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), cliente);
+            if (validador.validaCliente(cliente)) {
+                listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), cliente);
+            } else {
+                cliente = clienteEditado;
+                RequestContext.getCurrentInstance().update("j_idt65:clienteNome"); //Não está funcionando
+                return "index.xhtml?faces-redirect=true";
+            }
         } else {
             for (Consultor cons : listasDeDados.getListaConsultores()) {
                 if (cons.getUsuario().equals(consultor.getUsuario())) {
                     consultorEditado = cons;
                 }
             }
-            
-            listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultor);
+            if (validador.validaConsultor(consultor)) {
+                listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultor);
+            } else {
+                consultor = consultorEditado;
+            }
         }
-        
         return "minha-conta.xhtml?faces-redirect=true";
     }
-    
+
 }
