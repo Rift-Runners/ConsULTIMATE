@@ -32,7 +32,6 @@ public class SessionBean implements Serializable {
     private Cliente cliente;
     private Consultor consultor, consultorVisualizado;
     private Admin admin;
-    private ListasDados listasDeDados;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
     private double valorSaldo;
     private Validators validador;
@@ -41,7 +40,6 @@ public class SessionBean implements Serializable {
      * Creates a new instance of SessionBean
      */
     public SessionBean() {
-        listasDeDados = new ListasDados();
         cliente = new Cliente();
         consultor = new Consultor();
         consultorVisualizado = new Consultor();
@@ -120,14 +118,6 @@ public class SessionBean implements Serializable {
         this.adminLogged = adminLogged;
     }
 
-    public ListasDados getListasDeDados() {
-        return listasDeDados;
-    }
-
-    public void setListasDeDados(ListasDados listasDeDados) {
-        this.listasDeDados = listasDeDados;
-    }
-
     public double getValorSaldo() {
         return valorSaldo;
     }
@@ -148,7 +138,13 @@ public class SessionBean implements Serializable {
         return "consultor-detalhes.xhtml";
     }
 
+    public ListasDados listaControladorAplicacao() {
+        MainController controladorPrincipal = (MainController) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("mainController");
+        return controladorPrincipal.getListasDeDados();
+    }
+
     public String adicionarSaldo() {
+        ListasDados listasDeDados = listaControladorAplicacao();
         for (Cliente c : listasDeDados.getListaClientes()) {
             if (c.getUsuario().equals(cliente.getUsuario())) {
                 c.setSaldo(c.getSaldo() + valorSaldo);
@@ -159,6 +155,7 @@ public class SessionBean implements Serializable {
     }
 
     public String criarTransacao() {
+        ListasDados listasDeDados = listaControladorAplicacao();
         for (Cliente cli : listasDeDados.getListaClientes()) {
             if (cli.getUsuario().equals(cliente.getUsuario())) {
                 for (Consultor cons : listasDeDados.getListaConsultores()) {
@@ -175,6 +172,7 @@ public class SessionBean implements Serializable {
     }
 
     public String entrar() {
+        ListasDados listasDeDados = listaControladorAplicacao();
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getUsuario().equals(usuario)) {
                 if (clienteCadastrado.getSenha().equals(senha)) {
@@ -222,6 +220,7 @@ public class SessionBean implements Serializable {
     }
 
     public String deletarConta() {
+        ListasDados listasDeDados = listaControladorAplicacao();
         Cliente clienteDeletado = new Cliente();
         Consultor consultorDeletado = new Consultor();
 
@@ -240,10 +239,12 @@ public class SessionBean implements Serializable {
             }
             listasDeDados.deletarConsultor(consultorDeletado);
         }
+        //return "index.xhtml?faces-redirect=true";
         return sair();
     }
 
     public String editarConta() {
+        ListasDados listasDeDados = listaControladorAplicacao();
         Cliente clienteEditado = new Cliente();
         Consultor consultorEditado = new Consultor();
 
@@ -257,7 +258,7 @@ public class SessionBean implements Serializable {
                 listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), cliente);
             } else {
                 cliente = clienteEditado;
-                RequestContext.getCurrentInstance().update("j_idt65:clienteNome"); //Não está funcionando
+                RequestContext.getCurrentInstance().update("j_idt65"); //Não está funcionando
                 return "index.xhtml?faces-redirect=true";
             }
         } else {
