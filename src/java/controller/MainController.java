@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
+import utils.Validators;
 
 /**
  * @author Guilherme Matuella
@@ -26,11 +27,13 @@ public class MainController {
     private ListasDados listasDeDados;
     private Consultor consultor;
     private Cliente cliente;
+    private Validators validador;
 
     public MainController() {
         consultor = new Consultor();
         cliente = new Cliente();
         listasDeDados = new ListasDados();
+        validador = new Validators();
     }
 
     public String getConsultoresAreaSelecionada() {
@@ -40,7 +43,7 @@ public class MainController {
     public void setConsultoresAreaSelecionada(String consultoresAreaSelecionada) {
         this.consultoresAreaSelecionada = consultoresAreaSelecionada;
     }
-    
+
     public ListasDados getListasDeDados() {
         return listasDeDados;
     }
@@ -127,20 +130,26 @@ public class MainController {
 
     public String registrarCliente() {
         if (confirmaSenha(cliente.getSenha(), tempSenhaRepete)) {
-            listasDeDados.adicionarCliente(cliente);
-            this.cliente = new Cliente();
-            return "indexCli";
+            if (validador.validaCliente(cliente)) {
+                listasDeDados.adicionarCliente(cliente);
+                this.cliente = new Cliente();
+                return "login.xhtml?faces-redirect=true";
+            }
         }
-        return "";
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
+        return "cadastro.xhtml";
     }
 
     public String registrarConsultor() {
         if (confirmaSenha(consultor.getSenha(), tempSenhaRepete)) {
-            listasDeDados.adicionarConsultor(consultor);
-            this.consultor = new Consultor();
-            return "indexCons";
+            if (validador.validaConsultor(consultor)) {
+                listasDeDados.adicionarConsultor(consultor);
+                this.consultor = new Consultor();
+                return "login.xhtml?faces-redirect=true";
+            }
         }
-        return "";
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
+        return "cadastro.xhtml";
     }
-  
+
 }

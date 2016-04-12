@@ -1,4 +1,4 @@
-$(function () {
+$(function () {    
     $(".perfil-cliente").click(function () {
         $(this).addClass("btn-primary");
         $(this).closest("body").find(".perfil-consultor").removeClass("btn-primary");

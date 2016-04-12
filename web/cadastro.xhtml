@@ -19,7 +19,7 @@
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
                     <div class="text-center div-tipo-cadastro" >
-                        <h:outputLabel value="Tipo de cadastro"/>
+                        <h:outputLabel class="font-tracktype" value="Tipo de cadastro"/>
                         <div>
                             <button type="button" class="btn btn-primary perfil-cliente botao-tipo-cadastro">Cliente</button>
                             <button type="button" class="btn btn-primary perfil-consultor botao-tipo-cadastro">Consultor</button>
@@ -34,49 +34,82 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <h:outputLabel for="clienteNome" value="Nome (Pessoa Física):"/>
-                            <h:inputText class="form-control" id="clienteNome" value="#{mainController.cliente.nome}" p:placeholer="Nome"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                         class="form-control" id="clienteNome" 
+                                         value="#{mainController.cliente.nome}" p:placeholder="Nome"/>
+                            <h:message for="clienteNome" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteUf" value="UF:"/>
-                            <h:inputText class="form-control" id="clienteUf" value="#{mainController.cliente.uf}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" 
+                                         class="form-control ufMask" id="clienteUf" 
+                                         value="#{mainController.cliente.uf}" p:placeholder="Estado"/>
+                            <h:message for="clienteUf" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteCidade" value="Cidade:"/>
-                            <h:inputText class="form-control" id="clienteCidade" value="#{mainController.cliente.cidade}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                         class="form-control" id="clienteCidade" 
+                                         value="#{mainController.cliente.cidade}" p:placeholder="Cidade"/>
+                            <h:message for="clienteCidade" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteEndereco" value="Endereço:"/>
-                            <h:inputText class="form-control" id="clienteEndereco" value="#{mainController.cliente.endereco}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
+                                         class="form-control" id="clienteEndereco"
+                                         value="#{mainController.cliente.endereco}" p:placeholder="Endereço"/>
+                            <h:message for="clienteEndereco" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteTelefone" value="Telefone:"/>
-                            <h:inputText class="form-control" id="clienteTelefone" value="#{mainController.cliente.telefone}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                         class="form-control telefoneMask" id="clienteTelefone"
+                                         value="#{mainController.cliente.telefone}" p:placeholder="Telefone"/>
+                            <h:message for="clienteTelefone" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteEmail" value="Email:"/>
-                            <h:inputText class="form-control" id="clienteEmail" value="#{mainController.cliente.email}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
+                                         class="form-control clienteEmail" id="clienteEmail"
+                                         value="#{mainController.cliente.email}" p:placeholder="Email"/>
+                            <h:message for="clienteEmail" class="error-message"/>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <h:outputLabel for="clienteCpf" value="CPF:"/>
-                            <h:inputText class="form-control" id="clienteCpf" value="#{mainController.cliente.cpf}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                         class="form-control cpfMask" id="clienteCpf"
+                                         value="#{mainController.cliente.cpf}" p:placeholder="CPF"/>
+                            <h:message for="clienteCpf" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteRg" value="RG:"/>
-                            <h:inputText class="form-control" id="clienteRg" value="#{mainController.cliente.rg}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                         class="form-control rgMask" id="clienteRg"
+                                         value="#{mainController.cliente.rg}" p:placeholder="RG"/>
+                            <h:message for="clienteRg" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteUsuario" value="Usuário:"/>
-                            <h:inputText class="form-control" id="clienteUsuario" value="#{mainController.cliente.usuario}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="20"
+                                         class="form-control usuarioMask" id="clienteUsuario"
+                                         value="#{mainController.cliente.usuario}" p:placeholder="Usuário"/>
+                            <h:message for="clienteUsuario" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteSenha" value="Senha:"/>
-                            <h:inputSecret class="form-control" id="clienteSenha" value="#{mainController.cliente.senha}"/>
+                            <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20"
+                                           class="form-control" id="clienteSenha"
+                                           value="#{mainController.cliente.senha}"/>
+                            <h:message for="clienteSenha" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteRepeteSenha" value="Repita a senha:"/>
-                            <h:inputSecret class="form-control" id="clienteRepeteSenha" value="#{mainController.tempSenhaRepete}"/>
+                            <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20"
+                                           class="form-control" id="clienteRepeteSenha" 
+                                           value="#{mainController.tempSenhaRepete}"/>
+                            <h:message for="clienteRepeteSenha" class="error-message"/>
                         </div>
                         <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarCliente()}" value="Cadastrar!"/>
                     </div>
@@ -90,53 +123,86 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <h:outputLabel for="consultorNome" value="Nome (Pessoa Jurídica):"/>
-                            <h:inputText class="form-control" id="consultorNome" value="#{mainController.consultor.nome}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                         class="form-control" id="consultorNome"
+                                         value="#{mainController.consultor.nome}" p:placeholder="Nome"/>
+                            <h:message for="consultorNome" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorUf" value="UF:"/>
-                            <h:inputText class="form-control" id="consultorUf" value="#{mainController.consultor.uf}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                         class="form-control ufMask" id="consultorUf"
+                                         value="#{mainController.consultor.uf}" p:placeholder="Estado"/>
+                            <h:message for="consultorUf" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorCidade" value="Cidade:"/>
-                            <h:inputText class="form-control" id="consultorCidade" value="#{mainController.consultor.cidade}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
+                                         class="form-control" id="consultorCidade"
+                                         value="#{mainController.consultor.cidade}" p:placeholder="Cidade"/>
+                            <h:message for="consultorCidade" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorEndereco" value="Endereço:"/>
-                            <h:inputText class="form-control" id="consultorEndereco" value="#{mainController.consultor.endereco}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
+                                         class="form-control" id="consultorEndereco"
+                                         value="#{mainController.consultor.endereco}" p:placeholder="Endereço"/>
+                            <h:message for="consultorEndereco" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorTelefone" value="Telefone:"/>
-                            <h:inputText class="form-control" id="consultorTelefone" value="#{mainController.consultor.telefone}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                         class="form-control telefoneMask" id="consultorTelefone"
+                                         value="#{mainController.consultor.telefone}" p:placeholder="Telefone"/>
+                            <h:message for="consultorTelefone" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorEmail" value="Email:"/>
-                            <h:inputText class="form-control" id="consultorEmail" value="#{mainController.consultor.email}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                         class="form-control" id="consultorEmail"
+                                         value="#{mainController.consultor.email}" p:placeholder="Email"/>
+                            <h:message for="consultorEmail" class="error-message"/>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
                             <h:outputLabel for="consultorArea" value="Área:"/>
-                            <h:selectOneMenu class="form-control" id="consultorCategoria" value="#{mainController.consultor.area}">
-                                <f:selectItem itemValue="Tecnologia da Informação" itemLabel="Tecnologia da Informação" />
+                            <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
+                                             class="form-control" id="consultorArea" 
+                                             value="#{mainController.consultor.area}">
+                                <f:selectItem itemValue="TI" itemLabel="TI" />
                                 <f:selectItem itemValue="Engenharia" itemLabel="Engenharia" />
                                 <f:selectItem itemValue="Artes" itemLabel="Artes" />
                             </h:selectOneMenu>	
+                            <h:message for="consultorArea" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorDescricao" value="Descrição:"/>
-                            <h:inputText class="form-control" id="consultorDescricao" value="#{mainController.consultor.descricao}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="1000" 
+                                         class="form-control" id="consultorDescricao"
+                                         value="#{mainController.consultor.descricao}" p:placeholder="Descrição do consultor"/>
+                            <h:message for="consultorDescricao" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorUsuario" value="Usuário:"/>
-                            <h:inputText class="form-control" id="consultorUsuario" value="#{mainController.consultor.usuario}"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="20" 
+                                         class="form-control usuarioMask" id="consultorUsuario"
+                                         value="#{mainController.consultor.usuario}" p:placeholder="Usuário"/>
+                            <h:message for="consultorUsuario" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorSenha" value="Senha:"/>
-                            <h:inputSecret class="form-control" id="consultorSenha" value="#{mainController.consultor.senha}"/>
+                            <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20" 
+                                           class="form-control" id="consultorSenha"
+                                           value="#{mainController.consultor.senha}"/>
+                            <h:message for="consultorSenha" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorRepeteSenha" value="Repita a senha:"/>
-                            <h:inputSecret class="form-control" id="consultorRepeteSenha" value="#{mainController.tempSenhaRepete}"/>
+                            <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20" 
+                                           class="form-control" id="consultorRepeteSenha"
+                                           value="#{mainController.tempSenhaRepete}"/>
+                            <h:message for="consultorRepeteSenha" class="error-message"/>
                         </div>
                         <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarConsultor()}" value="Cadastrar!"/>
                     </div>
@@ -147,6 +213,8 @@
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/jquery.mask.js"></script>
+        <script src="resources/js/custom.mask.js"></script>
         <script src="resources/js/cadastro.js"></script>
     </h:body>
 </html>

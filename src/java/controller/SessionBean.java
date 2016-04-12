@@ -17,6 +17,8 @@ import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
 import model.Entity.Transacao;
+import org.primefaces.context.RequestContext;
+import utils.Validators;
 
 /**
  * @author Guilherme Matuella
@@ -33,6 +35,7 @@ public class SessionBean implements Serializable {
     private ListasDados listasDeDados;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
     private double valorSaldo;
+    private Validators validador;
 
     /**
      * Creates a new instance of SessionBean
@@ -42,6 +45,7 @@ public class SessionBean implements Serializable {
         cliente = new Cliente();
         consultor = new Consultor();
         consultorVisualizado = new Consultor();
+        validador = new Validators();
     }
 
     public String getUsuario() {
@@ -161,7 +165,7 @@ public class SessionBean implements Serializable {
                     if (cons.getUsuario().equals(consultorVisualizado.getUsuario())) {
                         if (cli.getSaldo() >= 100) {
                             cli.setSaldo(cli.getSaldo() - 100);
-                            cli.addTransacao(new Transacao(cli, cons, 100, 1, Date.valueOf(LocalDate.now()), "fdas"));
+                            cli.addTransacao(new Transacao(cli, cons, 100, 1, Date.valueOf(LocalDate.now())));
                         }
                     }
                 }
@@ -249,16 +253,26 @@ public class SessionBean implements Serializable {
                     clienteEditado = cli;
                 }
             }
-            listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), clienteEditado);
+            if (validador.validaCliente(cliente)) {
+                listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), cliente);
+            } else {
+                cliente = clienteEditado;
+                RequestContext.getCurrentInstance().update("j_idt65:clienteNome"); //Não está funcionando
+                return "index.xhtml?faces-redirect=true";
+            }
         } else {
             for (Consultor cons : listasDeDados.getListaConsultores()) {
                 if (cons.getUsuario().equals(consultor.getUsuario())) {
                     consultorEditado = cons;
                 }
             }
-            listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultorEditado);
+            if (validador.validaConsultor(consultor)) {
+                listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultor);
+            } else {
+                consultor = consultorEditado;
+            }
         }
-        
         return "minha-conta.xhtml?faces-redirect=true";
     }
+
 }

@@ -95,35 +95,75 @@
                                     <tbody>
                                         <tr>
                                             <th>Nome:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.nome}"/></td>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                                             class="" id="clienteNome" 
+                                                             value="#{sessionBean.cliente.nome}"/>
+                                                <h:message for="clienteNome" class="error-message"/>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <th>Email:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.email}"/></td>
-                                        </tr>              
-                                        <tr class="escondido">
-                                            <th>Endereço:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.endereco}"/></td>
-                                        </tr>
-                                        <tr class="escondido">
-                                            <th>Cidade:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.cidade}"/></td>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
+                                                             class="" id="clienteEmail"
+                                                             value="#{sessionBean.cliente.email}"/>
+                                                <h:message for="clienteEmail" class="error-message"/>
+                                            </td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>UF:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.uf}"/></td>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório" 
+                                                             class="" id="clienteUf" 
+                                                             value="#{sessionBean.cliente.uf}"/>
+                                                <h:message for="clienteUf" class="error-message"/>
+                                            </td>
+                                        </tr>
+                                        <tr class="escondido">
+                                            <th>Cidade:</th>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                                             class="" id="clienteCidade" 
+                                                             value="#{sessionBean.cliente.cidade}"/>
+                                                <h:message for="clienteCidade" class="error-message"/> 
+                                            </td>
+                                        </tr>
+                                        <tr class="escondido">
+                                            <th>Endereço:</th>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
+                                                             class="" id="clienteEndereco"
+                                                             value="#{sessionBean.cliente.endereco}"/>
+                                                <h:message for="clienteEndereco" class="error-message"/>
+                                            </td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>Telefone:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.telefone}"/></td>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                             class="telefoneMask" id="clienteTelefone"
+                                                             value="#{sessionBean.cliente.telefone}"/>
+                                                <h:message for="clienteTelefone" class="error-message"/>
+                                            </td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>CPF:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.cpf}"/></td>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                             class="cpfMask" id="clienteCpf"
+                                                             value="#{sessionBean.cliente.cpf}"/>
+                                                <h:message for="clienteCpf" class="error-message"/>
+                                            </td>
                                         </tr>
                                         <tr class="escondido">
                                             <th>RG:</th>
-                                            <td><h:inputText value="#{sessionBean.cliente.rg}"/></td>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                             class="rgMask" id="clienteRg"
+                                                             value="#{sessionBean.cliente.rg}"/>
+                                                <h:message for="clienteRg" class="error-message"/>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -145,11 +185,21 @@
                                 <table id="tabela-dados" class="table">
                                     <tr>
                                         <th>Nome:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.nome}"/></td>
+                                        <td>                            
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                                         class="" id="consultorNome"
+                                                         value="#{sessionBean.consultor.nome}"/>
+                                            <h:message for="consultorNome" class="error-message"/>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Email:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.email}"/></td>
+                                        <td>
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                                         class="" id="consultorEmail"
+                                                         value="#{sessionBean.consultor.email}"/>
+                                            <h:message for="consultorEmail" class="error-message"/>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th>Área:</th>
@@ -157,23 +207,48 @@
                                     </tr> 
                                     <tr>
                                         <th>Descrição:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.descricao}"/></td>
+                                        <td>
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="1000" 
+                                                         class="" id="consultorDescricao"
+                                                         value="#{sessionBean.consultor.descricao}"/>
+                                            <h:message for="consultorDescricao" class="error-message"/>
+                                        </td>
                                     </tr> 
                                     <tr class="escondido">
-                                        <th>Endereço:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.endereco}"/></td>
+                                        <th>UF:</th>
+                                        <td>
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                         class="" id="consultorUf"
+                                                         value="#{sessionBean.consultor.uf}"/>
+                                            <h:message for="consultorUf" class="error-message"/>
+                                        </td>
                                     </tr>
                                     <tr class="escondido">
                                         <th>Cidade:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.cidade}"/></td>
+                                        <td>
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
+                                                         class="" id="consultorCidade"
+                                                         value="#{sessionBean.consultor.cidade}"/>
+                                            <h:message for="consultorCidade" class="error-message"/>
+                                        </td>
                                     </tr>
                                     <tr class="escondido">
-                                        <th>UF:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.uf}"/></td>
+                                        <th>Endereço:</th>
+                                        <td>
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
+                                                         class="" id="consultorEndereco"
+                                                         value="#{sessionBean.consultor.endereco}"/>
+                                            <h:message for="consultorEndereco" class="error-message"/>
+                                        </td>
                                     </tr>
                                     <tr class="escondido">
                                         <th>Telefone:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.telefone}"/></td>
+                                        <td>
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                         class="telefoneMask" id="consultorTelefone"
+                                                         value="#{sessionBean.consultor.telefone}"/>
+                                            <h:message for="consultorTelefone" class="error-message"/>
+                                        </td>
                                     </tr>
                                     <tr class="escondido">
                                         <th>CPNJ:</th>
@@ -201,6 +276,8 @@
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/minha-conta.js"></script>
+        <script src="resources/js/jquery.mask.js"></script>
+        <script src="resources/js/custom.mask.js"></script>
     </h:body>
 </html>
 

@@ -17,10 +17,11 @@
 html{
     height: 100%;
 }
+
 body{
     height: 100%;
     min-height: 100% !important;
-    font-family: PlayfairDisplay !important;
+    font-family: 'Arimo', sans-serif !important;
     padding-top:51px;
 }
 
@@ -101,10 +102,6 @@ body{
 
 }
 
-.font-tracktype{
-    font-family: TrackType !important;   
-}
-
 .row-eq-height {
     display: -webkit-box;
     display: -webkit-flex;
@@ -115,6 +112,10 @@ body{
 /*Utils*/
 .font-size20{
     font-size: 20px;
+}
+
+.font-tracktype{
+    font-family: TrackType !important;   
 }
 
 .boldfont-size16{
