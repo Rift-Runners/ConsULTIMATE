@@ -36,9 +36,9 @@ public class ListasDados {
 
     public void populaListaClientes() {
         Cliente[] clientes = new Cliente[]{
-            new Cliente("a", "a", "a", "a", "a", "a", "a", "a", "a", "a"),
-            new Cliente("b", "b", "b", "b", "b", "b", "b", "b", "b", "b"),
-            new Cliente("c", "c", "c", "c", "c", "c", "c", "c", "c", "c")
+            new Cliente("aaaaaa", "aaaaaa", "aaaaaa", "aaaaaa", "(33) 2222-2222", "aaaa@ggg.com", "12312312312", "1323142356", "aaaaaa", "aaaaaa"),
+            new Cliente("bbbbbb", "bbbbbb", "bbbbbb", "bbbbbb", "(33) 2222-2222", "bbbb@ggg.com", "12312312312", "1323142356", "bbbbbb", "bbbbbb"),
+            new Cliente("cccccc", "cccccc", "cccccc", "cccccc", "(33) 2222-2222", "cccc@ggg.com", "12312312312", "1323142356", "cccccc", "cccccc")
         };
         listaClientes.addAll(Arrays.asList(clientes));
     }

@@ -98,7 +98,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                              class="" id="clienteNome" 
-                                                             value="#{sessionBean.cliente.nome}"/>
+                                                             value="#{sessionBean.clienteEditado.nome}"/>
                                                 <h:message for="clienteNome" class="error-message"/>
                                             </td>
                                         </tr>
@@ -107,7 +107,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                                              class="" id="clienteEmail"
-                                                             value="#{sessionBean.cliente.email}"/>
+                                                             value="#{sessionBean.clienteEditado.email}"/>
                                                 <h:message for="clienteEmail" class="error-message"/>
                                             </td>
                                         </tr>
@@ -116,7 +116,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" 
                                                              class="" id="clienteUf" 
-                                                             value="#{sessionBean.cliente.uf}"/>
+                                                             value="#{sessionBean.clienteEditado.uf}"/>
                                                 <h:message for="clienteUf" class="error-message"/>
                                             </td>
                                         </tr>
@@ -125,7 +125,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                              class="" id="clienteCidade" 
-                                                             value="#{sessionBean.cliente.cidade}"/>
+                                                             value="#{sessionBean.clienteEditado.cidade}"/>
                                                 <h:message for="clienteCidade" class="error-message"/> 
                                             </td>
                                         </tr>
@@ -134,7 +134,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
                                                              class="" id="clienteEndereco"
-                                                             value="#{sessionBean.cliente.endereco}"/>
+                                                             value="#{sessionBean.clienteEditado.endereco}"/>
                                                 <h:message for="clienteEndereco" class="error-message"/>
                                             </td>
                                         </tr>
@@ -143,7 +143,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="telefoneMask" id="clienteTelefone"
-                                                             value="#{sessionBean.cliente.telefone}"/>
+                                                             value="#{sessionBean.clienteEditado.telefone}"/>
                                                 <h:message for="clienteTelefone" class="error-message"/>
                                             </td>
                                         </tr>
@@ -152,7 +152,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="cpfMask" id="clienteCpf"
-                                                             value="#{sessionBean.cliente.cpf}"/>
+                                                             value="#{sessionBean.clienteEditado.cpf}"/>
                                                 <h:message for="clienteCpf" class="error-message"/>
                                             </td>
                                         </tr>
@@ -161,7 +161,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="rgMask" id="clienteRg"
-                                                             value="#{sessionBean.cliente.rg}"/>
+                                                             value="#{sessionBean.clienteEditado.rg}"/>
                                                 <h:message for="clienteRg" class="error-message"/>
                                             </td>
                                         </tr>
@@ -188,7 +188,7 @@
                                         <td>                            
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                          class="" id="consultorNome"
-                                                         value="#{sessionBean.consultor.nome}"/>
+                                                         value="#{sessionBean.consultorEditado.nome}"/>
                                             <h:message for="consultorNome" class="error-message"/>
                                         </td>
                                     </tr>
@@ -197,20 +197,20 @@
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                          class="" id="consultorEmail"
-                                                         value="#{sessionBean.consultor.email}"/>
+                                                         value="#{sessionBean.consultorEditado.email}"/>
                                             <h:message for="consultorEmail" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>Área:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.area}"/></td>
+                                        <td><h:inputText value="#{sessionBean.consultorEditado.area}"/></td>
                                     </tr> 
                                     <tr>
                                         <th>Descrição:</th>
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="1000" 
                                                          class="" id="consultorDescricao"
-                                                         value="#{sessionBean.consultor.descricao}"/>
+                                                         value="#{sessionBean.consultorEditado.descricao}"/>
                                             <h:message for="consultorDescricao" class="error-message"/>
                                         </td>
                                     </tr> 
@@ -219,7 +219,7 @@
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                          class="" id="consultorUf"
-                                                         value="#{sessionBean.consultor.uf}"/>
+                                                         value="#{sessionBean.consultorEditado.uf}"/>
                                             <h:message for="consultorUf" class="error-message"/>
                                         </td>
                                     </tr>
@@ -228,7 +228,7 @@
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                                          class="" id="consultorCidade"
-                                                         value="#{sessionBean.consultor.cidade}"/>
+                                                         value="#{sessionBean.consultorEditado.cidade}"/>
                                             <h:message for="consultorCidade" class="error-message"/>
                                         </td>
                                     </tr>
@@ -237,7 +237,7 @@
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
                                                          class="" id="consultorEndereco"
-                                                         value="#{sessionBean.consultor.endereco}"/>
+                                                         value="#{sessionBean.consultorEditado.endereco}"/>
                                             <h:message for="consultorEndereco" class="error-message"/>
                                         </td>
                                     </tr>
@@ -246,13 +246,13 @@
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                          class="telefoneMask" id="consultorTelefone"
-                                                         value="#{sessionBean.consultor.telefone}"/>
+                                                         value="#{sessionBean.consultorEditado.telefone}"/>
                                             <h:message for="consultorTelefone" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr class="escondido">
                                         <th>CPNJ:</th>
-                                        <td><h:inputText value="#{sessionBean.consultor.cnpj}"/></td>
+                                        <td><h:inputText value="#{sessionBean.consultorEditado.cnpj}"/></td>
                                     </tr>
                                 </table>
                                 <div class="text-center">

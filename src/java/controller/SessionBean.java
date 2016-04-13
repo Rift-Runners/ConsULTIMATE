@@ -29,8 +29,8 @@ import utils.Validators;
 public class SessionBean implements Serializable {
 
     private String usuario, senha;
-    private Cliente cliente;
-    private Consultor consultor, consultorVisualizado;
+    private Cliente cliente, clienteEditado;
+    private Consultor consultor, consultorEditado, consultorVisualizado;
     private Admin admin;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
     private double valorSaldo;
@@ -134,6 +134,22 @@ public class SessionBean implements Serializable {
         this.consultorVisualizado = consultorVisualizado;
     }
 
+    public Cliente getClienteEditado() {
+        return clienteEditado;
+    }
+
+    public void setClienteEditado(Cliente clienteEditado) {
+        this.clienteEditado = clienteEditado;
+    }
+
+    public Consultor getConsultorEditado() {
+        return consultorEditado;
+    }
+
+    public void setConsultorEditado(Consultor consultorEditado) {
+        this.consultorEditado = consultorEditado;
+    }
+
     public String visualizaConsultor() {
         return "consultor-detalhes.xhtml?faces-redirect=true";
     }
@@ -160,6 +176,7 @@ public class SessionBean implements Serializable {
                     clienteLogged = true;
                     logged = true;
                     cliente = clienteCadastrado;
+                    clienteEditado = new Cliente(cliente);
                     return "index.xhtml?faces-redirect=true";
                 }
             }
@@ -171,6 +188,7 @@ public class SessionBean implements Serializable {
                     consultorLogged = true;
                     logged = true;
                     consultor = consultorCadastrado;
+                    consultorEditado = new Consultor(consultor);
                     return "index.xhtml?faces-redirect=true";
                 }
             }
@@ -226,35 +244,25 @@ public class SessionBean implements Serializable {
 
     public String editarConta() {
         ListasDados listasDeDados = validador.listaControladorAplicacao();
-        Cliente clienteEditado = new Cliente();
-        Consultor consultorEditado = new Consultor();
-
         if (clienteLogged) {
-            for (Cliente cli : listasDeDados.getListaClientes()) {
-                if (cli.getUsuario().equals(cliente.getUsuario())) {
-                    clienteEditado = cli;
-                }
-            }
-            if (validador.validaCliente(cliente)) {
-                listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), cliente);
-            } else {
+            if (validador.validaCliente(clienteEditado)) {
+                listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(cliente), clienteEditado);
                 cliente = clienteEditado;
-                RequestContext.getCurrentInstance().update("j_idt65"); //Não está funcionando
+                return "contato.xhtml?faces-redirect=true";
+            } else {
+                clienteEditado = new Cliente(cliente);
                 return "index.xhtml?faces-redirect=true";
             }
         } else {
-            for (Consultor cons : listasDeDados.getListaConsultores()) {
-                if (cons.getUsuario().equals(consultor.getUsuario())) {
-                    consultorEditado = cons;
-                }
-            }
-            if (validador.validaConsultor(consultor)) {
-                listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultor);
-            } else {
+            if (validador.validaConsultor(consultorEditado)) {
+                listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultor), consultorEditado);
                 consultor = consultorEditado;
+                return "contato.xhtml?faces-redirect=true";
+            } else {
+                consultorEditado = new Consultor(consultor);
+                return "index.xhtml?faces-redirect=true";
             }
         }
-        return "minha-conta.xhtml?faces-redirect=true";
     }
 
 }
