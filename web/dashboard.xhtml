@@ -37,6 +37,7 @@
                             <th>RG</th>
                             <th>Usuário</th>
                             <th>Senha</th>
+                            <th>Saldo</th>
                         </tr>
                         <ui:repeat var="cliente" value="#{mainController.listasDeDados.listaClientes}">
                             <tr>
@@ -50,6 +51,7 @@
                                 <td><h:outputText value="#{cliente.rg}"/></td>
                                 <td><h:outputText value="#{cliente.usuario}"/></td>
                                 <td><h:outputText value="#{cliente.senha}"/></td>
+                                <td><h:outputText value="R$ #{cliente.saldo}"/></td>
                             </tr>
                         </ui:repeat>
                     </table>
