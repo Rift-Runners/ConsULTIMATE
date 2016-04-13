@@ -151,6 +151,7 @@ public class SessionBean implements Serializable {
     }
 
     public String visualizaConsultor() {
+        //AINDA NÃO IMPLEMENTADO!
         return "consultor-detalhes.xhtml?faces-redirect=true";
     }
 
@@ -215,30 +216,17 @@ public class SessionBean implements Serializable {
     }
 
     public String perguntarConsultor() {
+        //AINDA NÃO IMPLEMENTADO!
         return "index.xhtml?faces-redirect=true";
     }
 
     public String deletarConta() {
         ListasDados listasDeDados = validador.listaControladorAplicacao();
-        Cliente clienteDeletado = new Cliente();
-        Consultor consultorDeletado = new Consultor();
-
         if (clienteLogged) {
-            for (Cliente cli : listasDeDados.getListaClientes()) {
-                if (cli.getUsuario().equals(cliente.getUsuario())) {
-                    clienteDeletado = cli;
-                }
-            }
-            listasDeDados.deletarCliente(clienteDeletado);
+            listasDeDados.deletarCliente(cliente);
         } else {
-            for (Consultor cons : listasDeDados.getListaConsultores()) {
-                if (cons.getUsuario().equals(consultor.getUsuario())) {
-                    consultorDeletado = cons;
-                }
-            }
-            listasDeDados.deletarConsultor(consultorDeletado);
+            listasDeDados.deletarConsultor(consultor);
         }
-
         return sair();
     }
 
