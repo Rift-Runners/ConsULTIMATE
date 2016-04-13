@@ -12,14 +12,30 @@ import java.util.List;
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-public class Consultor{
+public class Consultor {
 
     private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
     private List<Transacao> transacoesEfetuadas;
-    
-    public Consultor(){
+
+    public Consultor() {
     }
-    
+
+    //CopyConstructor
+    public Consultor(Consultor outroConsultor) {
+        this.nome = outroConsultor.getNome();
+        this.cidade =  outroConsultor.getCidade();
+        this.uf =  outroConsultor.getUf();
+        this.endereco = outroConsultor.getEndereco();
+        this.telefone = outroConsultor.getTelefone();
+        this.email = outroConsultor.getEmail();
+        this.cnpj = outroConsultor.getCnpj();
+        this.descricao = outroConsultor.getDescricao();
+        this.area = outroConsultor.getArea();
+        this.usuario = outroConsultor.getUsuario();
+        this.senha = outroConsultor.getSenha();
+        this.transacoesEfetuadas = outroConsultor.getTransacoesEfetuadas();
+    }
+
     public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha) {
         this.nome = nome;
         this.cidade = cidade;
@@ -129,5 +145,5 @@ public class Consultor{
 
     public void addTransacao(Transacao transacao) {
         this.transacoesEfetuadas.add(transacao);
-    }   
+    }
 }

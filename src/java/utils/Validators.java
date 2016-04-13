@@ -5,9 +5,12 @@
  */
 package utils;
 
+import controller.MainController;
 import java.util.regex.Pattern;
+import javax.faces.context.FacesContext;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
+import model.Entity.ListasDados;
 
 /**
  *
@@ -16,6 +19,11 @@ import model.Entity.Consultor;
 public class Validators {
 
     public Validators() {
+    }
+
+    public ListasDados listaControladorAplicacao() {
+        MainController controladorPrincipal = (MainController) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("mainController");
+        return controladorPrincipal.getListasDeDados();
     }
 
     public boolean validaEmail(String emailInput) {
@@ -33,22 +41,22 @@ public class Validators {
     public boolean validaSenha(String senhaInput) {
         return (senhaInput.length() > 5 || senhaInput.length() < 17);
     }
-    
-    public boolean validaCliente(Cliente cli){
-        if(validaEmail(cli.getEmail())){
-            if(validaUsuario(cli.getUsuario())){
-                if(validaSenha(cli.getSenha())){
+
+    public boolean validaCliente(Cliente cli) {
+        if (validaEmail(cli.getEmail())) {
+            if (validaUsuario(cli.getUsuario())) {
+                if (validaSenha(cli.getSenha())) {
                     return true;
                 }
             }
         }
         return false;
     }
-    
-    public boolean validaConsultor(Consultor cons){
-        if(validaEmail(cons.getEmail())){
-            if(validaUsuario(cons.getUsuario())){
-                if(validaSenha(cons.getSenha())){
+
+    public boolean validaConsultor(Consultor cons) {
+        if (validaEmail(cons.getEmail())) {
+            if (validaUsuario(cons.getUsuario())) {
+                if (validaSenha(cons.getSenha())) {
                     return true;
                 }
             }

@@ -29,10 +29,9 @@ import utils.Validators;
 public class SessionBean implements Serializable {
 
     private String usuario, senha;
-    private Cliente cliente;
-    private Consultor consultor, consultorVisualizado;
+    private Cliente cliente, clienteEditado;
+    private Consultor consultor, consultorEditado, consultorVisualizado;
     private Admin admin;
-    private ListasDados listasDeDados;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
     private double valorSaldo;
     private Validators validador;
@@ -41,7 +40,6 @@ public class SessionBean implements Serializable {
      * Creates a new instance of SessionBean
      */
     public SessionBean() {
-        listasDeDados = new ListasDados();
         cliente = new Cliente();
         consultor = new Consultor();
         consultorVisualizado = new Consultor();
@@ -120,14 +118,6 @@ public class SessionBean implements Serializable {
         this.adminLogged = adminLogged;
     }
 
-    public ListasDados getListasDeDados() {
-        return listasDeDados;
-    }
-
-    public void setListasDeDados(ListasDados listasDeDados) {
-        this.listasDeDados = listasDeDados;
-    }
-
     public double getValorSaldo() {
         return valorSaldo;
     }
@@ -144,43 +134,50 @@ public class SessionBean implements Serializable {
         this.consultorVisualizado = consultorVisualizado;
     }
 
+    public Cliente getClienteEditado() {
+        return clienteEditado;
+    }
+
+    public void setClienteEditado(Cliente clienteEditado) {
+        this.clienteEditado = clienteEditado;
+    }
+
+    public Consultor getConsultorEditado() {
+        return consultorEditado;
+    }
+
+    public void setConsultorEditado(Consultor consultorEditado) {
+        this.consultorEditado = consultorEditado;
+    }
+
     public String visualizaConsultor() {
-        return "consultor-detalhes.xhtml";
+        //AINDA NÃO IMPLEMENTADO!
+        return "consultor-detalhes.xhtml?faces-redirect=true";
     }
 
     public String adicionarSaldo() {
-        for (Cliente c : listasDeDados.getListaClientes()) {
-            if (c.getUsuario().equals(cliente.getUsuario())) {
-                c.setSaldo(c.getSaldo() + valorSaldo);
-            }
-        }
+        cliente.setSaldo(cliente.getSaldo() + valorSaldo);
         valorSaldo = 0d;
         return "minha-conta.xhtml?faces-redirect=true";
     }
 
     public String criarTransacao() {
-        for (Cliente cli : listasDeDados.getListaClientes()) {
-            if (cli.getUsuario().equals(cliente.getUsuario())) {
-                for (Consultor cons : listasDeDados.getListaConsultores()) {
-                    if (cons.getUsuario().equals(consultorVisualizado.getUsuario())) {
-                        if (cli.getSaldo() >= 100) {
-                            cli.setSaldo(cli.getSaldo() - 100);
-                            cli.addTransacao(new Transacao(cli, cons, 100, 1, Date.valueOf(LocalDate.now())));
-                        }
-                    }
-                }
-            }
+        if (cliente.getSaldo() >= 100) {
+            cliente.setSaldo(cliente.getSaldo() - 100);
+            cliente.addTransacao(new Transacao(cliente, consultorVisualizado, 100, 1, Date.valueOf(LocalDate.now())));
         }
         return "minha-conta.xhtml?faces-redirect=true";
     }
 
     public String entrar() {
+        ListasDados listasDeDados = validador.listaControladorAplicacao();
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getUsuario().equals(usuario)) {
                 if (clienteCadastrado.getSenha().equals(senha)) {
                     clienteLogged = true;
                     logged = true;
                     cliente = clienteCadastrado;
+                    clienteEditado = new Cliente(cliente);
                     return "index.xhtml?faces-redirect=true";
                 }
             }
@@ -192,6 +189,7 @@ public class SessionBean implements Serializable {
                     consultorLogged = true;
                     logged = true;
                     consultor = consultorCadastrado;
+                    consultorEditado = new Consultor(consultor);
                     return "index.xhtml?faces-redirect=true";
                 }
             }
@@ -218,61 +216,41 @@ public class SessionBean implements Serializable {
     }
 
     public String perguntarConsultor() {
+        //AINDA NÃO IMPLEMENTADO!
         return "index.xhtml?faces-redirect=true";
     }
 
     public String deletarConta() {
-        Cliente clienteDeletado = new Cliente();
-        Consultor consultorDeletado = new Consultor();
-
+        ListasDados listasDeDados = validador.listaControladorAplicacao();
         if (clienteLogged) {
-            for (Cliente cli : listasDeDados.getListaClientes()) {
-                if (cli.getUsuario().equals(cliente.getUsuario())) {
-                    clienteDeletado = cli;
-                }
-            }
-            listasDeDados.deletarCliente(clienteDeletado);
+            listasDeDados.deletarCliente(cliente);
         } else {
-            for (Consultor cons : listasDeDados.getListaConsultores()) {
-                if (cons.getUsuario().equals(consultor.getUsuario())) {
-                    consultorDeletado = cons;
-                }
-            }
-            listasDeDados.deletarConsultor(consultorDeletado);
+            listasDeDados.deletarConsultor(consultor);
         }
         return sair();
     }
 
     public String editarConta() {
-        Cliente clienteEditado = new Cliente();
-        Consultor consultorEditado = new Consultor();
-
+        ListasDados listasDeDados = validador.listaControladorAplicacao();
         if (clienteLogged) {
-            for (Cliente cli : listasDeDados.getListaClientes()) {
-                if (cli.getUsuario().equals(cliente.getUsuario())) {
-                    clienteEditado = cli;
-                }
-            }
-            if (validador.validaCliente(cliente)) {
-                listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(clienteEditado), cliente);
-            } else {
+            if (validador.validaCliente(clienteEditado)) {
+                listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(cliente), clienteEditado);
                 cliente = clienteEditado;
-                RequestContext.getCurrentInstance().update("j_idt65:clienteNome"); //Não está funcionando
+                return "contato.xhtml?faces-redirect=true";
+            } else {
+                clienteEditado = new Cliente(cliente);
                 return "index.xhtml?faces-redirect=true";
             }
         } else {
-            for (Consultor cons : listasDeDados.getListaConsultores()) {
-                if (cons.getUsuario().equals(consultor.getUsuario())) {
-                    consultorEditado = cons;
-                }
-            }
-            if (validador.validaConsultor(consultor)) {
-                listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultorEditado), consultor);
-            } else {
+            if (validador.validaConsultor(consultorEditado)) {
+                listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultor), consultorEditado);
                 consultor = consultorEditado;
+                return "contato.xhtml?faces-redirect=true";
+            } else {
+                consultorEditado = new Consultor(consultor);
+                return "index.xhtml?faces-redirect=true";
             }
         }
-        return "minha-conta.xhtml?faces-redirect=true";
     }
 
 }

@@ -19,7 +19,22 @@ public class Cliente {
     private double saldo;
 
     public Cliente() {
-        
+    }
+
+    //CopyConstructor
+    public Cliente(Cliente outroCliente) {
+        this.nome = outroCliente.getNome();
+        this.cidade = outroCliente.getCidade();
+        this.uf = outroCliente.getUf();
+        this.endereco = outroCliente.getEndereco();
+        this.telefone = outroCliente.getTelefone();
+        this.email = outroCliente.getEmail();
+        this.cpf = outroCliente.getCpf();
+        this.rg = outroCliente.getRg();
+        this.usuario = outroCliente.getUsuario();
+        this.senha = outroCliente.getSenha();
+        this.saldo = outroCliente.getSaldo();
+        this.transacoesEfetuadas = outroCliente.getTransacoesEfetuadas();
     }
 
     public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha) {
