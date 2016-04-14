@@ -291,15 +291,15 @@ body{
 /*END - Login */
 /*Cadastre-se*/
 .cadastrese-background {
-    position: relative;
     height:100%;
+    overflow: auto;
 }
 
 .cadastrese-background::after {
     content: "";
-    background-image: url(../images/login.jpg);
+    background: #336E7B;
     background-size: cover;
-    opacity: 0.8;
+    opacity: 0.5;
     top: 0;
     left: 0;
     bottom: 0;
@@ -308,6 +308,14 @@ body{
     z-index: -1;   
 }
 /*END - Cadastre-se*/
+/*Footer*/
+.footer{
+    margin: 0px;
+    padding: 0px;
+    background: #3A539B;
+    border-top: black 2px inset;  
+}
+/*END - Footer*/
 /*Dashboard*/
 
 /*END - Dashboard*/

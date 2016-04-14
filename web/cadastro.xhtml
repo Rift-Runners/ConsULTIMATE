@@ -4,7 +4,8 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pr="http://primefaces.org/ui">
     <h:head>
         <meta charset="utf-8"/>
         <title>Cadastro</title>
@@ -13,8 +14,7 @@
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
-
-        <div class="login-background" style="color: #000; font-size: 18px">
+        <div class="cadastrese-background">
             <div class="row row-eq-height">
                 <div class="col-md-2"></div>
                 <div class="col-md-8">
@@ -28,7 +28,7 @@
                 </div>
                 <div class="col-md-2"></div>
             </div>
-            <h:form id="formulario-cliente" class="escondido">
+            <h:form id="formulario-cliente" class="escondido" prependId="false">
                 <div class="row row-eq-height">
                     <div class="col-md-2"></div>
                     <div class="col-md-4">
@@ -41,14 +41,18 @@
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteUf" value="UF:"/>
-                            <h:inputText required="true" requiredMessage="Campo obrigatório" 
-                                         class="form-control ufMask" id="clienteUf" 
-                                         value="#{mainController.cliente.uf}" p:placeholder="Estado"/>
-                            <h:message for="clienteUf" class="error-message"/>
+                            <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
+                                             class="form-control" id="clienteUf" 
+                                             value="#{mainController.cliente.uf}">
+                                <f:selectItem itemValue="" itemLabel="Selecione um estado"/>  
+                                <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                               itemLabel="#{estado}" itemValue="#{estado}" />
+                            </h:selectOneMenu>
+                            <h:message for="clienteUf" class="error-message"/>                      
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="clienteCidade" value="Cidade:"/>
-                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                          class="form-control" id="clienteCidade" 
                                          value="#{mainController.cliente.cidade}" p:placeholder="Cidade"/>
                             <h:message for="clienteCidade" class="error-message"/>
@@ -117,10 +121,10 @@
                 </div>
             </h:form>
 
-            <h:form id="formulario-consultor" class="escondido">
+            <h:form id="formulario-consultor" class="escondido" prependId="false">
                 <div class="row row-eq-height">
-                    <div class="col-md-2"></div>
-                    <div class="col-md-4">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
                         <div class="form-group">
                             <h:outputLabel for="consultorNome" value="Nome (Pessoa Jurídica):"/>
                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
@@ -130,9 +134,13 @@
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorUf" value="UF:"/>
-                            <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                         class="form-control ufMask" id="consultorUf"
-                                         value="#{mainController.consultor.uf}" p:placeholder="Estado"/>
+                            <h:selectOneMenu required="true" requiredMessage="Campo obrigatório"
+                                             class="form-control" id="consultorUf"
+                                             value="#{mainController.consultor.uf}">
+                                <f:selectItem itemValue="" itemLabel="Selecione um estado"/>  
+                                <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                               itemLabel="#{estado}" itemValue="#{estado}" />
+                            </h:selectOneMenu>
                             <h:message for="consultorUf" class="error-message"/>
                         </div>
                         <div class="form-group">
@@ -164,12 +172,13 @@
                             <h:message for="consultorEmail" class="error-message"/>
                         </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                         <div class="form-group">
                             <h:outputLabel for="consultorArea" value="Área:"/>
                             <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                              class="form-control" id="consultorArea" 
                                              value="#{mainController.consultor.area}">
+                                <f:selectItem itemValue="" itemLabel="" />
                                 <f:selectItem itemValue="TI" itemLabel="TI" />
                                 <f:selectItem itemValue="Engenharia" itemLabel="Engenharia" />
                                 <f:selectItem itemValue="Artes" itemLabel="Artes" />
@@ -177,11 +186,11 @@
                             <h:message for="consultorArea" class="error-message"/>
                         </div>
                         <div class="form-group">
-                            <h:outputLabel for="consultorDescricao" value="Descrição:"/>
-                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="1000" 
-                                         class="form-control" id="consultorDescricao"
-                                         value="#{mainController.consultor.descricao}" p:placeholder="Descrição do consultor"/>
-                            <h:message for="consultorDescricao" class="error-message"/>
+                            <h:outputLabel for="consultorCnpj" value="CPNJ:"/>
+                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="17" 
+                                         class="form-control cnpjMask" id="consultorCnpj"
+                                         value="#{mainController.consultor.cnpj}" p:placeholder="CNPJ"/>
+                            <h:message for="consultorCnpj" class="error-message"/>
                         </div>
                         <div class="form-group">
                             <h:outputLabel for="consultorUsuario" value="Usuário:"/>
@@ -204,18 +213,29 @@
                                            value="#{mainController.tempSenhaRepete}"/>
                             <h:message for="consultorRepeteSenha" class="error-message"/>
                         </div>
-                        <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarConsultor()}" value="Cadastrar!"/>
                     </div>
-                    <div class="col-md-2"></div>
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <h3>Descrição:</h3>
+                            <h:outputText id="display" />
+                            <pr:inputTextarea required="true" requiredMessage="Campo obrigatório" rows="13" cols="30" id="consultorDescricao"
+                                              counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes." 
+                                              autoResize="false" class="form-control" value="#{mainController.consultor.descricao}"
+                                              p:placeholder="Descrição e detalhes do consultor, note que este campo é a sua ''porta de entrada'' para os clientes)"/>
+                            <h:message for="consultorDescricao" class="error-message"/>
+                            <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarConsultor()}" value="Cadastrar!"/>
+                        </div>
+                    </div>
+                    <div class="col-md-1"></div>
                 </div>
             </h:form>
-
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/jquery.mask.js"></script>
         <script src="resources/js/custom.mask.js"></script>
         <script src="resources/js/cadastro.js"></script>
+
     </h:body>
 </html>
 

@@ -5,6 +5,8 @@
  */
 package controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
@@ -100,6 +102,15 @@ public class MainController {
         this.tempSenhaRepete = tempSenhaRepete;
     }
 
+    public List<String> listaEstados(){
+        List<String> estados = new ArrayList();
+        estados.add("A");
+        estados.add("B");
+        estados.add("C");
+        estados.add("D");
+        return estados;
+    }
+    
     public boolean confirmaSenha(String senha, String repeteSenha) {
         return senha.equals(repeteSenha);
     }
