@@ -52,31 +52,34 @@ body{
 }
 
 .main-header .title{
-    color: #0C0A86;
+    color: black;
     font-size: 70px;
     font-family: TrackType;
     padding: 30px 0px;
 }
 
 .main-header .video{
-    border: white 2px solid;
+    border: #5A5959 3px solid;
+    border-radius: 6px;
     margin-bottom: 100px; /*É preciso fazer 100% da tela (altura), como?*/
 }
 .redes-sociais-background {
-    background-image: url(../images/imgpatterns/embossed_paper_@2X.png);
+    background-image: url(../images/imgpatterns/noisynet.png);
     background-size: auto;
 }
 
 .rede-social{
     padding: 100px 0px;
     text-align: center;
-    opacity:0.5;
+    opacity: 0.35;
     font-family: TrackType;
+    color: transparent;
 }
 
 .rede-social-active{
     font-size: 40px;
     opacity: 1;
+    color: #5A5959;
 }
 
 
@@ -164,6 +167,11 @@ body{
 }
 .table-padding-bottom10 tr td{
     padding-bottom: 10px;
+    padding-left: 10px;
+    text-align: center;
+}
+.table-padding-bottom10 tr th{
+    font-family: TrackType;
 }
 
 .margin-bottom25{
@@ -288,8 +296,9 @@ body{
 
 .minha-conta-background::after {
     content: "";
-    background-image: url(../images/imgpatterns/tex2res5.png);
+    background-image: url(../images/imgpatterns/noisynet.png);
     background-size: auto;
+    opacity: 0.75;
     top: 0;
     left: 0;
     bottom: 0;
@@ -357,3 +366,22 @@ body{
 /*Dashboard*/
 
 /*END - Dashboard*/
+/*Quem Somos*/
+.quem-somos-background {
+    overflow: auto;
+    height:100%;
+}
+
+.quem-somos-background::after {
+    content: "";
+    background-image: url(../images/imgpatterns/strange_bullseyes_@2X.png);
+    background-size: auto;
+    opacity: 0.75;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;   
+}
+/*END - Quem Somos*/
