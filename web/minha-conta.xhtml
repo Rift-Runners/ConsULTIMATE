@@ -15,9 +15,9 @@
                 <div class="row">
                     <div class="col-md-1"></div>
                     <div class="col-md-2">
-                        <div class="panel panel-primary">
+                        <div class="panel panel-primary margin-top20-bottom15">
                             <div class="panel-heading">     
-                                <h3 class="panel-title text-center">Saldo</h3>
+                                <h3 class="panel-title text-center font-tracktype">Saldo</h3>
                             </div>
                             <div class="panel-body text-center">
                                 <h:outputText class="saldo" value="R$ #{sessionBean.cliente.saldo}"/>
@@ -30,15 +30,15 @@
             </h:form>
             <div class="row">
                 <div class="col-md-1"/>
-                <div class="col-md-6">
+                <div class="col-md-5">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title text-center">Transações Efetuadas <i class="glyphicon glyphicon-credit-card"></i></h3>
+                            <h3 class="panel-title text-center font-tracktype">Transações Efetuadas <i class="glyphicon glyphicon-credit-card"></i></h3>
                         </div>
                         <div class="panel-body">
                             <h:form rendered="#{sessionBean.clienteLogged}">
                                 <table id="tabela-dados" class="table">
-                                    <tr class="text-center">
+                                    <tr class="font-tracktype text-center">
                                         <th>Nome do consultor</th>
                                         <th>Quantidade de horas</th>
                                         <th>Valor total</th>
@@ -61,7 +61,7 @@
 
                             <h:form rendered="#{sessionBean.consultorLogged}">
                                 <table id="tabela-dados" class="table">
-                                    <tr class="text-center">
+                                    <tr class="font-tracktype text-center">
                                         <th>Nome do cliente</th>
                                         <th>Quantidade de horas</th>
                                         <th>Valor total</th>
@@ -83,84 +83,84 @@
                         </div>
                     </div>  
                 </div>
-                <div class="col-md-1"/>
+                <div class="col-md-2"/>
                 <div class="col-md-3">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h3 class="panel-title text-center">Dados Pessoais <i class="glyphicon glyphicon-user"></i></h3>
+                            <h3 class="panel-title text-center font-tracktype">Dados Pessoais <i class="glyphicon glyphicon-user"></i></h3>
                         </div>
                         <div class="panel-body">
                             <h:form rendered="#{sessionBean.clienteLogged}">
                                 <table id="tabela-dados" class="table table-hover">
                                     <tbody>
                                         <tr>
-                                            <th>Nome:</th>
+                                            <th class="font-tracktype">Nome:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                             class="" id="clienteNome" 
+                                                             class="input-editavel" id="clienteNome" 
                                                              value="#{sessionBean.clienteEditado.nome}"/>
                                                 <h:message for="clienteNome" class="error-message"/>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>Email:</th>
+                                            <th class="font-tracktype">Email:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
-                                                             class="" id="clienteEmail"
+                                                             class="input-editavel" id="clienteEmail"
                                                              value="#{sessionBean.clienteEditado.email}"/>
                                                 <h:message for="clienteEmail" class="error-message"/>
                                             </td>
                                         </tr>
                                         <tr class="escondido">
-                                            <th>UF:</th>
+                                            <th class="font-tracktype">UF:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" 
-                                                             class="" id="clienteUf" 
+                                                             class="input-editavel" id="clienteUf" 
                                                              value="#{sessionBean.clienteEditado.uf}"/>
                                                 <h:message for="clienteUf" class="error-message"/>
                                             </td>
                                         </tr>
                                         <tr class="escondido">
-                                            <th>Cidade:</th>
+                                            <th class="font-tracktype">Cidade:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                             class="" id="clienteCidade" 
+                                                             class="input-editavel" id="clienteCidade" 
                                                              value="#{sessionBean.clienteEditado.cidade}"/>
                                                 <h:message for="clienteCidade" class="error-message"/> 
                                             </td>
                                         </tr>
                                         <tr class="escondido">
-                                            <th>Endereço:</th>
+                                            <th class="font-tracktype">Endereço:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
-                                                             class="" id="clienteEndereco"
+                                                             class="input-editavel" id="clienteEndereco"
                                                              value="#{sessionBean.clienteEditado.endereco}"/>
                                                 <h:message for="clienteEndereco" class="error-message"/>
                                             </td>
                                         </tr>
                                         <tr class="escondido">
-                                            <th>Telefone:</th>
+                                            <th class="font-tracktype">Telefone:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="telefoneMask" id="clienteTelefone"
+                                                             class="input-editavel telefoneMask" id="clienteTelefone"
                                                              value="#{sessionBean.clienteEditado.telefone}"/>
                                                 <h:message for="clienteTelefone" class="error-message"/>
                                             </td>
                                         </tr>
                                         <tr class="escondido">
-                                            <th>CPF:</th>
+                                            <th class="font-tracktype">CPF:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="cpfMask" id="clienteCpf"
+                                                             class="input-editavel cpfMask" id="clienteCpf"
                                                              value="#{sessionBean.clienteEditado.cpf}"/>
                                                 <h:message for="clienteCpf" class="error-message"/>
                                             </td>
                                         </tr>
                                         <tr class="escondido">
-                                            <th>RG:</th>
+                                            <th class="font-tracktype">RG:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="rgMask" id="clienteRg"
+                                                             class="input-editavel rgMask" id="clienteRg"
                                                              value="#{sessionBean.clienteEditado.rg}"/>
                                                 <h:message for="clienteRg" class="error-message"/>
                                             </td>
@@ -184,75 +184,80 @@
                             <h:form rendered="#{sessionBean.consultorLogged}">
                                 <table id="tabela-dados" class="table">
                                     <tr>
-                                        <th>Nome:</th>
+                                        <th class="font-tracktype">Nome:</th>
                                         <td>                            
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                         class="" id="consultorNome"
+                                                         class="input-editavel" id="consultorNome"
                                                          value="#{sessionBean.consultorEditado.nome}"/>
                                             <h:message for="consultorNome" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Email:</th>
+                                        <th class="font-tracktype">Email:</th>
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                         class="" id="consultorEmail"
+                                                         class="input-editavel" id="consultorEmail"
                                                          value="#{sessionBean.consultorEditado.email}"/>
                                             <h:message for="consultorEmail" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr>
-                                        <th>Área:</th>
+                                        <th class="font-tracktype">Área:</th>
                                         <td><h:inputText value="#{sessionBean.consultorEditado.area}"/></td>
                                     </tr> 
                                     <tr>
-                                        <th>Descrição:</th>
+                                        <th class="font-tracktype">Descrição:</th>
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="1000" 
-                                                         class="" id="consultorDescricao"
+                                                         class="input-editavel" id="consultorDescricao"
                                                          value="#{sessionBean.consultorEditado.descricao}"/>
                                             <h:message for="consultorDescricao" class="error-message"/>
                                         </td>
                                     </tr> 
                                     <tr class="escondido">
-                                        <th>UF:</th>
+                                        <th class="font-tracktype">UF:</th>
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                         class="" id="consultorUf"
+                                                         class="input-editavel" id="consultorUf"
                                                          value="#{sessionBean.consultorEditado.uf}"/>
                                             <h:message for="consultorUf" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr class="escondido">
-                                        <th>Cidade:</th>
+                                        <th class="font-tracktype">Cidade:</th>
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
-                                                         class="" id="consultorCidade"
+                                                         class="input-editavel" id="consultorCidade"
                                                          value="#{sessionBean.consultorEditado.cidade}"/>
                                             <h:message for="consultorCidade" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr class="escondido">
-                                        <th>Endereço:</th>
+                                        <th class="font-tracktype">Endereço:</th>
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
-                                                         class="" id="consultorEndereco"
+                                                         class="input-editavel" id="consultorEndereco"
                                                          value="#{sessionBean.consultorEditado.endereco}"/>
                                             <h:message for="consultorEndereco" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr class="escondido">
-                                        <th>Telefone:</th>
+                                        <th class="font-tracktype">Telefone:</th>
                                         <td>
                                             <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                         class="telefoneMask" id="consultorTelefone"
+                                                         class="input-editavel telefoneMask" id="consultorTelefone"
                                                          value="#{sessionBean.consultorEditado.telefone}"/>
                                             <h:message for="consultorTelefone" class="error-message"/>
                                         </td>
                                     </tr>
                                     <tr class="escondido">
-                                        <th>CPNJ:</th>
-                                        <td><h:inputText value="#{sessionBean.consultorEditado.cnpj}"/></td>
+                                        <th class="font-tracktype">CPNJ:</th>
+                                        <td>
+                                            <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                         class="input-editavel cnpjMask" id="consultorCpnj"
+                                                         value="#{sessionBean.consultorEditado.cnpj}"/>
+                                            <h:message for="consultorCpnj" class="error-message"/>
+                                        </td>
                                     </tr>
                                 </table>
                                 <div class="text-center">

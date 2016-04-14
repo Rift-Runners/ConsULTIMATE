@@ -110,6 +110,19 @@ body{
 }
 
 /*Utils*/
+.input-editavel{
+    text-align: center;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    transition: border 0.3s;
+}
+
+.input-editavel:focus,
+.input-editavel.focus {
+    border-bottom: solid 2px #969696;
+}
+
 .font-size20{
     font-size: 20px;
 }
@@ -192,15 +205,14 @@ body{
 }
 
 .consultores-background {
-    height:100%;
     overflow: auto;
+    height:100%;
 }
 
 .consultores-background::after {
     content: "";
-    background-image: url(../images/consultores2.jpg);
-    background-size: cover;
-    opacity: 0.5;
+    background-image: url(../images/imgpatterns/noisynet.png);
+    background-size: auto;
     top: 0;
     left: 0;
     bottom: 0;
@@ -252,15 +264,14 @@ body{
 }
 
 .minha-conta-background {
-    position: relative;
+    overflow: auto;
     height:100%;
 }
 
 .minha-conta-background::after {
     content: "";
-    background-image: url(../images/Consult1.jpg);
-    background-size: cover;
-    opacity: 0.3;
+    background-image: url(../images/imgpatterns/tex2res5.png);
+    background-size: auto;
     top: 0;
     left: 0;
     bottom: 0;
