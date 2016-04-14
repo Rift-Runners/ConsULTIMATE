@@ -23,7 +23,6 @@
                                 <f:selectItems value="#{mainController.listasDeDados.listaAreas}" var="area" 
                                                itemLabel="#{area}" itemValue="#{area}" />
                             </h:selectOneMenu>
-
                         </div>
                     </div>
                     <div class="row">
@@ -33,7 +32,7 @@
                                     <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
                                     <h:inputText p:placeholder="Assunto ou informação relacionada..." class="form-control font-size20" />                            
                                 </div>
-                                <h:commandButton class="btn btn-primary btn-lg" action="#{sessionBean.entrar()}" id="loginBtn" value="Filtrar!" />  
+                                <h:commandButton class="btn btn-primary btn-lg font-tracktype" action="#{sessionBean.entrar()}" id="loginBtn" value="Filtrar!" />  
                             </div>
                         </div>
                     </div>
@@ -42,13 +41,23 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 consultores"> 
                     <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
-                        <div class="#{consultor.area} consultor-lista" style="padding-bottom: 60px; font-size:18px;">
-                                <h:outputText class="consultor-info" value="Nome: #{consultor.nome}"/>
-                                <h:outputText class="consultor-info" value="Cidade: #{consultor.cidade}/#{consultor.uf}"/>
-                                <h:outputText class="consultor-info" value="Telefone: #{consultor.telefone}"/><br/><br/>
-                                <h:outputText class="consultor-info" value="Descrição: #{consultor.descricao}"/>
-                            <h:form>
-                                <h:commandButton style="float: right;" class="btn btn-primary btn-lg" action="#{sessionBean.visualizaConsultor()}" value="Saiba mais!">
+                        <div class="#{consultor.area} consultor-lista" style="font-size:18px;">
+                            <table class="#{consultor.area} consultor-lista table table-condensed" style="padding-bottom: 10px; margin-bottom: 20px;">
+                                <tr>
+                                    <th class="font-tracktype">Nome:</th>
+                                    <td><h:outputText class="consultor-info" value="#{consultor.nome}"/></td>
+                                </tr>
+                                <tr>
+                                    <th class="font-tracktype">Localização:</th>
+                                    <td><h:outputText class="consultor-info" value="#{consultor.cidade}/#{consultor.uf}"/></td>
+                                </tr>
+                                <tr>
+                                    <th class="font-tracktype">Telefone:</th>
+                                    <td><h:outputText class="consultor-info" value="Telefone: #{consultor.telefone}"/></td>
+                                </tr>
+                            </table>
+                            <h:form class="text-center">
+                                <h:commandButton  class="btn btn-primary btn-lg font-tracktype" action="#{sessionBean.visualizaConsultor()}" value="Saiba mais!">
                                     <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
                                 </h:commandButton>
                             </h:form>
