@@ -1,15 +1,63 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
     <h:head>
         <title>Contato</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
     </h:head>
-    <h:body>
+    <h:body>		
+        <form>
+            <!-- Estado -->
+            <select id="estados">
+                <option value=""></option>
+            </select>
+            <select id="cidades">
+            </select>
 
+        </form>
+        <script type="text/javascript" src="resources/js/jquery-2.2.1.js"></script>
+        <script type="text/javascript">
+
+            $(document).ready(function () {
+
+                $.getJSON('resources/json/estados_cidades.json', function (data) {
+
+                    var items = [];
+                    var options = '<option value="">escolha um estado</option>';
+
+                    $.each(data, function (key, val) {
+                        options += '<option value="' + val.nome + '">' + val.nome + '</option>';
+                    });
+                    $("#estados").html(options);
+
+                    $("#estados").change(function () {
+
+                        var options_cidades = '';
+                        var str = "";
+
+                        $("#estados option:selected").each(function () {
+                            str += $(this).text();
+                        });
+
+                        $.each(data, function (key, val) {
+                            if (val.nome == str) {
+                                $.each(val.cidades, function (key_city, val_city) {
+                                    options_cidades += '<option value="' + val_city + '">' + val_city + '</option>';
+                                });
+                            }
+                        });
+
+                        $("#cidades").html(options_cidades);
+
+                    }).change();
+
+                });
+
+            });
+
+        </script>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
     </h:body>

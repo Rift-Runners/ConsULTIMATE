@@ -19,7 +19,7 @@
                 <div class="col-md-4">
                     <div class="panel panel-primary">
                         <div class="panel-heading">
-                            <h1 class="panel-title text-center">Login</h1>
+                            <h1 class="panel-title text-center font-tracktype">Login</h1>
                         </div>
                         <div class="panel-body">
                             <h:form>
@@ -35,11 +35,11 @@
                                                    id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
                                 </div>
                                 <h:message for="loginSenha" class="error-message"/>
-                                <div class="login-space text-center margin-bottom25">                           
-                                    <h:commandButton class="btn btn-info btn-lg" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
+                                <div class="login-buttons">                           
+                                    <h:link class="btn btn-info btn-lg font-tracktype" outcome="cadastro.xhtml?faces-redirect=true" id="cadastroBtn" value="Registre-se!" />  
+                                    <h:commandButton class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
                                 </div>
-                                <h:link class="btn registre-link" value="Registre-se!" outcome="cadastro" />
-                                <h:link class="btn esqueceu-link" value="Esqueceu sua senha?" outcome="esqueceu-senha" />
+                                <h:link class="btn esqueceu-link font-tracktype" value="Esqueceu sua senha?" outcome="esqueceu-senha.xhtml?faces-redirect=true" />
                             </h:form>
                         </div>
                     </div>
