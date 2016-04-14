@@ -114,6 +114,15 @@ body{
     font-size: 20px;
 }
 
+.margin-left10{
+    margin-left: 10px;
+}
+
+.login-buttons{
+    float: right; 
+    margin-bottom: 25px;
+}
+
 .font-tracktype{
     font-family: TrackType !important;   
 }
