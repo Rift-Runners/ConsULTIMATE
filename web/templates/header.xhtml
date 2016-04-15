@@ -7,6 +7,7 @@
         <title>Página Principal</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/hover.css" rel="stylesheet"/>
     </h:head>
     <h:body>
         <h:form>
@@ -26,15 +27,15 @@
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="index.xhtml">Home <span class="sr-only">(current)</span></a></li>
+                            <li><a href="index.xhtml" class="hvr-underline-reveal">Home <span class="sr-only">(current)</span></a></li>
                             <h:panelGroup rendered="#{mainController.isPaginaPrincipal()}">
-                                <li><a href="#redes-sociais">Redes Sociais</a></li>
+                                <li><a href="#redes-sociais" class="hvr-underline-reveal">Redes Sociais</a></li>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{sessionBean.clienteLogged}">
-                                <li><a href="consultores.xhtml">Consultores</a></li>
+                                <li><a href="consultores.xhtml" class="hvr-underline-reveal">Consultores</a></li>
                             </h:panelGroup>
-                            <li><a href="quem-somos.xhtml">Quem somos</a></li>
-                            <li><a href="contato.xhtml">Contato</a></li>
+                            <li><a href="quem-somos.xhtml" class="hvr-underline-reveal">Quem somos</a></li>
+                            <li><a href="contato.xhtml" class="hvr-underline-reveal">Contato</a></li>
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <ui:include src="header-render-control.xhtml"/>

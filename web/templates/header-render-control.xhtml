@@ -5,18 +5,18 @@
                 xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <!-- Não logado -->
     <h:panelGroup rendered="#{!sessionBean.logged}">
-        <li><a href="login.xhtml">Entrar</a></li>
-        <li><a href="cadastro.xhtml">Cadastre-se!</a></li>
+        <li><a href="login.xhtml" class="hvr-underline-reveal">Entrar</a></li>
+        <li><a href="cadastro.xhtml" class="hvr-underline-reveal">Cadastre-se!</a></li>
     </h:panelGroup>
 
     <h:panelGroup rendered="#{sessionBean.clienteLogged || sessionBean.consultorLogged}">
-        <li><a href="minha-conta.xhtml">Minha Conta</a></li>
-        <li><h:commandLink value="Sair" action="#{sessionBean.sair()}"/></li>
+        <li><a href="minha-conta.xhtml" class="hvr-underline-reveal">Minha Conta</a></li>
+        <li><h:commandLink value="Sair" class="hvr-underline-reveal" action="#{sessionBean.sair()}"/></li>
     </h:panelGroup>
 <!-- Admin -->
 <h:panelGroup rendered="#{sessionBean.adminLogged}">
-    <li><a href="dashboard.xhtml">Dashboard</a></li>
-    <li><h:commandLink value="Sair" action="#{sessionBean.sair()}"/></li>
+    <li><a href="dashboard.xhtml" class="hvr-underline-reveal">Dashboard</a></li>
+    <li><h:commandLink value="Sair" class="hvr-underline-reveal" action="#{sessionBean.sair()}"/></li>
 </h:panelGroup>
 </ui:composition>
 
