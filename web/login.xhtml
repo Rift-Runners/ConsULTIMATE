@@ -12,39 +12,41 @@
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
-        
+
         <div class="login-background no-margin no-padding">
-            <div class="row row-eq-height padding-top100">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h1 class="panel-title text-center font-tracktype">Login</h1>
-                        </div>
-                        <div class="panel-body">
-                            <h:form>
-                                <div class="input-group margin-top20-bottom15">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                    <h:inputText p:placeholder="Usuário" class="form-control"
-                                                 id="loginUsuario" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.usuario}"/>
-                                </div>
-                                <h:message for="loginUsuario" class="error-message"/>
-                                <div class="input-group margin-bottom10">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                    <h:inputSecret p:placeholder="Senha" class="form-control"
-                                                   id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
-                                </div>
-                                <h:message for="loginSenha" class="error-message"/>
-                                <div class="login-buttons">                           
-                                    <h:link class="btn btn-info btn-lg font-tracktype" outcome="cadastro.xhtml?faces-redirect=true" id="cadastroBtn" value="Registre-se!" />  
-                                    <h:commandButton class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
-                                </div>
-                                <h:link class="btn esqueceu-link font-tracktype" value="Esqueceu sua senha?" outcome="esqueceu-senha.xhtml?faces-redirect=true" />
-                            </h:form>
+            <div class="container-fluid">
+                <div class="row row-eq-height padding-top200">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h1 class="panel-title text-center font-tracktype">Login</h1>
+                            </div>
+                            <div class="panel-body">
+                                <h:form>
+                                    <div class="input-group margin-top20-bottom15">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                        <h:inputText p:placeholder="Usuário" class="form-control"
+                                                     id="loginUsuario" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.usuario}"/>
+                                    </div>
+                                    <h:message for="loginUsuario" class="error-message"/>
+                                    <div class="input-group margin-bottom10">
+                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                        <h:inputSecret p:placeholder="Senha" class="form-control"
+                                                       id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
+                                    </div>
+                                    <h:message for="loginSenha" class="error-message"/>
+                                    <div class="login-buttons">                           
+                                        <h:link class="btn btn-info btn-lg font-tracktype" outcome="cadastro.xhtml?faces-redirect=true" id="cadastroBtn" value="Registre-se!" />  
+                                        <h:commandButton class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
+                                    </div>
+                                    <h:link class="btn esqueceu-link font-tracktype" value="Esqueceu sua senha?" outcome="esqueceu-senha.xhtml?faces-redirect=true" />
+                                </h:form>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-4"></div>
                 </div>
-                <div class="col-md-4"></div>
             </div>
         </div>
 

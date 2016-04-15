@@ -22,7 +22,7 @@ body{
     height: 100%;
     min-height: 100% !important;
     font-family: 'Arimo', sans-serif !important;
-    padding-top:51px;
+    padding-top: 51px;
 }
 
 /*Ajusta um problema com a navbar estática do bootstrap e âncoras*/
@@ -40,7 +40,7 @@ body{
 
 .main-header::after {
     content: "";
-    background-image: url(../images/Consult3.jpg);
+    background-image: url(../images/whoweare1.jpg);
     background-size: cover;
     opacity: 0.7;
     top: 0;
@@ -63,6 +63,7 @@ body{
     border-radius: 6px;
     margin-bottom: 100px; /*É preciso fazer 100% da tela (altura), como?*/
 }
+
 .redes-sociais-background {
     background-image: url(../images/imgpatterns/noisynet.png);
     background-size: auto;
@@ -71,7 +72,7 @@ body{
 .rede-social{
     padding: 100px 0px;
     text-align: center;
-    opacity: 0.35;
+    opacity: 0.3;
     font-family: TrackType;
     font-size: 1px;
     color: transparent;
@@ -80,7 +81,7 @@ body{
 .rede-social-active{
     font-size: 40px;
     opacity: 1;
-    color: #5A5959;
+    color: white;
 }
 
 .servico-funcionalidade-titulo{
@@ -182,6 +183,10 @@ body{
     padding-top: 100px;
 }
 
+.padding-top200{
+    padding-top: 200px;
+}
+
 .margin-bottom10{
     margin-bottom: 10px !important;
 }
@@ -239,6 +244,7 @@ body{
     content: "";
     background-image: url(../images/imgpatterns/noisynet.png);
     background-size: auto;
+    opacity: 0.9;
     top: 0;
     left: 0;
     bottom: 0;
@@ -344,9 +350,9 @@ body{
 
 .cadastrese-background::after {
     content: "";
-    background: #336E7B;
-    background-size: cover;
-    opacity: 0.5;
+    background-image: url(../images/imgpatterns/noisynet.png);
+    background-size: auto;
+    opacity: 0.75;
     top: 0;
     left: 0;
     bottom: 0;
@@ -374,9 +380,9 @@ body{
 
 .quem-somos-background::after {
     content: "";
-    background-image: url(../images/imgpatterns/dark_geometric_@2X.png);
+    background-image: url(../images/imgpatterns/noisynet.png);
     background-size: auto;
-    opacity: 0.75;
+    opacity: 0.9;
     top: 0;
     left: 0;
     bottom: 0;
@@ -390,7 +396,7 @@ body{
     color: #FFF;
     text-align: justify;
     font-family: TrackType;
-    padding: 30px 0px 0px 30px;
+    padding: 30px 30px 0px 30px;
 }
 
 .quem-somos-conteudo{
@@ -406,3 +412,24 @@ body{
     font-family: TrackType;
 }
 /*END - Quem Somos*/
+/*Contato*/
+.contato-background {
+    position: relative;
+    height:100%;
+    text-align: center;
+}
+
+.contato-background::after {
+    content: "";
+    background-image: url(../images/contato.jpg);
+    background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;   
+    position: absolute;
+}
+/*END - Contato*/
+
