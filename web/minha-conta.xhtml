@@ -61,11 +61,17 @@
                                         </tr>
                                     </ui:repeat>                             
                                 </table>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                </div>
+                                <h:panelGroup rendered="#{!sessionBean.isListaTransacoesVazia()}">
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
+                                    <div class="text-center">
+                                        <p class="font-size20">Você ainda não concluiu uma transação :(</p>
+                                    </div>
+                                </h:panelGroup>
                             </h:form>
-
 
                             <h:form rendered="#{sessionBean.consultorLogged}">
                                 <table id="tabela-dados" class="table">
@@ -84,9 +90,16 @@
                                         </tr>
                                     </ui:repeat>     
                                 </table>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                </div>
+                                <h:panelGroup rendered="#{!sessionBean.isListaTransacoesVazia()}">
+                                    <div class="text-center">
+                                        <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
+                                    </div>
+                                </h:panelGroup>
+                                <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
+                                    <div class="text-center">
+                                        <p class="font-size20">Você ainda não concluiu uma transação :(</p>
+                                    </div>
+                                </h:panelGroup>
                             </h:form>
                         </div>
                     </div>  
@@ -215,7 +228,7 @@
                                             <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                          class="input-editavel" id="consultorArea"
                                                          value="#{sessionBean.consultorEditado.area}"/>
-                                        <h:message for="consultorArea" class="error-message"/>
+                                            <h:message for="consultorArea" class="error-message"/>
                                         </td>
                                     </tr> 
                                     <tr>

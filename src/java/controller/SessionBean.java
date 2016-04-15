@@ -252,5 +252,14 @@ public class SessionBean implements Serializable {
             }
         }
     }
+    
+    public boolean isListaTransacoesVazia() {
+        if(clienteLogged){
+            return cliente.getTransacoesEfetuadas().isEmpty();
+        }
+        else{
+            return consultor.getTransacoesEfetuadas().isEmpty();
+        }
+    }
 
 }

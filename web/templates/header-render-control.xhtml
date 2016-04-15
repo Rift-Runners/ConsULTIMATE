@@ -11,21 +11,12 @@
 
     <h:panelGroup rendered="#{sessionBean.clienteLogged || sessionBean.consultorLogged}">
         <li><a href="minha-conta.xhtml">Minha Conta</a></li>
-        <li>
-            <h:form>
-                <h:commandLink value="Sair" action="#{sessionBean.sair()}"/>
-            </h:form>
-        </li>
+        <li><h:commandLink value="Sair" action="#{sessionBean.sair()}"/></li>
     </h:panelGroup>
-
-    <!-- Admin -->
-    <h:panelGroup rendered="#{sessionBean.adminLogged}">
-        <li><a href="dashboard.xhtml">Dashboard</a></li>
-        <li>
-            <h:form>
-                <h:commandLink value="Sair" action="#{sessionBean.sair()}"/>
-            </h:form>
-        </li>
-    </h:panelGroup>
+<!-- Admin -->
+<h:panelGroup rendered="#{sessionBean.adminLogged}">
+    <li><a href="dashboard.xhtml">Dashboard</a></li>
+    <li><h:commandLink value="Sair" action="#{sessionBean.sair()}"/></li>
+</h:panelGroup>
 </ui:composition>
 
