@@ -11,10 +11,10 @@
 /* Common style */
 .grid figure {
     position: relative;
-    float: left;
+    float: right;
     overflow: hidden;
     margin: 10px 1%;
-    min-width: 320px;
+    min-width: 480px;
     max-width: 480px;
     max-height: 360px;
     width: 48%;
@@ -123,8 +123,8 @@ figure.effect-julia p {
     font-size: 75%;
     -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
     transition: opacity 0.35s, transform 0.35s;
-    -webkit-transform: translate3d(-360px,0,0);
-    transform: translate3d(-360px,0,0);
+    -webkit-transform: translate3d(-500px,0,0);
+    transform: translate3d(-500px,0,0);
 }
 
 figure.effect-julia p:first-child {
