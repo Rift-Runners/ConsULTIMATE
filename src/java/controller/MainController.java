@@ -25,7 +25,8 @@ import utils.Validators;
 @ApplicationScoped
 public class MainController {
 
-    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete, consultoresAreaSelecionada;
+    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete, consultoresAreaSelecionada,
+            contatoNome, contatoEmail, contatoDescricao;
     private ListasDados listasDeDados;
     private Consultor consultor;
     private Cliente cliente;
@@ -102,6 +103,30 @@ public class MainController {
         this.tempSenhaRepete = tempSenhaRepete;
     }
 
+    public String getContatoNome() {
+        return contatoNome;
+    }
+
+    public void setContatoNome(String contatoNome) {
+        this.contatoNome = contatoNome;
+    }
+
+    public String getContatoEmail() {
+        return contatoEmail;
+    }
+
+    public String getContatoDescricao() {
+        return contatoDescricao;
+    }
+
+    public void setContatoDescricao(String contatoDescricao) {
+        this.contatoDescricao = contatoDescricao;
+    }
+
+    public void setContatoEmail(String contatoEmail) {
+        this.contatoEmail = contatoEmail;
+    }
+
     public List<String> listaEstados(){
         List<String> estados = new ArrayList();
         estados.add("A");
@@ -137,6 +162,11 @@ public class MainController {
         }
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail não cadastrado.", null));
         return "esqueceu-senha";
+    }
+    
+    public String enviarContato() {
+        //AINDA NÃO IMPLEMENTADO!!
+        return "contato.xhtml";
     }
 
     public String registrarCliente() {

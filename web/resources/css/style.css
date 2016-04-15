@@ -132,6 +132,12 @@ body{
 }
 
 /*Utils*/
+#map{
+    width: 500px;
+    height: 400px;
+    border: #c9c9c9 solid 2px;
+}
+
 .input-editavel{
     text-align: center;
     padding: 10px;
@@ -404,6 +410,11 @@ body{
     border-bottom: solid grey 2px;
 }
 
+.quem-somos-imagem{
+    border: #bcbcbc solid 1px;
+    border-radius: 2px;
+}
+
 .quem-somos-titulo{
     padding: 40px 0px;
     color: white;
@@ -423,7 +434,7 @@ body{
     content: "";
     background-image: url(../images/contato.jpg);
     background-size: cover;
-    opacity: 0.7;
+    opacity: 0.5;
     top: 0;
     left: 0;
     bottom: 0;

@@ -2,7 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"    
+      xmlns:pr="http://primefaces.org/ui">
     <h:head>
         <title>Contato</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
@@ -10,20 +12,67 @@
     </h:head>
     <h:body>	
         <ui:include src="templates/header.xhtml"/>
-        <!--        <div class="contato-background">
-                    
-                </div>-->
-        <div class="container-fluid">
-            <div class="row">
-
-                <div class="col-md-6"></div>
-                <div class="col-md-6"></div>
-
+        <div class="contato-background">
+            <div class="container-fluid">
+                <div class="row row-eq-height padding-top100">
+                    <div class="col-md-2"></div>
+                    <div class="col-md-6">
+                        <div id="map"></div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="row">
+                            <h:form>
+                                <div class="col-md-6">
+                                    <h4>Nome</h4>
+                                    <h:inputText p:placeholder="Nome" class="form-control"
+                                                 id="nomeContato" required="true" requiredMessage="Campo obrigatório." value="#{mainController.contatoNome}"/>
+                                    <h:message for="nomeContato" class="error-message"/>
+                                </div>
+                                <div class="col-md-6">
+                                    <h4>Email</h4>
+                                    <h:inputText p:placeholder="Email" class="form-control"
+                                                 id="emailContato" required="true" requiredMessage="Campo obrigatório." value="#{mainController.contatoEmail}"/>
+                                    <h:message for="emailContato" class="error-message"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <h4>Mensagem</h4>
+                                    <h:outputText id="display" />
+                                    <pr:inputTextarea required="true" requiredMessage="Campo obrigatório" rows="13" cols="30" id="detalhesContato"
+                                                      counter="display" maxlength="255" counterTemplate="{0} caracteres restantes." 
+                                                      autoResize="false" class="form-control" value="#{mainController.contatoDescricao}"
+                                                      p:placeholder="Descreva sua dúvida, pergunta ou sugestão. Lhe daremos um feedback o mais cedo possível!"/>
+                                    <h:message for="detalhesContato" class="error-message"/>
+                                </div>
+                                <div class="col-md-12">
+                                    <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.enviarContato()}" value="Enviar!"/>
+                                </div>
+                            </h:form>
+                        </div>
+                    </div>
+                    <div class="col-md-2"></div>
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script>
+            function initMap() {
+                var myLatLng = {lat: -30.03516, lng: -51.22654};
+                var mapDiv = document.getElementById('map');
+                var map = new google.maps.Map(mapDiv, {
+                    center: myLatLng,
+                    zoom: 19
+                });
+                var marker = new google.maps.Marker({
+                    position: myLatLng,
+                    map: map,
+                    title: 'Faculdade Senac!'
+                });
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async="async" defer="defer"></script>
     </h:body>
 </html>
 
