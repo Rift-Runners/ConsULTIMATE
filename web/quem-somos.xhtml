@@ -1,12 +1,35 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
+        <meta charset="utf-8"/>
         <title>Quem Somos</title>
+        <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet"/>
     </h:head>
     <h:body>
-        
+        <ui:include src="templates/header.xhtml"/>
+        <div class="quem-somos-background">
+            <div class="row row-eq-height">
+                <div class="col-md-4"/>
+                <div class="col-md-4" style="padding-top: 100px;">
+                    <ul class="demo-3">
+                        <li>
+                            <figure>
+                                <img src="resources/images/consultores.jpg" alt=""/>
+                                <figcaption>
+                                    <h2>This is a cool title!</h2>
+                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nost.</p>
+                                </figcaption>
+                            </figure>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-4"/>
+            </div>
+        </div>
     </h:body>
 </html>
 
