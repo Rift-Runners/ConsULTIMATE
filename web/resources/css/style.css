@@ -376,7 +376,33 @@ body{
 }
 /*END - Footer*/
 /*Dashboard*/
+.botoes-dashboard {
+    text-align: center;
+    padding: 30px 0px;
+}
 
+.botoes-dashboard > button{
+    font-family: TrackType;
+    font-size: 20px;
+}
+
+.dashboard-background {
+    overflow: auto;
+    height:100%;
+}
+
+.dashboard-background::after {
+    content: "";
+    background-image: url(../images/imgpatterns/footer_lodyas.png);
+    background-size: cover;
+    opacity: 0.7;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -1;   
+    position: absolute;
+}
 /*END - Dashboard*/
 /*Quem Somos*/
 .quem-somos-background {
@@ -434,7 +460,7 @@ body{
     content: "";
     background-image: url(../images/contato.jpg);
     background-size: cover;
-    opacity: 0.5;
+    opacity: 0.8;
     top: 0;
     left: 0;
     bottom: 0;

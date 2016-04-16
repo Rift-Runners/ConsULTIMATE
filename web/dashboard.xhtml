@@ -10,94 +10,134 @@
         <title>Serviços</title>
         <link href="resources/css/style.css" rel="stylesheet"/>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/dataTable.css"/>
+        <link href="resources/css/keyTable.css" type="text/css" rel="stylesheet"/>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
-        <div class="container-fluid">
-            <div class="row row-eq-height">
-                <div class="col-md-1" style="background-color: #269abc"></div>
-                <div class="col-md-2" style="padding: 0px;">
-                    <ul class="nav nav-pills nav-stacked">
-                        <li role="presentation" id="clientes-cadastrados-btn"><a href="#">Clientes Cadastrados</a></li>
-                        <li role="presentation" id="consultores-cadastrados-btn"><a href="#">Consultores Cadastrados</a></li>
-                        <li role="presentation"><a href="#">Etcetera</a></li>
-                    </ul>
-                </div>
-                <div class="col-md-8" style="background-color: #afd9ee">
-                    <div id="clientes-cadastrados" class="escondido">
-                        <h:outputLabel class="text-center" value="Clientes cadastrados:"/>
-                        <table class="table">
-                            <tr>
-                                <th>Nome</th>
-                                <th>Cidade</th>
-                                <th>UF</th>
-                                <th>Endereço</th>
-                                <th>Telefone</th>
-                                <th>Email</th>
-                                <th>CPF</th>
-                                <th>RG</th>
-                                <th>Usuário</th>
-                                <th>Senha</th>
-                                <th>Saldo</th>
-                            </tr>
-                            <ui:repeat var="cliente" value="#{mainController.listasDeDados.listaClientes}">
-                                <tr>
-                                    <td><h:outputText value="#{cliente.nome}"/></td>
-                                    <td><h:outputText value="#{cliente.cidade}"/></td>
-                                    <td><h:outputText value="#{cliente.uf}"/></td>
-                                    <td><h:outputText value="#{cliente.endereco}"/></td>
-                                    <td><h:outputText value="#{cliente.telefone}"/></td>
-                                    <td><h:outputText value="#{cliente.email}"/></td>
-                                    <td><h:outputText value="#{cliente.cpf}"/></td>
-                                    <td><h:outputText value="#{cliente.rg}"/></td>
-                                    <td><h:outputText value="#{cliente.usuario}"/></td>
-                                    <td><h:outputText value="#{cliente.senha}"/></td>
-                                    <td><h:outputText value="R$ #{cliente.saldo}"/></td>
-                                </tr>
-                            </ui:repeat>
-                        </table>
-                    </div>
-
-                    <div id="consultores-cadastrados" class="escondido">
-                        <h:outputLabel value="Consultores cadastrados:"/>
-                        <table class="table">
-                            <tr>
-                                <th>Nome</th>
-                                <th>Cidade</th>
-                                <th>UF</th>
-                                <th>Endereço</th>
-                                <th>Telefone</th>
-                                <th>Email</th>
-                                <th>CNPJ</th>
-                                <th>Descrição</th>
-                                <th>Área</th>
-                                <th>Usuário</th>
-                                <th>Senha</th>
-                            </tr>
-                            <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
-                                <tr>
-                                    <td><h:outputText value="#{consultor.nome}"/></td>
-                                    <td><h:outputText value="#{consultor.cidade}"/></td>
-                                    <td><h:outputText value="#{consultor.uf}"/></td>
-                                    <td><h:outputText value="#{consultor.endereco}"/></td>
-                                    <td><h:outputText value="#{consultor.telefone}"/></td>
-                                    <td><h:outputText value="#{consultor.email}"/></td>
-                                    <td><h:outputText value="#{consultor.cnpj}"/></td>
-                                    <td><h:outputText value="#{consultor.descricao}"/></td>
-                                    <td><h:outputText value="#{consultor.area}"/></td>
-                                    <td><h:outputText value="#{consultor.usuario}"/></td>
-                                    <td><h:outputText value="#{consultor.senha}"/></td>
-                                </tr>
-                            </ui:repeat>
-                        </table>
+        <div class="dashboard-background">
+            <div class="container-fluid">
+                <div class="row row-eq-height">
+                    <div class="col-md-12">
+                        <div class="botoes-dashboard">
+                            <button class="btn btn-display" id="clientes-cadastrados-btn">Clientes Cadastrados</button>
+                            <button class="btn btn-display" id="consultores-cadastrados-btn">Consultores Cadastrados</button>
+                            <button class="btn btn-display" id="analise-de-negocios-btn">Análise de Negócios</button>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-1" style="background-color: #269abc"></div>
+                <div class="row row-eq-height">
+                    <div class="col-md-12">
+                        <div id="clientes-cadastrados" class="panel panel-info escondido">
+                            <div class="panel-body">
+                                <table class="tabela display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Cidade</th>
+                                            <th>UF</th>
+                                            <th>Endereço</th>
+                                            <th>Telefone</th>
+                                            <th>Email</th>
+                                            <th>CPF</th>
+                                            <th>RG</th>
+                                            <th>Usuário</th>
+                                            <th>Senha</th>
+                                            <th>Saldo</th>
+                                            <th>Editar</th>
+                                            <th>Excluir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat var="cliente" value="#{mainController.listasDeDados.listaClientes}">
+                                            <tr>
+                                                <td><h:outputText value="#{cliente.nome}"/></td>
+                                                <td><h:outputText value="#{cliente.cidade}"/></td>
+                                                <td><h:outputText value="#{cliente.uf}"/></td>
+                                                <td><h:outputText value="#{cliente.endereco}"/></td>
+                                                <td><h:outputText value="#{cliente.telefone}"/></td>
+                                                <td><h:outputText value="#{cliente.email}"/></td>
+                                                <td><h:outputText value="#{cliente.cpf}"/></td>
+                                                <td><h:outputText value="#{cliente.rg}"/></td>
+                                                <td><h:outputText value="#{cliente.usuario}"/></td>
+                                                <td><h:outputText value="#{cliente.senha}"/></td>
+                                                <td><h:outputText value="R$ #{cliente.saldo}"/></td>
+                                                <td>Lápis</td>
+                                                <td>Lixeira</td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div id="consultores-cadastrados" class="panel panel-info escondido">
+                            <div class="panel-body">
+                                <table class="tabela display" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Cidade</th>
+                                            <th>UF</th>
+                                            <th>Endereço</th>
+                                            <th>Telefone</th>
+                                            <th>Email</th>
+                                            <th>CNPJ</th>
+                                            <th>Descrição</th>
+                                            <th>Área</th>
+                                            <th>Usuário</th>
+                                            <th>Senha</th>
+                                            <th>Editar</th>
+                                            <th>Excluir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
+                                            <tr>
+                                                <td><h:outputText value="#{consultor.nome}"/></td>
+                                                <td><h:outputText value="#{consultor.cidade}"/></td>
+                                                <td><h:outputText value="#{consultor.uf}"/></td>
+                                                <td><h:outputText value="#{consultor.endereco}"/></td>
+                                                <td><h:outputText value="#{consultor.telefone}"/></td>
+                                                <td><h:outputText value="#{consultor.email}"/></td>
+                                                <td><h:outputText value="#{consultor.cnpj}"/></td>
+                                                <td><h:outputText value="#{consultor.descricao}"/></td>
+                                                <td><h:outputText value="#{consultor.area}"/></td>
+                                                <td><h:outputText value="#{consultor.usuario}"/></td>
+                                                <td><h:outputText value="#{consultor.senha}"/></td>
+                                                <td>Lápis</td>
+                                                <td>Lixeira</td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/dashboard.js"></script>
+        <script src="resources/js/dataTable.js"></script>
+        <script src="resources/js/keyTable.js"></script>
+        <script>
+            $(function () {
+                var events = $('#events');
+                var table = $('.tabela').DataTable({
+                    keys: true
+                });
+                table
+                        .on('key', function (e, datatable, key, cell, originalEvent) {
+                            events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                        })
+                        .on('key-focus', function (e, datatable, cell) {
+                            events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                        })
+                        .on('key-blur', function (e, datatable, cell) {
+                            events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                        })
+            });
+        </script>
     </h:body>
 </html>
