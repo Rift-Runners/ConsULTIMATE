@@ -11,10 +11,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.servlet.http.HttpServletRequest;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
+import org.primefaces.context.RequestContext;
 import utils.Validators;
 
 /**
@@ -127,7 +129,7 @@ public class MainController {
         this.contatoEmail = contatoEmail;
     }
 
-    public List<String> listaEstados(){
+    public List<String> listaEstados() {
         List<String> estados = new ArrayList();
         estados.add("A");
         estados.add("B");
@@ -135,7 +137,7 @@ public class MainController {
         estados.add("D");
         return estados;
     }
-    
+
     public boolean confirmaSenha(String senha, String repeteSenha) {
         return senha.equals(repeteSenha);
     }
@@ -163,10 +165,11 @@ public class MainController {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail não cadastrado.", null));
         return "esqueceu-senha";
     }
-    
+
     public String enviarContato() {
-        //AINDA NÃO IMPLEMENTADO!!
-        return "contato.xhtml";
+        //RequestContext.execute("PF('dialog').hide()");
+        //oncomplete="PF('dialog').show();"
+        return "index.xhtml";
     }
 
     public String registrarCliente() {

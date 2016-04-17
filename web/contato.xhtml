@@ -9,6 +9,7 @@
         <title>Contato</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/dark-theme-jquery-ui.css" rel="stylesheet"/>
     </h:head>
     <h:body>	
         <ui:include src="templates/header.xhtml"/>
@@ -21,7 +22,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="row">
-                            <h:form>
+                            <h:form prependId="false">
                                 <div class="col-md-6">
                                     <h4>Nome</h4>
                                     <h:inputText p:placeholder="Nome" class="form-control"
@@ -35,15 +36,17 @@
                                     <h:message for="emailContato" class="error-message"/>
                                 </div>
                                 <div class="col-md-12">
-                                    <h4>Mensagem</h4>
-                                    <h:outputText id="display" />
-                                    <pr:inputTextarea required="true" requiredMessage="Campo obrigatório" rows="13" cols="30" id="detalhesContato"
-                                                      counter="display" maxlength="255" counterTemplate="{0} caracteres restantes." 
+                                    <h3>Mensagem</h3>
+                                    <h:outputText id="displayContato" />
+                                    <pr:inputTextarea styleClass="form-control" required="true" requiredMessage="Campo obrigatório" rows="8" cols="30" id="detalhesContato"
+                                                      counter="displayContato" maxlength="255" counterTemplate="{0} caracteres restantes." 
                                                       autoResize="false" class="form-control" value="#{mainController.contatoDescricao}"
                                                       p:placeholder="Descreva sua dúvida, pergunta ou sugestão. Lhe daremos um feedback o mais cedo possível!"/>
                                     <h:message for="detalhesContato" class="error-message"/>
                                 </div>
                                 <div class="col-md-12">
+                                    <pr:commandButton id="btnModalLivro" class="btn btn-primary botao-cadastrar" 
+                                                      oncomplete="PF('dialog').show();" value="Enviar!" />
                                     <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.enviarContato()}" value="Enviar!"/>
                                 </div>
                             </h:form>
@@ -53,9 +56,18 @@
                 </div>
             </div>
         </div>
+
+        <pr:dialog id="modalContato"
+                   widgetVar="dialog" modal="true" appendTo="@(body)" height="200"
+                   width="200" showEffect="drop" hideEffect="drop" closeOnEscape="true"
+                   resizable="false" draggable="false" header="Sucesso!" closable="true">
+            <div>
+                <p>Seu e-mail foi enviado com sucesso!</p>
+                <p>O consultor entrará em contato com você o mais cedo possível!</p>
+            </div>
+        </pr:dialog> 
         <script type="text/javascript" src="resources/js/jquery-2.2.1.js"></script>
-        <script src="resources/js/jquery-2.2.1.js"></script>
-        <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/jquery-ui.min.js"/>
         <script>
             function initMap() {
                 var myLatLng = {lat: -30.03516, lng: -51.22654};
