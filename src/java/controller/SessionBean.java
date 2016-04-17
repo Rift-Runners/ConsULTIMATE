@@ -164,7 +164,9 @@ public class SessionBean implements Serializable {
     public String criarTransacao() {
         if (cliente.getSaldo() >= 100) {
             cliente.setSaldo(cliente.getSaldo() - 100);
-            cliente.addTransacao(new Transacao(cliente, consultorVisualizado, 100, 1, Date.valueOf(LocalDate.now())));
+            Transacao transacao = new Transacao(cliente, consultorVisualizado, 100, 1, Date.valueOf(LocalDate.now()));
+            cliente.addTransacao(transacao);
+            consultorVisualizado.addTransacao(transacao);
         }
         return "minha-conta.xhtml?faces-redirect=true";
     }

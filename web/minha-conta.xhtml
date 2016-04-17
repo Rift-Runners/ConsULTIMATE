@@ -9,6 +9,8 @@
         <link href="resources/css/style.css" rel="stylesheet"/>
         <link href="resources/css/introjs.css" rel="stylesheet"/>
         <link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/dataTable.css"/>
+        <link href="resources/css/keyTable.css" type="text/css" rel="stylesheet"/>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
@@ -48,21 +50,25 @@
                             </div>
                             <div class="panel-body">
                                 <h:form rendered="#{sessionBean.clienteLogged}">
-                                    <table id="tabela-dados" class="table">
-                                        <tr class="font-tracktype text-center">
-                                            <th>Nome do consultor</th>
-                                            <th>Quantidade de horas</th>
-                                            <th>Valor total</th>
-                                            <th>Data da transação</th>
-                                        </tr>
-                                        <ui:repeat var="transacao" value="#{sessionBean.cliente.transacoesEfetuadas}">
-                                            <tr>
-                                                <td><h:outputText value="#{transacao.consultor.nome}"/></td>
-                                                <td><h:outputText value="#{transacao.horas}"/></td>
-                                                <td><h:outputText value="#{transacao.valor}"/></td>
-                                                <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                    <table id="tabela-dados" class="tabela display" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="font-tracktype text-center">
+                                                <th>Nome do consultor</th>
+                                                <th>Quantidade de horas</th>
+                                                <th>Valor total</th>
+                                                <th>Data da transação</th>
                                             </tr>
-                                        </ui:repeat>                             
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat var="transacao" value="#{sessionBean.cliente.transacoesEfetuadas}">
+                                                <tr>
+                                                    <td><h:outputText value="#{transacao.consultor.nome}"/></td>
+                                                    <td><h:outputText value="#{transacao.horas}"/></td>
+                                                    <td><h:outputText value="#{transacao.valor}"/></td>
+                                                    <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                                </tr>
+                                            </ui:repeat>     
+                                        </tbody>
                                     </table>
                                     <h:panelGroup rendered="#{!sessionBean.isListaTransacoesVazia()}">
                                         <div class="text-center">
@@ -77,21 +83,25 @@
                                 </h:form>
 
                                 <h:form rendered="#{sessionBean.consultorLogged}">
-                                    <table id="tabela-dados" class="table">
-                                        <tr class="font-tracktype text-center">
-                                            <th>Nome do cliente</th>
-                                            <th>Quantidade de horas</th>
-                                            <th>Valor total</th>
-                                            <th>Data da transação</th>
-                                        </tr>
-                                        <ui:repeat var="transacao" value="#{sessionBean.consultor.transacoesEfetuadas}">
-                                            <tr>
-                                                <td><h:outputText value="#{transacao.cliente.nome}"/></td>
-                                                <td><h:outputText value="#{transacao.horas}"/></td>
-                                                <td><h:outputText value="#{transacao.valor}"/></td>
-                                                <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                    <table id="tabela-dados" class="tabela display" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="font-tracktype text-center">
+                                                <th>Nome do cliente</th>
+                                                <th>Quantidade de horas</th>
+                                                <th>Valor total</th>
+                                                <th>Data da transação</th>
                                             </tr>
-                                        </ui:repeat>     
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat var="transacao" value="#{sessionBean.consultor.transacoesEfetuadas}">
+                                                <tr>
+                                                    <td><h:outputText value="#{transacao.cliente.nome}"/></td>
+                                                    <td><h:outputText value="#{transacao.horas}"/></td>
+                                                    <td><h:outputText value="#{transacao.valor}"/></td>
+                                                    <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                                </tr>
+                                            </ui:repeat>     
+                                        </tbody>
                                     </table>
                                     <h:panelGroup rendered="#{!sessionBean.isListaTransacoesVazia()}">
                                         <div class="text-center">
@@ -314,6 +324,26 @@
         <script src="resources/js/jquery.mask.js"></script>
         <script src="resources/js/custom.mask.js"></script>
         <script src="resources/js/intro.js"></script>
+        <script src="resources/js/dataTable.js"></script>
+        <script src="resources/js/keyTable.js"></script>
+        <script>
+                                $(function () {
+                                    var events = $('#events');
+                                    var table = $('.tabela').DataTable({
+                                        keys: true
+                                    });
+                                    table
+                                            .on('key', function (e, datatable, key, cell, originalEvent) {
+                                                events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                                            })
+                                            .on('key-focus', function (e, datatable, cell) {
+                                                events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                                            })
+                                            .on('key-blur', function (e, datatable, cell) {
+                                                events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                                            })
+                                });
+        </script>
     </h:body>
 </html>
 
