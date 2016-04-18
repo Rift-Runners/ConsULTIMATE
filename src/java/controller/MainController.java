@@ -169,7 +169,7 @@ public class MainController {
     public String enviarContato() {
         //RequestContext.execute("PF('dialog').hide()");
         //oncomplete="PF('dialog').show();"
-        return "index.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
 
     public String registrarCliente() {

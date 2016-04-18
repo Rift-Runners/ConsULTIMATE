@@ -62,8 +62,16 @@
                                                 <td><h:outputText value="#{cliente.usuario}"/></td>
                                                 <td><h:outputText value="#{cliente.senha}"/></td>
                                                 <td><h:outputText value="#{cliente.saldo}"/></td>
-                                                <td>Lápis</td>
-                                                <td>Lixeira</td>
+                                                <td>
+                                                    <p:commandButton icon="fa fa-fw fa-edit" style="border: none !important; background: transparent !important; font-size: 20px;" action="#{sessionBean.adminEditarCliente()}" >
+                                                        <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
+                                                    </p:commandButton>
+                                                </td>
+                                                <td> 
+                                                    <p:commandButton icon="fa fa-fw fa-trash" style="border: none !important; background: transparent !important; font-size: 20px;" action="#{sessionBean.adminExcluirCliente()}" >
+                                                        <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{cliente}" />
+                                                    </p:commandButton>
+                                                </td>
                                             </tr>
                                         </ui:repeat>
                                     </tbody>
@@ -72,7 +80,7 @@
                         </div>
                         <div id="consultores-cadastrados" class="panel panel-info escondido">
                             <div class="panel-body">
-                                <table class="tabela display" cellspacing="0" width="100%">
+                                <table class="tabela display text-center" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
                                             <th>Nome</th>
@@ -104,8 +112,16 @@
                                                 <td><h:outputText value="#{consultor.area}"/></td>
                                                 <td><h:outputText value="#{consultor.usuario}"/></td>
                                                 <td><h:outputText value="#{consultor.senha}"/></td>
-                                                <td>Lápis</td>
-                                                <td>Lixeira</td>
+                                                <td>
+                                                    <p:commandButton icon="fa fa-fw fa-edit" style="border: none !important; background: transparent !important; font-size: 20px;" action="#{adminBean.adminEditarConsultor()}" >
+                                                        <f:setPropertyActionListener target="#{adminBean.consultorEditado}" value="#{consultor}" />
+                                                    </p:commandButton>
+                                                </td>
+                                                <td> 
+                                                    <p:commandButton icon="fa fa-fw fa-trash" style="border: none !important; background: transparent !important; font-size: 20px;" action="#{sessionBean.adminExcluirConsultor()}" >
+                                                        <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
+                                                    </p:commandButton>
+                                                </td>
                                             </tr>
                                         </ui:repeat>
                                     </tbody>

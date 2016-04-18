@@ -192,7 +192,7 @@
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorCnpj" value="CPNJ:"/>
-                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="17" 
+                                <h:inputText required="true" requiredMessage="Campo obrigatório"
                                              class="form-control cnpjMask" id="consultorCnpj"
                                              value="#{mainController.consultor.cnpj}" p:placeholder="CNPJ"/>
                                 <h:message for="consultorCnpj" class="error-message"/>
@@ -203,6 +203,13 @@
                                              class="form-control usuarioMask" id="consultorUsuario"
                                              value="#{mainController.consultor.usuario}" p:placeholder="Usuário"/>
                                 <h:message for="consultorUsuario" class="error-message"/>
+                            </div>
+                            <div class="form-group">
+                                <h:outputLabel for="consultorValorHora" value="Valor cobrado por hora:"/>
+                                <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                             class="form-control moneyMask" id="consultorValorHora"
+                                             value="#{mainController.consultor.valorHora}" p:placeholder="Valor base por hora."/>
+                                <h:message for="consultorValorHora" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorSenha" value="Senha:"/>

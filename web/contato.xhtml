@@ -9,7 +9,6 @@
         <title>Contato</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
-        <link href="resources/css/dark-theme-jquery-ui.css" rel="stylesheet"/>
     </h:head>
     <h:body>	
         <ui:include src="templates/header.xhtml"/>
@@ -22,7 +21,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="row">
-                            <h:form prependId="false">
+                            <h:form id="formContato">
                                 <div class="col-md-6">
                                     <h4>Nome</h4>
                                     <h:inputText p:placeholder="Nome" class="form-control"
@@ -45,9 +44,8 @@
                                     <h:message for="detalhesContato" class="error-message"/>
                                 </div>
                                 <div class="col-md-12">
-                                    <pr:commandButton id="btnModalLivro" class="btn btn-primary botao-cadastrar" 
-                                                      oncomplete="PF('dialog').show();" value="Enviar!" />
-                                    <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.enviarContato()}" value="Enviar!"/>
+                                    <pr:commandButton id="btnModalContato" class="btn btn-primary font-tracktype" 
+                                                      onclick="PF('dialogContato').show();" value="Enviar!" />
                                 </div>
                             </h:form>
                         </div>
@@ -57,15 +55,13 @@
             </div>
         </div>
 
-        <pr:dialog id="modalContato"
-                   widgetVar="dialog" modal="true" appendTo="@(body)" height="200"
-                   width="200" showEffect="drop" hideEffect="drop" closeOnEscape="true"
-                   resizable="false" draggable="false" header="Sucesso!" closable="true">
-            <div>
-                <p>Seu e-mail foi enviado com sucesso!</p>
-                <p>O consultor entrará em contato com você o mais cedo possível!</p>
-            </div>
-        </pr:dialog> 
+        <pr:dialog modal="true" id="dialog" widgetVar="dialogContato" draggable="false" resizable="false" 
+                   closable="false" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Seu e-mail foi enviado com sucesso!</p>
+            <p>Entraremos em contato o mais cedo possível!</p>
+            <pr:commandButton action="#{mainController.enviarContato()}" style="float: right" class="btn btn-primary" value="OK"/>
+        </pr:dialog>
+
         <script type="text/javascript" src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/jquery-ui.min.js"/>
         <script>

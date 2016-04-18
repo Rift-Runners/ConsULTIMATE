@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Minha conta</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
@@ -136,13 +137,13 @@
                                                     <h:message for="clienteNome" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <th class="font-tracktype">Email:</th>
+                                            <tr class="escondido">
+                                                <th class="font-tracktype">Telefone:</th>
                                                 <td>
-                                                    <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
-                                                                 class="input-editavel" id="clienteEmail"
-                                                                 value="#{sessionBean.clienteEditado.email}"/>
-                                                    <h:message for="clienteEmail" class="error-message"/>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                                 class="input-editavel telefoneMask" id="clienteTelefone"
+                                                                 value="#{sessionBean.clienteEditado.telefone}"/>
+                                                    <h:message for="clienteTelefone" class="error-message"/>
                                                 </td>
                                             </tr>
                                             <tr class="escondido">
@@ -173,15 +174,6 @@
                                                 </td>
                                             </tr>
                                             <tr class="escondido">
-                                                <th class="font-tracktype">Telefone:</th>
-                                                <td>
-                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                                 class="input-editavel telefoneMask" id="clienteTelefone"
-                                                                 value="#{sessionBean.clienteEditado.telefone}"/>
-                                                    <h:message for="clienteTelefone" class="error-message"/>
-                                                </td>
-                                            </tr>
-                                            <tr class="escondido">
                                                 <th class="font-tracktype">CPF:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -202,14 +194,19 @@
                                         </tbody>
                                     </table>
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
+                                        <button type="button" class="btn btn-info botao-mostrar-dados margin-bottom10">Mostrar tudo...</button>
                                         <h:commandLink action="#{sessionBean.editarConta()}" styleClass="btn btn-info botao-alterar-dados">
                                             Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </h:commandLink>  
                                         <div class="text-center">
-                                            <h:commandLink id="logoutButton" action="#{sessionBean.deletarConta()}" styleClass="btn btn-danger">
+                                            <h:commandLink action="#{sessionBean.editarEmailESenha()}" styleClass="btn btn-info margin-bottom10">
+                                                <i class="glyphicon glyphicon-pencil"></i> Editar e-mail e senha!
+                                            </h:commandLink>   
+                                        </div>
+                                        <div class="text-center">
+                                            <p:commandLink styleClass="btn btn-danger" onclick="PF('dialogConfirma').show();">
                                                 <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
-                                            </h:commandLink>      
+                                            </p:commandLink>
                                         </div>
                                     </div>
                                 </h:form>
@@ -318,6 +315,13 @@
                 </div>
             </div>
         </div>
+        <p:dialog modal="true" id="dialog" widgetVar="dialogConfirma" draggable="false" resizable="false" 
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Deseja mesmo excluir sua conta?</p>
+            <p>Note que este processo é irreversível!</p>
+            <p:commandButton action="#{sessionBean.deletarConta()}" style="float: right" class="btn btn-primary" value="Sim"/>
+            <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" class="btn btn-primary" value="Não"/>
+        </p:dialog>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/minha-conta.js"></script>
@@ -327,22 +331,22 @@
         <script src="resources/js/dataTable.js"></script>
         <script src="resources/js/keyTable.js"></script>
         <script>
-                                $(function () {
-                                    var events = $('#events');
-                                    var table = $('.tabela').DataTable({
-                                        keys: true
-                                    });
-                                    table
-                                            .on('key', function (e, datatable, key, cell, originalEvent) {
-                                                events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
-                                            })
-                                            .on('key-focus', function (e, datatable, cell) {
-                                                events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
-                                            })
-                                            .on('key-blur', function (e, datatable, cell) {
-                                                events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
-                                            })
-                                });
+                                                    $(function () {
+                                                        var events = $('#events');
+                                                        var table = $('.tabela').DataTable({
+                                                            keys: true
+                                                        });
+                                                        table
+                                                                .on('key', function (e, datatable, key, cell, originalEvent) {
+                                                                    events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                                                                })
+                                                                .on('key-focus', function (e, datatable, cell) {
+                                                                    events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                                                                })
+                                                                .on('key-blur', function (e, datatable, cell) {
+                                                                    events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                                                                });
+                                                    });
         </script>
     </h:body>
 </html>

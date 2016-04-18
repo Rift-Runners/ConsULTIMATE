@@ -15,6 +15,7 @@ import java.util.List;
 public class Consultor {
 
     private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
+    private double valorHora;
     private List<Transacao> transacoesEfetuadas;
 
     public Consultor() {
@@ -36,7 +37,7 @@ public class Consultor {
         this.transacoesEfetuadas = outroConsultor.getTransacoesEfetuadas();
     }
 
-    public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha) {
+    public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha, double valorHora) {
         this.nome = nome;
         this.cidade = cidade;
         this.uf = uf;
@@ -48,6 +49,7 @@ public class Consultor {
         this.area = area;
         this.usuario = usuario;
         this.senha = senha;
+        this.valorHora = valorHora;
         this.transacoesEfetuadas = new ArrayList();
     }
 
@@ -137,6 +139,14 @@ public class Consultor {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public double getValorHora() {
+        return valorHora;
+    }
+
+    public void setValorHora(double valorHora) {
+        this.valorHora = valorHora;
     }
 
     public List<Transacao> getTransacoesEfetuadas() {

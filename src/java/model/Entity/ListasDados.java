@@ -45,39 +45,23 @@ public class ListasDados {
 
     public void populaListaConsultores() {
         Consultor[] consultores = new Consultor[]{
-            new Consultor("d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d"),
-            new Consultor("e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e"),
-            new Consultor("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f"),
+            new Consultor("d", "d", "d", "d", "d", "d", "d", "d", "d", "d", "d", 100),
+            new Consultor("e", "e", "e", "e", "e", "e", "e", "e", "e", "e", "e", 120),
+            new Consultor("f", "f", "f", "f", "f", "f", "f", "f", "f", "f", "f", 140),
             new Consultor("Teste1", "Teste1", "Teste1", "Teste1", "Teste1",
-            "Teste1", "Teste1", "Teste1", "TI", "Teste1", "Teste1"),
+            "Teste1", "Teste1", "Teste1", "TI", "Teste1", "Teste1", 160),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
             + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
-            new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
-            "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
-            new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
-            "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
-            new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
-            "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
-            new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
-            "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
-            + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons", 180),
             new Consultor("Consultor", "Porto Alegre", "RS", "Av. etc etc 1400", "(51)2222-2222",
             "consultor@consultor.com", "515151515151", "Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl."
             + " Blablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
             + " blklblblblblalblblblBlablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
             + " blklblblblblalblblblBlablablalba. Blablalbalblabllalb, blklblblblblalblblbl. Blablablalba. Blablalbalblabllalb,"
-            + " blklblblblblalblblbl.", "Artes", "cons", "cons"),
+            + " blklblblblblalblblbl.", "Artes", "cons", "cons", 200),
             new Consultor("Teste3", "Teste3", "Teste3", "Teste3", "Teste3",
-            "Teste3", "Teste3", "Teste3", "Engenharia", "Teste3", "Teste3")
+            "Teste3", "Teste3", "Teste3", "Engenharia", "Teste3", "Teste3", 50)
         };
         listaConsultores.addAll(Arrays.asList(consultores));
     }
