@@ -150,50 +150,59 @@ public class MainController {
     public String enviaDados() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getEmail().equals(emailRecuperaSenha)) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Dados enviados para o e-mail.", null));
-                //Enviar o usuario e a senha para o email.
-                return "esqueceu-senha";
+                return redirecionaLogin();
             }
         }
         for (Consultor consultorCadastrado : listasDeDados.getListaConsultores()) {
             if (consultorCadastrado.getEmail().equals(emailRecuperaSenha)) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Dados enviados para o e-mail.", null));
-                //Enviar o usuario e a senha para o email.
-                return "esqueceu-senha";
+                return redirecionaLogin();
             }
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail não cadastrado.", null));
-        return "esqueceu-senha";
+        return redirecionaLogin();
     }
 
-    public String enviarContato() {
-        //RequestContext.execute("PF('dialog').hide()");
-        //oncomplete="PF('dialog').show();"
-        return "index.xhtml?faces-redirect=true";
+    public void enviarContato() {
+        RequestContext.getCurrentInstance().execute("PF('dialogContato').show()");
     }
 
-    public String registrarCliente() {
+    public String redirecionaLogin() {
+        return "login.xhtml?faces-redirect=true";
+    }
+
+    public String redirecionaContato() {
+        return "contato.xhtml?faces-redirect=true";
+    }
+
+    public String redirecionaCadastro() {
+        return "cadastro.xhtml?faces-redirect=true";
+    }
+
+    public void registrarCliente() {
         if (confirmaSenha(cliente.getSenha(), tempSenhaRepete)) {
             if (validador.validaCliente(cliente)) {
                 listasDeDados.adicionarCliente(cliente);
                 this.cliente = new Cliente();
-                return "login.xhtml?faces-redirect=true";
+                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
             }
+        } else {
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
-        return "cadastro.xhtml";
     }
 
-    public String registrarConsultor() {
+    public void registrarConsultor() {
         if (confirmaSenha(consultor.getSenha(), tempSenhaRepete)) {
             if (validador.validaConsultor(consultor)) {
                 listasDeDados.adicionarConsultor(consultor);
                 this.consultor = new Consultor();
-                return "login.xhtml?faces-redirect=true";
+                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
             }
+        } else {
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
-        return "cadastro.xhtml";
     }
 
 }

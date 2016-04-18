@@ -79,34 +79,36 @@ public class Validators {
     }
 
     public boolean validaCliente(Cliente cli) {
+        return true;
 //        if (validaCpf(cli.getCpf())) {
 //            if (validaRg(cli.getRg())) {
-                if (validaTelefone(cli.getTelefone())) {
-                    if (validaEmail(cli.getEmail())) {
-                        if (validaUsuario(cli.getUsuario())) {
-                            if (validaSenha(cli.getSenha())) {
-                                return true;
-                            }
-                        }
-                    }
-                }
+//                if (validaTelefone(cli.getTelefone())) {
+//                    if (validaEmail(cli.getEmail())) {
+//                        if (validaUsuario(cli.getUsuario())) {
+//                            if (validaSenha(cli.getSenha())) {
+//                                return true;
+//                            }
+//                        }
+//                    }
+//                }
 //            }
 //        }
-        return false;
+//        return false;
     }
 
     public boolean validaConsultor(Consultor cons) {
-        if (validaTelefone(cons.getTelefone())) {
-            if (validaCnpj(cons.getCnpj())) {
-                if (validaEmail(cons.getEmail())) {
-                    if (validaUsuario(cons.getUsuario())) {
-                        if (validaSenha(cons.getSenha())) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-        return false;
+        return true;
+//        if (validaTelefone(cons.getTelefone())) {
+//            if (validaCnpj(cons.getCnpj())) {
+//                if (validaEmail(cons.getEmail())) {
+//                    if (validaUsuario(cons.getUsuario())) {
+//                        if (validaSenha(cons.getSenha())) {
+//                            return true;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        return false;
     }
 }

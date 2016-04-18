@@ -168,10 +168,10 @@ public class SessionBean implements Serializable {
         valorSaldo = 0d;
         return "minha-conta.xhtml?faces-redirect=true";
     }
-    
+
     public double[] valoresConsultorVisualizado() {
         double valorBase = consultorVisualizado.getValorHora();
-        return new double[]{valorBase, valorBase*2.7, valorBase*4, valorBase*7};
+        return new double[]{valorBase, valorBase * 2.7, valorBase * 4, valorBase * 7};
     }
 
     public String criarTransacao() {
@@ -220,8 +220,8 @@ public class SessionBean implements Serializable {
                 }
             }
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário e/ou senha inválidos.", null));
-        return "login.xhtml";
+        RequestContext.getCurrentInstance().execute("PF('dialogInvalida').show()");
+        return "";
     }
 
     public String sair() {
@@ -267,12 +267,11 @@ public class SessionBean implements Serializable {
             }
         }
     }
-    
+
     public boolean isListaTransacoesVazia() {
-        if(clienteLogged){
+        if (clienteLogged) {
             return cliente.getTransacoesEfetuadas().isEmpty();
-        }
-        else{
+        } else {
             return consultor.getTransacoesEfetuadas().isEmpty();
         }
     }

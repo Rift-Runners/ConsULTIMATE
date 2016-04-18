@@ -3,17 +3,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pr="http://primefaces.org/ui">
     <h:head>
         <meta charset="utf-8"/>
         <title>Login</title>
         <link href="resources/css/style.css" rel="stylesheet"/>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
+
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
 
-        <div class="login-background no-margin no-padding">
+        <div class="login-background">
             <div class="container-fluid">
                 <div class="row row-eq-height padding-top200">
                     <div class="col-md-4"></div>
@@ -23,7 +25,7 @@
                                 <h1 class="panel-title text-center font-tracktype">Login</h1>
                             </div>
                             <div class="panel-body">
-                                <h:form>
+                                <h:form id="form">
                                     <div class="input-group margin-top20-bottom15">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                                         <h:inputText p:placeholder="Usuário" class="form-control"
@@ -38,9 +40,9 @@
                                     <h:message for="loginSenha" class="error-message"/>
                                     <div class="login-buttons">                           
                                         <h:link class="btn btn-info btn-lg font-tracktype" outcome="cadastro.xhtml?faces-redirect=true" id="cadastroBtn" value="Registre-se!" />  
-                                        <h:commandButton class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
+                                        <pr:commandButton update="form" class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
                                     </div>
-                                    <h:link class="btn esqueceu-link font-tracktype" value="Esqueceu sua senha?" outcome="esqueceu-senha.xhtml?faces-redirect=true" />
+                                    <pr:commandButton class="btn esqueceu-link font-tracktype" value="Esqueceu sua senha?" onclick="PF('dialogEsqueceuSenha').show();" />
                                 </h:form>
                             </div>
                         </div>
@@ -50,7 +52,26 @@
             </div>
         </div>
 
+        <pr:dialog modal="true" widgetVar="dialogInvalida" draggable="false" resizable="false" header="Credenciais inválidas!"
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Usuário e/ou Senha inválidos!</p>
+            <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="OK"/>
+        </pr:dialog>
+
+        <pr:dialog modal="true" widgetVar="dialogEsqueceuSenha" draggable="false" resizable="false" header="Esqueceu a senha!"
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Digite o e-mail cadastrado, caso ele exista, será mandado um e-mail para o mesmo</p>
+            <p>informando as instruções necessárias para recuperar os dados cadastrados!</p>
+            <h:form>
+                <h:outputLabel for="emailEsqueceu" value="Email:"/>
+                <pr:inputText value="#{mainController.emailRecuperaSenha}" id="emailEsqueceu" required="true" requiredMessage="Campo obrigatório" />
+                <h:message for="emailEsqueceu" class="error-message"/>
+                <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="Enviar!"/>
+            </h:form>
+        </pr:dialog>
+
         <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/jquery-ui.min.js"></script>
         <script src="resources/js/bootstrap.js"></script>
     </h:body>
 </html>

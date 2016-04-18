@@ -118,7 +118,7 @@
                                                value="#{mainController.tempSenhaRepete}"/>
                                 <h:message for="clienteRepeteSenha" class="error-message"/>
                             </div>
-                            <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarCliente()}" value="Cadastrar!"/>
+                            <pr:commandButton update="formulario-cliente" class="btn btn-primary botao-cadastrar" action="#{mainController.registrarCliente()}" value="Cadastrar!"/>             
                         </div>
                         <div class="col-md-2"></div>
                     </div>
@@ -235,7 +235,7 @@
                                                   autoResize="false" class="form-control" value="#{mainController.consultor.descricao}"
                                                   p:placeholder="Descrição e detalhes do consultor, note que este campo é a sua ''porta de entrada'' para os clientes)"/>
                                 <h:message for="consultorDescricao" class="error-message"/>
-                                <h:commandButton class="btn btn-primary botao-cadastrar" action="#{mainController.registrarConsultor()}" value="Cadastrar!"/>
+                                <pr:commandButton update="formulario-consultor" class="btn btn-primary botao-cadastrar" action="#{mainController.registrarConsultor()}" value="Cadastrar!"/>
                             </div>
                         </div>
                         <div class="col-md-1"></div>
@@ -243,7 +243,20 @@
                 </div>
             </h:form>
         </div>
+
+        <pr:dialog modal="true" widgetVar="dialogSucesso" draggable="false" resizable="false" header="Sucesso!"
+                   hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Cadastro efetuado com sucesso!</p>
+            <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="OK"/>
+        </pr:dialog>
+        <pr:dialog modal="true" widgetVar="dialogErro" draggable="false" resizable="false" header="Erro!"
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Verifique os campos digitados, algum está incorreto!</p>
+            <pr:commandButton action="#{mainController.redirecionaCadastro()}" style="float: right" class="btn btn-primary" value="OK"/>
+        </pr:dialog>
+
         <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/jquery-ui.min.js"></script>
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/jquery.mask.js"></script>
         <script src="resources/js/custom.mask.js"></script>
