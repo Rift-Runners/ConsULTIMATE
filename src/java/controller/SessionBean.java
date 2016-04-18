@@ -33,7 +33,7 @@ public class SessionBean implements Serializable {
     private Consultor consultor, consultorEditado, consultorVisualizado;
     private Admin admin;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
-    private double valorSaldo;
+    private double valorSaldo, valorSelecionado;
     private Validators validador;
 
     /**
@@ -150,6 +150,14 @@ public class SessionBean implements Serializable {
         this.consultorEditado = consultorEditado;
     }
 
+    public double getValorSelecionado() {
+        return valorSelecionado;
+    }
+
+    public void setValorSelecionado(double valorSelecionado) {
+        this.valorSelecionado = valorSelecionado;
+    }
+
     public String visualizaConsultor() {
         //AINDA NÃO IMPLEMENTADO!
         return "consultor-detalhes.xhtml?faces-redirect=true";
@@ -159,6 +167,11 @@ public class SessionBean implements Serializable {
         cliente.setSaldo(cliente.getSaldo() + valorSaldo);
         valorSaldo = 0d;
         return "minha-conta.xhtml?faces-redirect=true";
+    }
+    
+    public double[] valoresConsultorVisualizado() {
+        double valorBase = consultorVisualizado.getValorHora();
+        return new double[]{valorBase, valorBase*2.7, valorBase*4, valorBase*7};
     }
 
     public String criarTransacao() {

@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>#{sessionBean.consultorVisualizado.nome}</title>
     </h:head>
@@ -18,7 +19,7 @@
                                 <h3 class="panel-title text-center font-tracktype">Dados de #{sessionBean.consultorVisualizado.nome}</h3>
                             </div>
                             <div class="panel-body text-center">
-                                <table class="table-padding-bottom10">
+                                <table class="table table-padding-bottom10">
                                     <tr>
                                         <th>Consultor:</th>
                                         <td>#{sessionBean.consultorVisualizado.nome}</td>
@@ -42,12 +43,9 @@
                                     <tr>
                                         <th>Área:</th>
                                         <td>#{sessionBean.consultorVisualizado.area}</td>
-                                    </tr>                              
+                                    </tr>                                                          
                                 </table>
                             </div>
-                            <h:form class="text-center">
-                                <h:commandButton class="btn btn-info btn-lg margin-bottom25 font-tracktype" value="Contratar" action="#{sessionBean.criarTransacao()}"/>
-                            </h:form>
                         </div>
                     </div>
 
@@ -59,7 +57,56 @@
                             <div class="panel-body text-center">
                                 <p>#{sessionBean.consultorVisualizado.descricao}</p>
                             </div>
-                        </div>              
+                        </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center font-tracktype">Valores de Contratação</h3>
+                            </div>
+                            <div class="panel-body text-center">
+                                <h:form>
+                                    <h:dataTable class="table table table-padding-bottom10 text-center" value="#{sessionBean.valoresConsultorVisualizado()}" var="valor">
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="1 Hora"/>
+                                                </f:facet>
+                                                #{valor[0]}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="3 Horas (10%)"/>
+                                                </f:facet>
+                                                #{valor[1]}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="5 Horas (20%)"/>
+                                                </f:facet>
+                                                #{valor[2]}
+                                            </h:column>
+                                            <h:column>
+                                                <f:facet name="header">
+                                                    <h:outputText value="10 Horas (30%)"/>
+                                                </f:facet>
+                                                #{valor[3]}
+                                            </h:column>
+                                    </h:dataTable>
+                                    <table class="table table-padding-bottom10">
+                                        <tr>
+                                            <th>1 Hora</th>
+                                            <th>3 Horas (10%)</th>
+                                            <th>5 Horas (20%)</th>
+                                            <th>10 Horas (30%)</th>
+                                        </tr>
+                                        <tr>
+                                            <h:selectOneRadio value="#{sessionBean.valorSelecionado}">
+                                                <td><f:selectItems value="#{sessionBean.valoresConsultorVisualizado()}"/></td>
+                                            </h:selectOneRadio>
+                                        </tr> 
+                                    </table>
+                                    <h:commandButton class="btn btn-info btn-lg margin-bottom25 font-tracktype" value="Contratar" action="#{sessionBean.criarTransacao()}"/>
+                                </h:form>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-md-3">
                         <h3 class="font-tracktype">Dúvidas?</h3>
