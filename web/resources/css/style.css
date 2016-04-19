@@ -277,6 +277,10 @@ body{
     z-index: -1;   
     position: absolute;
 }
+
+.select-valor{
+    display: block;
+}
 /*END - Consultor-detalhes*/
 /* Minha conta */
 
@@ -285,7 +289,6 @@ body{
 }
 
 .botao-alterar-dados{
-    display: none;
     float: right;
 }
 

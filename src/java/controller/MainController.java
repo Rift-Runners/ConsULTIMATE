@@ -164,6 +164,10 @@ public class MainController {
     public void enviarContato() {
         RequestContext.getCurrentInstance().execute("PF('dialogContato').show()");
     }
+    
+    public void deletarContaDialog() {
+        RequestContext.getCurrentInstance().execute("PF('dialogDeletar').show()");
+    }
 
     public String redirecionaLogin() {
         return "login.xhtml?faces-redirect=true";
