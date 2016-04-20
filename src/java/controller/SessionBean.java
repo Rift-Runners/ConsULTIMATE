@@ -165,7 +165,7 @@ public class SessionBean implements Serializable {
     public String adicionarSaldo() {
         cliente.setSaldo(cliente.getSaldo() + valorSaldo);
         valorSaldo = 0d;
-        return "minha-conta.xhtml?faces-redirect=true";
+        return "";
     }
 
     public double[] valoresConsultorVisualizado() {

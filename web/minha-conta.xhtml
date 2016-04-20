@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Minha conta</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
@@ -16,7 +17,7 @@
     <h:body>
         <ui:include src="templates/header.xhtml"/>
         <div class="minha-conta-background">
-            <h:form>
+            <h:form id="form-saldo">
                 <div class="container-fluid">
                     <div class="row row-eq-height">
                         <div class="col-md-1"></div>
@@ -27,8 +28,10 @@
                                         <h3 class="panel-title text-center font-tracktype">Saldo</h3>
                                     </div>
                                     <div class="panel-body text-center">
-                                        <h:outputText class="saldo" value="R$ #{sessionBean.cliente.saldo}"/>
-                                        <h:commandButton class="btn btn-info add-saldo" value="Adicionar Saldo" action="adicionar-saldo.xhtml"/>
+                                        <h:outputText class="saldo" value="R$ #{sessionBean.cliente.saldo}"/> <br/>
+                                        <p:commandLink update="form-saldo" styleClass="btn btn-info add-saldo" onclick="PF('dialogSaldo').show();">
+                                            Adicionar Saldo
+                                        </p:commandLink>
                                     </div>
                                 </div>
                             </h:panelGroup>
@@ -366,6 +369,19 @@
             <p>Algum dado digitado está inválido!</p>
             <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
         </p:dialog>
+
+        <p:dialog modal="true" id="dialog4" widgetVar="dialogSaldo" draggable="false" resizable="false" header="Adicionar Saldo!"
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <h:form>
+                <h:selectOneRadio value="#{sessionBean.valorSaldo}" layout="pageDirection" class="table">
+                    <f:selectItem itemValue="100" itemLabel="R$ 100,00"/>  
+                    <f:selectItem itemValue="300" itemLabel="R$ 300,00"/>
+                    <f:selectItem itemValue="500" itemLabel="R$ 500,00"/>
+                </h:selectOneRadio> 
+                <h:commandButton class="btn btn-primary" value="Adicionar" style="float: right; margin-left: 100px;" action="#{sessionBean.adicionarSaldo()}"/>
+                <h:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" styleClass="btn btn-primary" value="Cancelar"/>
+            </h:form>
+        </p:dialog>
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/jquery-ui.min.js"/>
         <script src="resources/js/bootstrap.js"></script>
@@ -376,22 +392,22 @@
         <script src="resources/js/keyTable.js"></script>
         <script src="resources/js/minha-conta.js"></script>
         <script>
-                                                $(function () {
-                                                    var events = $('#events');
-                                                    var table = $('.tabela').DataTable({
-                                                        keys: true
-                                                    });
-                                                    table
-                                                            .on('key', function (e, datatable, key, cell, originalEvent) {
-                                                                events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
-                                                            })
-                                                            .on('key-focus', function (e, datatable, cell) {
-                                                                events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
-                                                            })
-                                                            .on('key-blur', function (e, datatable, cell) {
-                                                                events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
-                                                            });
-                                                });
+            $(function () {
+                var events = $('#events');
+                var table = $('.tabela').DataTable({
+                    keys: true
+                });
+                table
+                        .on('key', function (e, datatable, key, cell, originalEvent) {
+                            events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                        })
+                        .on('key-focus', function (e, datatable, cell) {
+                            events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                        })
+                        .on('key-blur', function (e, datatable, cell) {
+                            events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                        });
+            });
         </script>
     </h:body>
 </html>
