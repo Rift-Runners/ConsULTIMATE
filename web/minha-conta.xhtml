@@ -74,11 +74,6 @@
                                             </ui:repeat>     
                                         </tbody>
                                     </table>
-                                    <h:panelGroup rendered="#{!sessionBean.isListaTransacoesVazia()}">
-                                        <div class="text-center">
-                                            <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                        </div>
-                                    </h:panelGroup>
                                     <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
                                         <div class="text-center">
                                             <p class="font-size20">Você ainda não concluiu uma transação :(</p>
@@ -107,11 +102,6 @@
                                             </ui:repeat>     
                                         </tbody>
                                     </table>
-                                    <h:panelGroup rendered="#{!sessionBean.isListaTransacoesVazia()}">
-                                        <div class="text-center">
-                                            <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                        </div>
-                                    </h:panelGroup>
                                     <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
                                         <div class="text-center">
                                             <p class="font-size20">Você ainda não concluiu uma transação :(</p>
@@ -119,7 +109,26 @@
                                     </h:panelGroup>
                                 </h:form>
                             </div>
-                        </div>  
+                        </div>
+                        <h:panelGroup rendered="#{sessionBean.consultorLogged}">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title text-center font-tracktype">Descrição <i class="glyphicon glyphicon-briefcase"></i></h3>
+                                </div>
+                                <div class="panel-body text-center">
+                                    <h:form>
+                                        <h:outputText id="display" />
+                                        <p:inputTextarea required="true" requiredMessage="Campo obrigatório" rows="13" cols="30" 
+                                                         class="form-control" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes." 
+                                                         autoResize="false" value="#{sessionBean.consultorEditado.descricao}"/>
+                                        <h:message for="consultorDescricao" class="error-message"/> <br/>
+                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
+                                            Salvar Descrição <i class="glyphicon glyphicon-floppy-saved"></i>
+                                        </p:commandLink>  
+                                    </h:form>
+                                </div>
+                            </div>
+                        </h:panelGroup>
                     </div>
                     <div class="col-md-1"/>
                     <div class="col-md-3">
@@ -257,15 +266,6 @@
                                                 <h:message for="consultorArea" class="error-message"/>
                                             </td>
                                         </tr> 
-                                        <tr>
-                                            <th class="font-tracktype">Descrição:</th>
-                                            <td>
-                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="1000" 
-                                                             class="input-editavel" id="consultorDescricao"
-                                                             value="#{sessionBean.consultorEditado.descricao}"/>
-                                                <h:message for="consultorDescricao" class="error-message"/>
-                                            </td>
-                                        </tr> 
                                         <tr class="escondido">
                                             <th class="font-tracktype">UF:</th>
                                             <td>
@@ -382,6 +382,7 @@
                 <h:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" styleClass="btn btn-primary" value="Cancelar"/>
             </h:form>
         </p:dialog>
+
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/jquery-ui.min.js"/>
         <script src="resources/js/bootstrap.js"></script>
@@ -392,22 +393,22 @@
         <script src="resources/js/keyTable.js"></script>
         <script src="resources/js/minha-conta.js"></script>
         <script>
-            $(function () {
-                var events = $('#events');
-                var table = $('.tabela').DataTable({
-                    keys: true
-                });
-                table
-                        .on('key', function (e, datatable, key, cell, originalEvent) {
-                            events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
-                        })
-                        .on('key-focus', function (e, datatable, cell) {
-                            events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
-                        })
-                        .on('key-blur', function (e, datatable, cell) {
-                            events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
-                        });
-            });
+                                                $(function () {
+                                                    var events = $('#events');
+                                                    var table = $('.tabela').DataTable({
+                                                        keys: true
+                                                    });
+                                                    table
+                                                            .on('key', function (e, datatable, key, cell, originalEvent) {
+                                                                events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                                                            })
+                                                            .on('key-focus', function (e, datatable, cell) {
+                                                                events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                                                            })
+                                                            .on('key-blur', function (e, datatable, cell) {
+                                                                events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                                                            });
+                                                });
         </script>
     </h:body>
 </html>

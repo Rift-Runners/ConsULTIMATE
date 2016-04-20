@@ -106,9 +106,9 @@
                                                 <td><h:outputText value="#{consultor.uf}"/></td>
                                                 <td><h:outputText value="#{consultor.endereco}"/></td>
                                                 <td><h:outputText value="#{consultor.telefone}"/></td>
-                                                <td><h:outputText value="#{consultor.email}"/></td>
+                                                <td><h:outputText value="#{mainController.stringMinimizada(consultor.email, 15)} ..."/></td>
                                                 <td><h:outputText value="#{consultor.cnpj}"/></td>
-                                                <td><h:outputText value="#{consultor.descricao}"/></td>
+                                                <td><h:outputText value="#{mainController.stringMinimizada(consultor.descricao, 15)} ..."/></td>
                                                 <td><h:outputText value="#{consultor.area}"/></td>
                                                 <td><h:outputText value="#{consultor.usuario}"/></td>
                                                 <td><h:outputText value="#{consultor.senha}"/></td>

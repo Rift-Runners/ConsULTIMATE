@@ -128,7 +128,11 @@ public class MainController {
     public void setContatoEmail(String contatoEmail) {
         this.contatoEmail = contatoEmail;
     }
-
+    
+    public String stringMinimizada(String texto, int tamanhoMaximo) {
+        return texto.substring(0, Math.min(texto.length(), tamanhoMaximo));
+    }
+    
     public List<String> listaEstados() {
         List<String> estados = new ArrayList();
         estados.add("A");
