@@ -13,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.faces.context.Flash;
 import javax.servlet.http.HttpServletRequest;
+import model.Entity.Area;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
@@ -131,6 +132,17 @@ public class MainController {
     
     public String stringMinimizada(String texto, int tamanhoMaximo) {
         return texto.substring(0, Math.min(texto.length(), tamanhoMaximo));
+    }
+    
+    public List<Area> informacoesArea() {
+        List<Area> lista = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            Area areaTeste = new Area("Teste"+i);
+            areaTeste.setQtdConsultores(i);
+            areaTeste.setQtdTransacoes(i);
+            lista.add(areaTeste);
+        }
+        return lista;
     }
     
     public List<String> listaEstados() {

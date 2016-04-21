@@ -1,15 +1,26 @@
 $(function () {
+    $("#analise-de-negocios").hide();
+    
     $("#clientes-cadastrados-btn").click(function () {
-        $(this).addClass("active");
-        $(this).closest("ul").find("#consultores-cadastrados-btn").removeClass("active");
+        $(this).addClass("active-btn");
+        $(this).next().removeClass("active-btn");
+        $(this).next().next().removeClass("active-btn");
+        $(this).closest("body").find(".panel").hide();
         $(this).closest("body").find("#clientes-cadastrados").show();
-        $(this).closest("body").find("#consultores-cadastrados").hide();
     });
     $("#consultores-cadastrados-btn").click(function () {
-        $(this).addClass("active");
-        $(this).closest("ul").find("#clientes-cadastrados-btn").removeClass("active");
+        $(this).addClass("active-btn");
+        $(this).prev().removeClass("active-btn");
+        $(this).next().removeClass("active-btn");
+        $(this).closest("body").find(".panel").hide();
         $(this).closest("body").find("#consultores-cadastrados").show();
-        $(this).closest("body").find("#clientes-cadastrados").hide();
+    });
+    $("#analise-de-negocios-btn").click(function () {
+        $(this).addClass("active-btn");
+        $(this).prev().removeClass("active-btn");
+        $(this).prev().prev().removeClass("active-btn");
+        $(this).closest("body").find(".panel").hide();
+        $(this).closest("body").find("#analise-de-negocios").show();
     });
 });
 

@@ -404,6 +404,11 @@ body{
     font-size: 20px;
 }
 
+.active-btn{
+    color: #FFF;
+    background-color: #3A539B;
+}
+
 #tabela-clientes-adm thead tr th{
     font-family: TrackType;
     font-size: 16px;

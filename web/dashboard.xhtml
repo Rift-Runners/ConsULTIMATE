@@ -12,6 +12,8 @@
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="resources/css/dataTable.css"/>
         <link href="resources/css/keyTable.css" type="text/css" rel="stylesheet"/>
+        <link href="resources/css/styleAnalise.css" type="text/css" rel="stylesheet"/>
+        <script src="resources/js/Chart.js"></script>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
@@ -136,10 +138,40 @@
                                 </h:form>
                             </div>
                         </div>
+                        <div id="analise-de-negocios" class="panel panel-info">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-1"/>
+                                    <div class="col-md-4 stats-info widget">
+                                        <div class="stats-title">
+                                            <h3>Consultorias contradas por Área</h3>
+                                        </div>
+                                        <div class="stats-body">
+                                            <ul class="list-unstyled">
+                                                <ui:repeat var="area" value="#{mainController.informacoesArea()}">
+                                                    <li>#{area.nome}<span class="pull-right">#{area.qtdTransacoes}%</span>  
+                                                        <div class="progress progress-striped active progress-right">
+                                                            <div class="bar green" style="width:#{area.qtdTransacoes}%;"></div> 
+                                                        </div>
+                                                    </li>
+                                                </ui:repeat>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 charts chrt-page-grids chrt-right">
+                                        <h3>Controle de cadastros no site</h3>
+                                        <div class="pie-grid">
+                                            <canvas id="pie" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+
 
         <p:dialog modal="true" id="dialog" widgetVar="dialogClienteEdit" draggable="false" resizable="false" header="Confirmar Editar #{adminBean.clienteEditado.nome}!"
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
@@ -275,6 +307,26 @@
         <script src="resources/js/dashboard.js"></script>
         <script src="resources/js/dataTable.js"></script>
         <script src="resources/js/keyTable.js"></script>
+
+        <script>
+                var pieData = [
+                    {
+                        value: 30,
+                        color: "#4F52BA",
+                        name: "Consultores"
+
+                    },
+                    {
+                        value: 50,
+                        color: "#585858"
+                    },
+                    {
+                        value: 100,
+                        color: "#e94e02"
+                    }
+                ];
+                new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
+        </script>
         <script>
             $(function () {
                 var events = $('#events');
