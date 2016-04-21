@@ -149,7 +149,7 @@
                                                     <h:message for="clienteNome" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">Telefone:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -158,7 +158,7 @@
                                                     <h:message for="clienteTelefone" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">UF:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" 
@@ -167,7 +167,7 @@
                                                     <h:message for="clienteUf" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">Cidade:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
@@ -176,7 +176,7 @@
                                                     <h:message for="clienteCidade" class="error-message"/> 
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">Endereço:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
@@ -185,7 +185,7 @@
                                                     <h:message for="clienteEndereco" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">CPF:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -194,7 +194,7 @@
                                                     <h:message for="clienteCpf" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">RG:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -203,7 +203,7 @@
                                                     <h:message for="clienteRg" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">Email:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -212,7 +212,7 @@
                                                     <h:message for="clienteEmail" class="error-message"/>
                                                 </td>
                                             </tr>
-                                            <tr class="escondido">
+                                            <tr>
                                                 <th class="font-tracktype">Senha:</th>
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -224,8 +224,7 @@
                                         </tbody>
                                     </table>
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-info botao-mostrar-dados margin-bottom10">Mostrar tudo...</button>
-                                        <p:commandLink update="dados-cliente" action="#{sessionBean.editarConta()}" styleClass="btn btn-info botao-alterar-dados escondido">
+                                        <p:commandLink update="dados-cliente" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
                                             Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>    
                                         <div class="text-center">
@@ -266,7 +265,7 @@
                                                 <h:message for="consultorArea" class="error-message"/>
                                             </td>
                                         </tr> 
-                                        <tr class="escondido">
+                                        <tr>
                                             <th class="font-tracktype">UF:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -275,7 +274,7 @@
                                                 <h:message for="consultorUf" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
+                                        <tr>
                                             <th class="font-tracktype">Cidade:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
@@ -284,7 +283,7 @@
                                                 <h:message for="consultorCidade" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
+                                        <tr>
                                             <th class="font-tracktype">Endereço:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
@@ -293,7 +292,7 @@
                                                 <h:message for="consultorEndereco" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
+                                        <tr>
                                             <th class="font-tracktype">Telefone:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -302,7 +301,7 @@
                                                 <h:message for="consultorTelefone" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
+                                        <tr>
                                             <th class="font-tracktype">CPNJ:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -311,7 +310,7 @@
                                                 <h:message for="consultorCpnj" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
+                                        <tr>
                                             <th class="font-tracktype">Valor por hora:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -320,7 +319,7 @@
                                                 <h:message for="consultorValor" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
+                                        <tr>
                                             <th class="font-tracktype">Senha:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
@@ -331,8 +330,7 @@
                                         </tr>
                                     </table>
                                     <div class="text-center">
-                                        <button type="button" class="btn btn-info botao-mostrar-dados margin-bottom10">Mostrar tudo...</button>
-                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info botao-alterar-dados escondido">
+                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
                                             Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>  
                                         <div class="text-center">
@@ -391,7 +389,6 @@
         <script src="resources/js/intro.js"></script>
         <script src="resources/js/dataTable.js"></script>
         <script src="resources/js/keyTable.js"></script>
-        <script src="resources/js/minha-conta.js"></script>
         <script>
                                                 $(function () {
                                                     var events = $('#events');
