@@ -7,7 +7,10 @@ package controller;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import model.Entity.Cliente;
 import model.Entity.Consultor;
+import model.Entity.ListasDados;
+import utils.Validators;
 
 /**
  *
@@ -17,10 +20,12 @@ import model.Entity.Consultor;
 @SessionScoped
 public class AdminBean {
 
-    Consultor consultorEditado;
+    private Consultor consultorEditado, consultorExcluido;
+    private Cliente clienteEditado, clienteExcluido;
+    private Validators validador;
 
     public AdminBean() {
-        consultorEditado = new Consultor();
+        validador = new Validators();
     }
 
     public Consultor getConsultorEditado() {
@@ -31,12 +36,47 @@ public class AdminBean {
         this.consultorEditado = consultorEditado;
     }
 
+    public Cliente getClienteEditado() {
+        return clienteEditado;
+    }
+
+    public void setClienteEditado(Cliente clienteEditado) {
+        this.clienteEditado = clienteEditado;
+    }
+
+    public Consultor getConsultorExcluido() {
+        return consultorExcluido;
+    }
+
+    public void setConsultorExcluido(Consultor consultorExcluido) {
+        this.consultorExcluido = consultorExcluido;
+    }
+
+    public Cliente getClienteExcluido() {
+        return clienteExcluido;
+    }
+
+    public void setClienteExcluido(Cliente clienteExcluido) {
+        this.clienteExcluido = clienteExcluido;
+    }
+
     public String adminEditarConsultor() {
         return "admEditar.xhtml?faces-redirect=true";
     }
 
-    public String salvarEdicao() {
-        consultorEditado = new Consultor();
+    public String deletarCliente() {
+        ListasDados listasDeDados = validador.listaControladorAplicacao();
+        listasDeDados.deletarCliente(clienteEditado);
+        return "dashboard.xhtml?faces-redirect=true";
+    }
+
+    public String deletarConsultor() {
+        ListasDados listasDeDados = validador.listaControladorAplicacao();
+        listasDeDados.deletarConsultor(consultorEditado);
+        return "dashboard.xhtml?faces-redirect=true";
+    }
+
+    public String editarSelecionado() {
         return "dashboard.xhtml?faces-redirect=true";
     }
 }

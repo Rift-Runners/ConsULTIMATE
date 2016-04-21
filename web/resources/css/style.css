@@ -404,6 +404,18 @@ body{
     font-size: 20px;
 }
 
+#tabela-clientes-adm thead tr th{
+    font-family: TrackType;
+    font-size: 16px;
+    text-align: center;
+}
+
+#tabela-consultores-adm thead tr th{
+    font-family: TrackType;
+    font-size: 16px;
+    text-align: center;
+}
+
 .dashboard-background {
     overflow: auto;
     height:100%;
