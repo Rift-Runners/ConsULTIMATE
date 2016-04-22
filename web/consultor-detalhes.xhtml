@@ -2,68 +2,92 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>#{sessionBean.consultorVisualizado.nome}</title>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
-        <div class="consultor-detalhes-background">
-            <div class="row padding-top100">
-                <div class="col-md-1"></div>
-                <div class="col-md-4">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Dados de #{sessionBean.consultorVisualizado.nome}</h3>
+        <div class="consultor-detalhes-background ">
+            <div class="container-fluid">
+                <div class="row padding-top100">
+                    <div class="col-md-1"></div>
+                    <div class="col-md-3">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center font-tracktype">Dados de #{sessionBean.consultorVisualizado.nome}</h3>
+                            </div>
+                            <div class="panel-body text-center">
+                                <table class="table table-padding-bottom10">
+                                    <tr>
+                                        <th>Consultor:</th>
+                                        <td>#{sessionBean.consultorVisualizado.nome}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Cidade:</th>
+                                        <td>#{sessionBean.consultorVisualizado.cidade}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>UF:</th>
+                                        <td>#{sessionBean.consultorVisualizado.uf}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Endereço:</th>
+                                        <td>#{sessionBean.consultorVisualizado.endereco}</td>
+                                    </tr>                            
+                                    <tr>
+                                        <th>CNPJ:</th>
+                                        <td>#{sessionBean.consultorVisualizado.cnpj}</td>
+                                    </tr>                
+                                    <tr>
+                                        <th>Área:</th>
+                                        <td>#{sessionBean.consultorVisualizado.area}</td>
+                                    </tr>                                                          
+                                </table>
+                            </div>
                         </div>
-                        <div class="panel-body text-center">
-                            <table class="table-padding-bottom10">
-                                <tr>
-                                    <th>Email:</th>
-                                    <td>#{sessionBean.consultorVisualizado.email}</td>
-                                </tr>
-                                <tr>
-                                    <th>Cidade:</th>
-                                    <td>#{sessionBean.consultorVisualizado.cidade}</td>
-                                </tr>
-                                <tr>
-                                    <th>UF:</th>
-                                    <td>#{sessionBean.consultorVisualizado.uf}</td>
-                                </tr>
-                                <tr>
-                                    <th>Endereço:</th>
-                                    <td>#{sessionBean.consultorVisualizado.endereco}</td>
-                                </tr>                            
-                                <tr>
-                                    <th>CNPJ:</th>
-                                    <td>#{sessionBean.consultorVisualizado.cnpj}</td>
-                                </tr>                
-                                <tr>
-                                    <th>Área:</th>
-                                    <td>#{sessionBean.consultorVisualizado.area}</td>
-                                </tr>                
-                                <tr>
-                                    <th>Descrição:</th>
-                                    <td>#{sessionBean.consultorVisualizado.descricao}</td>
-                                </tr>                
-                            </table>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center font-tracktype">Detalhes do Consultor</h3>
+                            </div>
+                            <div class="panel-body text-center">
+                                <p>#{sessionBean.consultorVisualizado.descricao}</p>
+                            </div>
                         </div>
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center font-tracktype">Valores de Contratação</h3>
+                            </div>
+                            <div class="panel-body">
+                                <h:form class="text-center">
+                                    <h:selectOneRadio value="#{sessionBean.valorSelecionado}" layout="pageDirection" class="table">
+                                            <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[0]}" itemLabel="1 Hora - R$ #{sessionBean.valoresConsultorVisualizado()[0]}"/>
+                                            <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[1]}" itemLabel="3 Horas (10%) - R$ #{sessionBean.valoresConsultorVisualizado()[1]}"/>
+                                            <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[2]}" itemLabel="5 Horas (20%) - R$ #{sessionBean.valoresConsultorVisualizado()[2]}"/>
+                                            <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[3]}" itemLabel="10 Horas (30%) - R$ #{sessionBean.valoresConsultorVisualizado()[3]}"/>
+                                        </h:selectOneRadio>
+                                    <div>
+                                        <h:commandButton class="btn btn-info btn-lg margin-bottom25 font-tracktype" value="Contratar" action="#{sessionBean.criarTransacao()}"/>
+                                    </div>
+                                </h:form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h3 class="font-tracktype">Dúvidas?</h3>
+                        <p class="boldfont-size16">Envie sua pergunta para #{sessionBean.consultorVisualizado.nome}!</p>
+                        <textarea class="form-control margin-bottom25" placeholder="Comentário ou dúvida (seja claro e direto)" rows="11"></textarea>
                         <h:form class="text-center">
-                            <h:commandButton class="btn btn-info btn-lg margin-bottom25" value="Contratar" action="#{sessionBean.criarTransacao()}"/>
+                            <h:commandButton class="btn btn-info btn-lg font-tracktype" value="Enviar!" action="#{sessionBean.perguntarConsultor()}"/>
                         </h:form>
                     </div>
+                    <div class="col-md-1"></div>
                 </div>
-                <div class="col-md-2"></div>
-                <div class="col-md-4">
-                    
-                    <h3>Dúvidas?</h3>
-                    <p class="boldfont-size16">Envie sua pergunta para #{sessionBean.consultorVisualizado.nome}!</p>
-                    <textarea class="form-control margin-bottom25" placeholder="Comentário" rows="10"></textarea>
-                    <h:form class="text-center">
-                        <h:commandButton class="btn btn-info btn-lg" value="Enviar!" action="#{sessionBean.perguntarConsultor()}"/>
-                    </h:form>
-                </div>
-                <div class="col-md-1"></div>
             </div>
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>

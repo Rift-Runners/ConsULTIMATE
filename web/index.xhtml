@@ -14,29 +14,55 @@
         <ui:include src="templates/header.xhtml"/>
 
         <div class="main-header">
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-6">
-                    <p class="title">ConsULTIMATE</p>
-                    <div class="embed-responsive embed-responsive-16by9 video">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lAkuJXGldrM"></iframe>
+            <div class="container-fluid">
+                <div class="row row-eq-height">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <p class="title">ConsULTIMATE</p>
+                        <div class="embed-responsive embed-responsive-16by9 video">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/lAkuJXGldrM"></iframe>
+                        </div>
                     </div>
+                    <div class="col-md-3"></div>
                 </div>
-                <div class="col-md-3"></div>
             </div>
         </div>
 
-        <div id="redes-sociais" style="background: blue">
-            <div class="row">
-                <div class="col-md-3">twitter</div>
-                <div class="col-md-3">fb</div>
-                <div class="col-md-3">g+</div>
-                <div class="col-md-3"></div>
+        <div id="redes-sociais" class="redes-sociais-background">
+            <div class="container-fluid">
+                <div class="row row-eq-height">
+                    <div class="col-md-3 rede-social">
+                        <a href="//fb.com">
+                            <img src="resources/images/logos/fbLogo.png"/>
+                        </a>
+                        <p>Facebook</p>
+                    </div>
+                    <div class="col-md-3 rede-social">
+                        <a href="//github.com/matuella/ConsULTIMATE">
+                            <img src="resources/images/logos/ghLogo.png"/>
+                        </a>
+                        <p>Github</p>
+                    </div>
+                    <div class="col-md-3 rede-social">
+                        <a href="//youtube.com">
+                            <img src="resources/images/logos/ytLogo.png"/>
+                        </a>
+                        <p>YouTube</p>
+                    </div>
+                    <div class="col-md-3 rede-social">
+                        <a href="//linkedin.com">
+                            <img src="resources/images/logos/lkLogo.png"/>
+                        </a>
+                        <p>LinkedIn</p>
+                    </div>
+                </div>
             </div>
         </div>
-        
+
         <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/jquery-ui.min.js"></script>
         <script src="resources/js/bootstrap.js"></script>
+        <script src="resources/js/index.js"></script>
     </h:body>
 </html>
 

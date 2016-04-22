@@ -1,12 +1,104 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
+        <meta charset="utf-8"/>
         <title>Quem Somos</title>
+        <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/bootstrap.css" rel="stylesheet"/>
+        <link href="resources/css/quemsomos.css" rel="stylesheet"/>
     </h:head>
     <h:body>
-        
+        <ui:include src="templates/header.xhtml"/>
+        <div class="quem-somos-background">
+            <div class="container-fluid">
+                <div class="row row-eq-height">
+                    <div class="col-md-12 text-center">
+                        <p class="quem-somos-titulo">Quem Somos?!</p>    
+                    </div>
+                </div>
+                <div class="row row-eq-height quem-somos-conteudo">
+                    <div class="col-md-2"/>
+                    <div class="col-md-5">
+                        <div class="grid">
+                            <figure class="effect-julia quem-somos-imagem">
+                                <img src="resources/images/whoweare1.jpg" alt="img21"/>
+                                <figcaption>
+                                    <h2>Rift <span>Runners</span></h2>
+                                    <div>
+                                        <p>Rift Runners é o nome da organização</p>
+                                        <p>Nosso objetivo é: </p>
+                                        <p>1º - Criar uma plataforma para consultores</p>
+                                        <p>2º - Aprender o máximo possível com isso</p>
+                                        <p>3º - Adaptá-la para um projeto escalável em algum momento</p>
+                                    </div>
+                                    <a href="#">View more</a>
+                                </figcaption>			
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="quem-somos-texto">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+                    <div class="col-md-2"/>
+                </div>
+
+                <div class="row row-eq-height quem-somos-conteudo">
+                    <div class="col-md-2"/>
+                    <div class="col-md-3">
+                        <p class="quem-somos-texto">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="grid">
+                            <figure class="effect-apollo quem-somos-imagem" style="float: left;">
+                                <img src="resources/images/whoweare2.jpg" alt="img18"/>
+                                <figcaption>
+                                    <h2>Cons <span>ULTIMATE</span></h2>
+                                    <p>Fazer muita frescura com HTML, CSS e JS, tentando utilizar uma pá de frameworks.</p>
+                                    <a href="#">View more</a>
+                                </figcaption>			
+                            </figure>
+                        </div>
+
+                    </div>
+                    <div class="col-md-2"/>
+                </div>
+
+                <div class="row row-eq-height quem-somos-conteudo" style="border-bottom: none;">
+                    <div class="col-md-2"/>
+                    <div class="col-md-5">
+                        <div class="grid">
+                            <figure class="effect-ming quem-somos-imagem">
+                                <img src="resources/images/whoweare3.jpg"/>
+                                <figcaption>
+                                    <h2>|||||||||| D. <span>Villanova</span> ||||||||| |||||||||| G. <span>Matuella</span> ||||||||||</h2>
+                                    <p>Ganhar muita XP pra subir de nível (na vida).</p>
+                                    <a href="#">View more</a>
+                                </figcaption>			
+                            </figure>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <p class="quem-somos-texto">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+                            laboris nisi ut aliquip ex ea commodo consequat.
+                        </p>
+                    </div>
+                    <div class="col-md-2"/>
+                </div>
+            </div>
+        </div>
     </h:body>
 </html>
 

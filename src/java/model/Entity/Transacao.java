@@ -5,6 +5,7 @@
  */
 package model.Entity;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -19,12 +20,13 @@ public class Transacao {
     private int horas;
     private Date dataDaCompra;
 
-    public Transacao(Cliente cliente, Consultor consultor, double valor, int horas, Date dataDaCompra) {
+    public Transacao(Cliente cliente, Consultor consultor, double valor, int horas) {
         this.cliente = cliente;
         this.consultor = consultor;
         this.valor = valor;
         this.horas = horas;
-        this.dataDaCompra = dataDaCompra;
+        this.dataDaCompra = new Date();
+  
     }
 
     public Cliente getCliente() {

@@ -2,282 +2,411 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Minha conta</title>
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <link href="resources/css/introjs.css" rel="stylesheet"/>
+        <link href="resources/css/bootstrap-responsive.min.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/dataTable.css"/>
+        <link href="resources/css/keyTable.css" type="text/css" rel="stylesheet"/>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
         <div class="minha-conta-background">
-            <h:form rendered="#{sessionBean.clienteLogged}">
-                <div class="row">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-2">
-                        <div class="panel panel-primary">
-                            <div class="panel-heading">     
-                                <h3 class="panel-title text-center">Saldo</h3>
-                            </div>
-                            <div class="panel-body text-center">
-                                <h:outputText class="saldo" value="R$ #{sessionBean.cliente.saldo}"/>
-                                <h:commandButton class="btn btn-info add-saldo" value="Adicionar Saldo" action="adicionar-saldo.xhtml"/>
-                            </div>
+            <h:form id="form-saldo">
+                <div class="container-fluid">
+                    <div class="row row-eq-height">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2">
+                            <h:panelGroup rendered="#{sessionBean.clienteLogged}">
+                                <div class="panel panel-primary margin-top20-bottom15">
+                                    <div class="panel-heading">     
+                                        <h3 class="panel-title text-center font-tracktype">Saldo</h3>
+                                    </div>
+                                    <div class="panel-body text-center">
+                                        <h:outputText class="saldo" value="R$ #{sessionBean.cliente.saldo}"/> <br/>
+                                        <p:commandLink update="form-saldo" styleClass="btn btn-info add-saldo" onclick="PF('dialogSaldo').show();">
+                                            Adicionar Saldo
+                                        </p:commandLink>
+                                    </div>
+                                </div>
+                            </h:panelGroup>
                         </div>
+                        <div class="col-md-5"></div>
+                        <div class="col-md-3 font-tracktype text-center margin-top20-bottom15">
+                            <a class="btn btn-lg btn-primary" href="javascript:void(0);" onclick="javascript:introJs().start();">Como funciona?</a>
+                        </div>
+                        <div class="col-md-1"></div>
                     </div>
-                    <div class="col-md-8"></div>
                 </div>
             </h:form>
-            <div class="row">
-                <div class="col-md-1"/>
-                <div class="col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Transações Efetuadas <i class="glyphicon glyphicon-credit-card"></i></h3>
+            <div class="container-fluid">
+                <div class="row row-eq-height">
+                    <div class="col-md-1"/>
+                    <div class="col-md-6">
+                        <div class="panel panel-primary" data-step="1" data-intro="Aqui ficarão as transações que você combinar com o seu consultor/cliente!">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center font-tracktype">Transações Efetuadas <i class="glyphicon glyphicon-credit-card"></i></h3>
+                            </div>
+                            <div class="panel-body">
+                                <h:form rendered="#{sessionBean.clienteLogged}">
+                                    <table id="tabela-dados" class="tabela display" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="font-tracktype text-center">
+                                                <th>Nome do consultor</th>
+                                                <th>Quantidade de horas</th>
+                                                <th>Valor total</th>
+                                                <th>Data da transação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat var="transacao" value="#{sessionBean.cliente.transacoesEfetuadas}">
+                                                <tr>
+                                                    <td><h:outputText value="#{transacao.consultor.nome}"/></td>
+                                                    <td><h:outputText value="#{transacao.horas}"/></td>
+                                                    <td><h:outputText value="#{transacao.valor}"/></td>
+                                                    <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                                </tr>
+                                            </ui:repeat>     
+                                        </tbody>
+                                    </table>
+                                    <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
+                                        <div class="text-center">
+                                            <p class="font-size20">Você ainda não concluiu uma transação :(</p>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:form>
+
+                                <h:form rendered="#{sessionBean.consultorLogged}">
+                                    <table id="tabela-dados" class="tabela display" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr class="font-tracktype text-center">
+                                                <th>Nome do cliente</th>
+                                                <th>Quantidade de horas</th>
+                                                <th>Valor total</th>
+                                                <th>Data da transação</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <ui:repeat var="transacao" value="#{sessionBean.consultor.transacoesEfetuadas}">
+                                                <tr>
+                                                    <td><h:outputText value="#{transacao.cliente.nome}"/></td>
+                                                    <td><h:outputText value="#{transacao.horas}"/></td>
+                                                    <td><h:outputText value="#{transacao.valor}"/></td>
+                                                    <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
+                                                </tr>
+                                            </ui:repeat>     
+                                        </tbody>
+                                    </table>
+                                    <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
+                                        <div class="text-center">
+                                            <p class="font-size20">Você ainda não concluiu uma transação :(</p>
+                                        </div>
+                                    </h:panelGroup>
+                                </h:form>
+                            </div>
                         </div>
-                        <div class="panel-body">
-                            <h:form rendered="#{sessionBean.clienteLogged}">
-                                <table id="tabela-dados" class="table">
-                                    <tr class="text-center">
-                                        <th>Nome do consultor</th>
-                                        <th>Quantidade de horas</th>
-                                        <th>Valor total</th>
-                                        <th>Data da transação</th>
-                                    </tr>
-                                    <ui:repeat var="transacao" value="#{sessionBean.cliente.transacoesEfetuadas}">
-                                        <tr>
-                                            <td><h:outputText value="#{transacao.consultor.nome}"/></td>
-                                            <td><h:outputText value="#{transacao.horas}"/></td>
-                                            <td><h:outputText value="#{transacao.valor}"/></td>
-                                            <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
-                                        </tr>
-                                    </ui:repeat>                             
-                                </table>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
+                        <h:panelGroup rendered="#{sessionBean.consultorLogged}">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title text-center font-tracktype">Descrição <i class="glyphicon glyphicon-briefcase"></i></h3>
                                 </div>
-                            </h:form>
+                                <div class="panel-body text-center">
+                                    <h:form>
+                                        <h:outputText id="display" />
+                                        <p:inputTextarea required="true" requiredMessage="Campo obrigatório" rows="13" cols="30" 
+                                                         class="form-control" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes." 
+                                                         autoResize="false" value="#{sessionBean.consultorEditado.descricao}"/>
+                                        <h:message for="consultorDescricao" class="error-message"/> <br/>
+                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
+                                            Salvar Descrição <i class="glyphicon glyphicon-floppy-saved"></i>
+                                        </p:commandLink>  
+                                    </h:form>
+                                </div>
+                            </div>
+                        </h:panelGroup>
+                    </div>
+                    <div class="col-md-1"/>
+                    <div class="col-md-3">
+                        <div class="panel panel-primary" data-step="2" data-intro="Aqui ficarão os seus dados, você pode editálos a qualquer momento se expandir a aba!">
+                            <div class="panel-heading">
+                                <h3 class="panel-title text-center font-tracktype">Dados Pessoais <i class="glyphicon glyphicon-user"></i></h3>
+                            </div>
+                            <div class="panel-body">
+                                <h:form id="dados-cliente" rendered="#{sessionBean.clienteLogged}">
+                                    <table id="tabela-dados" class="table table-hover">
+                                        <tbody>
+                                            <tr>
+                                                <th class="font-tracktype">Nome:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                                                 class="input-editavel" id="clienteNome" 
+                                                                 value="#{sessionBean.clienteEditado.nome}"/>
+                                                    <h:message for="clienteNome" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">Telefone:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                                 class="input-editavel telefoneMask" id="clienteTelefone"
+                                                                 value="#{sessionBean.clienteEditado.telefone}"/>
+                                                    <h:message for="clienteTelefone" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">UF:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório" 
+                                                                 class="input-editavel" id="clienteUf" 
+                                                                 value="#{sessionBean.clienteEditado.uf}"/>
+                                                    <h:message for="clienteUf" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">Cidade:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                                                 class="input-editavel" id="clienteCidade" 
+                                                                 value="#{sessionBean.clienteEditado.cidade}"/>
+                                                    <h:message for="clienteCidade" class="error-message"/> 
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">Endereço:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
+                                                                 class="input-editavel" id="clienteEndereco"
+                                                                 value="#{sessionBean.clienteEditado.endereco}"/>
+                                                    <h:message for="clienteEndereco" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">CPF:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                                 class="input-editavel cpfMask" id="clienteCpf"
+                                                                 value="#{sessionBean.clienteEditado.cpf}"/>
+                                                    <h:message for="clienteCpf" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">RG:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                                 class="input-editavel rgMask" id="clienteRg"
+                                                                 value="#{sessionBean.clienteEditado.rg}"/>
+                                                    <h:message for="clienteRg" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">Email:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                                 class="input-editavel" id="clienteEmail"
+                                                                 value="#{sessionBean.clienteEditado.email}"/>
+                                                    <h:message for="clienteEmail" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th class="font-tracktype">Senha:</th>
+                                                <td>
+                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                                 class="input-editavel" id="clienteSenha"
+                                                                 value="#{sessionBean.clienteEditado.senha}"/>
+                                                    <h:message for="clienteSenha" class="error-message"/>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="text-center">
+                                        <p:commandLink update="dados-cliente" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
+                                            Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
+                                        </p:commandLink>    
+                                        <div class="text-center">
+                                            <p:commandLink styleClass="btn btn-danger" onclick="PF('dialogDeletar').show();">
+                                                <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
+                                            </p:commandLink>
+                                        </div>
+                                    </div>
+                                </h:form>
 
 
-                            <h:form rendered="#{sessionBean.consultorLogged}">
-                                <table id="tabela-dados" class="table">
-                                    <tr class="text-center">
-                                        <th>Nome do cliente</th>
-                                        <th>Quantidade de horas</th>
-                                        <th>Valor total</th>
-                                        <th>Data da transação</th>
-                                    </tr>
-                                    <ui:repeat var="transacao" value="#{sessionBean.consultor.transacoesEfetuadas}">
+                                <h:form id="dados-consultor" rendered="#{sessionBean.consultorLogged}">
+                                    <table id="tabela-dados" class="table">
                                         <tr>
-                                            <td><h:outputText value="#{transacao.cliente.nome}"/></td>
-                                            <td><h:outputText value="#{transacao.horas}"/></td>
-                                            <td><h:outputText value="#{transacao.valor}"/></td>
-                                            <td><h:outputText value="#{transacao.dataDaCompra}"/></td>
-                                        </tr>
-                                    </ui:repeat>     
-                                </table>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                </div>
-                            </h:form>
-                        </div>
-                    </div>  
-                </div>
-                <div class="col-md-1"/>
-                <div class="col-md-3">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h3 class="panel-title text-center">Dados Pessoais <i class="glyphicon glyphicon-user"></i></h3>
-                        </div>
-                        <div class="panel-body">
-                            <h:form rendered="#{sessionBean.clienteLogged}">
-                                <table id="tabela-dados" class="table table-hover">
-                                    <tbody>
-                                        <tr>
-                                            <th>Nome:</th>
-                                            <td>
+                                            <th class="font-tracktype">Nome:</th>
+                                            <td>                            
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                             class="" id="clienteNome" 
-                                                             value="#{sessionBean.clienteEditado.nome}"/>
-                                                <h:message for="clienteNome" class="error-message"/>
+                                                             class="input-editavel" id="consultorNome"
+                                                             value="#{sessionBean.consultorEditado.nome}"/>
+                                                <h:message for="consultorNome" class="error-message"/>
                                             </td>
                                         </tr>
                                         <tr>
-                                            <th>Email:</th>
+                                            <th class="font-tracktype">Email:</th>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
+                                                             class="input-editavel" id="consultorEmail"
+                                                             value="#{sessionBean.consultorEditado.email}"/>
+                                                <h:message for="consultorEmail" class="error-message"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="font-tracktype">Área:</th>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                             class="input-editavel" id="consultorArea"
+                                                             value="#{sessionBean.consultorEditado.area}"/>
+                                                <h:message for="consultorArea" class="error-message"/>
+                                            </td>
+                                        </tr> 
+                                        <tr>
+                                            <th class="font-tracktype">UF:</th>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                             class="input-editavel" id="consultorUf"
+                                                             value="#{sessionBean.consultorEditado.uf}"/>
+                                                <h:message for="consultorUf" class="error-message"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th class="font-tracktype">Cidade:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
-                                                             class="" id="clienteEmail"
-                                                             value="#{sessionBean.clienteEditado.email}"/>
-                                                <h:message for="clienteEmail" class="error-message"/>
+                                                             class="input-editavel" id="consultorCidade"
+                                                             value="#{sessionBean.consultorEditado.cidade}"/>
+                                                <h:message for="consultorCidade" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
-                                            <th>UF:</th>
+                                        <tr>
+                                            <th class="font-tracktype">Endereço:</th>
                                             <td>
-                                                <h:inputText required="true" requiredMessage="Campo obrigatório" 
-                                                             class="" id="clienteUf" 
-                                                             value="#{sessionBean.clienteEditado.uf}"/>
-                                                <h:message for="clienteUf" class="error-message"/>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
+                                                             class="input-editavel" id="consultorEndereco"
+                                                             value="#{sessionBean.consultorEditado.endereco}"/>
+                                                <h:message for="consultorEndereco" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
-                                            <th>Cidade:</th>
-                                            <td>
-                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                             class="" id="clienteCidade" 
-                                                             value="#{sessionBean.clienteEditado.cidade}"/>
-                                                <h:message for="clienteCidade" class="error-message"/> 
-                                            </td>
-                                        </tr>
-                                        <tr class="escondido">
-                                            <th>Endereço:</th>
-                                            <td>
-                                                <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
-                                                             class="" id="clienteEndereco"
-                                                             value="#{sessionBean.clienteEditado.endereco}"/>
-                                                <h:message for="clienteEndereco" class="error-message"/>
-                                            </td>
-                                        </tr>
-                                        <tr class="escondido">
-                                            <th>Telefone:</th>
+                                        <tr>
+                                            <th class="font-tracktype">Telefone:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="telefoneMask" id="clienteTelefone"
-                                                             value="#{sessionBean.clienteEditado.telefone}"/>
-                                                <h:message for="clienteTelefone" class="error-message"/>
+                                                             class="input-editavel telefoneMask" id="consultorTelefone"
+                                                             value="#{sessionBean.consultorEditado.telefone}"/>
+                                                <h:message for="consultorTelefone" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
-                                            <th>CPF:</th>
+                                        <tr>
+                                            <th class="font-tracktype">CPNJ:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="cpfMask" id="clienteCpf"
-                                                             value="#{sessionBean.clienteEditado.cpf}"/>
-                                                <h:message for="clienteCpf" class="error-message"/>
+                                                             class="input-editavel cnpjMask" id="consultorCpnj"
+                                                             value="#{sessionBean.consultorEditado.cnpj}"/>
+                                                <h:message for="consultorCpnj" class="error-message"/>
                                             </td>
                                         </tr>
-                                        <tr class="escondido">
-                                            <th>RG:</th>
+                                        <tr>
+                                            <th class="font-tracktype">Valor por hora:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="rgMask" id="clienteRg"
-                                                             value="#{sessionBean.clienteEditado.rg}"/>
-                                                <h:message for="clienteRg" class="error-message"/>
+                                                             class="input-editavel moneyMask" id="consultorValor"
+                                                             value="#{sessionBean.consultorEditado.valorHora}"/>
+                                                <h:message for="consultorValor" class="error-message"/>
                                             </td>
                                         </tr>
-                                    </tbody>
-                                </table>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                    <h:commandLink action="#{sessionBean.editarConta()}" styleClass="btn btn-info botao-alterar-dados">
-                                        Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
-                                    </h:commandLink>  
+                                        <tr>
+                                            <th class="font-tracktype">Senha:</th>
+                                            <td>
+                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
+                                                             class="input-editavel" id="consultorSenha"
+                                                             value="#{sessionBean.consultorEditado.senha}"/>
+                                                <h:message for="consultorSenha" class="error-message"/>
+                                            </td>
+                                        </tr>
+                                    </table>
                                     <div class="text-center">
-                                        <h:commandLink id="logoutButton" action="#{sessionBean.deletarConta()}" styleClass="btn btn-danger">
-                                            <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
-                                        </h:commandLink>      
+                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
+                                            Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
+                                        </p:commandLink>  
+                                        <div class="text-center">
+                                            <p:commandLink styleClass="btn btn-danger" onclick="PF('dialogDeletar').show();">
+                                                <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
+                                            </p:commandLink>
+                                        </div>
                                     </div>
-                                </div>
-                            </h:form>
-
-
-                            <h:form rendered="#{sessionBean.consultorLogged}">
-                                <table id="tabela-dados" class="table">
-                                    <tr>
-                                        <th>Nome:</th>
-                                        <td>                            
-                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                         class="" id="consultorNome"
-                                                         value="#{sessionBean.consultorEditado.nome}"/>
-                                            <h:message for="consultorNome" class="error-message"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Email:</th>
-                                        <td>
-                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
-                                                         class="" id="consultorEmail"
-                                                         value="#{sessionBean.consultorEditado.email}"/>
-                                            <h:message for="consultorEmail" class="error-message"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>Área:</th>
-                                        <td><h:inputText value="#{sessionBean.consultorEditado.area}"/></td>
-                                    </tr> 
-                                    <tr>
-                                        <th>Descrição:</th>
-                                        <td>
-                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="1000" 
-                                                         class="" id="consultorDescricao"
-                                                         value="#{sessionBean.consultorEditado.descricao}"/>
-                                            <h:message for="consultorDescricao" class="error-message"/>
-                                        </td>
-                                    </tr> 
-                                    <tr class="escondido">
-                                        <th>UF:</th>
-                                        <td>
-                                            <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                         class="" id="consultorUf"
-                                                         value="#{sessionBean.consultorEditado.uf}"/>
-                                            <h:message for="consultorUf" class="error-message"/>
-                                        </td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <th>Cidade:</th>
-                                        <td>
-                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
-                                                         class="" id="consultorCidade"
-                                                         value="#{sessionBean.consultorEditado.cidade}"/>
-                                            <h:message for="consultorCidade" class="error-message"/>
-                                        </td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <th>Endereço:</th>
-                                        <td>
-                                            <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
-                                                         class="" id="consultorEndereco"
-                                                         value="#{sessionBean.consultorEditado.endereco}"/>
-                                            <h:message for="consultorEndereco" class="error-message"/>
-                                        </td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <th>Telefone:</th>
-                                        <td>
-                                            <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                         class="telefoneMask" id="consultorTelefone"
-                                                         value="#{sessionBean.consultorEditado.telefone}"/>
-                                            <h:message for="consultorTelefone" class="error-message"/>
-                                        </td>
-                                    </tr>
-                                    <tr class="escondido">
-                                        <th>CPNJ:</th>
-                                        <td><h:inputText value="#{sessionBean.consultorEditado.cnpj}"/></td>
-                                    </tr>
-                                </table>
-                                <div class="text-center">
-                                    <button type="button" class="btn btn-info botao-mostrar-dados">Mostrar tudo...</button>
-                                    <h:commandLink action="#{sessionBean.editarConta()}" styleClass="btn btn-info botao-alterar-dados">
-                                        Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
-                                    </h:commandLink>  
-                                    <div class="text-center">
-                                        <h:commandLink id="logoutButton" action="#{sessionBean.deletarConta()}" styleClass="btn btn-danger">
-                                            <i class="glyphicon glyphicon-trash"></i> Deletar Conta!
-                                        </h:commandLink>      
-                                    </div>
-                                </div>
-                            </h:form>
+                                </h:form>
+                            </div>
                         </div>
                     </div>
+                    <div class="col-md-1"/>
                 </div>
-                <div class="col-md-1"/>
             </div>
         </div>
+
+        <p:dialog modal="true" id="dialog" widgetVar="dialogDeletar" draggable="false" resizable="false" header="Confirmar deleção!"
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Deseja mesmo excluir sua conta?</p>
+            <p>Note que este processo é irreversível!</p>
+            <p:commandButton action="#{sessionBean.deletarConta()}" style="float: right" class="btn btn-primary" value="Sim"/>
+            <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" class="btn btn-primary" value="Não"/>
+        </p:dialog>
+
+        <p:dialog modal="true" id="dialog2" widgetVar="dialogEditarSucesso" draggable="false" resizable="false" header="Sucesso!"
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Dados editados com sucesso!</p>
+            <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
+        </p:dialog>
+
+        <p:dialog modal="true" id="dialog3" widgetVar="dialogEditarErro" draggable="false" resizable="false" header="Erro na edição!"
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Algum dado digitado está inválido!</p>
+            <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
+        </p:dialog>
+
+        <p:dialog modal="true" id="dialog4" widgetVar="dialogSaldo" draggable="false" resizable="false" header="Adicionar Saldo!"
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <h:form>
+                <h:selectOneRadio value="#{sessionBean.valorSaldo}" layout="pageDirection" class="table">
+                    <f:selectItem itemValue="100" itemLabel="R$ 100,00"/>  
+                    <f:selectItem itemValue="300" itemLabel="R$ 300,00"/>
+                    <f:selectItem itemValue="500" itemLabel="R$ 500,00"/>
+                </h:selectOneRadio> 
+                <h:commandButton class="btn btn-primary" value="Adicionar" style="float: right; margin-left: 100px;" action="#{sessionBean.adicionarSaldo()}"/>
+                <h:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" styleClass="btn btn-primary" value="Cancelar"/>
+            </h:form>
+        </p:dialog>
+
         <script src="resources/js/jquery-2.2.1.js"></script>
+        <script src="resources/js/jquery-ui.min.js"/>
         <script src="resources/js/bootstrap.js"></script>
-        <script src="resources/js/minha-conta.js"></script>
         <script src="resources/js/jquery.mask.js"></script>
         <script src="resources/js/custom.mask.js"></script>
+        <script src="resources/js/intro.js"></script>
+        <script src="resources/js/dataTable.js"></script>
+        <script src="resources/js/keyTable.js"></script>
+        <script>
+                                                $(function () {
+                                                    var events = $('#events');
+                                                    var table = $('.tabela').DataTable({
+                                                        keys: true
+                                                    });
+                                                    table
+                                                            .on('key', function (e, datatable, key, cell, originalEvent) {
+                                                                events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                                                            })
+                                                            .on('key-focus', function (e, datatable, cell) {
+                                                                events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                                                            })
+                                                            .on('key-blur', function (e, datatable, cell) {
+                                                                events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                                                            });
+                                                });
+        </script>
     </h:body>
 </html>
 

@@ -3,68 +3,84 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Consultores</title>
-        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'/>
+        <!--        <link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'/>-->
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="resources/css/style.css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="resources/css/dataTable.css"/>
+        <link href="resources/css/keyTable.css" type="text/css" rel="stylesheet"/>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
         <div class="consultores-background">
-            <div class="padding-top40-bottom25">
-                <h:form>
-                    <div class="row margin-bottom25">
-                        <div class="col-md-4 col-md-offset-4">
-                            <h:selectOneMenu class="form-control font-size20" id="categoria" value="#{mainController.consultoresAreaSelecionada}">
-                                <f:selectItem itemValue="" itemLabel="Selecione uma área"/>  
-                                <f:selectItems value="#{mainController.listasDeDados.listaAreas}" var="area" 
-                                               itemLabel="#{area}" itemValue="#{area}" />
-                            </h:selectOneMenu>
-
-                        </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                        <p class="consultores-titulo">Consultores</p>    
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 col-md-offset-4">  
-                            <div class=" margin-top20-bottom15 text-center">
-                                <div class="input-group margin-bottom10">
-                                    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
-                                    <h:inputText p:placeholder="Assunto ou informação relacionada..." class="form-control font-size20" />                            
-                                </div>
-                                <h:commandButton class="btn btn-primary btn-lg" action="#{sessionBean.entrar()}" id="loginBtn" value="Filtrar!" />  
+                </div>
+                <div class="row">
+                    <div class="col-md-12 padding-consultores-table">
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                <table id="tabela-consultores" class="tabela display text-center" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome</th>
+                                            <th>Área</th>
+                                            <th>Cidade</th>
+                                            <th>UF</th>
+                                            <th>Descrição</th>
+                                            <th>!</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
+                                            <tr>
+                                                <td><h:outputText value="#{consultor.nome}"/></td>
+                                                <td><h:outputText value="#{consultor.area}"/></td>
+                                                <td><h:outputText value="#{consultor.cidade}"/></td>
+                                                <td><h:outputText value="#{consultor.uf}"/></td>
+                                                <td><h:outputText value="#{mainController.stringMinimizada(consultor.descricao, 100)} ..."/></td>
+                                                <td>
+                                                    <h:form>
+                                                        <h:commandButton  class="btn btn-primary btn-lg font-tracktype" action="#{sessionBean.visualizaConsultor()}" value="Consultar!">
+                                                            <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
+                                                        </h:commandButton>
+                                                    </h:form>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </h:form>
-            </div>
-            <div class="row">
-                <div class="col-md-10 col-md-offset-1 consultores"> 
-                    <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
-                        <div class="#{consultor.area} consultor-lista" style="padding-bottom: 60px; font-size:18px;">
-                                <h:outputText class="consultor-info" value="Nome: #{consultor.nome}"/>
-                                <h:outputText class="consultor-info" value="Cidade: #{consultor.cidade}/#{consultor.uf}"/>
-                                <h:outputText class="consultor-info" value="Telefone: #{consultor.telefone}"/><br/><br/>
-                                <h:outputText class="consultor-info" value="Descrição: #{consultor.descricao}"/>
-                            <h:form>
-                                <h:commandButton style="float: right;" class="btn btn-primary btn-lg" action="#{sessionBean.visualizaConsultor()}" value="Saiba mais!">
-                                    <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
-                                </h:commandButton>
-                            </h:form>
-                        </div>
-                    </ui:repeat>
                 </div>
             </div>
         </div>
         <script src="resources/js/jquery-2.2.1.js"></script>
-        <script type="text/javascript">
-            $("select").change(function () {
-                var option = $(this).find("option:selected").text();
-
-                $(this).closest("body").find(".consultores").find("div").hide(700);
-                $(this).closest("body").find("." + option).show(700);
-            }).change();
+        <script src="resources/js/dataTable.js"></script>
+        <script src="resources/js/keyTable.js"></script>
+        <script>
+            $(function () {
+                var events = $('#events');
+                var table = $('.tabela').DataTable({
+                    keys: true
+                });
+                table
+                        .on('key', function (e, datatable, key, cell, originalEvent) {
+                            events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                        })
+                        .on('key-focus', function (e, datatable, cell) {
+                            events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                        })
+                        .on('key-blur', function (e, datatable, cell) {
+                            events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                        })
+            });
         </script>
     </h:body>
 </html>

@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.sql.Date;
 import java.time.LocalDate;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 import model.Entity.Admin;
@@ -33,7 +32,7 @@ public class SessionBean implements Serializable {
     private Consultor consultor, consultorEditado, consultorVisualizado;
     private Admin admin;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
-    private double valorSaldo;
+    private double valorSaldo, valorSelecionado;
     private Validators validador;
 
     /**
@@ -150,6 +149,14 @@ public class SessionBean implements Serializable {
         this.consultorEditado = consultorEditado;
     }
 
+    public double getValorSelecionado() {
+        return valorSelecionado;
+    }
+
+    public void setValorSelecionado(double valorSelecionado) {
+        this.valorSelecionado = valorSelecionado;
+    }
+
     public String visualizaConsultor() {
         //AINDA NÃO IMPLEMENTADO!
         return "consultor-detalhes.xhtml?faces-redirect=true";
@@ -158,13 +165,20 @@ public class SessionBean implements Serializable {
     public String adicionarSaldo() {
         cliente.setSaldo(cliente.getSaldo() + valorSaldo);
         valorSaldo = 0d;
-        return "minha-conta.xhtml?faces-redirect=true";
+        return "";
+    }
+
+    public double[] valoresConsultorVisualizado() {
+        double valorBase = consultorVisualizado.getValorHora();
+        return new double[]{valorBase, valorBase * 2.7, valorBase * 4, valorBase * 7};
     }
 
     public String criarTransacao() {
-        if (cliente.getSaldo() >= 100) {
-            cliente.setSaldo(cliente.getSaldo() - 100);
-            cliente.addTransacao(new Transacao(cliente, consultorVisualizado, 100, 1, Date.valueOf(LocalDate.now())));
+        if (cliente.getSaldo() >= valorSelecionado) {
+            cliente.setSaldo(cliente.getSaldo() - valorSelecionado);
+            Transacao transacao = new Transacao(cliente, consultorVisualizado, valorSelecionado, 1);
+            cliente.addTransacao(transacao);
+            consultorVisualizado.addTransacao(transacao);
         }
         return "minha-conta.xhtml?faces-redirect=true";
     }
@@ -205,8 +219,8 @@ public class SessionBean implements Serializable {
                 }
             }
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Usuário e/ou senha inválidos.", null));
-        return "login.xhtml";
+        RequestContext.getCurrentInstance().execute("PF('dialogInvalida').show()");
+        return "";
     }
 
     public String sair() {
@@ -236,20 +250,29 @@ public class SessionBean implements Serializable {
             if (validador.validaCliente(clienteEditado)) {
                 listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(cliente), clienteEditado);
                 cliente = clienteEditado;
-                return "contato.xhtml?faces-redirect=true";
+                RequestContext.getCurrentInstance().execute("PF('dialogEditarSucesso').show()");
             } else {
                 clienteEditado = new Cliente(cliente);
-                return "index.xhtml?faces-redirect=true";
+                RequestContext.getCurrentInstance().execute("PF('dialogEditarErro').show()");
             }
+        } else if (validador.validaConsultor(consultorEditado)) {
+            listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultor), consultorEditado);
+            consultor = consultorEditado;
+            RequestContext.getCurrentInstance().execute("PF('dialogEditarSucesso').show()");
+            return "";
         } else {
-            if (validador.validaConsultor(consultorEditado)) {
-                listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultor), consultorEditado);
-                consultor = consultorEditado;
-                return "contato.xhtml?faces-redirect=true";
-            } else {
-                consultorEditado = new Consultor(consultor);
-                return "index.xhtml?faces-redirect=true";
-            }
+            consultorEditado = new Consultor(consultor);
+            RequestContext.getCurrentInstance().execute("PF('dialogEditarErro').show()");
+            return "";
+        }
+        return "";
+    }
+
+    public boolean isListaTransacoesVazia() {
+        if (clienteLogged) {
+            return cliente.getTransacoesEfetuadas().isEmpty();
+        } else {
+            return consultor.getTransacoesEfetuadas().isEmpty();
         }
     }
 

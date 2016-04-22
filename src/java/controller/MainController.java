@@ -11,10 +11,13 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
+import javax.faces.context.Flash;
 import javax.servlet.http.HttpServletRequest;
+import model.Entity.Area;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
+import org.primefaces.context.RequestContext;
 import utils.Validators;
 
 /**
@@ -25,7 +28,8 @@ import utils.Validators;
 @ApplicationScoped
 public class MainController {
 
-    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete, consultoresAreaSelecionada;
+    private String usuario, senha, emailRecuperaSenha, tempSenhaRepete, consultoresAreaSelecionada,
+            contatoNome, contatoEmail, contatoDescricao;
     private ListasDados listasDeDados;
     private Consultor consultor;
     private Cliente cliente;
@@ -102,7 +106,46 @@ public class MainController {
         this.tempSenhaRepete = tempSenhaRepete;
     }
 
-    public List<String> listaEstados(){
+    public String getContatoNome() {
+        return contatoNome;
+    }
+
+    public void setContatoNome(String contatoNome) {
+        this.contatoNome = contatoNome;
+    }
+
+    public String getContatoEmail() {
+        return contatoEmail;
+    }
+
+    public String getContatoDescricao() {
+        return contatoDescricao;
+    }
+
+    public void setContatoDescricao(String contatoDescricao) {
+        this.contatoDescricao = contatoDescricao;
+    }
+
+    public void setContatoEmail(String contatoEmail) {
+        this.contatoEmail = contatoEmail;
+    }
+    
+    public String stringMinimizada(String texto, int tamanhoMaximo) {
+        return texto.substring(0, Math.min(texto.length(), tamanhoMaximo));
+    }
+    
+    public List<Area> informacoesArea() {
+        List<Area> lista = new ArrayList();
+        for (int i = 0; i < 10; i++) {
+            Area areaTeste = new Area("Teste"+i);
+            areaTeste.setQtdConsultores(i);
+            areaTeste.setQtdTransacoes(i);
+            lista.add(areaTeste);
+        }
+        return lista;
+    }
+    
+    public List<String> listaEstados() {
         List<String> estados = new ArrayList();
         estados.add("A");
         estados.add("B");
@@ -110,7 +153,7 @@ public class MainController {
         estados.add("D");
         return estados;
     }
-    
+
     public boolean confirmaSenha(String senha, String repeteSenha) {
         return senha.equals(repeteSenha);
     }
@@ -123,44 +166,63 @@ public class MainController {
     public String enviaDados() {
         for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
             if (clienteCadastrado.getEmail().equals(emailRecuperaSenha)) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Dados enviados para o e-mail.", null));
-                //Enviar o usuario e a senha para o email.
-                return "esqueceu-senha";
+                return redirecionaLogin();
             }
         }
         for (Consultor consultorCadastrado : listasDeDados.getListaConsultores()) {
             if (consultorCadastrado.getEmail().equals(emailRecuperaSenha)) {
-                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Dados enviados para o e-mail.", null));
-                //Enviar o usuario e a senha para o email.
-                return "esqueceu-senha";
+                return redirecionaLogin();
             }
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "E-mail não cadastrado.", null));
-        return "esqueceu-senha";
+        return redirecionaLogin();
     }
 
-    public String registrarCliente() {
+    public void enviarContato() {
+        RequestContext.getCurrentInstance().execute("PF('dialogContato').show()");
+    }
+    
+    public void deletarContaDialog() {
+        RequestContext.getCurrentInstance().execute("PF('dialogDeletar').show()");
+    }
+
+    public String redirecionaLogin() {
+        return "login.xhtml?faces-redirect=true";
+    }
+
+    public String redirecionaContato() {
+        return "contato.xhtml?faces-redirect=true";
+    }
+
+    public String redirecionaCadastro() {
+        return "cadastro.xhtml?faces-redirect=true";
+    }
+
+    public void registrarCliente() {
         if (confirmaSenha(cliente.getSenha(), tempSenhaRepete)) {
             if (validador.validaCliente(cliente)) {
                 listasDeDados.adicionarCliente(cliente);
                 this.cliente = new Cliente();
-                return "login.xhtml?faces-redirect=true";
+                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
             }
+        } else {
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
-        return "cadastro.xhtml";
     }
 
-    public String registrarConsultor() {
+    public void registrarConsultor() {
         if (confirmaSenha(consultor.getSenha(), tempSenhaRepete)) {
             if (validador.validaConsultor(consultor)) {
                 listasDeDados.adicionarConsultor(consultor);
                 this.consultor = new Consultor();
-                return "login.xhtml?faces-redirect=true";
+                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
             }
+        } else {
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
         }
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Erro no cadastro.", null));
-        return "cadastro.xhtml";
     }
 
 }
