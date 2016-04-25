@@ -167,18 +167,18 @@
                                 <div class="col-md-4">
                                     <div class="panel panel-info">
                                         <div class="panel-heading">
-                                            <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
+                                            <h1 class="panel-title text-center font-tracktype">Transações por Área</h1>
                                         </div>
                                         <div class="panel-body">
                                             <table class="table table-hover table-padding-bottom10">
                                                 <thead>
                                                     <tr>
                                                         <th>Área</th>
-                                                        <th>Qtd. de Consultores</th>
+                                                        <th>Qtd. de Transações</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                    <ui:repeat var="entry" value="#{mainController.transacoesPorArea().entrySet().toArray()}">
                                                         <tr class="text-center">
                                                             <td>#{entry.key}</td>
                                                             <td>#{entry.value}</td>
@@ -193,21 +193,21 @@
                                 <div class="col-md-3">
                                     <div class="panel panel-info">
                                         <div class="panel-heading">
-                                            <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
+                                            <h1 class="panel-title text-center font-tracktype">Consultores que Mais Vendem</h1>
                                         </div>
                                         <div class="panel-body">
                                             <table class="table table-hover table-padding-bottom10">
                                                 <thead>
                                                     <tr>
-                                                        <th>Área</th>
-                                                        <th>Qtd. de Consultores</th>
+                                                        <th>Consultor</th>
+                                                        <th>Valor Total</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                    <ui:repeat var="entry" value="#{mainController.consultoresMaisVendem().entrySet().toArray()}">
                                                         <tr class="text-center">
                                                             <td>#{entry.key}</td>
-                                                            <td>#{entry.value}</td>
+                                                            <td>R$ #{entry.value}</td>
                                                         </tr>
                                                     </ui:repeat>
                                                 </tbody>

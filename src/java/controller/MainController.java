@@ -6,9 +6,14 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -16,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
+import model.Entity.Transacao;
 import org.primefaces.context.RequestContext;
 import utils.Validators;
 
@@ -128,23 +134,52 @@ public class MainController {
     public void setContatoEmail(String contatoEmail) {
         this.contatoEmail = contatoEmail;
     }
-    
+
     public String stringMinimizada(String texto, int tamanhoMaximo) {
         return texto.substring(0, Math.min(texto.length(), tamanhoMaximo));
     }
-    
+
     public Map<String, Integer> consultorPorArea() {
         Map<String, Integer> mapaAreas = new HashMap();
         for (Consultor cons : listasDeDados.getListaConsultores()) {
-            if(!mapaAreas.containsKey(cons.getArea())){
+            if (!mapaAreas.containsKey(cons.getArea())) {
                 mapaAreas.put(cons.getArea(), 1);
-            } else{
-                mapaAreas.put(cons.getArea(), mapaAreas.get(cons.getArea())+1);
+            } else {
+                mapaAreas.put(cons.getArea(), mapaAreas.get(cons.getArea()) + 1);
             }
         }
         return mapaAreas;
     }
-    
+
+    public Map<String, Integer> transacoesPorArea() {
+        Map<String, Integer> mapaAreas = new TreeMap();
+
+        listasDeDados.getListaConsultores().stream().forEach((cons) -> {
+            if (!mapaAreas.containsKey(cons.getArea())) {
+                mapaAreas.put(cons.getArea(), cons.getTransacoesEfetuadas().size());
+            } else {
+                mapaAreas.put(cons.getArea(), mapaAreas.get(cons.getArea()) + cons.getTransacoesEfetuadas().size());
+            }
+        });
+        return mapaAreas;
+    }
+
+    public Map<String, Integer> consultoresMaisVendem() {
+        Map<String, Integer> mapaAreas = new TreeMap();
+
+        listasDeDados.getListaConsultores().stream().forEach((cons) -> {
+            int valorTotalTransacoes = 0;
+            valorTotalTransacoes = cons.getTransacoesEfetuadas().stream().map((transacao) -> transacao.getValor()).reduce(valorTotalTransacoes, Integer::sum);
+
+            if (!mapaAreas.containsKey(cons.getNome())) {
+                mapaAreas.put(cons.getNome(), valorTotalTransacoes);
+            } else {
+                mapaAreas.put(cons.getNome(), mapaAreas.get(cons.getNome()) + valorTotalTransacoes);
+            }
+        });
+        return mapaAreas;
+    }
+
     public List<String> listaEstados() {
         List<String> estados = new ArrayList();
         estados.add("RS");
@@ -183,7 +218,7 @@ public class MainController {
         this.contatoNome = "";
         RequestContext.getCurrentInstance().execute("PF('dialogContato').show()");
     }
-    
+
     public void deletarContaDialog() {
         RequestContext.getCurrentInstance().execute("PF('dialogDeletar').show()");
     }
