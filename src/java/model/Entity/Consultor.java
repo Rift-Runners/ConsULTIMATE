@@ -15,10 +15,11 @@ import java.util.List;
 public class Consultor {
 
     private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
-    private double valorHora;
+    private int valorHora;
     private List<Transacao> transacoesEfetuadas;
 
     public Consultor() {
+        this.transacoesEfetuadas = new ArrayList();
     }
 
     //CopyConstructor
@@ -32,12 +33,13 @@ public class Consultor {
         this.cnpj = outroConsultor.getCnpj();
         this.descricao = outroConsultor.getDescricao();
         this.area = outroConsultor.getArea();
+        this.valorHora = outroConsultor.getValorHora();
         this.usuario = outroConsultor.getUsuario();
         this.senha = outroConsultor.getSenha();
         this.transacoesEfetuadas = outroConsultor.getTransacoesEfetuadas();
     }
 
-    public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha, double valorHora) {
+    public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha, int valorHora) {
         this.nome = nome;
         this.cidade = cidade;
         this.uf = uf;
@@ -141,11 +143,11 @@ public class Consultor {
         this.senha = senha;
     }
 
-    public double getValorHora() {
+    public int getValorHora() {
         return valorHora;
     }
 
-    public void setValorHora(double valorHora) {
+    public void setValorHora(int valorHora) {
         this.valorHora = valorHora;
     }
 

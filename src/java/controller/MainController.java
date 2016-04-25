@@ -147,10 +147,10 @@ public class MainController {
     
     public List<String> listaEstados() {
         List<String> estados = new ArrayList();
-        estados.add("A");
-        estados.add("B");
-        estados.add("C");
-        estados.add("D");
+        estados.add("RS");
+        estados.add("SC");
+        estados.add("SP");
+        estados.add("RJ");
         return estados;
     }
 
@@ -178,6 +178,9 @@ public class MainController {
     }
 
     public void enviarContato() {
+        this.contatoDescricao = "";
+        this.contatoEmail = "";
+        this.contatoNome = "";
         RequestContext.getCurrentInstance().execute("PF('dialogContato').show()");
     }
     

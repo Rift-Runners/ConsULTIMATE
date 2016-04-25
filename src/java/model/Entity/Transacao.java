@@ -16,11 +16,10 @@ public class Transacao {
 
     private Cliente cliente;
     private Consultor consultor;
-    private double valor;
-    private int horas;
+    private int valor, horas;
     private Date dataDaCompra;
 
-    public Transacao(Cliente cliente, Consultor consultor, double valor, int horas) {
+    public Transacao(Cliente cliente, Consultor consultor, int valor, int horas) {
         this.cliente = cliente;
         this.consultor = consultor;
         this.valor = valor;
@@ -45,11 +44,11 @@ public class Transacao {
         this.consultor = consultor;
     }
 
-    public double getValor() {
+    public int getValor() {
         return valor;
     }
 
-    public void setValor(double valor) {
+    public void setValor(int valor) {
         this.valor = valor;
     }
 

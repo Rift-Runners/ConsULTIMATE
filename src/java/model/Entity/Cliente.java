@@ -16,9 +16,10 @@ public class Cliente {
 
     private String nome, cidade, uf, endereco, telefone, email, cpf, rg, usuario, senha;
     private List<Transacao> transacoesEfetuadas;
-    private double saldo;
+    private int saldo;
 
     public Cliente() {
+        this.transacoesEfetuadas = new ArrayList();
     }
 
     //CopyConstructor
@@ -48,15 +49,15 @@ public class Cliente {
         this.rg = rg;
         this.usuario = usuario;
         this.senha = senha;
-        this.saldo = 0d;
+        this.saldo = 0;
         this.transacoesEfetuadas = new ArrayList();
     }
 
-    public double getSaldo() {
+    public int getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(double saldo) {
+    public void setSaldo(int saldo) {
         this.saldo = saldo;
     }
 

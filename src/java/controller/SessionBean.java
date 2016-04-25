@@ -27,12 +27,12 @@ import utils.Validators;
 @SessionScoped
 public class SessionBean implements Serializable {
 
-    private String usuario, senha;
+    private String usuario, senha, perguntaConsultor;
     private Cliente cliente, clienteEditado;
     private Consultor consultor, consultorEditado, consultorVisualizado;
     private Admin admin;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
-    private double valorSaldo, valorSelecionado;
+    private int valorSaldo, valorSelecionado;
     private Validators validador;
 
     /**
@@ -117,11 +117,11 @@ public class SessionBean implements Serializable {
         this.adminLogged = adminLogged;
     }
 
-    public double getValorSaldo() {
+    public int getValorSaldo() {
         return valorSaldo;
     }
 
-    public void setValorSaldo(double valorSaldo) {
+    public void setValorSaldo(int valorSaldo) {
         this.valorSaldo = valorSaldo;
     }
 
@@ -149,12 +149,20 @@ public class SessionBean implements Serializable {
         this.consultorEditado = consultorEditado;
     }
 
-    public double getValorSelecionado() {
+    public int getValorSelecionado() {
         return valorSelecionado;
     }
 
-    public void setValorSelecionado(double valorSelecionado) {
+    public void setValorSelecionado(int valorSelecionado) {
         this.valorSelecionado = valorSelecionado;
+    }
+
+    public String getPerguntaConsultor() {
+        return perguntaConsultor;
+    }
+
+    public void setPerguntaConsultor(String perguntaConsultor) {
+        this.perguntaConsultor = perguntaConsultor;
     }
 
     public String visualizaConsultor() {
@@ -164,23 +172,25 @@ public class SessionBean implements Serializable {
 
     public String adicionarSaldo() {
         cliente.setSaldo(cliente.getSaldo() + valorSaldo);
-        valorSaldo = 0d;
+        valorSaldo = 0;
         return "";
     }
 
-    public double[] valoresConsultorVisualizado() {
-        double valorBase = consultorVisualizado.getValorHora();
-        return new double[]{valorBase, valorBase * 2.7, valorBase * 4, valorBase * 7};
+    public int[] valoresConsultorVisualizado() {
+        int valorBase = consultorVisualizado.getValorHora();
+        return new int[]{valorBase, valorBase * 4, valorBase * 7, valorBase * 12};
     }
 
-    public String criarTransacao() {
-        if (cliente.getSaldo() >= valorSelecionado) {
+    public void criarTransacao() {
+        if (cliente.getSaldo() >= valorSelecionado && valorSelecionado > 0) {
             cliente.setSaldo(cliente.getSaldo() - valorSelecionado);
             Transacao transacao = new Transacao(cliente, consultorVisualizado, valorSelecionado, 1);
             cliente.addTransacao(transacao);
             consultorVisualizado.addTransacao(transacao);
+            RequestContext.getCurrentInstance().execute("PF('dialogTransacao').show()");
+        } else {
+            RequestContext.getCurrentInstance().execute("PF('dialogSaldoInsuficiente').show()");
         }
-        return "minha-conta.xhtml?faces-redirect=true";
     }
 
     public String entrar() {
@@ -229,9 +239,9 @@ public class SessionBean implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
 
-    public String perguntarConsultor() {
-        //AINDA NÃO IMPLEMENTADO!
-        return "index.xhtml?faces-redirect=true";
+    public void perguntarConsultor() {
+        this.perguntaConsultor = "";
+        RequestContext.getCurrentInstance().execute("PF('dialogPergunta').show()");
     }
 
     public String deletarConta() {
