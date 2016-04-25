@@ -12,8 +12,6 @@
         <link href="resources/css/bootstrap.css" rel="stylesheet"/>
         <link rel="stylesheet" type="text/css" href="resources/css/dataTable.css"/>
         <link href="resources/css/keyTable.css" type="text/css" rel="stylesheet"/>
-        <link href="resources/css/styleAnalise.css" type="text/css" rel="stylesheet"/>
-        <script src="resources/js/Chart.js"></script>
     </h:head>
     <h:body>
         <ui:include src="templates/header.xhtml"/>
@@ -30,7 +28,7 @@
                 </div>
                 <div class="row row-eq-height">
                     <div class="col-md-12">
-                        <div id="clientes-cadastrados" class="panel panel-info escondido">
+                        <div id="clientes-cadastrados" class="panel panel-info conteudo escondido">
                             <div class="panel-body">
                                 <h:form id="tabela-clientes-adm">
                                     <table class="tabela display text-center" cellspacing="0" width="100%">
@@ -84,7 +82,7 @@
                                 </h:form>
                             </div>
                         </div>
-                        <div id="consultores-cadastrados" class="panel panel-info escondido">
+                        <div id="consultores-cadastrados" class="panel panel-info conteudo escondido">
                             <div class="panel-body">
                                 <h:form id="tabela-consultores-adm">
                                     <table class="tabela display text-center" cellspacing="0" width="100%">
@@ -138,30 +136,82 @@
                                 </h:form>
                             </div>
                         </div>
-                        <div id="analise-de-negocios" class="panel panel-info">
-                            <div class="panel-body">
-                                <div class="row">
-                                    <div class="col-md-1"/>
-                                    <div class="col-md-4 stats-info widget">
-                                        <div class="stats-title">
-                                            <h3>Consultorias contradas por Área</h3>
+                        <div id="analise-de-negocios" class="conteudo escondido">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
                                         </div>
-                                        <div class="stats-body">
-                                            <ul class="list-unstyled">
-                                                <ui:repeat var="area" value="#{mainController.informacoesArea()}">
-                                                    <li>#{area.nome}<span class="pull-right">#{area.qtdTransacoes}%</span>  
-                                                        <div class="progress progress-striped active progress-right">
-                                                            <div class="bar green" style="width:#{area.qtdTransacoes}%;"></div> 
-                                                        </div>
-                                                    </li>
-                                                </ui:repeat>
-                                            </ul>
+                                        <div class="panel-body">
+                                            <table class="table table-hover table-padding-bottom10">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Área</th>
+                                                        <th>Qtd. de Consultores</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                        <tr class="text-center">
+                                                            <td>#{entry.key}</td>
+                                                            <td>#{entry.value}</td>
+                                                        </tr>
+                                                    </ui:repeat>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
-                                    <div class="col-md-6 charts chrt-page-grids chrt-right">
-                                        <h3>Controle de cadastros no site</h3>
-                                        <div class="pie-grid">
-                                            <canvas id="pie" height="300" width="400" style="width: 400px; height: 300px;"></canvas>
+                                </div>
+                                <div class="col-md-1"/>
+                                <div class="col-md-4">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table table-hover table-padding-bottom10">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Área</th>
+                                                        <th>Qtd. de Consultores</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                        <tr class="text-center">
+                                                            <td>#{entry.key}</td>
+                                                            <td>#{entry.value}</td>
+                                                        </tr>
+                                                    </ui:repeat>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-1"/>
+                                <div class="col-md-3">
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
+                                        </div>
+                                        <div class="panel-body">
+                                            <table class="table table-hover table-padding-bottom10">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Área</th>
+                                                        <th>Qtd. de Consultores</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                        <tr class="text-center">
+                                                            <td>#{entry.key}</td>
+                                                            <td>#{entry.value}</td>
+                                                        </tr>
+                                                    </ui:repeat>
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
@@ -309,41 +359,22 @@
         <script src="resources/js/keyTable.js"></script>
 
         <script>
-                var pieData = [
-                    {
-                        value: 30,
-                        color: "#4F52BA",
-                        name: "Consultores"
-
-                    },
-                    {
-                        value: 50,
-                        color: "#585858"
-                    },
-                    {
-                        value: 100,
-                        color: "#e94e02"
-                    }
-                ];
-                new Chart(document.getElementById("pie").getContext("2d")).Pie(pieData);
-        </script>
-        <script>
-            $(function () {
-                var events = $('#events');
-                var table = $('.tabela').DataTable({
-                    keys: true
+                $(function () {
+                    var events = $('#events');
+                    var table = $('.tabela').DataTable({
+                        keys: true
+                    });
+                    table
+                            .on('key', function (e, datatable, key, cell, originalEvent) {
+                                events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                            })
+                            .on('key-focus', function (e, datatable, cell) {
+                                events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                            })
+                            .on('key-blur', function (e, datatable, cell) {
+                                events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                            });
                 });
-                table
-                        .on('key', function (e, datatable, key, cell, originalEvent) {
-                            events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
-                        })
-                        .on('key-focus', function (e, datatable, cell) {
-                            events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
-                        })
-                        .on('key-blur', function (e, datatable, cell) {
-                            events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
-                        });
-            });
         </script>
     </h:body>
 </html>

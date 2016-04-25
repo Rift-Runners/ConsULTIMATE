@@ -71,7 +71,9 @@ public class ListasDados {
 
     public void populaListaAreas() {
         String[] categorias = new String[]{
-            "TI", "Engenharia", "Artes"
+            "TI", "Engenharia", "Artes", "Matematica", "Fisica",
+            "Quimica", "Geociencias", "Biologia", "Saude", "Psicologia",
+            "Filosofia", "Historia"
         };
         listaAreas.addAll(Arrays.asList(categorias));
     }

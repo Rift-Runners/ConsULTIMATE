@@ -6,14 +6,13 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import javax.faces.application.FacesMessage;
+import java.util.Map;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
-import javax.faces.context.Flash;
 import javax.servlet.http.HttpServletRequest;
-import model.Entity.Area;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
@@ -134,15 +133,16 @@ public class MainController {
         return texto.substring(0, Math.min(texto.length(), tamanhoMaximo));
     }
     
-    public List<Area> informacoesArea() {
-        List<Area> lista = new ArrayList();
-        for (int i = 0; i < 10; i++) {
-            Area areaTeste = new Area("Teste"+i);
-            areaTeste.setQtdConsultores(i);
-            areaTeste.setQtdTransacoes(i);
-            lista.add(areaTeste);
+    public Map<String, Integer> consultorPorArea() {
+        Map<String, Integer> mapaAreas = new HashMap();
+        for (Consultor cons : listasDeDados.getListaConsultores()) {
+            if(!mapaAreas.containsKey(cons.getArea())){
+                mapaAreas.put(cons.getArea(), 1);
+            } else{
+                mapaAreas.put(cons.getArea(), mapaAreas.get(cons.getArea())+1);
+            }
         }
-        return lista;
+        return mapaAreas;
     }
     
     public List<String> listaEstados() {
