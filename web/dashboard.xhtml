@@ -137,81 +137,81 @@
                             </div>
                         </div>
                         <div id="analise-de-negocios" class="conteudo escondido">
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">
-                                            <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
-                                        </div>
-                                        <div class="panel-body">
-                                            <table class="table table-hover table-padding-bottom10">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Área</th>
-                                                        <th>Qtd. de Consultores</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
-                                                        <tr class="text-center">
-                                                            <td>#{entry.key}</td>
-                                                            <td>#{entry.value}</td>
+                            <div class="container-fluid">
+                                <div class="row margin-bottom25">
+                                    <div class="col-md-4">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table class="tabela display table-padding-bottom10" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Área</th>
+                                                            <th>Qtd. de Consultores</th>
                                                         </tr>
-                                                    </ui:repeat>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                            <tr class="text-center">
+                                                                <td>#{entry.key}</td>
+                                                                <td>#{entry.value}</td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-1"/>
-                                <div class="col-md-4">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">
-                                            <h1 class="panel-title text-center font-tracktype">Transações por Área</h1>
-                                        </div>
-                                        <div class="panel-body">
-                                            <table class="table table-hover table-padding-bottom10">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Área</th>
-                                                        <th>Qtd. de Transações</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <ui:repeat var="entry" value="#{mainController.transacoesPorArea().entrySet().toArray()}">
-                                                        <tr class="text-center">
-                                                            <td>#{entry.key}</td>
-                                                            <td>#{entry.value}</td>
+                                    <div class="col-md-4">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h1 class="panel-title text-center font-tracktype">Transações por Área</h1>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table class="tabela display table-padding-bottom10" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Área</th>
+                                                            <th>Qtd. de Transações</th>
                                                         </tr>
-                                                    </ui:repeat>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ui:repeat var="entry" value="#{mainController.transacoesPorArea().entrySet().toArray()}">
+                                                            <tr class="text-center">
+                                                                <td>#{entry.key}</td>
+                                                                <td>#{entry.value}</td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-1"/>
-                                <div class="col-md-3">
-                                    <div class="panel panel-info">
-                                        <div class="panel-heading">
-                                            <h1 class="panel-title text-center font-tracktype">Consultores que Mais Vendem</h1>
-                                        </div>
-                                        <div class="panel-body">
-                                            <table class="table table-hover table-padding-bottom10">
-                                                <thead>
-                                                    <tr>
-                                                        <th>Consultor</th>
-                                                        <th>Valor Total</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <ui:repeat var="entry" value="#{mainController.consultoresMaisVendem().entrySet().toArray()}">
-                                                        <tr class="text-center">
-                                                            <td>#{entry.key}</td>
-                                                            <td>R$ #{entry.value}</td>
+                                    <div class="col-md-4">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h1 class="panel-title text-center font-tracktype">Consultores que Mais Vendem</h1>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table class="tabela display table-padding-bottom10" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Consultor</th>
+                                                            <th>Valor Total</th>
                                                         </tr>
-                                                    </ui:repeat>
-                                                </tbody>
-                                            </table>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ui:repeat var="entry" value="#{mainController.consultoresMaisVendem().entrySet().toArray()}">
+                                                            <tr class="text-center">
+                                                                <td>#{entry.key}</td>
+                                                                <td>R$ #{entry.value}</td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
