@@ -181,16 +181,30 @@ public class SessionBean implements Serializable {
         return new int[]{valorBase, valorBase * 4, valorBase * 7, valorBase * 12};
     }
 
+    public int calculaHoraSelecionado(int valor) {
+        if (valor == valorSelecionado) {
+            return 1;
+        } else if (valor * 4 == valorSelecionado) {
+            return 5;
+        } else if (valor * 7 == valorSelecionado) {
+            return 10;
+        } else {
+            return 20;
+        }
+    }
+
     public void criarTransacao() {
         if (cliente.getSaldo() >= valorSelecionado && valorSelecionado > 0) {
             cliente.setSaldo(cliente.getSaldo() - valorSelecionado);
-            Transacao transacao = new Transacao(cliente, consultorVisualizado, valorSelecionado, 1);
+
+            Transacao transacao = new Transacao(cliente, consultorVisualizado, valorSelecionado, calculaHoraSelecionado(consultorVisualizado.getValorHora()));
             cliente.addTransacao(transacao);
             consultorVisualizado.addTransacao(transacao);
             RequestContext.getCurrentInstance().execute("PF('dialogTransacao').show()");
         } else {
             RequestContext.getCurrentInstance().execute("PF('dialogSaldoInsuficiente').show()");
         }
+        valorSelecionado = 0;
     }
 
     public String entrar() {

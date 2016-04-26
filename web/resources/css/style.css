@@ -146,6 +146,11 @@ body{
     transition: border 0.3s;
 }
 
+.input-editavel-select{
+    text-align: center;
+    transition: border 0.3s;
+}
+
 .input-editavel:focus,
 .input-editavel.focus {
     border-bottom: solid 2px #969696;

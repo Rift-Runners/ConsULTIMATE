@@ -161,9 +161,12 @@
                                             <tr>
                                                 <th class="font-tracktype">UF:</th>
                                                 <td>
-                                                    <h:inputText required="true" requiredMessage="Campo obrigatório" 
-                                                                 class="input-editavel" id="clienteUf" 
-                                                                 value="#{sessionBean.clienteEditado.uf}"/>
+                                                    <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
+                                                                     class="input-editavel-select form-control" id="clienteUf" 
+                                                                     value="#{sessionBean.clienteEditado.uf}">  
+                                                        <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                                                       itemLabel="#{estado}" itemValue="#{estado}" />
+                                                    </h:selectOneMenu>
                                                     <h:message for="clienteUf" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -258,18 +261,24 @@
                                         <tr>
                                             <th class="font-tracktype">Área:</th>
                                             <td>
-                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="input-editavel" id="consultorArea"
-                                                             value="#{sessionBean.consultorEditado.area}"/>
+                                                <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
+                                                                 class="input-editavel-select form-control"  id="consultorArea"
+                                                                 value="#{sessionBean.consultorEditado.area}"> 
+                                                    <f:selectItems value="#{mainController.listasDeDados.listaAreas}" var="area"
+                                                                   itemLabel="#{area}" itemValue="#{area}" />
+                                                </h:selectOneMenu>
                                                 <h:message for="consultorArea" class="error-message"/>
                                             </td>
                                         </tr> 
                                         <tr>
                                             <th class="font-tracktype">UF:</th>
                                             <td>
-                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="input-editavel" id="consultorUf"
-                                                             value="#{sessionBean.consultorEditado.uf}"/>
+                                                <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
+                                                                 class="input-editavel-select form-control" id="consultorUf"
+                                                                 value="#{sessionBean.consultorEditado.uf}"> 
+                                                    <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                                                   itemLabel="#{estado}" itemValue="#{estado}" />
+                                                </h:selectOneMenu>
                                                 <h:message for="consultorUf" class="error-message"/>
                                             </td>
                                         </tr>
@@ -389,22 +398,22 @@
         <script src="resources/js/dataTable.js"></script>
         <script src="resources/js/keyTable.js"></script>
         <script>
-            $(function () {
-                var events = $('#events');
-                var table = $('.tabela').DataTable({
-                    keys: true
-                });
-                table
-                        .on('key', function (e, datatable, key, cell, originalEvent) {
-                            events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
-                        })
-                        .on('key-focus', function (e, datatable, cell) {
-                            events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
-                        })
-                        .on('key-blur', function (e, datatable, cell) {
-                            events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
-                        });
-            });
+                                                $(function () {
+                                                    var events = $('#events');
+                                                    var table = $('.tabela').DataTable({
+                                                        keys: true
+                                                    });
+                                                    table
+                                                            .on('key', function (e, datatable, key, cell, originalEvent) {
+                                                                events.prepend('<div>Key press: ' + key + ' for cell <i>' + cell.data() + '</i></div>');
+                                                            })
+                                                            .on('key-focus', function (e, datatable, cell) {
+                                                                events.prepend('<div>Cell focus: <i>' + cell.data() + '</i></div>');
+                                                            })
+                                                            .on('key-blur', function (e, datatable, cell) {
+                                                                events.prepend('<div>Cell blur: <i>' + cell.data() + '</i></div>');
+                                                            });
+                                                });
         </script>
     </h:body>
 </html>

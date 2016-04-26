@@ -6,14 +6,10 @@
 package controller;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
@@ -21,7 +17,6 @@ import javax.servlet.http.HttpServletRequest;
 import model.Entity.Cliente;
 import model.Entity.Consultor;
 import model.Entity.ListasDados;
-import model.Entity.Transacao;
 import org.primefaces.context.RequestContext;
 import utils.Validators;
 
