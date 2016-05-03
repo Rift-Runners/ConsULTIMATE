@@ -7,5 +7,7 @@
 nbproject/
 /build/
 /dist/
+/target/
+nb-configuration.xml
 build.xml
 nbbuild.xml

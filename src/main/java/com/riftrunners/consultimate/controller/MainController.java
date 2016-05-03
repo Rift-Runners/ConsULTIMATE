@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package com.riftrunners.consultimate.controller;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,11 +14,11 @@ import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import model.Entity.Cliente;
-import model.Entity.Consultor;
-import model.Entity.ListasDados;
+import com.riftrunners.consultimate.model.entity.Cliente;
+import com.riftrunners.consultimate.model.entity.Consultor;
+import com.riftrunners.consultimate.model.entity.ListasDados;
 import org.primefaces.context.RequestContext;
-import utils.Validators;
+import com.riftrunners.consultimate.utils.Validators;
 
 /**
  * @author Guilherme Matuella

@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package filters;
+package com.riftrunners.consultimate.filters;
 
-import controller.SessionBean;
+import com.riftrunners.consultimate.controller.SessionBean;
 import java.io.IOException;
 import javax.inject.Inject;
 import javax.servlet.Filter;
@@ -22,9 +22,9 @@ import javax.servlet.http.HttpServletResponse;
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-@WebFilter(filterName = "FiltroUsuario", description = "Filtro dedicado ao controle dos usuários e seus respectivos acessos",
-        urlPatterns = {"/faces/minha-conta.xhtml"})
-public class FiltroUsuario implements Filter {
+@WebFilter(filterName = "FiltroAdmin", description = "Filtro dedicado ao controle do admin e seus respectivos acessos",
+        urlPatterns = {"/faces/dashboard.xhtml"})
+public class FiltroAdmin implements Filter {
 
     @Inject
     private SessionBean session;
@@ -38,12 +38,10 @@ public class FiltroUsuario implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        if (session == null) {
+        if (session == null || !session.isAdminLogged()) {
             resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
-        } else if (session.isClienteLogged() || session.isConsultorLogged()) {
-            chain.doFilter(request, response);
         } else {
-            resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
+            chain.doFilter(request, response);
         }
     }
 

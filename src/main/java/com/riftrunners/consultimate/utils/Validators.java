@@ -3,14 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package utils;
+package com.riftrunners.consultimate.utils;
 
-import controller.MainController;
+import com.riftrunners.consultimate.controller.MainController;
 import java.util.regex.Pattern;
 import javax.faces.context.FacesContext;
-import model.Entity.Cliente;
-import model.Entity.Consultor;
-import model.Entity.ListasDados;
+import com.riftrunners.consultimate.model.entity.Cliente;
+import com.riftrunners.consultimate.model.entity.Consultor;
+import com.riftrunners.consultimate.model.entity.ListasDados;
 
 /**
  *
