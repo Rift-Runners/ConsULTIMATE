@@ -5,12 +5,9 @@
  */
 package com.riftrunners.consultimate.utils;
 
-import com.riftrunners.consultimate.controller.MainController;
 import java.util.regex.Pattern;
-import javax.faces.context.FacesContext;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
-import com.riftrunners.consultimate.model.entity.ListasDados;
 
 /**
  *
@@ -19,11 +16,6 @@ import com.riftrunners.consultimate.model.entity.ListasDados;
 public class Validators {
 
     public Validators() {
-    }
-
-    public ListasDados listaControladorAplicacao() {
-        MainController controladorPrincipal = (MainController) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("mainController");
-        return controladorPrincipal.getListasDeDados();
     }
 
     public boolean validaEmail(String emailInput) {

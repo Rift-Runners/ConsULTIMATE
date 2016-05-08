@@ -27,11 +27,9 @@ public class Teste implements Serializable {
     private String name;
 
     public Teste() {
-        super();
     }
 
     public Teste(String name) {
-        super();
         this.name = name;
     }
 

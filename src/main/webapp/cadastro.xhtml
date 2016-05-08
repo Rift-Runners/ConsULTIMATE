@@ -39,16 +39,16 @@
                                 <h:outputLabel for="clienteNome" value="Nome (Pessoa Física):"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                              class="form-control" id="clienteNome" 
-                                             value="#{mainController.cliente.nome}" p:placeholder="Nome"/>
+                                             value="#{clienteBean.cliente.nome}" p:placeholder="Nome"/>
                                 <h:message for="clienteNome" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteUf" value="UF:"/>
                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                  class="form-control" id="clienteUf" 
-                                                 value="#{mainController.cliente.uf}">
+                                                 value="#{clienteBean.cliente.uf}">
                                     <f:selectItem itemValue="" itemLabel="Selecione um estado"/>  
-                                    <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                    <f:selectItems value="#{helperBean.listaEstados()}" var="estado"
                                                    itemLabel="#{estado}" itemValue="#{estado}" />
                                 </h:selectOneMenu>
                                 <h:message for="clienteUf" class="error-message"/>                      
@@ -57,28 +57,28 @@
                                 <h:outputLabel for="clienteCidade" value="Cidade:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                              class="form-control" id="clienteCidade" 
-                                             value="#{mainController.cliente.cidade}" p:placeholder="Cidade"/>
+                                             value="#{clienteBean.cliente.cidade}" p:placeholder="Cidade"/>
                                 <h:message for="clienteCidade" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteEndereco" value="Endereço:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
                                              class="form-control" id="clienteEndereco"
-                                             value="#{mainController.cliente.endereco}" p:placeholder="Endereço"/>
+                                             value="#{clienteBean.cliente.endereco}" p:placeholder="Endereço"/>
                                 <h:message for="clienteEndereco" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteTelefone" value="Telefone:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                              class="form-control telefoneMask" id="clienteTelefone"
-                                             value="#{mainController.cliente.telefone}" p:placeholder="Telefone"/>
+                                             value="#{clienteBean.cliente.telefone}" p:placeholder="Telefone"/>
                                 <h:message for="clienteTelefone" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteEmail" value="Email:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                              class="form-control clienteEmail" id="clienteEmail"
-                                             value="#{mainController.cliente.email}" p:placeholder="Email"/>
+                                             value="#{clienteBean.cliente.email}" p:placeholder="Email"/>
                                 <h:message for="clienteEmail" class="error-message"/>
                             </div>
                         </div>
@@ -87,38 +87,38 @@
                                 <h:outputLabel for="clienteCpf" value="CPF:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                              class="form-control cpfMask" id="clienteCpf"
-                                             value="#{mainController.cliente.cpf}" p:placeholder="CPF"/>
+                                             value="#{clienteBean.cliente.cpf}" p:placeholder="CPF"/>
                                 <h:message for="clienteCpf" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteRg" value="RG:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                              class="form-control rgMask" id="clienteRg"
-                                             value="#{mainController.cliente.rg}" p:placeholder="RG"/>
+                                             value="#{clienteBean.cliente.rg}" p:placeholder="RG"/>
                                 <h:message for="clienteRg" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteUsuario" value="Usuário:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="20"
                                              class="form-control usuarioMask" id="clienteUsuario"
-                                             value="#{mainController.cliente.usuario}" p:placeholder="Usuário"/>
+                                             value="#{clienteBean.cliente.usuario}" p:placeholder="Usuário"/>
                                 <h:message for="clienteUsuario" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteSenha" value="Senha:"/>
                                 <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20"
                                                class="form-control" id="clienteSenha"
-                                               value="#{mainController.cliente.senha}"/>
+                                               value="#{clienteBean.cliente.senha}"/>
                                 <h:message for="clienteSenha" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="clienteRepeteSenha" value="Repita a senha:"/>
                                 <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20"
                                                class="form-control" id="clienteRepeteSenha" 
-                                               value="#{mainController.tempSenhaRepete}"/>
+                                               value="#{clienteBean.tempSenhaRepete}"/>
                                 <h:message for="clienteRepeteSenha" class="error-message"/>
                             </div>
-                            <pr:commandButton update="formulario-cliente" class="btn btn-primary botao-cadastrar" action="#{mainController.registrarCliente()}" value="Cadastrar!"/>             
+                            <pr:commandButton update="formulario-cliente" class="btn btn-primary botao-cadastrar" action="#{clienteBean.registrarCliente()}" value="Cadastrar!"/>             
                         </div>
                         <div class="col-md-2"></div>
                     </div>
@@ -134,16 +134,16 @@
                                 <h:outputLabel for="consultorNome" value="Nome (Pessoa Jurídica):"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                              class="form-control" id="consultorNome"
-                                             value="#{mainController.consultor.nome}" p:placeholder="Nome"/>
+                                             value="#{consultorBean.consultor.nome}" p:placeholder="Nome"/>
                                 <h:message for="consultorNome" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorUf" value="UF:"/>
                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório"
                                                  class="form-control" id="consultorUf"
-                                                 value="#{mainController.consultor.uf}">
+                                                 value="#{consultorBean.consultor.uf}">
                                     <f:selectItem itemValue="" itemLabel="Selecione um estado"/>  
-                                    <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                    <f:selectItems value="#{helperBean.listaEstados()}" var="estado"
                                                    itemLabel="#{estado}" itemValue="#{estado}" />
                                 </h:selectOneMenu>
                                 <h:message for="consultorUf" class="error-message"/>
@@ -152,28 +152,28 @@
                                 <h:outputLabel for="consultorCidade" value="Cidade:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                              class="form-control" id="consultorCidade"
-                                             value="#{mainController.consultor.cidade}" p:placeholder="Cidade"/>
+                                             value="#{consultorBean.consultor.cidade}" p:placeholder="Cidade"/>
                                 <h:message for="consultorCidade" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorEndereco" value="Endereço:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
                                              class="form-control" id="consultorEndereco"
-                                             value="#{mainController.consultor.endereco}" p:placeholder="Endereço"/>
+                                             value="#{consultorBean.consultor.endereco}" p:placeholder="Endereço"/>
                                 <h:message for="consultorEndereco" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorTelefone" value="Telefone:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                              class="form-control telefoneMask" id="consultorTelefone"
-                                             value="#{mainController.consultor.telefone}" p:placeholder="Telefone"/>
+                                             value="#{consultorBean.consultor.telefone}" p:placeholder="Telefone"/>
                                 <h:message for="consultorTelefone" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorEmail" value="Email:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                              class="form-control" id="consultorEmail"
-                                             value="#{mainController.consultor.email}" p:placeholder="Email"/>
+                                             value="#{consultorBean.consultor.email}" p:placeholder="Email"/>
                                 <h:message for="consultorEmail" class="error-message"/>
                             </div>
                         </div>
@@ -182,7 +182,7 @@
                                 <h:outputLabel for="consultorArea" value="Área:"/>
                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                  class="form-control" id="consultorArea" 
-                                                 value="#{mainController.consultor.area}">
+                                                 value="#{consultorBean.consultor.area}">
                                     <f:selectItem itemValue="" itemLabel="" />
                                     <f:selectItem itemValue="TI" itemLabel="TI" />
                                     <f:selectItem itemValue="Engenharia" itemLabel="Engenharia" />
@@ -194,35 +194,35 @@
                                 <h:outputLabel for="consultorCnpj" value="CPNJ:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                              class="form-control cnpjMask" id="consultorCnpj"
-                                             value="#{mainController.consultor.cnpj}" p:placeholder="CNPJ"/>
+                                             value="#{consultorBean.consultor.cnpj}" p:placeholder="CNPJ"/>
                                 <h:message for="consultorCnpj" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorUsuario" value="Usuário:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="20" 
                                              class="form-control usuarioMask" id="consultorUsuario"
-                                             value="#{mainController.consultor.usuario}" p:placeholder="Usuário"/>
+                                             value="#{consultorBean.consultor.usuario}" p:placeholder="Usuário"/>
                                 <h:message for="consultorUsuario" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorValorHora" value="Valor cobrado por hora:"/>
                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                              class="form-control moneyMask" id="consultorValorHora"
-                                             value="#{mainController.consultor.valorHora}" p:placeholder="Valor base por hora."/>
+                                             value="#{consultorBean.consultor.valorHora}" p:placeholder="Valor base por hora."/>
                                 <h:message for="consultorValorHora" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorSenha" value="Senha:"/>
                                 <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20" 
                                                class="form-control" id="consultorSenha"
-                                               value="#{mainController.consultor.senha}"/>
+                                               value="#{consultorBean.consultor.senha}"/>
                                 <h:message for="consultorSenha" class="error-message"/>
                             </div>
                             <div class="form-group">
                                 <h:outputLabel for="consultorRepeteSenha" value="Repita a senha:"/>
                                 <h:inputSecret required="true" requiredMessage="Campo obrigatório" maxlength="20" 
                                                class="form-control" id="consultorRepeteSenha"
-                                               value="#{mainController.tempSenhaRepete}"/>
+                                               value="#{consultorBean.tempSenhaRepete}"/>
                                 <h:message for="consultorRepeteSenha" class="error-message"/>
                             </div>
                         </div>
@@ -232,10 +232,10 @@
                                 <h:outputText id="display" />
                                 <pr:inputTextarea required="true" requiredMessage="Campo obrigatório" rows="13" cols="30" id="consultorDescricao"
                                                   counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes." 
-                                                  autoResize="false" class="form-control" value="#{mainController.consultor.descricao}"
+                                                  autoResize="false" class="form-control" value="#{consultorBean.consultor.descricao}"
                                                   p:placeholder="Descrição e detalhes do consultor, note que este campo é a sua ''porta de entrada'' para os clientes)"/>
                                 <h:message for="consultorDescricao" class="error-message"/>
-                                <pr:commandButton update="formulario-consultor" class="btn btn-primary botao-cadastrar" action="#{mainController.registrarConsultor()}" value="Cadastrar!"/>
+                                <pr:commandButton update="formulario-consultor" class="btn btn-primary botao-cadastrar" action="#{consultorBean.registrarConsultor()}" value="Cadastrar!"/>
                             </div>
                         </div>
                         <div class="col-md-1"></div>
@@ -245,14 +245,14 @@
         </div>
 
         <pr:dialog modal="true" widgetVar="dialogSucesso" draggable="false" resizable="false" header="Sucesso!"
-                   hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                   closable="false" closeOnEscape="false" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <p>Cadastro efetuado com sucesso!</p>
-            <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="OK"/>
+            <pr:commandButton action="login.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
         </pr:dialog>
         <pr:dialog modal="true" widgetVar="dialogErro" draggable="false" resizable="false" header="Erro!"
                    closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <p>Verifique os campos digitados, algum está incorreto!</p>
-            <pr:commandButton action="#{mainController.redirecionaCadastro()}" style="float: right" class="btn btn-primary" value="OK"/>
+            <pr:commandButton action="cadastro.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
         </pr:dialog>
 
         <script src="resources/js/jquery-2.2.1.js"></script>

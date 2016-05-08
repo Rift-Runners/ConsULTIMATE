@@ -5,21 +5,33 @@
  */
 package com.riftrunners.consultimate.model.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-public class Consultor {
+@Entity
+@Table(name = "consultor")
+public class Consultor implements Serializable{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
-    private int valorHora;
-    private List<Transacao> transacoesEfetuadas;
+    private Integer valorHora;
+//    private List<Transacao> transacoesEfetuadas;
 
     public Consultor() {
-        this.transacoesEfetuadas = new ArrayList();
+//        this.transacoesEfetuadas = new ArrayList();
     }
 
     //CopyConstructor
@@ -36,7 +48,7 @@ public class Consultor {
         this.valorHora = outroConsultor.getValorHora();
         this.usuario = outroConsultor.getUsuario();
         this.senha = outroConsultor.getSenha();
-        this.transacoesEfetuadas = outroConsultor.getTransacoesEfetuadas();
+//        this.transacoesEfetuadas = outroConsultor.getTransacoesEfetuadas();
     }
 
     public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha, int valorHora) {
@@ -52,7 +64,15 @@ public class Consultor {
         this.usuario = usuario;
         this.senha = senha;
         this.valorHora = valorHora;
-        this.transacoesEfetuadas = new ArrayList();
+//        this.transacoesEfetuadas = new ArrayList();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -142,20 +162,20 @@ public class Consultor {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+    
+//    public List<Transacao> getTransacoesEfetuadas() {
+//        return transacoesEfetuadas;
+//    }
+//
+//    public void addTransacao(Transacao transacao) {
+//        this.transacoesEfetuadas.add(transacao);
+//    }
 
-    public int getValorHora() {
+    public Integer getValorHora() {
         return valorHora;
     }
 
-    public void setValorHora(int valorHora) {
+    public void setValorHora(Integer valorHora) {
         this.valorHora = valorHora;
-    }
-
-    public List<Transacao> getTransacoesEfetuadas() {
-        return transacoesEfetuadas;
-    }
-
-    public void addTransacao(Transacao transacao) {
-        this.transacoesEfetuadas.add(transacao);
     }
 }

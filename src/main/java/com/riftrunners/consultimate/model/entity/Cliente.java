@@ -5,21 +5,32 @@
  */
 package com.riftrunners.consultimate.model.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-public class Cliente {
+@Entity
+@Table(name = "cliente")
+public class Cliente implements Serializable{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String nome, cidade, uf, endereco, telefone, email, cpf, rg, usuario, senha;
-    private List<Transacao> transacoesEfetuadas;
-    private int saldo;
+//    private List<Transacao> transacoesEfetuadas;
+    private Integer saldo;
 
     public Cliente() {
-        this.transacoesEfetuadas = new ArrayList();
+//        this.transacoesEfetuadas = new ArrayList();
     }
 
     //CopyConstructor
@@ -35,7 +46,7 @@ public class Cliente {
         this.usuario = outroCliente.getUsuario();
         this.senha = outroCliente.getSenha();
         this.saldo = outroCliente.getSaldo();
-        this.transacoesEfetuadas = outroCliente.getTransacoesEfetuadas();
+//        this.transacoesEfetuadas = outroCliente.getTransacoesEfetuadas();
     }
 
     public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha) {
@@ -50,14 +61,14 @@ public class Cliente {
         this.usuario = usuario;
         this.senha = senha;
         this.saldo = 0;
-        this.transacoesEfetuadas = new ArrayList();
+//        this.transacoesEfetuadas = new ArrayList();
     }
 
-    public int getSaldo() {
+    public Integer getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(int saldo) {
+    public void setSaldo(Integer saldo) {
         this.saldo = saldo;
     }
 
@@ -141,11 +152,11 @@ public class Cliente {
         this.senha = senha;
     }
 
-    public List<Transacao> getTransacoesEfetuadas() {
-        return transacoesEfetuadas;
-    }
-
-    public void addTransacao(Transacao transacao) {
-        this.transacoesEfetuadas.add(transacao);
-    }
+//    public List<Transacao> getTransacoesEfetuadas() {
+//        return transacoesEfetuadas;
+//    }
+//
+//    public void addTransacao(Transacao transacao) {
+//        this.transacoesEfetuadas.add(transacao);
+//    }
 }

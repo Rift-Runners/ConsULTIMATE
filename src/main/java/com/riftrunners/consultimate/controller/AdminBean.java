@@ -9,7 +9,6 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
-import com.riftrunners.consultimate.model.entity.ListasDados;
 import com.riftrunners.consultimate.utils.Validators;
 
 /**
@@ -64,17 +63,17 @@ public class AdminBean {
         return "admEditar.xhtml?faces-redirect=true";
     }
 
-    public String deletarCliente() {
-        ListasDados listasDeDados = validador.listaControladorAplicacao();
-        listasDeDados.deletarCliente(clienteEditado);
-        return "dashboard.xhtml?faces-redirect=true";
-    }
-
-    public String deletarConsultor() {
-        ListasDados listasDeDados = validador.listaControladorAplicacao();
-        listasDeDados.deletarConsultor(consultorEditado);
-        return "dashboard.xhtml?faces-redirect=true";
-    }
+//    public String deletarCliente() {
+//        ListasDados listasDeDados = validador.listaControladorAplicacao();
+//        listasDeDados.deletarCliente(clienteEditado);
+//        return "dashboard.xhtml?faces-redirect=true";
+//    }
+//
+//    public String deletarConsultor() {
+//        ListasDados listasDeDados = validador.listaControladorAplicacao();
+//        listasDeDados.deletarConsultor(consultorEditado);
+//        return "dashboard.xhtml?faces-redirect=true";
+//    }
 
     public String editarSelecionado() {
         return "dashboard.xhtml?faces-redirect=true";

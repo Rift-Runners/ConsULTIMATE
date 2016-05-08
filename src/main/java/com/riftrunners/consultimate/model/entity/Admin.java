@@ -5,22 +5,41 @@
  */
 package com.riftrunners.consultimate.model.entity;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 /**
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-public class Admin {
+@Entity
+@Table(name = "admin")
+public class Admin implements Serializable{
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String usuario, senha;
-    private boolean administrador;
 
-    public Admin(String usuario, String senha, boolean administrador) {
+    public Admin(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
-        this.administrador = administrador;
     }
 
-    public Admin() {}
+    public Admin() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getUsuario() {
         return usuario;
@@ -37,12 +56,4 @@ public class Admin {
     public void setSenha(String senha) {
         this.senha = senha;
     }
-
-    public boolean isAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(boolean administrador) {
-        this.administrador = administrador;
-    } 
 }
