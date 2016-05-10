@@ -6,8 +6,7 @@
 package com.riftrunners.consultimate.model.entity;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,10 +19,11 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "cliente")
-public class Cliente implements Serializable{
+public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cliente_id")
     private Long id;
     private String nome, cidade, uf, endereco, telefone, email, cpf, rg, usuario, senha;
 //    private List<Transacao> transacoesEfetuadas;
@@ -62,6 +62,14 @@ public class Cliente implements Serializable{
         this.senha = senha;
         this.saldo = 0;
 //        this.transacoesEfetuadas = new ArrayList();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getSaldo() {

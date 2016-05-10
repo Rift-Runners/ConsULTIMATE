@@ -43,7 +43,7 @@ public class GenericDAO<PK, T> {
         return entityManager.createQuery(("FROM " + getTypeClass().getName()))
                 .getResultList();
     }
-
+    
     private Class<?> getTypeClass() {
         Class<?> c = (Class<?>) ((ParameterizedType) this.getClass()
                 .getGenericSuperclass()).getActualTypeArguments()[1];

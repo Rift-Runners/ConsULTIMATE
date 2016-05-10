@@ -9,7 +9,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
-import com.riftrunners.consultimate.utils.Validators;
+import com.riftrunners.consultimate.util.Validador;
 
 /**
  *
@@ -21,10 +21,10 @@ public class AdminBean {
 
     private Consultor consultorEditado, consultorExcluido;
     private Cliente clienteEditado, clienteExcluido;
-    private Validators validador;
+    private Validador validador;
 
     public AdminBean() {
-        validador = new Validators();
+        validador = new Validador();
     }
 
     public Consultor getConsultorEditado() {

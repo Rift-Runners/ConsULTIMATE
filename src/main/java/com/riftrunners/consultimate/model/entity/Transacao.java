@@ -6,6 +6,11 @@
 package com.riftrunners.consultimate.model.entity;
 
 import java.util.Date;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -13,12 +18,18 @@ import java.util.Date;
  */
 public class Transacao {
 
+    @ManyToOne(targetEntity = Cliente.class, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
+    @ManyToOne(targetEntity = Consultor.class, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "consultor_id")
     private Consultor consultor;
-    private int valor, horas;
+    private Double valor;
+    private Integer horas;
+    @Column(name="data_da_compra")
     private Date dataDaCompra;
 
-    public Transacao(Cliente cliente, Consultor consultor, int valor, int horas) {
+    public Transacao(Cliente cliente, Consultor consultor, Double valor, Integer horas) {
         this.cliente = cliente;
         this.consultor = consultor;
         this.valor = valor;
@@ -42,19 +53,19 @@ public class Transacao {
         this.consultor = consultor;
     }
 
-    public int getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-    public int getHoras() {
+    public Integer getHoras() {
         return horas;
     }
 
-    public void setHoras(int horas) {
+    public void setHoras(Integer horas) {
         this.horas = horas;
     }
 

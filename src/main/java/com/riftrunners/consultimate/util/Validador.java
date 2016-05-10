@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.riftrunners.consultimate.utils;
+package com.riftrunners.consultimate.util;
 
 import java.util.regex.Pattern;
 import com.riftrunners.consultimate.model.entity.Cliente;
@@ -13,9 +13,9 @@ import com.riftrunners.consultimate.model.entity.Consultor;
  *
  * @author Guilherme
  */
-public class Validators {
+public class Validador {
 
-    public Validators() {
+    public Validador() {
     }
 
     public boolean validaEmail(String emailInput) {

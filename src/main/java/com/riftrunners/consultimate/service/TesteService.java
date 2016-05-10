@@ -15,26 +15,31 @@ import java.util.List;
  * @author Guilherme
  */
 public class TesteService {
+
     private TesteDAO dao;
     private SimpleEntityManager sem;
-    
-    public TesteService(SimpleEntityManager sem){
+
+    public TesteService(SimpleEntityManager sem) {
         this.sem = sem;
         dao = new TesteDAO(this.sem.getEntityManager());
     }
-    
-    public void save(Teste teste){
-        try{
+
+    public void save(Teste teste) {
+        try {
             sem.beginTransaction();
             dao.save(teste);
             sem.commit();
-        }catch(Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             sem.rollBack();
+        } finally {
+            if (sem != null) {
+                sem.close();
+            }
         }
     }
-     
-    public List<Teste> findAll(){
+
+    public List<Teste> findAll() {
         return dao.findAll();
     }
 }

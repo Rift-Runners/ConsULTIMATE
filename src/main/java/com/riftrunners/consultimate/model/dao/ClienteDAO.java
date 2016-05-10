@@ -12,9 +12,9 @@ import javax.persistence.EntityManager;
  *
  * @author Guilherme
  */
-public class ClienteDAO extends GenericDAO<Long, Cliente>{
-    
-    public ClienteDAO(EntityManager entityManager){
+public class ClienteDAO extends GenericDAO<Long, Cliente> {
+
+    public ClienteDAO(EntityManager entityManager) {
         super(entityManager);
     }
 }

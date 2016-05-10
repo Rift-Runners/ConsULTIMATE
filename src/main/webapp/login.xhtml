@@ -40,7 +40,7 @@
                                     <h:message for="loginSenha" class="error-message"/>
                                     <div class="login-buttons">                           
                                         <h:link class="btn btn-info btn-lg font-tracktype" outcome="cadastro.xhtml?faces-redirect=true" id="cadastroBtn" value="Registre-se!" />  
-                                        <pr:commandButton update="form" class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
+                                        <pr:commandButton update="form" class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.login()}" id="loginBtn" value="Entrar" />  
                                     </div>
                                     <pr:commandButton class="btn esqueceu-link font-tracktype" value="Esqueceu sua senha?" onclick="PF('dialogEsqueceuSenha').show();" />
                                 </h:form>

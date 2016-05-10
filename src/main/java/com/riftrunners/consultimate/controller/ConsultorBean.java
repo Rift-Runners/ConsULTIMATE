@@ -8,7 +8,7 @@ package com.riftrunners.consultimate.controller;
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ConsultorService;
-import com.riftrunners.consultimate.utils.Validators;
+import com.riftrunners.consultimate.util.Validador;
 import java.util.ArrayList;
 import java.util.List;
 import javax.inject.Named;
@@ -26,7 +26,7 @@ import org.primefaces.context.RequestContext;
 public class ConsultorBean {
 
     private Consultor consultor = new Consultor();
-    private Validators validador = new Validators();
+    private Validador validador = new Validador();
     private String tempSenhaRepete;
 
     /**
