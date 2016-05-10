@@ -5,19 +5,30 @@
  */
 package com.riftrunners.consultimate.model.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 /**
  *
  * @author Guilherme
  */
-public class Transacao {
-
+@Entity
+@Table(name = "transacao")
+public class Transacao implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     @ManyToOne(targetEntity = Cliente.class, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
