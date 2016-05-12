@@ -19,7 +19,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class ConsultorBean {
 
-    private Consultor consultor = new Consultor();
+    private Consultor consultor = new Consultor(), consultorEditado = new Consultor();
     private String tempSenhaRepete;
 
     /**
@@ -41,6 +41,14 @@ public class ConsultorBean {
 
     public void setConsultor(Consultor consultor) {
         this.consultor = consultor;
+    }
+
+    public Consultor getConsultorEditado() {
+        return consultorEditado;
+    }
+
+    public void setConsultorEditado(Consultor consultorEditado) {
+        this.consultorEditado = consultorEditado;
     }
 
     public String getTempSenhaRepete() {

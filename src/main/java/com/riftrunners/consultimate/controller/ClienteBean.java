@@ -9,6 +9,7 @@ import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.service.ClienteService;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -19,7 +20,9 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ClienteBean {
 
-    private Cliente cliente = new Cliente(), clienteEditado = new Cliente();
+    private Cliente cliente = new Cliente();
+    @ManagedProperty(value="#{sessionBean.cliente}")
+    private Cliente clienteEditado;
     private String tempSenhaRepete;
 
     /**
@@ -38,7 +41,7 @@ public class ClienteBean {
     public void editarCliente() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
-        clienteService.edit(cliente);
+        clienteService.edit(clienteEditado);
         this.clienteEditado = new Cliente();
     }
 
