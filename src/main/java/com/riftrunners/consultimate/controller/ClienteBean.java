@@ -12,8 +12,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @ManagedBean
 @ViewScoped
@@ -50,4 +50,5 @@ public class ClienteBean {
     public void setTempSenhaRepete(String tempSenhaRepete) {
         this.tempSenhaRepete = tempSenhaRepete;
     }
+
 }

@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Guilherme Matuella
  * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @WebFilter(filterName = "FiltroCliente", description = "Filtro dedicado ao controle dos clientes e seus respectivos acessos",
         urlPatterns = {"/faces/consultor-detalhes.xhtml", "/faces/consultores.xhtml"})

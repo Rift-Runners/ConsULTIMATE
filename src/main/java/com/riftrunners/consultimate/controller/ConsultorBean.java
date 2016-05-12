@@ -50,4 +50,5 @@ public class ConsultorBean {
     public void setTempSenhaRepete(String tempSenhaRepete) {
         this.tempSenhaRepete = tempSenhaRepete;
     }
+
 }

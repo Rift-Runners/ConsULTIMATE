@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Guilherme Matuella
  * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @WebFilter(filterName = "FiltroUsuario", description = "Filtro dedicado ao controle dos usuários e seus respectivos acessos",
         urlPatterns = {"/faces/minha-conta.xhtml"})

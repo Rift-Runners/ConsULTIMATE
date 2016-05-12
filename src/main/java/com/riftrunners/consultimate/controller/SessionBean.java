@@ -201,7 +201,6 @@ public class SessionBean implements Serializable {
 //        }
 //        valorSelecionado = 0;
 //    }
-
     public String login() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
@@ -292,5 +291,4 @@ public class SessionBean implements Serializable {
 //            return consultor.getTransacoesEfetuadas().isEmpty();
 //        }
 //    }
-
 }

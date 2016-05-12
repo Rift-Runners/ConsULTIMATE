@@ -12,8 +12,8 @@ import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.util.Validador;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @ManagedBean
 @SessionScoped
