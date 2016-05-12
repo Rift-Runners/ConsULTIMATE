@@ -8,33 +8,62 @@ package com.riftrunners.consultimate.service;
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.dao.ConsultorDAO;
 import com.riftrunners.consultimate.model.entity.Consultor;
+import com.riftrunners.consultimate.util.ConsultimateUtil;
+import com.riftrunners.consultimate.util.Validador;
 import java.util.List;
+import org.primefaces.context.RequestContext;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
+@SuppressWarnings("FieldMayBeFinal")
 public class ConsultorService {
+
     private ConsultorDAO dao;
     private SimpleEntityManager sem;
-    
-    public ConsultorService(SimpleEntityManager sem){
+    private Validador validador;
+    private ConsultimateUtil consultimateUtil;
+
+    public ConsultorService(SimpleEntityManager sem) {
         this.sem = sem;
         dao = new ConsultorDAO(this.sem.getEntityManager());
+        this.validador = new Validador();
+        this.consultimateUtil = new ConsultimateUtil();
     }
-    
-    public void save(Consultor consultor){
-        try{
-            sem.beginTransaction();
-            dao.save(consultor);
-            sem.commit();
-        }catch(Exception e){
-            e.printStackTrace();
+
+    public void save(Consultor consultor, String comparaSenha) {
+        try {
+            if (validador.validaConsultor(consultor) && consultimateUtil.confirmaSenha(consultor.getSenha(), comparaSenha)) {
+                sem.beginTransaction();
+                dao.save(consultor);
+                sem.commit();
+                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
+            }
+        } catch (Exception e) {
             sem.rollBack();
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
+        } finally {
+            if (sem != null) {
+                sem.close();
+            }
         }
     }
-     
-    public List<Consultor> findAll(){
+
+    public List<Consultor> findAll() {
         return dao.findAll();
     }
+
+    public Consultor getConsultorLogin(String usuario, String senha) {
+        for (Consultor consultorCadastrado : dao.findAll()) {
+            if (consultorCadastrado.getUsuario().equals(usuario)
+                    && consultorCadastrado.getSenha().equals(senha)) {
+                return consultorCadastrado;
+            }
+        }
+        return null;
+    }
+
 }

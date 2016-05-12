@@ -14,8 +14,8 @@ import java.util.List;
 import org.primefaces.context.RequestContext;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @SuppressWarnings("FieldMayBeFinal")
 public class ClienteService {
@@ -43,7 +43,6 @@ public class ClienteService {
                 RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
             }
         } catch (Exception e) {
-            e.printStackTrace();
             sem.rollBack();
             RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
         } finally {
@@ -56,11 +55,11 @@ public class ClienteService {
     public List<Cliente> findAll() {
         return dao.findAll();
     }
-    
+
     public Cliente getClienteLogin(String usuario, String senha) {
         for (Cliente clienteCadastrado : dao.findAll()) {
-            if(clienteCadastrado.getUsuario().equals(usuario) &&
-                    clienteCadastrado.getSenha().equals(senha)){
+            if (clienteCadastrado.getUsuario().equals(usuario)
+                    && clienteCadastrado.getSenha().equals(senha)) {
                 return clienteCadastrado;
             }
         }

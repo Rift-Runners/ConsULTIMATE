@@ -8,25 +8,18 @@ package com.riftrunners.consultimate.controller;
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ConsultorService;
-import com.riftrunners.consultimate.util.Validador;
-import java.util.ArrayList;
-import java.util.List;
-import javax.inject.Named;
-import javax.enterprise.context.Dependent;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.primefaces.context.RequestContext;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @ManagedBean
 @SessionScoped
 public class ConsultorBean {
 
     private Consultor consultor = new Consultor();
-    private Validador validador = new Validador();
     private String tempSenhaRepete;
 
     /**
@@ -36,24 +29,10 @@ public class ConsultorBean {
     }
 
     public void registrarConsultor() {
-        if (confirmaSenha(consultor.getSenha(), tempSenhaRepete)) {
-            if (validador.validaConsultor(consultor)) {
-                SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
-                ConsultorService consultorService = new ConsultorService(simpleEntityManager);
-                consultorService.save(consultor);
-                simpleEntityManager.close();
-                this.consultor = new Consultor();
-                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
-            } else {
-                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
-            }
-        } else {
-            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
-        }
-    }
-
-    public boolean confirmaSenha(String senha, String repeteSenha) {
-        return senha.equals(repeteSenha);
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        consultorService.save(consultor, tempSenhaRepete);
+        this.consultor = new Consultor();
     }
 
     public Consultor getConsultor() {

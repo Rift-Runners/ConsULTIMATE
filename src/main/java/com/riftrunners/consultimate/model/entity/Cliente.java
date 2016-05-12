@@ -6,6 +6,7 @@
 package com.riftrunners.consultimate.model.entity;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,8 +15,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author Guilherme Matuella
  * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @Entity
 @Table(name = "cliente")
@@ -25,12 +26,11 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cliente_id")
     private Long id;
+
     private String nome, cidade, uf, endereco, telefone, email, cpf, rg, usuario, senha;
-//    private List<Transacao> transacoesEfetuadas;
     private Integer saldo;
 
     public Cliente() {
-//        this.transacoesEfetuadas = new ArrayList();
     }
 
     //CopyConstructor
@@ -46,7 +46,6 @@ public class Cliente implements Serializable {
         this.usuario = outroCliente.getUsuario();
         this.senha = outroCliente.getSenha();
         this.saldo = outroCliente.getSaldo();
-//        this.transacoesEfetuadas = outroCliente.getTransacoesEfetuadas();
     }
 
     public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha) {
@@ -61,7 +60,6 @@ public class Cliente implements Serializable {
         this.usuario = usuario;
         this.senha = senha;
         this.saldo = 0;
-//        this.transacoesEfetuadas = new ArrayList();
     }
 
     public Long getId() {
@@ -160,11 +158,73 @@ public class Cliente implements Serializable {
         this.senha = senha;
     }
 
-//    public List<Transacao> getTransacoesEfetuadas() {
-//        return transacoesEfetuadas;
-//    }
-//
-//    public void addTransacao(Transacao transacao) {
-//        this.transacoesEfetuadas.add(transacao);
-//    }
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.nome);
+        hash = 83 * hash + Objects.hashCode(this.cidade);
+        hash = 83 * hash + Objects.hashCode(this.uf);
+        hash = 83 * hash + Objects.hashCode(this.endereco);
+        hash = 83 * hash + Objects.hashCode(this.telefone);
+        hash = 83 * hash + Objects.hashCode(this.email);
+        hash = 83 * hash + Objects.hashCode(this.cpf);
+        hash = 83 * hash + Objects.hashCode(this.rg);
+        hash = 83 * hash + Objects.hashCode(this.usuario);
+        hash = 83 * hash + Objects.hashCode(this.senha);
+        hash = 83 * hash + Objects.hashCode(this.saldo);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.uf, other.uf)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        if (!Objects.equals(this.rg, other.rg)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.saldo, other.saldo)) {
+            return false;
+        }
+        return true;
+    }
+
 }
