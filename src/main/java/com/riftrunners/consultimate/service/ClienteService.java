@@ -32,7 +32,27 @@ public class ClienteService {
         this.consultimateUtil = new ConsultimateUtil();
     }
 
-    public void save(Cliente cliente, String comparaSenha) {
+    public void edit(Cliente cliente) {
+        try {
+            if (validador.validaCliente(cliente)) {
+                sem.beginTransaction();
+                dao.update(cliente);
+                sem.commit();
+                RequestContext.getCurrentInstance().execute("PF('dialogEditarSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogEditarErro').show()");
+            }
+        } catch (Exception e) {
+            sem.rollBack();
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
+        } finally {
+            if (sem != null) {
+                sem.close();
+            }
+        }
+    }
+
+        public void save(Cliente cliente, String comparaSenha) {
         try {
             if (validador.validaCliente(cliente) && consultimateUtil.confirmaSenha(cliente.getSenha(), comparaSenha)) {
                 sem.beginTransaction();
@@ -51,7 +71,7 @@ public class ClienteService {
             }
         }
     }
-
+    
     public List<Cliente> findAll() {
         return dao.findAll();
     }

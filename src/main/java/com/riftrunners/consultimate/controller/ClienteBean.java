@@ -19,7 +19,7 @@ import javax.faces.bean.ViewScoped;
 @ViewScoped
 public class ClienteBean {
 
-    private Cliente cliente = new Cliente();
+    private Cliente cliente = new Cliente(), clienteEditado = new Cliente();
     private String tempSenhaRepete;
 
     /**
@@ -35,12 +35,27 @@ public class ClienteBean {
         this.cliente = new Cliente();
     }
 
+    public void editarCliente() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ClienteService clienteService = new ClienteService(simpleEntityManager);
+        clienteService.edit(cliente);
+        this.clienteEditado = new Cliente();
+    }
+
     public Cliente getCliente() {
         return cliente;
     }
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Cliente getClienteEditado() {
+        return clienteEditado;
+    }
+
+    public void setClienteEditado(Cliente clienteEditado) {
+        this.clienteEditado = clienteEditado;
     }
 
     public String getTempSenhaRepete() {

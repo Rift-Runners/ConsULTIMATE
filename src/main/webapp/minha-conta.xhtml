@@ -48,7 +48,7 @@
                 <div class="row row-eq-height">
                     <div class="col-md-1"/>
                     <div class="col-md-6">
-                        <div class="panel panel-primary" data-step="1" data-intro="Aqui ficarão as transações que você combinar com o seu consultor/cliente!">
+<!--                        <div class="panel panel-primary" data-step="1" data-intro="Aqui ficarão as transações que você combinar com o seu consultor/cliente!">
                             <div class="panel-heading">
                                 <h3 class="panel-title text-center font-tracktype">Transações Efetuadas <i class="glyphicon glyphicon-credit-card"></i></h3>
                             </div>
@@ -109,7 +109,7 @@
                                     </h:panelGroup>
                                 </h:form>
                             </div>
-                        </div>
+                        </div>-->
                         <h:panelGroup rendered="#{sessionBean.consultorLogged}">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
@@ -122,7 +122,7 @@
                                                          class="form-control" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes." 
                                                          autoResize="false" value="#{sessionBean.consultorEditado.descricao}"/>
                                         <h:message for="consultorDescricao" class="error-message"/> <br/>
-                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
+                                        <p:commandLink update="dados-consultor" action="#{consultorBean.editarConsultor()}" styleClass="btn btn-info">
                                             Salvar Descrição <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>  
                                     </h:form>
@@ -145,7 +145,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                                  class="input-editavel" id="clienteNome" 
-                                                                 value="#{sessionBean.clienteEditado.nome}"/>
+                                                                 value="#{clienteBean.clienteEditado.nome}"/>
                                                     <h:message for="clienteNome" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -154,7 +154,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel telefoneMask" id="clienteTelefone"
-                                                                 value="#{sessionBean.clienteEditado.telefone}"/>
+                                                                 value="#{clienteBean.clienteEditado.telefone}"/>
                                                     <h:message for="clienteTelefone" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -163,8 +163,8 @@
                                                 <td>
                                                     <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                                      class="input-editavel-select form-control" id="clienteUf" 
-                                                                     value="#{sessionBean.clienteEditado.uf}">  
-                                                        <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                                                     value="#{clienteBean.clienteEditado.uf}">  
+                                                        <f:selectItems value="#{helperBean.listaEstados()}" var="estado"
                                                                        itemLabel="#{estado}" itemValue="#{estado}" />
                                                     </h:selectOneMenu>
                                                     <h:message for="clienteUf" class="error-message"/>
@@ -175,7 +175,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                                  class="input-editavel" id="clienteCidade" 
-                                                                 value="#{sessionBean.clienteEditado.cidade}"/>
+                                                                 value="#{clienteBean.clienteEditado.cidade}"/>
                                                     <h:message for="clienteCidade" class="error-message"/> 
                                                 </td>
                                             </tr>
@@ -184,7 +184,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
                                                                  class="input-editavel" id="clienteEndereco"
-                                                                 value="#{sessionBean.clienteEditado.endereco}"/>
+                                                                 value="#{clienteBean.clienteEditado.endereco}"/>
                                                     <h:message for="clienteEndereco" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -193,7 +193,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel cpfMask" id="clienteCpf"
-                                                                 value="#{sessionBean.clienteEditado.cpf}"/>
+                                                                 value="#{clienteBean.clienteEditado.cpf}"/>
                                                     <h:message for="clienteCpf" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -202,7 +202,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel rgMask" id="clienteRg"
-                                                                 value="#{sessionBean.clienteEditado.rg}"/>
+                                                                 value="#{clienteBean.clienteEditado.rg}"/>
                                                     <h:message for="clienteRg" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -211,7 +211,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel" id="clienteEmail"
-                                                                 value="#{sessionBean.clienteEditado.email}"/>
+                                                                 value="#{clienteBean.clienteEditado.email}"/>
                                                     <h:message for="clienteEmail" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -220,14 +220,14 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel" id="clienteSenha"
-                                                                 value="#{sessionBean.clienteEditado.senha}"/>
+                                                                 value="#{clienteBean.clienteEditado.senha}"/>
                                                     <h:message for="clienteSenha" class="error-message"/>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="text-center">
-                                        <p:commandLink update="dados-cliente" action="#{sessionBean.editarConta()}" styleClass="btn btn-info margin-bottom10">
+                                        <p:commandLink update="dados-cliente" action="#{clienteBean.editarCliente()}" styleClass="btn btn-info margin-bottom10">
                                             Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>    
                                         <div class="text-center">
@@ -245,7 +245,7 @@
                                             <td>                            
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                              class="input-editavel" id="consultorNome"
-                                                             value="#{sessionBean.consultorEditado.nome}"/>
+                                                             value="#{consultorBean.consultorEditado.nome}"/>
                                                 <h:message for="consultorNome" class="error-message"/>
                                             </td>
                                         </tr>
@@ -254,7 +254,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                              class="input-editavel" id="consultorEmail"
-                                                             value="#{sessionBean.consultorEditado.email}"/>
+                                                             value="#{consultorBean.consultorEditado.email}"/>
                                                 <h:message for="consultorEmail" class="error-message"/>
                                             </td>
                                         </tr>
@@ -263,8 +263,8 @@
                                             <td>
                                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                                  class="input-editavel-select form-control"  id="consultorArea"
-                                                                 value="#{sessionBean.consultorEditado.area}"> 
-                                                    <f:selectItems value="#{mainController.listasDeDados.listaAreas}" var="area"
+                                                                 value="#{consultorBean.consultorEditado.area}"> 
+                                                    <f:selectItems value="#{helperBean.listasDeDados.listaAreas}" var="area"
                                                                    itemLabel="#{area}" itemValue="#{area}" />
                                                 </h:selectOneMenu>
                                                 <h:message for="consultorArea" class="error-message"/>
@@ -275,8 +275,8 @@
                                             <td>
                                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                                  class="input-editavel-select form-control" id="consultorUf"
-                                                                 value="#{sessionBean.consultorEditado.uf}"> 
-                                                    <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                                                 value="#{consultorBean.consultorEditado.uf}"> 
+                                                    <f:selectItems value="#{helperBean.listaEstados()}" var="estado"
                                                                    itemLabel="#{estado}" itemValue="#{estado}" />
                                                 </h:selectOneMenu>
                                                 <h:message for="consultorUf" class="error-message"/>
@@ -287,7 +287,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                                              class="input-editavel" id="consultorCidade"
-                                                             value="#{sessionBean.consultorEditado.cidade}"/>
+                                                             value="#{consultorBean.consultorEditado.cidade}"/>
                                                 <h:message for="consultorCidade" class="error-message"/>
                                             </td>
                                         </tr>
@@ -296,7 +296,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
                                                              class="input-editavel" id="consultorEndereco"
-                                                             value="#{sessionBean.consultorEditado.endereco}"/>
+                                                             value="#{consultorBean.consultorEditado.endereco}"/>
                                                 <h:message for="consultorEndereco" class="error-message"/>
                                             </td>
                                         </tr>
@@ -305,7 +305,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel telefoneMask" id="consultorTelefone"
-                                                             value="#{sessionBean.consultorEditado.telefone}"/>
+                                                             value="#{consultorBean.consultorEditado.telefone}"/>
                                                 <h:message for="consultorTelefone" class="error-message"/>
                                             </td>
                                         </tr>
@@ -314,7 +314,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel cnpjMask" id="consultorCpnj"
-                                                             value="#{sessionBean.consultorEditado.cnpj}"/>
+                                                             value="#{consultorBean.consultorEditado.cnpj}"/>
                                                 <h:message for="consultorCpnj" class="error-message"/>
                                             </td>
                                         </tr>
@@ -323,7 +323,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel moneyMask" id="consultorValor"
-                                                             value="#{sessionBean.consultorEditado.valorHora}"/>
+                                                             value="#{consultorBean.consultorEditado.valorHora}"/>
                                                 <h:message for="consultorValor" class="error-message"/>
                                             </td>
                                         </tr>
@@ -332,13 +332,13 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel" id="consultorSenha"
-                                                             value="#{sessionBean.consultorEditado.senha}"/>
+                                                             value="#{consultorBean.consultorEditado.senha}"/>
                                                 <h:message for="consultorSenha" class="error-message"/>
                                             </td>
                                         </tr>
                                     </table>
                                     <div class="text-center">
-                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info margin-bottom10">
+                                        <p:commandLink update="dados-consultor" action="#{consultorBean.editarConsultor()}" styleClass="btn btn-info margin-bottom10">
                                             Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>  
                                         <div class="text-center">
