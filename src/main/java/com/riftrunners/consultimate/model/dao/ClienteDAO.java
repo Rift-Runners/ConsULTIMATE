@@ -9,12 +9,13 @@ import com.riftrunners.consultimate.model.entity.Cliente;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 public class ClienteDAO extends GenericDAO<Long, Cliente> {
 
     public ClienteDAO(EntityManager entityManager) {
         super(entityManager);
     }
+    
 }

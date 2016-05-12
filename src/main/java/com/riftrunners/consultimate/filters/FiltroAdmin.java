@@ -19,8 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Guilherme Matuella
  * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @WebFilter(filterName = "FiltroAdmin", description = "Filtro dedicado ao controle do admin e seus respectivos acessos",
         urlPatterns = {"/faces/dashboard.xhtml"})
