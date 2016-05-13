@@ -18,10 +18,10 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class ClienteBean {
+public class ClienteBean{
 
     private Cliente cliente = new Cliente();
-    @ManagedProperty(value="#{sessionBean.cliente}")
+    @ManagedProperty(value = "#{sessionBean.cliente}")
     private Cliente clienteEditado;
     private String tempSenhaRepete;
 
@@ -43,6 +43,13 @@ public class ClienteBean {
         ClienteService clienteService = new ClienteService(simpleEntityManager);
         clienteService.edit(clienteEditado);
         this.clienteEditado = new Cliente();
+    }
+
+    public String deletarCliente() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ClienteService clienteService = new ClienteService(simpleEntityManager);
+        clienteService.remove(clienteEditado);
+        return "index.xhtml?faces-redirect=true";
     }
 
     public Cliente getCliente() {

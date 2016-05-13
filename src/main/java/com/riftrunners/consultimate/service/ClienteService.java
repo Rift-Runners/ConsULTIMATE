@@ -11,6 +11,7 @@ import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.util.ConsultimateUtil;
 import com.riftrunners.consultimate.util.Validador;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -69,6 +70,18 @@ public class ClienteService {
             if (sem != null) {
                 sem.close();
             }
+        }
+    }
+
+    public void remove(Cliente cliente) {
+        try {
+            sem.beginTransaction();
+            dao.delete(cliente);
+            sem.commit();
+        } catch (Exception e) {
+            sem.rollBack();
+        } finally {
+            sem.close();
         }
     }
 
