@@ -52,6 +52,26 @@ public class ConsultorService {
         }
     }
 
+    public void edit(Consultor consultor) {
+        try {
+            if (validador.validaConsultor(consultor)) {
+                sem.beginTransaction();
+                dao.update(consultor);
+                sem.commit();
+                RequestContext.getCurrentInstance().execute("PF('dialogEditarSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogEditarErro').show()");
+            }
+        } catch (Exception e) {
+            sem.rollBack();
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
+        } finally {
+            if (sem != null) {
+                sem.close();
+            }
+        }
+    }
+    
     public List<Consultor> findAll() {
         return dao.findAll();
     }

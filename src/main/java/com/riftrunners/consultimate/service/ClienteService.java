@@ -32,6 +32,26 @@ public class ClienteService {
         this.consultimateUtil = new ConsultimateUtil();
     }
 
+    public void save(Cliente cliente, String comparaSenha) {
+        try {
+            if (validador.validaCliente(cliente) && consultimateUtil.confirmaSenha(cliente.getSenha(), comparaSenha)) {
+                sem.beginTransaction();
+                dao.save(cliente);
+                sem.commit();
+                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
+            } else {
+                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
+            }
+        } catch (Exception e) {
+            sem.rollBack();
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
+        } finally {
+            if (sem != null) {
+                sem.close();
+            }
+        }
+    }
+
     public void edit(Cliente cliente) {
         try {
             if (validador.validaCliente(cliente)) {
@@ -52,26 +72,6 @@ public class ClienteService {
         }
     }
 
-        public void save(Cliente cliente, String comparaSenha) {
-        try {
-            if (validador.validaCliente(cliente) && consultimateUtil.confirmaSenha(cliente.getSenha(), comparaSenha)) {
-                sem.beginTransaction();
-                dao.save(cliente);
-                sem.commit();
-                RequestContext.getCurrentInstance().execute("PF('dialogSucesso').show()");
-            } else {
-                RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
-            }
-        } catch (Exception e) {
-            sem.rollBack();
-            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
-        } finally {
-            if (sem != null) {
-                sem.close();
-            }
-        }
-    }
-    
     public List<Cliente> findAll() {
         return dao.findAll();
     }

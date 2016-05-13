@@ -9,17 +9,20 @@ import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ConsultorService;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.ViewScoped;
 
 /**
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ConsultorBean {
 
-    private Consultor consultor = new Consultor(), consultorEditado = new Consultor();
+    private Consultor consultor = new Consultor();
+    @ManagedProperty(value = "#{sessionBean.consultor}")
+    private Consultor consultorEditado;
     private String tempSenhaRepete;
 
     /**
@@ -33,6 +36,13 @@ public class ConsultorBean {
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
         consultorService.save(consultor, tempSenhaRepete);
         this.consultor = new Consultor();
+    }
+
+    public void editarConsultor() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        consultorService.edit(consultorEditado);
+        this.consultorEditado = new Consultor();
     }
 
     public Consultor getConsultor() {
