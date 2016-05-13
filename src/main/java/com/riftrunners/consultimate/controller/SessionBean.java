@@ -14,6 +14,7 @@ import com.riftrunners.consultimate.model.entity.Admin;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ClienteService;
+import com.riftrunners.consultimate.service.ConsultorService;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -211,8 +212,17 @@ public class SessionBean implements Serializable {
             cliente = clienteCadastrado;
             clienteEditado = new Cliente(cliente);
             return "index.xhtml?faces-redirect=true";
+        } else {
+            ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+            Consultor consultorCadastrado = consultorService.getConsultorLogin(usuario, senha);
+            if (consultorCadastrado != null) {
+                consultorLogged = true;
+                logged = true;
+                consultor = consultorCadastrado;
+                consultorEditado = new Consultor(consultor);
+                return "index.xhtml?faces-redirect=true";
+            }
         }
-
 //        for (Consultor consultorCadastrado : listasDeDados.getListaConsultores()) {
 //            if (consultorCadastrado.getUsuario().equals(usuario)) {
 //                if (consultorCadastrado.getSenha().equals(senha)) {
