@@ -76,8 +76,10 @@ public class ClienteService {
     public void remove(Cliente cliente) {
         try {
             sem.beginTransaction();
-            dao.delete(cliente);
+            dao.delete(dao.getById(cliente.getId()));
             sem.commit();
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            contexto.getExternalContext().invalidateSession();
         } catch (Exception e) {
             sem.rollBack();
         } finally {
