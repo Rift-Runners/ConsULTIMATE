@@ -223,28 +223,7 @@ public class SessionBean implements Serializable {
                 return "index.xhtml?faces-redirect=true";
             }
         }
-//        for (Consultor consultorCadastrado : listasDeDados.getListaConsultores()) {
-//            if (consultorCadastrado.getUsuario().equals(usuario)) {
-//                if (consultorCadastrado.getSenha().equals(senha)) {
-//                    consultorLogged = true;
-//                    logged = true;
-//                    consultor = consultorCadastrado;
-//                    consultorEditado = new Consultor(consultor);
-//                    return "index.xhtml?faces-redirect=true";
-//                }
-//            }
-//        }
-//
-//        for (Admin adminCadastrado : listasDeDados.getListaAdmin()) {
-//            if (adminCadastrado.getUsuario().equals(usuario)) {
-//                if (adminCadastrado.getSenha().equals(senha)) {
-//                    adminLogged = true;
-//                    logged = true;
-//                    admin = adminCadastrado;
-//                    return "index.xhtml?faces-redirect=true";
-//                }
-//            }
-//        }
+
         RequestContext.getCurrentInstance().execute("PF('dialogInvalida').show()");
         return "";
     }
@@ -268,30 +247,6 @@ public class SessionBean implements Serializable {
 //            listasDeDados.deletarConsultor(consultor);
 //        }
 //        return sair();
-//    }
-//
-//    public String editarConta() {
-//        ListasDados listasDeDados = validador.listaControladorAplicacao();
-//        if (clienteLogged) {
-//            if (validador.validaCliente(clienteEditado)) {
-//                listasDeDados.getListaClientes().set(listasDeDados.getListaClientes().indexOf(cliente), clienteEditado);
-//                cliente = clienteEditado;
-//                RequestContext.getCurrentInstance().execute("PF('dialogEditarSucesso').show()");
-//            } else {
-//                clienteEditado = new Cliente(cliente);
-//                RequestContext.getCurrentInstance().execute("PF('dialogEditarErro').show()");
-//            }
-//        } else if (validador.validaConsultor(consultorEditado)) {
-//            listasDeDados.getListaConsultores().set(listasDeDados.getListaConsultores().indexOf(consultor), consultorEditado);
-//            consultor = consultorEditado;
-//            RequestContext.getCurrentInstance().execute("PF('dialogEditarSucesso').show()");
-//            return "";
-//        } else {
-//            consultorEditado = new Consultor(consultor);
-//            RequestContext.getCurrentInstance().execute("PF('dialogEditarErro').show()");
-//            return "";
-//        }
-//        return "";
 //    }
 //
 //    public boolean isListaTransacoesVazia() {

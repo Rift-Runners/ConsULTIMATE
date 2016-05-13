@@ -33,4 +33,12 @@ public class HelperBean {
         return estados;
     }
 
+     public List<String> listaAreas() {
+        List<String> areas = new ArrayList();
+        areas.add("TI");
+        areas.add("Engenharia");
+        areas.add("Artes");
+        return areas;
+    }
+    
 }

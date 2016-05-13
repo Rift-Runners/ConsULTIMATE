@@ -203,7 +203,7 @@
                                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                                  class="input-editavel-select form-control"  id="consultorArea"
                                                                  value="#{consultorBean.consultorEditado.area}"> 
-                                                    <f:selectItems value="#{helperBean.listasDeDados.listaAreas}" var="area"
+                                                    <f:selectItems value="#{helperBean.listaAreas()}" var="area"
                                                                    itemLabel="#{area}" itemValue="#{area}" />
                                                 </h:selectOneMenu>
                                                 <h:message for="consultorArea" class="error-message"/>
