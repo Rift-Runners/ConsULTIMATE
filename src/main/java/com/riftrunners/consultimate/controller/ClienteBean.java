@@ -19,12 +19,13 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class ClienteBean implements Serializable{
+public class ClienteBean implements Serializable {
 
     private Cliente cliente = new Cliente();
     @ManagedProperty(value = "#{sessionBean.cliente}")
     private Cliente clienteEditado;
     private String tempSenhaRepete;
+    private Integer valorSaldo;
 
     /**
      * Creates a new instance of ClienteBean
@@ -35,6 +36,7 @@ public class ClienteBean implements Serializable{
     public void registrarCliente() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
+        this.cliente.setSaldo(0);
         clienteService.save(cliente, tempSenhaRepete);
         this.cliente = new Cliente();
     }
@@ -51,6 +53,15 @@ public class ClienteBean implements Serializable{
         ClienteService clienteService = new ClienteService(simpleEntityManager);
         clienteService.remove(clienteEditado);
         return "index.xhtml?faces-redirect=true";
+    }
+
+    public String adicionarSaldo() {
+        clienteEditado.setSaldo(clienteEditado.getSaldo() + valorSaldo);
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ClienteService clienteService = new ClienteService(simpleEntityManager);
+        clienteService.edit(clienteEditado);
+        valorSaldo = 0;
+        return "";
     }
 
     public Cliente getCliente() {
@@ -75,6 +86,14 @@ public class ClienteBean implements Serializable{
 
     public void setTempSenhaRepete(String tempSenhaRepete) {
         this.tempSenhaRepete = tempSenhaRepete;
+    }
+
+    public Integer getValorSaldo() {
+        return valorSaldo;
+    }
+
+    public void setValorSaldo(Integer valorSaldo) {
+        this.valorSaldo = valorSaldo;
     }
 
 }

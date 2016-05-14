@@ -14,4 +14,16 @@ public class ConsultimateUtil {
     public boolean confirmaSenha(String senha, String repeteSenha) {
         return senha.equals(repeteSenha);
     }
+
+    public int calculaHoraSelecionado(int valor, int valorSelecionado) {
+        if (valor == valorSelecionado) {
+            return 1;
+        } else if (valor * 4 == valorSelecionado) {
+            return 5;
+        } else if (valor * 7 == valorSelecionado) {
+            return 10;
+        } else {
+            return 20;
+        }
+    }
 }

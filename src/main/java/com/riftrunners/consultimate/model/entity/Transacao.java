@@ -17,6 +17,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
  * @author Diego Peixoto
@@ -37,15 +39,16 @@ public class Transacao implements Serializable {
     @ManyToOne(targetEntity = Consultor.class, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "consultor_id")
     private Consultor consultor;
-    private Double valor;
+    private Integer valor;
     private Integer horas;
     @Column(name = "data_da_compra")
+    @Temporal(TemporalType.DATE)
     private Date dataDaCompra;
 
     public Transacao() {
     }
 
-    public Transacao(Cliente cliente, Consultor consultor, Double valor, Integer horas) {
+    public Transacao(Cliente cliente, Consultor consultor, Integer valor, Integer horas) {
         this.cliente = cliente;
         this.consultor = consultor;
         this.valor = valor;
@@ -69,11 +72,11 @@ public class Transacao implements Serializable {
         this.consultor = consultor;
     }
 
-    public Double getValor() {
+    public Integer getValor() {
         return valor;
     }
 
-    public void setValor(Double valor) {
+    public void setValor(Integer valor) {
         this.valor = valor;
     }
 

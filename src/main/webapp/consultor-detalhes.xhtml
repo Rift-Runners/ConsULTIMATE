@@ -66,14 +66,14 @@
                             </div>
                             <div class="panel-body">
                                 <h:form class="text-center">
-                                    <h:selectOneRadio value="#{sessionBean.valorSelecionado}" layout="pageDirection" class="table">
-                                        <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[0]}" itemLabel="1 Hora - R$ #{sessionBean.valoresConsultorVisualizado()[0]}"/>
-                                        <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[1]}" itemLabel="5 Horas (20%) - R$ #{sessionBean.valoresConsultorVisualizado()[1]}"/>
-                                        <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[2]}" itemLabel="10 Horas (30%) - R$ #{sessionBean.valoresConsultorVisualizado()[2]}"/>
-                                        <f:selectItem itemValue="#{sessionBean.valoresConsultorVisualizado()[3]}" itemLabel="20 Horas (40%) - R$ #{sessionBean.valoresConsultorVisualizado()[3]}"/>
+                                    <h:selectOneRadio value="#{transacaoBean.valorSelecionado}" layout="pageDirection" class="table">
+                                        <f:selectItem itemValue="#{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[0]}" itemLabel="1 Hora - R$ #{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[0]}"/>
+                                        <f:selectItem itemValue="#{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[1]}" itemLabel="5 Horas (20%) - R$ #{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[1]}"/>
+                                        <f:selectItem itemValue="#{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[2]}" itemLabel="10 Horas (30%) - R$ #{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[2]}"/>
+                                        <f:selectItem itemValue="#{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[3]}" itemLabel="20 Horas (40%) - R$ #{helperBean.valoresConsultorVisualizado(sessionBean.consultorVisualizado.valorHora)[3]}"/>
                                     </h:selectOneRadio>
                                     <div>
-                                        <pr:commandButton class="btn btn-info btn-lg margin-bottom25 font-tracktype" value="Contratar" action="#{sessionBean.criarTransacao()}"/>
+                                        <pr:commandButton class="btn btn-info btn-lg margin-bottom25 font-tracktype" value="Contratar" action="#{transacaoBean.registrarTransacao()}"/>
                                     </div>
                                 </h:form>
                             </div>

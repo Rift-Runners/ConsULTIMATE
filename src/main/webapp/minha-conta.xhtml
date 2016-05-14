@@ -319,12 +319,13 @@
         <p:dialog modal="true" id="dialog4" widgetVar="dialogSaldo" draggable="false" resizable="false" header="Adicionar Saldo!"
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <h:form>
-                <h:selectOneRadio value="#{sessionBean.valorSaldo}" layout="pageDirection" class="table">
+                <h:selectOneRadio id="valorSaldo" value="#{clienteBean.valorSaldo}" layout="pageDirection" class="table" required="true" requiredMessage="Selecione um valor!">
                     <f:selectItem itemValue="100" itemLabel="R$ 100,00"/>  
                     <f:selectItem itemValue="300" itemLabel="R$ 300,00"/>
                     <f:selectItem itemValue="500" itemLabel="R$ 500,00"/>
-                </h:selectOneRadio> 
-                <h:commandButton class="btn btn-primary" value="Adicionar" style="float: right; margin-left: 100px;" action="#{sessionBean.adicionarSaldo()}"/>
+                </h:selectOneRadio>
+                <h:message for="valorSaldo" class="error-message"/>
+                <h:commandButton class="btn btn-primary" value="Adicionar" style="float: right; margin-left: 100px;" action="#{clienteBean.adicionarSaldo()}"/>
                 <h:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" styleClass="btn btn-primary" value="Cancelar"/>
             </h:form>
         </p:dialog>

@@ -48,7 +48,7 @@ public class Cliente implements Serializable {
         this.saldo = outroCliente.getSaldo();
     }
 
-    public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha) {
+    public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha, Integer saldo) {
         this.nome = nome;
         this.cidade = cidade;
         this.uf = uf;
@@ -59,7 +59,7 @@ public class Cliente implements Serializable {
         this.rg = rg;
         this.usuario = usuario;
         this.senha = senha;
-        this.saldo = 0;
+        this.saldo = saldo;
     }
 
     public Long getId() {

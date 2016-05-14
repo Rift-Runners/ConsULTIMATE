@@ -9,6 +9,7 @@ import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ConsultorService;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -51,6 +52,12 @@ public class ConsultorBean implements Serializable {
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
         consultorService.remove(consultorEditado);
         return "index.xhtml?faces-redirect=true";
+    }
+
+    public List<Consultor> listaConsultores() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        return consultorService.findAll();
     }
 
     public Consultor getConsultor() {
