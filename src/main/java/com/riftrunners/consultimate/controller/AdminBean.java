@@ -10,6 +10,7 @@ import javax.faces.bean.SessionScoped;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.util.Validador;
+import java.io.Serializable;
 
 /**
  * @author Diego Peixoto
@@ -17,7 +18,7 @@ import com.riftrunners.consultimate.util.Validador;
  */
 @ManagedBean
 @SessionScoped
-public class AdminBean {
+public class AdminBean implements Serializable{
 
     private Consultor consultorEditado, consultorExcluido;
     private Cliente clienteEditado, clienteExcluido;

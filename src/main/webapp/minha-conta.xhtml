@@ -299,7 +299,8 @@
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <p>Deseja mesmo excluir sua conta?</p>
             <p>Note que este processo é irreversível!</p>
-            <p:commandButton action="#{clienteBean.deletarCliente()}" style="float: right" class="btn btn-primary" value="Sim"/>
+            <p:commandButton rendered="#{sessionBean.clienteLogged}" action="#{clienteBean.deletarCliente()}" style="float: right" class="btn btn-primary" value="Sim"/>
+            <p:commandButton rendered="#{sessionBean.consultorLogged}" action="#{consultorBean.deletarConsultor()}" style="float: right" class="btn btn-primary" value="Sim"/>
             <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" class="btn btn-primary" value="Não"/>
         </p:dialog>
 

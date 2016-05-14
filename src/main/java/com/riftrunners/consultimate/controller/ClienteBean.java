@@ -8,6 +8,7 @@ package com.riftrunners.consultimate.controller;
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.service.ClienteService;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -18,7 +19,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class ClienteBean{
+public class ClienteBean implements Serializable{
 
     private Cliente cliente = new Cliente();
     @ManagedProperty(value = "#{sessionBean.cliente}")

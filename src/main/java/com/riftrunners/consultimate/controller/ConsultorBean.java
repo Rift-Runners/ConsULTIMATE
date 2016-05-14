@@ -8,6 +8,7 @@ package com.riftrunners.consultimate.controller;
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ConsultorService;
+import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -18,7 +19,7 @@ import javax.faces.bean.ViewScoped;
  */
 @ManagedBean
 @ViewScoped
-public class ConsultorBean {
+public class ConsultorBean implements Serializable {
 
     private Consultor consultor = new Consultor();
     @ManagedProperty(value = "#{sessionBean.consultor}")
@@ -43,6 +44,13 @@ public class ConsultorBean {
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
         consultorService.edit(consultorEditado);
         this.consultorEditado = new Consultor();
+    }
+
+    public String deletarConsultor() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        consultorService.remove(consultorEditado);
+        return "index.xhtml?faces-redirect=true";
     }
 
     public Consultor getConsultor() {

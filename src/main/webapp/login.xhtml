@@ -55,7 +55,7 @@
         <pr:dialog modal="true" widgetVar="dialogInvalida" draggable="false" resizable="false" header="Credenciais inválidas!"
                    closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <p>Usuário e/ou Senha inválidos!</p>
-            <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="OK"/>
+            <pr:commandButton action="#{helperBean.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="OK"/>
         </pr:dialog>
 
         <pr:dialog modal="true" widgetVar="dialogEsqueceuSenha" draggable="false" resizable="false" header="Esqueceu a senha!"
@@ -64,9 +64,9 @@
             <p>informando as instruções necessárias para recuperar os dados cadastrados!</p>
             <h:form>
                 <h:outputLabel for="emailEsqueceu" value="Email:"/>
-                <pr:inputText value="#{mainController.emailRecuperaSenha}" id="emailEsqueceu" required="true" requiredMessage="Campo obrigatório" />
+                <pr:inputText value="#{helperBean.emailRecuperaSenha}" id="emailEsqueceu" required="true" requiredMessage="Campo obrigatório" />
                 <h:message for="emailEsqueceu" class="error-message"/>
-                <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="Enviar!"/>
+                <pr:commandButton action="#{helperBean.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="Enviar!"/>
             </h:form>
         </pr:dialog>
 

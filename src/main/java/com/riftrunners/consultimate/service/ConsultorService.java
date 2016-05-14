@@ -11,6 +11,7 @@ import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.util.ConsultimateUtil;
 import com.riftrunners.consultimate.util.Validador;
 import java.util.List;
+import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -71,7 +72,21 @@ public class ConsultorService {
             }
         }
     }
-    
+
+    public void remove(Consultor consultor) {
+        try {
+            sem.beginTransaction();
+            dao.delete(dao.getById(consultor.getId()));
+            sem.commit();
+            FacesContext contexto = FacesContext.getCurrentInstance();
+            contexto.getExternalContext().invalidateSession();
+        } catch (Exception e) {
+            sem.rollBack();
+        } finally {
+            sem.close();
+        }
+    }
+
     public List<Consultor> findAll() {
         return dao.findAll();
     }
