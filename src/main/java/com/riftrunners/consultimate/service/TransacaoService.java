@@ -6,15 +6,12 @@
 package com.riftrunners.consultimate.service;
 
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
-import com.riftrunners.consultimate.model.dao.ConsultorDAO;
+import com.riftrunners.consultimate.model.dao.ClienteDAO;
 import com.riftrunners.consultimate.model.dao.TransacaoDAO;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.model.entity.Transacao;
-import com.riftrunners.consultimate.util.ConsultimateUtil;
-import com.riftrunners.consultimate.util.Validador;
 import java.util.List;
-import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -26,22 +23,21 @@ public class TransacaoService {
 
     private TransacaoDAO dao;
     private SimpleEntityManager sem;
-    private Validador validador;
-    private ConsultimateUtil consultimateUtil;
 
     public TransacaoService(SimpleEntityManager sem) {
         this.sem = sem;
         dao = new TransacaoDAO(this.sem.getEntityManager());
-        this.validador = new Validador();
-        this.consultimateUtil = new ConsultimateUtil();
     }
 
-    public void save(Cliente cliente, Consultor consultor, Integer valorSelecionado) {
+    public void save(Transacao transacao) {
         try {
-            if (cliente.getSaldo() >= valorSelecionado && valorSelecionado > 0) {
-                Transacao transacao = new Transacao(cliente, consultor, valorSelecionado, consultimateUtil.calculaHoraSelecionado(consultor.getValorHora(), valorSelecionado));
+            if (transacao.getCliente().getSaldo() >= 0 && transacao.getValor() > 0) {
                 sem.beginTransaction();
                 dao.save(transacao);
+                
+                ClienteDAO cliDao = new ClienteDAO(this.sem.getEntityManager());
+                cliDao.update(transacao.getCliente());
+                
                 sem.commit();
                 RequestContext.getCurrentInstance().execute("PF('dialogTransacao').show()");
             } else {
@@ -58,5 +54,13 @@ public class TransacaoService {
 
     public List<Transacao> findAll() {
         return dao.findAll();
+    }
+    
+    public List<Transacao> transacoesDoCliente(Cliente cliente){
+        return dao.getByClienteId(cliente.getId());
+    }
+    
+    public List<Transacao> transacoesDoConsultor(Consultor consultor){
+        return dao.getByConsultorId(consultor.getId());
     }
 }

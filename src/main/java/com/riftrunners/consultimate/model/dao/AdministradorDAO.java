@@ -5,16 +5,16 @@
  */
 package com.riftrunners.consultimate.model.dao;
 
-import com.riftrunners.consultimate.model.entity.Admin;
+import com.riftrunners.consultimate.model.entity.Administrador;
 import javax.persistence.EntityManager;
 
 /**
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
-public class AdminDAO extends GenericDAO<Long, Admin> {
+public class AdministradorDAO extends GenericDAO<Long, Administrador> {
 
-    public AdminDAO(EntityManager entityManager) {
+    public AdministradorDAO(EntityManager entityManager) {
         super(entityManager);
     }
     

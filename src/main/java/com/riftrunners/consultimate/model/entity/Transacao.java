@@ -96,6 +96,14 @@ public class Transacao implements Serializable {
         this.dataDaCompra = dataDaCompra;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;

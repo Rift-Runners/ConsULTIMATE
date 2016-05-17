@@ -183,10 +183,6 @@
 //        return estados;
 //    }
 //
-//    public boolean isPaginaPrincipal() {
-//        HttpServletRequest servletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-//        return servletRequest.getRequestURI().contains("index");
-//    }
 //
 //    public String enviaDados() {
 //        for (Cliente clienteCadastrado : listasDeDados.getListaClientes()) {
@@ -202,21 +198,13 @@
 //        return redirecionaLogin();
 //    }
 //
-//    public void enviarContato() {
-//        this.contatoDescricao = "";
-//        this.contatoEmail = "";
-//        this.contatoNome = "";
-//        RequestContext.getCurrentInstance().execute("PF('dialogContato').show()");
-//    }
+
 //
 //    public void deletarContaDialog() {
 //        RequestContext.getCurrentInstance().execute("PF('dialogDeletar').show()");
 //    }
 //
 //
-//    public String redirecionaContato() {
-//        return "contato.xhtml?faces-redirect=true";
-//    }
 //
 //
 //}

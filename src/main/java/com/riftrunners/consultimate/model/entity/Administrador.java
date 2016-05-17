@@ -20,18 +20,21 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "admin")
-public class Admin implements Serializable {
+public class Administrador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "admin_id")
     private Long id;
-    private String usuario, senha;
+    @Column(nullable = false)
+    private String usuario;
+    @Column(nullable = false)
+    private String senha;
 
-    public Admin() {
+    public Administrador() {
     }
 
-    public Admin(String usuario, String senha) {
+    public Administrador(String usuario, String senha) {
         this.usuario = usuario;
         this.senha = senha;
     }
@@ -80,7 +83,7 @@ public class Admin implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Admin other = (Admin) obj;
+        final Administrador other = (Administrador) obj;
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }

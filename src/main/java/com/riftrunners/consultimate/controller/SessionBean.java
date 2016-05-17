@@ -10,7 +10,7 @@ import java.io.Serializable;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
-import com.riftrunners.consultimate.model.entity.Admin;
+import com.riftrunners.consultimate.model.entity.Administrador;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ClienteService;
@@ -25,10 +25,10 @@ import org.primefaces.context.RequestContext;
 @SessionScoped
 public class SessionBean implements Serializable {
 
-    private String usuario, senha, perguntaConsultor;
+    private String usuario, senha;
     private Cliente cliente, clienteEditado;
     private Consultor consultor, consultorEditado, consultorVisualizado;
-    private Admin admin;
+    private Administrador admin;
     private boolean logged, clienteLogged, consultorLogged, adminLogged;
     private int valorSaldo, valorSelecionado;
 
@@ -73,11 +73,11 @@ public class SessionBean implements Serializable {
         this.consultor = consultor;
     }
 
-    public Admin getAdmin() {
+    public Administrador getAdmin() {
         return admin;
     }
 
-    public void setAdmin(Admin admin) {
+    public void setAdmin(Administrador admin) {
         this.admin = admin;
     }
 
@@ -153,14 +153,6 @@ public class SessionBean implements Serializable {
         this.valorSelecionado = valorSelecionado;
     }
 
-    public String getPerguntaConsultor() {
-        return perguntaConsultor;
-    }
-
-    public void setPerguntaConsultor(String perguntaConsultor) {
-        this.perguntaConsultor = perguntaConsultor;
-    }
-
 //    public String visualizaConsultor() {
 //        //AINDA NÃO IMPLEMENTADO!
 //        return "consultor-detalhes.xhtml?faces-redirect=true";
@@ -205,10 +197,6 @@ public class SessionBean implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
 
-//    public void perguntarConsultor() {
-//        this.perguntaConsultor = "";
-//        RequestContext.getCurrentInstance().execute("PF('dialogPergunta').show()");
-//    }
 //
 //
 //    public boolean isListaTransacoesVazia() {

@@ -85,13 +85,13 @@
                             <p class="boldfont-size16">Envie sua pergunta para #{sessionBean.consultorVisualizado.nome}!</p>
                             <pr:inputTextarea styleClass="form-control margin-bottom25" required="true" requiredMessage="Campo obrigatório" rows="11" cols="20" id="pergunta"
                                               counter="displayPergunta" maxlength="255" counterTemplate="{0} caracteres restantes." 
-                                              autoResize="false" class="form-control" value="#{sessionBean.perguntaConsultor}"
+                                              autoResize="false" class="form-control" value="#{helperBean.pergunta}"
                                               p:placeholder="Comentário ou dúvida (seja claro e direto)"/>
                             <h:message for="pergunta" class="error-message"/>
                             <div>
                                 <h:outputText class="boldfont-size16" id="displayPergunta" />
                                 <pr:commandButton update="formPergunta" class="btn btn-info btn-lg font-tracktype" 
-                                                  action="#{sessionBean.perguntarConsultor()}" value="Enviar!" />
+                                                  action="#{helperBean.perguntarConsultor()}" value="Enviar!" />
                             </div>
                         </h:form>
                     </div>
@@ -101,20 +101,20 @@
         </div>
 
         <pr:dialog modal="true" widgetVar="dialogSaldoInsuficiente" draggable="false" resizable="false" header="Saldo Insuficiente!"
-                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <p>Seu saldo é insuficiente para concluir a compra.</p>
             <p>Você pode inserir seu saldo na aba "Minha Conta".</p>
             <pr:commandButton onclick="PF('dialogSaldoInsuficiente').hide()" style="float: right" class="btn btn-primary" value="OK"/>
         </pr:dialog>
 
         <pr:dialog modal="true" widgetVar="dialogTransacao" draggable="false" resizable="false" header="Sucesso!"
-                   closable="false" closeOnEscape="false" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                   closable="false" closeOnEscape="false" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <p>Compra concluida com êxito.</p>
-            <pr:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
+            <pr:commandButton action="#{helperBean.redirecionaMinhaConta()}" style="float: right" class="btn btn-primary" value="OK"/>
         </pr:dialog>
 
         <pr:dialog modal="true" id="dialog" widgetVar="dialogPergunta" draggable="false" resizable="false" header="Sucesso!" 
-                   closable="false" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                   closable="false" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <p>Seu e-mail foi enviado com sucesso!</p>
             <p>O consultor entrará em contato o mais cedo possível!</p>
             <pr:commandButton onclick="PF('dialogPergunta').hide()" style="float: right" class="btn btn-primary" value="OK"/>

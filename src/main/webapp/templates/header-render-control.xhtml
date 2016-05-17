@@ -13,10 +13,10 @@
         <li><a href="minha-conta.xhtml" class="hvr-underline-reveal">Minha Conta</a></li>
         <li><h:commandLink value="Sair" class="hvr-underline-reveal" action="#{sessionBean.sair()}"/></li>
     </h:panelGroup>
-<!-- Admin -->
-<h:panelGroup rendered="#{sessionBean.adminLogged}">
-    <li><a href="dashboard.xhtml" class="hvr-underline-reveal">Dashboard</a></li>
-    <li><h:commandLink value="Sair" class="hvr-underline-reveal" action="#{sessionBean.sair()}"/></li>
-</h:panelGroup>
+    <!-- Admin -->
+    <h:panelGroup rendered="#{sessionBean.adminLogged}">
+        <li><a href="dashboard.xhtml" class="hvr-underline-reveal">Dashboard</a></li>
+        <li><h:commandLink value="Sair" class="hvr-underline-reveal" action="#{sessionBean.sair()}"/></li>
+    </h:panelGroup>
 </ui:composition>
 

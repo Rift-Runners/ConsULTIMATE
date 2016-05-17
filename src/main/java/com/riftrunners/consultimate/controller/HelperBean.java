@@ -5,25 +5,24 @@
  */
 package com.riftrunners.consultimate.controller;
 
-import com.riftrunners.consultimate.manager.SimpleEntityManager;
-import com.riftrunners.consultimate.model.entity.Consultor;
-import com.riftrunners.consultimate.service.ConsultorService;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import org.primefaces.context.RequestContext;
 
 /**
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class HelperBean implements Serializable {
 
-    private String emailRecuperaSenha;
+    private String emailRecuperaSenha, pergunta;
 
     /**
      * Creates a new instance of HelperBean
@@ -85,12 +84,34 @@ public class HelperBean implements Serializable {
         return "login.xhtml?faces-redirect=true";
     }
 
+    public String redirecionaMinhaConta() {
+        return "minha-conta.xhtml?faces-redirect=true";
+    }
+
+    public void perguntarConsultor() {
+        this.pergunta = "";
+        RequestContext.getCurrentInstance().execute("PF('dialogPergunta').show()");
+    }
+
+    public boolean isPaginaPrincipal() {
+        HttpServletRequest servletRequest = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        return servletRequest.getRequestURI().contains("index");
+    }
+
     public String getEmailRecuperaSenha() {
         return emailRecuperaSenha;
     }
 
     public void setEmailRecuperaSenha(String emailRecuperaSenha) {
         this.emailRecuperaSenha = emailRecuperaSenha;
+    }
+
+    public String getPergunta() {
+        return pergunta;
+    }
+
+    public void setPergunta(String pergunta) {
+        this.pergunta = pergunta;
     }
 
 }

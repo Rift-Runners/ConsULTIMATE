@@ -28,7 +28,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li><a href="index.xhtml" class="hvr-underline-reveal">Home <span class="sr-only">(current)</span></a></li>
-                            <h:panelGroup rendered="#{mainController.isPaginaPrincipal()}">
+                            <h:panelGroup rendered="#{helperBean.isPaginaPrincipal()}">
                                 <li><a href="#redes-sociais" class="hvr-underline-reveal">Redes Sociais</a></li>
                             </h:panelGroup>
                             <h:panelGroup rendered="#{sessionBean.clienteLogged}">

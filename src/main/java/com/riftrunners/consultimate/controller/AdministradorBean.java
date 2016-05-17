@@ -18,13 +18,13 @@ import java.io.Serializable;
  */
 @ManagedBean
 @SessionScoped
-public class AdminBean implements Serializable{
+public class AdministradorBean implements Serializable{
 
     private Consultor consultorEditado, consultorExcluido;
     private Cliente clienteEditado, clienteExcluido;
     private Validador validador;
 
-    public AdminBean() {
+    public AdministradorBean() {
         validador = new Validador();
     }
 

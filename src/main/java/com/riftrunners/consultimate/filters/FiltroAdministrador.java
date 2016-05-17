@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebFilter(filterName = "FiltroAdmin", description = "Filtro dedicado ao controle do admin e seus respectivos acessos",
         urlPatterns = {"/faces/dashboard.xhtml"})
-public class FiltroAdmin implements Filter {
+public class FiltroAdministrador implements Filter {
 
     @Inject
     private SessionBean session;

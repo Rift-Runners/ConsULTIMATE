@@ -7,7 +7,9 @@ package com.riftrunners.consultimate.controller;
 
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Consultor;
+import com.riftrunners.consultimate.model.entity.Transacao;
 import com.riftrunners.consultimate.service.ConsultorService;
+import com.riftrunners.consultimate.service.TransacaoService;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
@@ -58,6 +60,12 @@ public class ConsultorBean implements Serializable {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
         return consultorService.findAll();
+    }
+
+    public List<Transacao> transacoesDoConsultor() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        TransacaoService transacaoService = new TransacaoService(simpleEntityManager);
+        return transacaoService.transacoesDoConsultor(consultorEditado);
     }
 
     public Consultor getConsultor() {

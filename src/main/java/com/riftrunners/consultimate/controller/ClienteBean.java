@@ -7,8 +7,11 @@ package com.riftrunners.consultimate.controller;
 
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.entity.Cliente;
+import com.riftrunners.consultimate.model.entity.Transacao;
 import com.riftrunners.consultimate.service.ClienteService;
+import com.riftrunners.consultimate.service.TransacaoService;
 import java.io.Serializable;
+import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
@@ -61,7 +64,13 @@ public class ClienteBean implements Serializable {
         ClienteService clienteService = new ClienteService(simpleEntityManager);
         clienteService.edit(clienteEditado);
         valorSaldo = 0;
-        return "";
+        return "minha-conta.xhtml?faces-redirect=true";
+    }
+
+    public List<Transacao> transacoesDoCliente() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        TransacaoService transacaoService = new TransacaoService(simpleEntityManager);
+        return transacaoService.transacoesDoCliente(clienteEditado);
     }
 
     public Cliente getCliente() {
