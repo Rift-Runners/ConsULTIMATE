@@ -15,6 +15,7 @@ import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 
 /**
  * @author Diego Peixoto
@@ -53,6 +54,8 @@ public class ConsultorBean implements Serializable {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
         consultorService.remove(consultorEditado);
+        FacesContext contexto = FacesContext.getCurrentInstance();
+        contexto.getExternalContext().invalidateSession();
         return "index.xhtml?faces-redirect=true";
     }
 

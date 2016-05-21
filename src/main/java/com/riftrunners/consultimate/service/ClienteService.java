@@ -78,8 +78,6 @@ public class ClienteService {
             sem.beginTransaction();
             dao.delete(dao.getById(cliente.getId()));
             sem.commit();
-            FacesContext contexto = FacesContext.getCurrentInstance();
-            contexto.getExternalContext().invalidateSession();
         } catch (Exception e) {
             sem.rollBack();
         } finally {

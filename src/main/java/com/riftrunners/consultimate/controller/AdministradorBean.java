@@ -11,7 +11,11 @@ import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.service.ClienteService;
 import com.riftrunners.consultimate.service.ConsultorService;
+import com.riftrunners.consultimate.service.TransacaoService;
 import java.io.Serializable;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import javax.faces.bean.ViewScoped;
 
 /**
@@ -88,5 +92,50 @@ public class AdministradorBean implements Serializable {
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
         consultorService.remove(consultorEditado);
         return "dashboard.xhtml?faces-redirect=true";
+    }
+
+    public Map<String, Integer> consultorPorArea() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        Map<String, Integer> mapaAreas = new HashMap();
+        for (Consultor cons : consultorService.findAll()) {
+            if (!mapaAreas.containsKey(cons.getArea())) {
+                mapaAreas.put(cons.getArea(), 1);
+            } else {
+                mapaAreas.put(cons.getArea(), mapaAreas.get(cons.getArea()) + 1);
+            }
+        }
+        return mapaAreas;
+    }
+
+    public Map<String, Integer> transacoesPorArea() {
+        Map<String, Integer> mapaAreas = new TreeMap();
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        TransacaoService transacaoService = new TransacaoService(simpleEntityManager);
+
+        transacaoService.findAll().stream().forEach((trans) -> {
+            if (!mapaAreas.containsKey(trans.getConsultor().getArea())) {
+                mapaAreas.put(trans.getConsultor().getArea(), 1);
+            } else {
+                mapaAreas.put(trans.getConsultor().getArea(), mapaAreas.get(trans.getConsultor().getArea()) + 1);
+            }
+        });
+        return mapaAreas;
+    }
+
+    public Map<String, Integer> consultoresMaisVendem() {
+        Map<String, Integer> mapaAreas = new TreeMap();
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        TransacaoService transacaoService = new TransacaoService(simpleEntityManager);
+
+        transacaoService.findAll().stream().forEach((trans) -> {
+            int valorTransacao = trans.getValor();
+            if (!mapaAreas.containsKey(trans.getConsultor().getNome())) {
+                mapaAreas.put(trans.getConsultor().getNome(), valorTransacao);
+            } else {
+                mapaAreas.put(trans.getConsultor().getNome(), mapaAreas.get(trans.getConsultor().getNome()) + valorTransacao);
+            }
+        });
+        return mapaAreas;
     }
 }

@@ -153,7 +153,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                        <ui:repeat var="entry" value="#{administradorBean.consultorPorArea().entrySet().toArray()}">
                                                             <tr class="text-center">
                                                                 <td>#{entry.key}</td>
                                                                 <td>#{entry.value}</td>
@@ -178,7 +178,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <ui:repeat var="entry" value="#{mainController.transacoesPorArea().entrySet().toArray()}">
+                                                        <ui:repeat var="entry" value="#{administradorBean.transacoesPorArea().entrySet().toArray()}">
                                                             <tr class="text-center">
                                                                 <td>#{entry.key}</td>
                                                                 <td>#{entry.value}</td>
@@ -203,7 +203,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <ui:repeat var="entry" value="#{mainController.consultoresMaisVendem().entrySet().toArray()}">
+                                                        <ui:repeat var="entry" value="#{administradorBean.consultoresMaisVendem().entrySet().toArray()}">
                                                             <tr class="text-center">
                                                                 <td>#{entry.key}</td>
                                                                 <td>R$ #{entry.value}</td>

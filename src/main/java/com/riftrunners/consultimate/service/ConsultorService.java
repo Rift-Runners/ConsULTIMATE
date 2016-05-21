@@ -78,8 +78,6 @@ public class ConsultorService {
             sem.beginTransaction();
             dao.delete(dao.getById(consultor.getId()));
             sem.commit();
-            FacesContext contexto = FacesContext.getCurrentInstance();
-            contexto.getExternalContext().invalidateSession();
         } catch (Exception e) {
             sem.rollBack();
         } finally {
