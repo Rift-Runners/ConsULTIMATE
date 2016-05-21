@@ -65,7 +65,7 @@ public class Validador {
     public boolean validaTelefone(String telInput) {
         return (telInput.length() != 14 || telInput.length() != 15);
     }
-    
+
     public boolean validaCnpj(String telInput) {
         return (telInput.length() != 17);
     }
@@ -103,4 +103,5 @@ public class Validador {
 //        }
 //        return false;
     }
+
 }

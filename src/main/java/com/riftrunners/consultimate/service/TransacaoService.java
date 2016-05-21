@@ -63,4 +63,5 @@ public class TransacaoService {
     public List<Transacao> transacoesDoConsultor(Consultor consultor){
         return dao.getByConsultorId(consultor.getId());
     }
+    
 }

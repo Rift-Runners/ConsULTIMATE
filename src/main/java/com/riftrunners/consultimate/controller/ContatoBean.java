@@ -53,5 +53,4 @@ public class ContatoBean {
         this.descricao = descricao;
     }
     
-
 }

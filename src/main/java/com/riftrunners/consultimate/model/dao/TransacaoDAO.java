@@ -33,4 +33,5 @@ public class TransacaoDAO extends GenericDAO<Long, Transacao> {
         query.setParameter("cliente_id", id);
         return (List<Transacao>) query.getResultList();
     }
+    
 }

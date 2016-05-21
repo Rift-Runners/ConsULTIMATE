@@ -26,4 +26,5 @@ public class ConsultimateUtil {
             return 20;
         }
     }
+    
 }

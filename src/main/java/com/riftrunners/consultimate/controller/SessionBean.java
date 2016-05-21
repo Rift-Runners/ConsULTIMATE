@@ -176,4 +176,5 @@ public class SessionBean implements Serializable {
         contexto.getExternalContext().invalidateSession();
         return "login.xhtml?faces-redirect=true";
     }
+    
 }

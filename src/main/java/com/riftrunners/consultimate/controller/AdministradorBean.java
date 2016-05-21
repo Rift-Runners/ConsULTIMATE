@@ -16,14 +16,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 /**
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class AdministradorBean implements Serializable {
 
     private Consultor consultorEditado, consultorExcluido;
@@ -138,4 +138,5 @@ public class AdministradorBean implements Serializable {
         });
         return mapaAreas;
     }
+    
 }

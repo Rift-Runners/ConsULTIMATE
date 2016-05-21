@@ -11,7 +11,6 @@ import com.riftrunners.consultimate.model.entity.Consultor;
 import com.riftrunners.consultimate.util.ConsultimateUtil;
 import com.riftrunners.consultimate.util.Validador;
 import java.util.List;
-import javax.faces.context.FacesContext;
 import org.primefaces.context.RequestContext;
 
 /**

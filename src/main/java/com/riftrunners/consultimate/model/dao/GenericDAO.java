@@ -55,4 +55,5 @@ public class GenericDAO<PK, T> {
     public EntityManager getEntityManager() {
         return entityManager;
     }
+    
 }

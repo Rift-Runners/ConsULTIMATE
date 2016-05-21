@@ -8,12 +8,11 @@ package com.riftrunners.consultimate.service;
 import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import com.riftrunners.consultimate.model.dao.AdministradorDAO;
 import com.riftrunners.consultimate.model.entity.Administrador;
-import com.riftrunners.consultimate.model.entity.Cliente;
 import java.util.List;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 public class AdministradorService {
 
@@ -38,4 +37,5 @@ public class AdministradorService {
         }
         return null;
     }
+    
 }

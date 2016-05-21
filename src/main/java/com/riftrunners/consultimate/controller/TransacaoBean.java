@@ -14,7 +14,7 @@ import com.riftrunners.consultimate.util.ConsultimateUtil;
 import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 import org.primefaces.context.RequestContext;
 
 /**
@@ -22,7 +22,7 @@ import org.primefaces.context.RequestContext;
  * @author Guilherme Matuella
  */
 @ManagedBean
-@ViewScoped
+@RequestScoped
 public class TransacaoBean implements Serializable {
 
     @ManagedProperty(value = "#{sessionBean.consultorVisualizado}")
