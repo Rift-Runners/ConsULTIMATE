@@ -38,7 +38,7 @@ public class FiltroAdministrador implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        if (session == null || !session.isAdminLogged()) {
+        if (session == null || !session.isAdministradorLogged()) {
             resp.sendRedirect(req.getServletContext().getContextPath() + "/faces/index.xhtml");
         } else {
             chain.doFilter(request, response);

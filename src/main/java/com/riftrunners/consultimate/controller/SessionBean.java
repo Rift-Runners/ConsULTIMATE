@@ -13,6 +13,7 @@ import javax.inject.Named;
 import com.riftrunners.consultimate.model.entity.Administrador;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
+import com.riftrunners.consultimate.service.AdministradorService;
 import com.riftrunners.consultimate.service.ClienteService;
 import com.riftrunners.consultimate.service.ConsultorService;
 import org.primefaces.context.RequestContext;
@@ -28,9 +29,8 @@ public class SessionBean implements Serializable {
     private String usuario, senha;
     private Cliente cliente, clienteEditado;
     private Consultor consultor, consultorEditado, consultorVisualizado;
-    private Administrador admin;
-    private boolean logged, clienteLogged, consultorLogged, adminLogged;
-    private int valorSaldo, valorSelecionado;
+    private Administrador administrador;
+    private boolean logged, clienteLogged, consultorLogged, administradorLogged;
 
     /**
      * Creates a new instance of SessionBean
@@ -73,14 +73,6 @@ public class SessionBean implements Serializable {
         this.consultor = consultor;
     }
 
-    public Administrador getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(Administrador admin) {
-        this.admin = admin;
-    }
-
     public boolean isLogged() {
         return logged;
     }
@@ -103,22 +95,6 @@ public class SessionBean implements Serializable {
 
     public void setConsultorLogged(boolean consultorLogged) {
         this.consultorLogged = consultorLogged;
-    }
-
-    public boolean isAdminLogged() {
-        return adminLogged;
-    }
-
-    public void setAdminLogged(boolean adminLogged) {
-        this.adminLogged = adminLogged;
-    }
-
-    public int getValorSaldo() {
-        return valorSaldo;
-    }
-
-    public void setValorSaldo(int valorSaldo) {
-        this.valorSaldo = valorSaldo;
     }
 
     public Consultor getConsultorVisualizado() {
@@ -145,26 +121,22 @@ public class SessionBean implements Serializable {
         this.consultorEditado = consultorEditado;
     }
 
-    public int getValorSelecionado() {
-        return valorSelecionado;
+    public Administrador getAdministrador() {
+        return administrador;
     }
 
-    public void setValorSelecionado(int valorSelecionado) {
-        this.valorSelecionado = valorSelecionado;
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
     }
 
-//    public String visualizaConsultor() {
-//        //AINDA NÃO IMPLEMENTADO!
-//        return "consultor-detalhes.xhtml?faces-redirect=true";
-//    }
-//
-//    public String adicionarSaldo() {
-//        cliente.setSaldo(cliente.getSaldo() + valorSaldo);
-//        valorSaldo = 0;
-//        return "";
-//    }
-//
-    
+    public boolean isAdministradorLogged() {
+        return administradorLogged;
+    }
+
+    public void setAdministradorLogged(boolean administradorLogged) {
+        this.administradorLogged = administradorLogged;
+    }
+
     public String login() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
@@ -184,9 +156,17 @@ public class SessionBean implements Serializable {
                 consultor = consultorCadastrado;
                 consultorEditado = new Consultor(consultor);
                 return "index.xhtml?faces-redirect=true";
+            } else {
+                AdministradorService administradorService = new AdministradorService(simpleEntityManager);
+                Administrador administradorCadastrado = administradorService.getAdministradorLogin(usuario, senha);
+                if (administradorCadastrado != null) {
+                    administradorLogged = true;
+                    logged = true;
+                    administrador = administradorCadastrado;
+                    return "index.xhtml?faces-redirect=true";
+                }
             }
         }
-
         RequestContext.getCurrentInstance().execute("PF('dialogInvalida').show()");
         return "";
     }
@@ -196,14 +176,4 @@ public class SessionBean implements Serializable {
         contexto.getExternalContext().invalidateSession();
         return "login.xhtml?faces-redirect=true";
     }
-
-//
-//
-//    public boolean isListaTransacoesVazia() {
-//        if (clienteLogged) {
-//            return cliente.getTransacoesEfetuadas().isEmpty();
-//        } else {
-//            return consultor.getTransacoesEfetuadas().isEmpty();
-//        }
-//    }
 }
