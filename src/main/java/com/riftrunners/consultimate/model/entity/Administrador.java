@@ -18,13 +18,13 @@ import javax.persistence.Table;
  * @author Guilherme Matuella
  * @author Diego Peixoto
  */
-@Entity
-@Table(name = "admin")
+@Entity(name="administrador")
+@Table(name="administrador")
 public class Administrador implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "admin_id")
+    @Column(name = "administrador_id")
     private Long id;
     @Column(nullable = false)
     private String usuario;

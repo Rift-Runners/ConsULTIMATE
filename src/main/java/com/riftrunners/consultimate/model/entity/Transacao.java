@@ -24,26 +24,25 @@ import javax.persistence.TemporalType;
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
-@Entity
-@Table(name = "transacao")
+@Entity(name="transacao")
+@Table(name="transacao")
 public class Transacao implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "transacao_id")
     private Long id;
-
+    private Integer valor;
+    private Integer horas;
+    @Column(name = "data_da_compra")
+    @Temporal(TemporalType.DATE)
+    private Date dataDaCompra;
     @ManyToOne(targetEntity = Cliente.class, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "cliente_id")
     private Cliente cliente;
     @ManyToOne(targetEntity = Consultor.class, cascade = CascadeType.REFRESH)
     @JoinColumn(name = "consultor_id")
     private Consultor consultor;
-    private Integer valor;
-    private Integer horas;
-    @Column(name = "data_da_compra")
-    @Temporal(TemporalType.DATE)
-    private Date dataDaCompra;
 
     public Transacao() {
     }

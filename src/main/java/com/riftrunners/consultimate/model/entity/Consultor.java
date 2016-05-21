@@ -18,8 +18,8 @@ import javax.persistence.Table;
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
-@Entity
-@Table(name = "consultor")
+@Entity(name="consultor")
+@Table(name="consultor")
 public class Consultor implements Serializable {
 
     @Id

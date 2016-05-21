@@ -16,23 +16,21 @@ import javax.persistence.TypedQuery;
  */
 public class TransacaoDAO extends GenericDAO<Long, Transacao> {
 
-    private EntityManager em;
 
     public TransacaoDAO(EntityManager entityManager) {
         super(entityManager);
-        this.em = entityManager;
     }
 
     public List<Transacao> getByConsultorId(Long id) {
-        TypedQuery<Transacao> query = em.createQuery(
-                "SELECT t FROM transacao t WHERE t.consultor_id=:consultor_id", Transacao.class);
+        TypedQuery<Transacao> query = this.getEntityManager().createQuery(
+                "SELECT t FROM transacao t WHERE t.consultor=:consultor_id", Transacao.class);
         query.setParameter("consultor_id", id);
         return (List<Transacao>) query.getResultList();
     }
 
     public List<Transacao> getByClienteId(Long id) {
-        TypedQuery<Transacao> query = em.createQuery(
-                "SELECT t FROM transacao t WHERE t.cliente_id=:cliente_id", Transacao.class);
+        TypedQuery<Transacao> query = this.getEntityManager().createQuery(
+                "SELECT t FROM transacao t WHERE t.cliente.id=:cliente_id", Transacao.class);
         query.setParameter("cliente_id", id);
         return (List<Transacao>) query.getResultList();
     }

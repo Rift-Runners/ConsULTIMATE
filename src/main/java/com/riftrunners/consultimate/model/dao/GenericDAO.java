@@ -50,4 +50,7 @@ public class GenericDAO<PK, T> {
         return c;
     }
 
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
 }
