@@ -136,7 +136,11 @@ public class SessionBean implements Serializable {
     public void setAdministradorLogged(boolean administradorLogged) {
         this.administradorLogged = administradorLogged;
     }
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> e89fca1cc335e67c695b61531ee4ed5e213eaab4
     public String login() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
@@ -176,4 +180,8 @@ public class SessionBean implements Serializable {
         contexto.getExternalContext().invalidateSession();
         return "login.xhtml?faces-redirect=true";
     }
+<<<<<<< HEAD
+=======
+    
+>>>>>>> e89fca1cc335e67c695b61531ee4ed5e213eaab4
 }

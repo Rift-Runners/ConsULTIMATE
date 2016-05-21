@@ -1,4 +1,4 @@
-INSERT INTO administrador VALUES (1,'admin', 'admin');
+INSERT INTO administrador VALUES (1, 'admin', 'admin');
 INSERT INTO cliente (cliente_id, cidade, cpf, email, endereco, nome, saldo, senha, telefone, uf, usuario) VALUES 
 (2,'Porto Alegre', '603.727.612-91', 'roberto@bol.com.br', 'Av. Cairu 2011',
  'Roberto Carlos', 500, '123456', '(51) 8181-8181', 'RS', 'roberto');

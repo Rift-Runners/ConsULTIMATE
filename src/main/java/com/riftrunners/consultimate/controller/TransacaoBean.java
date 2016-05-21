@@ -30,7 +30,7 @@ public class TransacaoBean implements Serializable {
     @ManagedProperty(value = "#{sessionBean.cliente}")
     private Cliente cliente;
     private Integer valorSelecionado;
-    private ConsultimateUtil consultimateUtil = new ConsultimateUtil();
+    private final ConsultimateUtil consultimateUtil = new ConsultimateUtil();
 
     /**
      * Creates a new instance of ClienteBean
