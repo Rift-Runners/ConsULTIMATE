@@ -152,18 +152,6 @@ public class SessionBean implements Serializable {
     public void setValorSelecionado(int valorSelecionado) {
         this.valorSelecionado = valorSelecionado;
     }
-
-//    public String visualizaConsultor() {
-//        //AINDA NÃO IMPLEMENTADO!
-//        return "consultor-detalhes.xhtml?faces-redirect=true";
-//    }
-//
-//    public String adicionarSaldo() {
-//        cliente.setSaldo(cliente.getSaldo() + valorSaldo);
-//        valorSaldo = 0;
-//        return "";
-//    }
-//
     
     public String login() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
@@ -196,14 +184,5 @@ public class SessionBean implements Serializable {
         contexto.getExternalContext().invalidateSession();
         return "login.xhtml?faces-redirect=true";
     }
-
-//
-//
-//    public boolean isListaTransacoesVazia() {
-//        if (clienteLogged) {
-//            return cliente.getTransacoesEfetuadas().isEmpty();
-//        } else {
-//            return consultor.getTransacoesEfetuadas().isEmpty();
-//        }
-//    }
+    
 }

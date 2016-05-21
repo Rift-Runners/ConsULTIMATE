@@ -6,26 +6,23 @@
 package com.riftrunners.consultimate.controller;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
-import com.riftrunners.consultimate.util.Validador;
 import java.io.Serializable;
+import javax.faces.bean.ViewScoped;
 
 /**
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
 @ManagedBean
-@SessionScoped
-public class AdministradorBean implements Serializable{
+@ViewScoped
+public class AdministradorBean implements Serializable {
 
     private Consultor consultorEditado, consultorExcluido;
     private Cliente clienteEditado, clienteExcluido;
-    private Validador validador;
 
     public AdministradorBean() {
-        validador = new Validador();
     }
 
     public Consultor getConsultorEditado() {
@@ -63,18 +60,6 @@ public class AdministradorBean implements Serializable{
     public String adminEditarConsultor() {
         return "admEditar.xhtml?faces-redirect=true";
     }
-
-//    public String deletarCliente() {
-//        ListasDados listasDeDados = validador.listaControladorAplicacao();
-//        listasDeDados.deletarCliente(clienteEditado);
-//        return "dashboard.xhtml?faces-redirect=true";
-//    }
-//
-//    public String deletarConsultor() {
-//        ListasDados listasDeDados = validador.listaControladorAplicacao();
-//        listasDeDados.deletarConsultor(consultorEditado);
-//        return "dashboard.xhtml?faces-redirect=true";
-//    }
 
     public String editarSelecionado() {
         return "dashboard.xhtml?faces-redirect=true";

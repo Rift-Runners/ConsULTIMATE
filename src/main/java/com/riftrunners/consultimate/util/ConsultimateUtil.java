@@ -6,8 +6,8 @@
 package com.riftrunners.consultimate.util;
 
 /**
- *
- * @author 631420063
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 public class ConsultimateUtil {
 

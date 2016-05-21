@@ -58,19 +58,6 @@ public class HelperBean implements Serializable {
     public int[] valoresConsultorVisualizado(int valorBase) {
         return new int[]{valorBase, valorBase * 4, valorBase * 7, valorBase * 12};
     }
-//
-//    public int calculaHoraSelecionado(int valor) {
-//        if (valor == valorSelecionado) {
-//            return 1;
-//        } else if (valor * 4 == valorSelecionado) {
-//            return 5;
-//        } else if (valor * 7 == valorSelecionado) {
-//            return 10;
-//        } else {
-//            return 20;
-//        }
-//    }
-//
 
     public String redirecionaContato() {
         return "contato.xhtml?faces-redirect=true";

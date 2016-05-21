@@ -12,6 +12,8 @@ import javax.persistence.EntityManager;
 /**
  * @author Diego Peixoto
  * @author Guilherme Matuella
+ * @param <PK>
+ * @param <T>
  */
 public class GenericDAO<PK, T> {
 
