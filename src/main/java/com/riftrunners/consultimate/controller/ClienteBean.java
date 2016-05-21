@@ -73,6 +73,12 @@ public class ClienteBean implements Serializable {
         return transacaoService.transacoesDoCliente(clienteEditado);
     }
 
+    public List<Cliente> listarClientes() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ClienteService clienteService = new ClienteService(simpleEntityManager);
+        return clienteService.findAll();
+    }
+
     public Cliente getCliente() {
         return cliente;
     }

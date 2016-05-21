@@ -50,14 +50,14 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ui:repeat var="cliente" value="#{mainController.listasDeDados.listaClientes}">
+                                            <ui:repeat var="cliente" value="#{clienteBean.listarClientes()}">
                                                 <tr>
                                                     <td><h:outputText value="#{cliente.nome}"/></td>
                                                     <td><h:outputText value="#{cliente.cidade}"/></td>
                                                     <td><h:outputText value="#{cliente.uf}"/></td>
                                                     <td><h:outputText value="#{cliente.endereco}"/></td>
                                                     <td><h:outputText value="#{cliente.telefone}"/></td>
-                                                    <td><h:outputText value="#{mainController.stringMinimizada(cliente.email, 15)}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(cliente.email, 15)}"/></td>
                                                     <td><h:outputText value="#{cliente.cpf}"/></td>
                                                     <td><h:outputText value="#{cliente.rg}"/></td>
                                                     <td><h:outputText value="#{cliente.saldo}"/></td>
@@ -104,16 +104,16 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
+                                            <ui:repeat var="consultor" value="#{consultorBean.listaConsultores()}">
                                                 <tr>
                                                     <td><h:outputText value="#{consultor.nome}"/></td>
                                                     <td><h:outputText value="#{consultor.cidade}"/></td>
                                                     <td><h:outputText value="#{consultor.uf}"/></td>
                                                     <td><h:outputText value="#{consultor.endereco}"/></td>
                                                     <td><h:outputText value="#{consultor.telefone}"/></td>
-                                                    <td><h:outputText value="#{mainController.stringMinimizada(consultor.email, 15)}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.email, 15)}"/></td>
                                                     <td><h:outputText value="#{consultor.cnpj}"/></td>
-                                                    <td><h:outputText value="#{mainController.stringMinimizada(consultor.descricao, 15)}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.descricao, 15)}"/></td>
                                                     <td><h:outputText value="#{consultor.area}"/></td>
                                                     <td><h:outputText value="#{consultor.usuario}"/></td>
                                                     <td><h:outputText value="#{consultor.senha}"/></td>
@@ -274,7 +274,7 @@
                         </tr>
                     </thead>
                 </table>
-                <p:commandButton action="#{administradorBean.editarSelecionado()}" style="float: right" class="btn btn-primary" value="Salvar"/>
+                <p:commandButton action="#{administradorBean.editarCliente()}" style="float: right" class="btn btn-primary" value="Salvar"/>
                 <p:commandButton onclick="PF('dialogClienteEdit').hide()" style="float: left" class="btn btn-primary" value="Cancelar"/>
             </h:form>
         </p:dialog>
@@ -330,7 +330,7 @@
                         </tr>
                     </thead>
                 </table>
-                <p:commandButton action="#{administradorBean.editarSelecionado()}" style="float: right" class="btn btn-primary" value="Salvar"/>
+                <p:commandButton action="#{administradorBean.editarConsultor()}" style="float: right" class="btn btn-primary" value="Salvar"/>
                 <p:commandButton onclick="PF('dialogConsultorEdit').hide()" style="float: left" class="btn btn-primary" value="Cancelar"/>
             </h:form>
         </p:dialog>

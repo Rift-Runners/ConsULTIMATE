@@ -5,9 +5,12 @@
  */
 package com.riftrunners.consultimate.controller;
 
+import com.riftrunners.consultimate.manager.SimpleEntityManager;
 import javax.faces.bean.ManagedBean;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
+import com.riftrunners.consultimate.service.ClienteService;
+import com.riftrunners.consultimate.service.ConsultorService;
 import java.io.Serializable;
 import javax.faces.bean.ViewScoped;
 
@@ -57,11 +60,33 @@ public class AdministradorBean implements Serializable {
         this.clienteExcluido = clienteExcluido;
     }
 
-    public String adminEditarConsultor() {
-        return "admEditar.xhtml?faces-redirect=true";
+    public String editarCliente() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ClienteService clienteService = new ClienteService(simpleEntityManager);
+        clienteService.edit(clienteEditado);
+        this.clienteEditado = new Cliente();
+        return "dashboard.xhtml?faces-redirect=true";
     }
 
-    public String editarSelecionado() {
+    public String editarConsultor() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        consultorService.edit(consultorEditado);
+        this.consultorEditado = new Consultor();
+        return "dashboard.xhtml?faces-redirect=true";
+    }
+
+    public String deletarCliente() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ClienteService clienteService = new ClienteService(simpleEntityManager);
+        clienteService.remove(clienteEditado);
+        return "dashboard.xhtml?faces-redirect=true";
+    }
+
+    public String deletarConsultor() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        consultorService.remove(consultorEditado);
         return "dashboard.xhtml?faces-redirect=true";
     }
 }
