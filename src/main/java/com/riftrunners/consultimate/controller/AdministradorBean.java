@@ -16,14 +16,14 @@ import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 /**
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
 @ManagedBean
-@RequestScoped
+@ViewScoped
 public class AdministradorBean implements Serializable {
 
     private Consultor consultorEditado, consultorExcluido;
