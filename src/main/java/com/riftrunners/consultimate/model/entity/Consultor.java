@@ -26,8 +26,9 @@ public class Consultor implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "consultor_id")
     private Long id;
-
-    private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
+    private String nome, cidade, uf, endereco, telefone, descricao, area, senha;
+    @Column(unique = true)
+    private String email, cnpj, usuario;
     private Integer valorHora;
 
     public Consultor() {

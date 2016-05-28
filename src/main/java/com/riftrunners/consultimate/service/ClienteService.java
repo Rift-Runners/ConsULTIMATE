@@ -42,9 +42,11 @@ public class ClienteService {
             } else {
                 RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
             }
+
         } catch (Exception e) {
             sem.rollBack();
             RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
+
         } finally {
             if (sem != null) {
                 sem.close();
@@ -97,5 +99,5 @@ public class ClienteService {
         }
         return null;
     }
-    
+
 }

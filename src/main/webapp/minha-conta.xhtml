@@ -367,6 +367,12 @@
             <p:commandButton action="#{helperBean.redirecionaMinhaConta()}" style="float: right" class="btn btn-primary" value="OK"/>
         </p:dialog>
 
+        <p:dialog modal="true" widgetVar="dialogErroDuplicado" draggable="false" resizable="false" header="Erro!"
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Campo digitado já está cadastrado!</p>
+            <p:commandButton action="#{helperBean.redirecionaMinhaConta()}" style="float: right" class="btn btn-primary" value="OK"/>
+        </p:dialog>
+
         <p:dialog modal="true" id="dialog4" widgetVar="dialogSaldo" draggable="false" resizable="false" header="Adicionar Saldo!"
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <h:form>

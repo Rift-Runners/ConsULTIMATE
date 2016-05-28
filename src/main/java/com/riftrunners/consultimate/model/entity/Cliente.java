@@ -26,7 +26,9 @@ public class Cliente implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cliente_id")
     private Long id;
-    private String nome, cidade, uf, endereco, telefone, email, cpf, rg, usuario, senha;
+    private String nome, cidade, uf, endereco, telefone, senha; 
+    @Column(unique = true)
+    private String email, cpf, rg, usuario; 
     private Integer saldo;
 
     public Cliente() {

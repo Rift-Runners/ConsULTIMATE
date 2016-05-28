@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 import javax.faces.bean.ViewScoped;
+import org.primefaces.context.RequestContext;
 
 /**
  * @author Diego Peixoto
@@ -67,7 +68,11 @@ public class AdministradorBean implements Serializable {
     public String editarCliente() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
-        clienteService.edit(clienteEditado);
+        try {
+            clienteService.edit(clienteEditado);
+        } catch (IllegalStateException uniqueError) {
+            RequestContext.getCurrentInstance().execute("PF('dialogErroDuplicado').show()");
+        }
         this.clienteEditado = new Cliente();
         return "dashboard.xhtml?faces-redirect=true";
     }
@@ -75,7 +80,11 @@ public class AdministradorBean implements Serializable {
     public String editarConsultor() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
-        consultorService.edit(consultorEditado);
+        try {
+            consultorService.edit(consultorEditado);
+        } catch (IllegalStateException uniqueError) {
+            RequestContext.getCurrentInstance().execute("PF('dialogErroDuplicado').show()");
+        }
         this.consultorEditado = new Consultor();
         return "dashboard.xhtml?faces-redirect=true";
     }
@@ -138,5 +147,5 @@ public class AdministradorBean implements Serializable {
         });
         return mapaAreas;
     }
-    
+
 }

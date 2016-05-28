@@ -351,6 +351,12 @@
             <p:commandButton onclick="PF('dialogConsultorDel').hide()" style="float: left" class="btn btn-primary" value="Cancelar"/>
         </p:dialog>
 
+        <p:dialog modal="true" widgetVar="dialogErroDuplicado" draggable="false" resizable="false" header="Erro!"
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Campo digitado já está cadastrado!</p>
+            <p:commandButton onclick="PF('dialogErroDuplicado').hide()" style="float: right" class="btn btn-primary" value="OK"/>
+        </p:dialog>
+
         <script src="resources/js/jquery-2.2.1.js"></script>
         <script src="resources/js/jquery-ui.min.js"></script>
         <script src="resources/js/bootstrap.js"></script>

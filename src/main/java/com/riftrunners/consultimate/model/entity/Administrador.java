@@ -26,7 +26,7 @@ public class Administrador implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "administrador_id")
     private Long id;
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String usuario;
     @Column(nullable = false)
     private String senha;

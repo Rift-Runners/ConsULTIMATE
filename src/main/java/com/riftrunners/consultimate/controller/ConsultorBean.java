@@ -16,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  * @author Diego Peixoto
@@ -39,14 +40,22 @@ public class ConsultorBean implements Serializable {
     public void registrarConsultor() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
-        consultorService.save(consultor, tempSenhaRepete);
+        try {
+            consultorService.save(consultor, tempSenhaRepete);
+        } catch (IllegalStateException uniqueError) {
+            RequestContext.getCurrentInstance().execute("PF('dialogErroDuplicado').show()");
+        }
         this.consultor = new Consultor();
     }
 
     public void editarConsultor() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ConsultorService consultorService = new ConsultorService(simpleEntityManager);
-        consultorService.edit(consultorEditado);
+        try {
+            consultorService.edit(consultorEditado);
+        } catch (IllegalStateException uniqueError) {
+            RequestContext.getCurrentInstance().execute("PF('dialogErroDuplicado').show()");
+        }
         this.consultorEditado = new Consultor();
     }
 
