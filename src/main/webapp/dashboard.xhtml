@@ -45,6 +45,7 @@
                                                 <th>Saldo</th>
                                                 <th>Usuário</th>
                                                 <th>Senha</th>
+                                                <th>Status</th>
                                                 <th>Editar</th>
                                                 <th>Excluir</th>
                                             </tr>
@@ -63,14 +64,15 @@
                                                     <td><h:outputText value="#{cliente.saldo}"/></td>
                                                     <td><h:outputText value="#{cliente.usuario}"/></td>
                                                     <td><h:outputText value="#{cliente.senha}"/></td>
+                                                    <td><h:outputText value="#{helperBean.maskStatus(cliente.status)}"/></td>
                                                     <td>
-                                                        <p:commandLink update="cliente-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogClienteEdit').show();">
+                                                        <p:commandLink update="cliente-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogClienteEdit').show();" rendered="#{cliente.status}">
                                                             <i class="glyphicon glyphicon-pencil"></i>
                                                             <f:setPropertyActionListener target="#{administradorBean.clienteEditado}" value="#{cliente}" />
                                                         </p:commandLink>
                                                     </td>
                                                     <td> 
-                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogClienteDel').show();">
+                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogClienteDel').show();" rendered="#{cliente.status}">
                                                             <i class="glyphicon glyphicon-trash"></i>
                                                             <f:setPropertyActionListener target="#{administradorBean.clienteEditado}" value="#{cliente}" />
                                                         </p:commandLink>
@@ -99,6 +101,7 @@
                                                 <th>Área</th>
                                                 <th>Usuário</th>
                                                 <th>Senha</th>
+                                                <th>Status</th>
                                                 <th>Editar</th>
                                                 <th>Excluir</th>
                                             </tr>
@@ -117,14 +120,15 @@
                                                     <td><h:outputText value="#{consultor.area}"/></td>
                                                     <td><h:outputText value="#{consultor.usuario}"/></td>
                                                     <td><h:outputText value="#{consultor.senha}"/></td>
+                                                    <td><h:outputText value="#{helperBean.maskStatus(consultor.status)}"/></td>
                                                     <td>
-                                                        <p:commandLink update="consultor-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogConsultorEdit').show();">
+                                                        <p:commandLink update="consultor-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogConsultorEdit').show();" rendered="#{consultor.status}">
                                                             <i class="glyphicon glyphicon-pencil"></i>
                                                             <f:setPropertyActionListener target="#{administradorBean.consultorEditado}" value="#{consultor}" />
                                                         </p:commandLink>
                                                     </td>
                                                     <td> 
-                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogConsultorDel').show();">
+                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogConsultorDel').show();" rendered="#{consultor.status}">
                                                             <i class="glyphicon glyphicon-trash"></i>
                                                             <f:setPropertyActionListener target="#{administradorBean.consultorEditado}" value="#{consultor}" />
                                                         </p:commandLink>

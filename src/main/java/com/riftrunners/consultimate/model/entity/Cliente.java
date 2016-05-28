@@ -18,20 +18,37 @@ import javax.persistence.Table;
  * @author Diego Peixoto
  * @author Guilherme Matuella
  */
-@Entity(name="cliente")
-@Table(name="cliente")
+@Entity(name = "cliente")
+@Table(name = "cliente")
 public class Cliente implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "cliente_id")
     private Long id;
-    private String nome, cidade, uf, endereco, telefone, senha; 
+    private String nome, cidade, uf, endereco, telefone, senha;
     @Column(unique = true)
-    private String email, cpf, rg, usuario; 
+    private String email, cpf, rg, usuario;
     private Integer saldo;
+    private Boolean status = true;
 
     public Cliente() {
+    }
+
+    public Cliente(Long id, String nome, String cidade, String uf, String endereco, String telefone, String senha, String email, String cpf, String rg, String usuario, Integer saldo, Boolean status) {
+        this.id = id;
+        this.nome = nome;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.email = email;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.usuario = usuario;
+        this.saldo = saldo;
+        this.status = status;
     }
 
     //CopyConstructor
@@ -47,20 +64,7 @@ public class Cliente implements Serializable {
         this.usuario = outroCliente.getUsuario();
         this.senha = outroCliente.getSenha();
         this.saldo = outroCliente.getSaldo();
-    }
-
-    public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha, Integer saldo) {
-        this.nome = nome;
-        this.cidade = cidade;
-        this.uf = uf;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.saldo = saldo;
+        this.status = outroCliente.getStatus();
     }
 
     public Long getId() {
@@ -69,14 +73,6 @@ public class Cliente implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Integer getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(Integer saldo) {
-        this.saldo = saldo;
     }
 
     public String getNome() {
@@ -119,6 +115,14 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -151,29 +155,38 @@ public class Cliente implements Serializable {
         this.usuario = usuario;
     }
 
-    public String getSenha() {
-        return senha;
+    public Integer getSaldo() {
+        return saldo;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSaldo(Integer saldo) {
+        this.saldo = saldo;
+    }
+
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 83 * hash + Objects.hashCode(this.id);
-        hash = 83 * hash + Objects.hashCode(this.nome);
-        hash = 83 * hash + Objects.hashCode(this.cidade);
-        hash = 83 * hash + Objects.hashCode(this.uf);
-        hash = 83 * hash + Objects.hashCode(this.endereco);
-        hash = 83 * hash + Objects.hashCode(this.telefone);
-        hash = 83 * hash + Objects.hashCode(this.email);
-        hash = 83 * hash + Objects.hashCode(this.cpf);
-        hash = 83 * hash + Objects.hashCode(this.rg);
-        hash = 83 * hash + Objects.hashCode(this.usuario);
-        hash = 83 * hash + Objects.hashCode(this.senha);
-        hash = 83 * hash + Objects.hashCode(this.saldo);
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.cidade);
+        hash = 47 * hash + Objects.hashCode(this.uf);
+        hash = 47 * hash + Objects.hashCode(this.endereco);
+        hash = 47 * hash + Objects.hashCode(this.telefone);
+        hash = 47 * hash + Objects.hashCode(this.senha);
+        hash = 47 * hash + Objects.hashCode(this.email);
+        hash = 47 * hash + Objects.hashCode(this.cpf);
+        hash = 47 * hash + Objects.hashCode(this.rg);
+        hash = 47 * hash + Objects.hashCode(this.usuario);
+        hash = 47 * hash + Objects.hashCode(this.saldo);
+        hash = 47 * hash + Objects.hashCode(this.status);
         return hash;
     }
 
@@ -204,6 +217,9 @@ public class Cliente implements Serializable {
         if (!Objects.equals(this.telefone, other.telefone)) {
             return false;
         }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
         if (!Objects.equals(this.email, other.email)) {
             return false;
         }
@@ -216,13 +232,13 @@ public class Cliente implements Serializable {
         if (!Objects.equals(this.usuario, other.usuario)) {
             return false;
         }
-        if (!Objects.equals(this.senha, other.senha)) {
-            return false;
-        }
         if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.saldo, other.saldo)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
             return false;
         }
         return true;

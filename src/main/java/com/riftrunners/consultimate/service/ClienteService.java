@@ -74,15 +74,31 @@ public class ClienteService {
         }
     }
 
+//    public void remove(Cliente cliente) {
+//        try {
+//            sem.beginTransaction();
+//            dao.delete(dao.getById(cliente.getId()));
+//            sem.commit();
+//        } catch (Exception e) {
+//            sem.rollBack();
+//        } finally {
+//            sem.close();
+//        }
+//    }
     public void remove(Cliente cliente) {
         try {
+            cliente.setStatus(Boolean.FALSE);
             sem.beginTransaction();
-            dao.delete(dao.getById(cliente.getId()));
+            dao.update(cliente);
             sem.commit();
+
         } catch (Exception e) {
             sem.rollBack();
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
         } finally {
-            sem.close();
+            if (sem != null) {
+                sem.close();
+            }
         }
     }
 

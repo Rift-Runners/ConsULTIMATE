@@ -141,7 +141,7 @@ public class SessionBean implements Serializable {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
         Cliente clienteCadastrado = clienteService.getClienteLogin(usuario, senha);
-        if (clienteCadastrado != null) {
+        if (clienteCadastrado != null && clienteCadastrado.getStatus()) {
             clienteLogged = true;
             logged = true;
             cliente = clienteCadastrado;
@@ -150,7 +150,7 @@ public class SessionBean implements Serializable {
         } else {
             ConsultorService consultorService = new ConsultorService(simpleEntityManager);
             Consultor consultorCadastrado = consultorService.getConsultorLogin(usuario, senha);
-            if (consultorCadastrado != null) {
+            if (consultorCadastrado != null && consultorCadastrado.getStatus()) {
                 consultorLogged = true;
                 logged = true;
                 consultor = consultorCadastrado;

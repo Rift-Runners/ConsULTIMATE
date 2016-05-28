@@ -72,15 +72,31 @@ public class ConsultorService {
         }
     }
 
+//    public void remove(Consultor consultor) {
+//        try {
+//            sem.beginTransaction();
+//            dao.delete(dao.getById(consultor.getId()));
+//            sem.commit();
+//        } catch (Exception e) {
+//            sem.rollBack();
+//        } finally {
+//            sem.close();
+//        }
+//    }
     public void remove(Consultor consultor) {
         try {
+            consultor.setStatus(Boolean.FALSE);
             sem.beginTransaction();
-            dao.delete(dao.getById(consultor.getId()));
+            dao.update(consultor);
             sem.commit();
+
         } catch (Exception e) {
             sem.rollBack();
+            RequestContext.getCurrentInstance().execute("PF('dialogErro').show()");
         } finally {
-            sem.close();
+            if (sem != null) {
+                sem.close();
+            }
         }
     }
 

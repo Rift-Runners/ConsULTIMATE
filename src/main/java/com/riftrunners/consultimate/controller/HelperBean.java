@@ -47,6 +47,10 @@ public class HelperBean implements Serializable {
         return areas;
     }
 
+    public String maskStatus(Boolean status) {
+        return status ? "Ativo" : "Inativo";
+    }
+
     public String stringMinimizada(String texto, int tamanhoMaximo) {
         return texto.substring(0, Math.min(texto.length(), tamanhoMaximo));
     }
