@@ -37,7 +37,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <ui:repeat var="consultor" value="#{consultorBean.listaConsultores()}">
+                                        <ui:repeat var="consultor" value="#{consultorBean.listaConsultoresAtivos()}">
                                             <tr>
                                                 <td><h:outputText value="#{consultor.nome}"/></td>
                                                 <td><h:outputText value="#{consultor.area}"/></td>

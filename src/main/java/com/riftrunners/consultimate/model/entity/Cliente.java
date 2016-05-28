@@ -29,13 +29,13 @@ public class Cliente implements Serializable {
     private String nome, cidade, uf, endereco, telefone, senha;
     @Column(unique = true)
     private String email, cpf, rg, usuario;
-    private Integer saldo;
+    private Double saldo;
     private Boolean status = true;
 
     public Cliente() {
     }
 
-    public Cliente(Long id, String nome, String cidade, String uf, String endereco, String telefone, String senha, String email, String cpf, String rg, String usuario, Integer saldo, Boolean status) {
+    public Cliente(Long id, String nome, String cidade, String uf, String endereco, String telefone, String senha, String email, String cpf, String rg, String usuario, Double saldo, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.cidade = cidade;
@@ -155,11 +155,11 @@ public class Cliente implements Serializable {
         this.usuario = usuario;
     }
 
-    public Integer getSaldo() {
+    public Double getSaldo() {
         return saldo;
     }
 
-    public void setSaldo(Integer saldo) {
+    public void setSaldo(Double saldo) {
         this.saldo = saldo;
     }
 

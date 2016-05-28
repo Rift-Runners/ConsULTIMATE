@@ -15,7 +15,7 @@ public class ConsultimateUtil {
         return senha.equals(repeteSenha);
     }
 
-    public int calculaHoraSelecionado(int valor, int valorSelecionado) {
+    public int calculaHoraSelecionado(double valor, double valorSelecionado) {
         if (valor == valorSelecionado) {
             return 1;
         } else if (valor * 4 == valorSelecionado) {

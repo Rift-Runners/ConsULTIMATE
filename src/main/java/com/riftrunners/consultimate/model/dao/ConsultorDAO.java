@@ -6,7 +6,9 @@
 package com.riftrunners.consultimate.model.dao;
 
 import com.riftrunners.consultimate.model.entity.Consultor;
+import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 
 /**
  * @author Diego Peixoto
@@ -18,4 +20,11 @@ public class ConsultorDAO extends GenericDAO<Long, Consultor> {
         super(entityManager);
     }
 
+     public List<Consultor> getConsultoresAtivos() {
+        TypedQuery<Consultor> query = this.getEntityManager().createQuery(
+                "SELECT c FROM consultor c WHERE c.status=true", Consultor.class);
+       
+        return (List<Consultor>) query.getResultList();
+    }
+    
 }

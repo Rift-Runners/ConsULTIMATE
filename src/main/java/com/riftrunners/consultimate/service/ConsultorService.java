@@ -103,6 +103,10 @@ public class ConsultorService {
     public List<Consultor> findAll() {
         return dao.findAll();
     }
+    
+    public List<Consultor> findAllActive(){
+        return dao.getConsultoresAtivos();
+    }
 
     public Consultor getConsultorLogin(String usuario, String senha) {
         for (Consultor consultorCadastrado : dao.findAll()) {

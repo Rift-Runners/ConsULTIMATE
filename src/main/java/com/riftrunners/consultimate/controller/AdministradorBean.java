@@ -132,13 +132,13 @@ public class AdministradorBean implements Serializable {
         return mapaAreas;
     }
 
-    public Map<String, Integer> consultoresMaisVendem() {
-        Map<String, Integer> mapaAreas = new TreeMap();
+    public Map<String, Double> consultoresMaisVendem() {
+        Map<String, Double> mapaAreas = new TreeMap();
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         TransacaoService transacaoService = new TransacaoService(simpleEntityManager);
 
         transacaoService.findAll().stream().forEach((trans) -> {
-            int valorTransacao = trans.getValor();
+            Double valorTransacao = trans.getValor();
             if (!mapaAreas.containsKey(trans.getConsultor().getNome())) {
                 mapaAreas.put(trans.getConsultor().getNome(), valorTransacao);
             } else {

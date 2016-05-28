@@ -29,13 +29,14 @@ public class Consultor implements Serializable {
     private String nome, cidade, uf, endereco, telefone, descricao, area, senha;
     @Column(unique = true)
     private String email, cnpj, usuario;
-    private Integer valorHora;
+    @Column(name = "valor_hora")
+    private Double valorHora;
     private Boolean status = true;
 
     public Consultor() {
     }
 
-    public Consultor(Long id, String nome, String cidade, String uf, String endereco, String telefone, String descricao, String area, String senha, String email, String cnpj, String usuario, Integer valorHora, Boolean status) {
+    public Consultor(Long id, String nome, String cidade, String uf, String endereco, String telefone, String descricao, String area, String senha, String email, String cnpj, String usuario, Double valorHora, Boolean status) {
         this.id = id;
         this.nome = nome;
         this.cidade = cidade;
@@ -165,11 +166,11 @@ public class Consultor implements Serializable {
         this.usuario = usuario;
     }
 
-    public Integer getValorHora() {
+    public Double getValorHora() {
         return valorHora;
     }
 
-    public void setValorHora(Integer valorHora) {
+    public void setValorHora(Double valorHora) {
         this.valorHora = valorHora;
     }
 

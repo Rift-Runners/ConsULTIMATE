@@ -29,7 +29,7 @@ public class TransacaoBean implements Serializable {
     private Consultor consultor;
     @ManagedProperty(value = "#{sessionBean.cliente}")
     private Cliente cliente;
-    private Integer valorSelecionado;
+    private Double valorSelecionado;
     private final ConsultimateUtil consultimateUtil = new ConsultimateUtil();
 
     /**
@@ -46,7 +46,7 @@ public class TransacaoBean implements Serializable {
             Transacao transacao = new Transacao(cliente, consultor, valorSelecionado, consultimateUtil.calculaHoraSelecionado(consultor.getValorHora(), valorSelecionado));
             transacaoService.save(transacao);
 
-            valorSelecionado = 0;
+            valorSelecionado = 0D;
         } else {
             RequestContext.getCurrentInstance().execute("PF('dialogSaldoInsuficiente').show()");
         }
@@ -68,11 +68,11 @@ public class TransacaoBean implements Serializable {
         this.cliente = cliente;
     }
 
-    public Integer getValorSelecionado() {
+    public Double getValorSelecionado() {
         return valorSelecionado;
     }
 
-    public void setValorSelecionado(Integer valorSelecionado) {
+    public void setValorSelecionado(Double valorSelecionado) {
         this.valorSelecionado = valorSelecionado;
     }
 

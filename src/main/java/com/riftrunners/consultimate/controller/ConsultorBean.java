@@ -74,6 +74,12 @@ public class ConsultorBean implements Serializable {
         return consultorService.findAll();
     }
 
+    public List<Consultor> listaConsultoresAtivos() {
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        return consultorService.findAllActive();
+    }
+
     public List<Transacao> transacoesDoConsultor() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         TransacaoService transacaoService = new TransacaoService(simpleEntityManager);

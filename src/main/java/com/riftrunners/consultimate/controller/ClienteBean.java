@@ -41,7 +41,7 @@ public class ClienteBean implements Serializable {
     public void registrarCliente() {
         SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
         ClienteService clienteService = new ClienteService(simpleEntityManager);
-        this.cliente.setSaldo(0);
+        this.cliente.setSaldo(0D);
         try {
             clienteService.save(cliente, tempSenhaRepete);
         } catch (IllegalStateException uniqueError) {

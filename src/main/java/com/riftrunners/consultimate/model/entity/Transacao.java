@@ -32,7 +32,7 @@ public class Transacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "transacao_id")
     private Long id;
-    private Integer valor;
+    private Double valor;
     private Integer horas;
     @Column(name = "data_da_compra")
     @Temporal(TemporalType.DATE)
@@ -47,7 +47,7 @@ public class Transacao implements Serializable {
     public Transacao() {
     }
 
-    public Transacao(Cliente cliente, Consultor consultor, Integer valor, Integer horas) {
+    public Transacao(Cliente cliente, Consultor consultor, Double valor, Integer horas) {
         this.cliente = cliente;
         this.consultor = consultor;
         this.valor = valor;
@@ -71,11 +71,11 @@ public class Transacao implements Serializable {
         this.consultor = consultor;
     }
 
-    public Integer getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
