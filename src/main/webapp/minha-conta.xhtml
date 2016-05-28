@@ -36,11 +36,7 @@
                                 </div>
                             </h:panelGroup>
                         </div>
-                        <div class="col-md-5"></div>
-                        <div class="col-md-3 font-tracktype text-center margin-top20-bottom15">
-                            <a class="btn btn-lg btn-primary" href="javascript:void(0);" onclick="javascript:introJs().start();">Como funciona?</a>
-                        </div>
-                        <div class="col-md-1"></div>
+                        <div class="col-md-9"></div>            
                     </div>
                 </div>
             </h:form>
@@ -64,7 +60,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ui:repeat var="transacao" value="#{sessionBean.cliente.transacoesEfetuadas}">
+                                            <ui:repeat var="transacao" value="#{clienteBean.transacoesDoCliente()}">
                                                 <tr>
                                                     <td><h:outputText value="#{transacao.consultor.nome}"/></td>
                                                     <td><h:outputText value="#{transacao.horas}"/></td>
@@ -74,11 +70,6 @@
                                             </ui:repeat>     
                                         </tbody>
                                     </table>
-                                    <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
-                                        <div class="text-center">
-                                            <p class="font-size20">Você ainda não concluiu uma transação :(</p>
-                                        </div>
-                                    </h:panelGroup>
                                 </h:form>
 
                                 <h:form rendered="#{sessionBean.consultorLogged}">
@@ -92,7 +83,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ui:repeat var="transacao" value="#{sessionBean.consultor.transacoesEfetuadas}">
+                                            <ui:repeat var="transacao" value="#{consultorBean.transacoesDoConsultor()}">
                                                 <tr>
                                                     <td><h:outputText value="#{transacao.cliente.nome}"/></td>
                                                     <td><h:outputText value="#{transacao.horas}"/></td>
@@ -102,11 +93,6 @@
                                             </ui:repeat>     
                                         </tbody>
                                     </table>
-                                    <h:panelGroup rendered="#{sessionBean.isListaTransacoesVazia()}">
-                                        <div class="text-center">
-                                            <p class="font-size20">Você ainda não concluiu uma transação :(</p>
-                                        </div>
-                                    </h:panelGroup>
                                 </h:form>
                             </div>
                         </div>
@@ -122,7 +108,7 @@
                                                          class="form-control" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes." 
                                                          autoResize="false" value="#{sessionBean.consultorEditado.descricao}"/>
                                         <h:message for="consultorDescricao" class="error-message"/> <br/>
-                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info">
+                                        <p:commandLink update="dados-consultor" action="#{consultorBean.editarConsultor()}" styleClass="btn btn-info">
                                             Salvar Descrição <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>  
                                     </h:form>
@@ -145,7 +131,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                                  class="input-editavel" id="clienteNome" 
-                                                                 value="#{sessionBean.clienteEditado.nome}"/>
+                                                                 value="#{clienteBean.clienteEditado.nome}"/>
                                                     <h:message for="clienteNome" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -154,7 +140,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel telefoneMask" id="clienteTelefone"
-                                                                 value="#{sessionBean.clienteEditado.telefone}"/>
+                                                                 value="#{clienteBean.clienteEditado.telefone}"/>
                                                     <h:message for="clienteTelefone" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -163,8 +149,8 @@
                                                 <td>
                                                     <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                                      class="input-editavel-select form-control" id="clienteUf" 
-                                                                     value="#{sessionBean.clienteEditado.uf}">  
-                                                        <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                                                     value="#{clienteBean.clienteEditado.uf}">  
+                                                        <f:selectItems value="#{helperBean.listaEstados()}" var="estado"
                                                                        itemLabel="#{estado}" itemValue="#{estado}" />
                                                     </h:selectOneMenu>
                                                     <h:message for="clienteUf" class="error-message"/>
@@ -175,7 +161,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                                  class="input-editavel" id="clienteCidade" 
-                                                                 value="#{sessionBean.clienteEditado.cidade}"/>
+                                                                 value="#{clienteBean.clienteEditado.cidade}"/>
                                                     <h:message for="clienteCidade" class="error-message"/> 
                                                 </td>
                                             </tr>
@@ -184,7 +170,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70"
                                                                  class="input-editavel" id="clienteEndereco"
-                                                                 value="#{sessionBean.clienteEditado.endereco}"/>
+                                                                 value="#{clienteBean.clienteEditado.endereco}"/>
                                                     <h:message for="clienteEndereco" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -193,7 +179,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel cpfMask" id="clienteCpf"
-                                                                 value="#{sessionBean.clienteEditado.cpf}"/>
+                                                                 value="#{clienteBean.clienteEditado.cpf}"/>
                                                     <h:message for="clienteCpf" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -202,7 +188,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel rgMask" id="clienteRg"
-                                                                 value="#{sessionBean.clienteEditado.rg}"/>
+                                                                 value="#{clienteBean.clienteEditado.rg}"/>
                                                     <h:message for="clienteRg" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -211,7 +197,7 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel" id="clienteEmail"
-                                                                 value="#{sessionBean.clienteEditado.email}"/>
+                                                                 value="#{clienteBean.clienteEditado.email}"/>
                                                     <h:message for="clienteEmail" class="error-message"/>
                                                 </td>
                                             </tr>
@@ -220,14 +206,14 @@
                                                 <td>
                                                     <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                                  class="input-editavel" id="clienteSenha"
-                                                                 value="#{sessionBean.clienteEditado.senha}"/>
+                                                                 value="#{clienteBean.clienteEditado.senha}"/>
                                                     <h:message for="clienteSenha" class="error-message"/>
                                                 </td>
                                             </tr>
                                         </tbody>
                                     </table>
                                     <div class="text-center">
-                                        <p:commandLink update="dados-cliente" action="#{sessionBean.editarConta()}" styleClass="btn btn-info margin-bottom10">
+                                        <p:commandLink update="dados-cliente" action="#{clienteBean.editarCliente()}" styleClass="btn btn-info margin-bottom10">
                                             Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>    
                                         <div class="text-center">
@@ -245,7 +231,7 @@
                                             <td>                            
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                              class="input-editavel" id="consultorNome"
-                                                             value="#{sessionBean.consultorEditado.nome}"/>
+                                                             value="#{consultorBean.consultorEditado.nome}"/>
                                                 <h:message for="consultorNome" class="error-message"/>
                                             </td>
                                         </tr>
@@ -254,7 +240,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50" 
                                                              class="input-editavel" id="consultorEmail"
-                                                             value="#{sessionBean.consultorEditado.email}"/>
+                                                             value="#{consultorBean.consultorEditado.email}"/>
                                                 <h:message for="consultorEmail" class="error-message"/>
                                             </td>
                                         </tr>
@@ -263,8 +249,8 @@
                                             <td>
                                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                                  class="input-editavel-select form-control"  id="consultorArea"
-                                                                 value="#{sessionBean.consultorEditado.area}"> 
-                                                    <f:selectItems value="#{mainController.listasDeDados.listaAreas}" var="area"
+                                                                 value="#{consultorBean.consultorEditado.area}"> 
+                                                    <f:selectItems value="#{helperBean.listaAreas()}" var="area"
                                                                    itemLabel="#{area}" itemValue="#{area}" />
                                                 </h:selectOneMenu>
                                                 <h:message for="consultorArea" class="error-message"/>
@@ -275,8 +261,8 @@
                                             <td>
                                                 <h:selectOneMenu required="true" requiredMessage="Campo obrigatório" 
                                                                  class="input-editavel-select form-control" id="consultorUf"
-                                                                 value="#{sessionBean.consultorEditado.uf}"> 
-                                                    <f:selectItems value="#{mainController.listaEstados()}" var="estado"
+                                                                 value="#{consultorBean.consultorEditado.uf}"> 
+                                                    <f:selectItems value="#{helperBean.listaEstados()}" var="estado"
                                                                    itemLabel="#{estado}" itemValue="#{estado}" />
                                                 </h:selectOneMenu>
                                                 <h:message for="consultorUf" class="error-message"/>
@@ -287,7 +273,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="50"
                                                              class="input-editavel" id="consultorCidade"
-                                                             value="#{sessionBean.consultorEditado.cidade}"/>
+                                                             value="#{consultorBean.consultorEditado.cidade}"/>
                                                 <h:message for="consultorCidade" class="error-message"/>
                                             </td>
                                         </tr>
@@ -296,7 +282,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório" maxlength="70" 
                                                              class="input-editavel" id="consultorEndereco"
-                                                             value="#{sessionBean.consultorEditado.endereco}"/>
+                                                             value="#{consultorBean.consultorEditado.endereco}"/>
                                                 <h:message for="consultorEndereco" class="error-message"/>
                                             </td>
                                         </tr>
@@ -305,7 +291,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel telefoneMask" id="consultorTelefone"
-                                                             value="#{sessionBean.consultorEditado.telefone}"/>
+                                                             value="#{consultorBean.consultorEditado.telefone}"/>
                                                 <h:message for="consultorTelefone" class="error-message"/>
                                             </td>
                                         </tr>
@@ -314,7 +300,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel cnpjMask" id="consultorCpnj"
-                                                             value="#{sessionBean.consultorEditado.cnpj}"/>
+                                                             value="#{consultorBean.consultorEditado.cnpj}"/>
                                                 <h:message for="consultorCpnj" class="error-message"/>
                                             </td>
                                         </tr>
@@ -323,7 +309,7 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel moneyMask" id="consultorValor"
-                                                             value="#{sessionBean.consultorEditado.valorHora}"/>
+                                                             value="#{consultorBean.consultorEditado.valorHora}"/>
                                                 <h:message for="consultorValor" class="error-message"/>
                                             </td>
                                         </tr>
@@ -332,13 +318,13 @@
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
                                                              class="input-editavel" id="consultorSenha"
-                                                             value="#{sessionBean.consultorEditado.senha}"/>
+                                                             value="#{consultorBean.consultorEditado.senha}"/>
                                                 <h:message for="consultorSenha" class="error-message"/>
                                             </td>
                                         </tr>
                                     </table>
                                     <div class="text-center">
-                                        <p:commandLink update="dados-consultor" action="#{sessionBean.editarConta()}" styleClass="btn btn-info margin-bottom10">
+                                        <p:commandLink update="dados-consultor" action="#{consultorBean.editarConsultor()}" styleClass="btn btn-info margin-bottom10">
                                             Salvar alterações <i class="glyphicon glyphicon-floppy-saved"></i>
                                         </p:commandLink>  
                                         <div class="text-center">
@@ -357,34 +343,42 @@
         </div>
 
         <p:dialog modal="true" id="dialog" widgetVar="dialogDeletar" draggable="false" resizable="false" header="Confirmar deleção!"
-                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <p>Deseja mesmo excluir sua conta?</p>
             <p>Note que este processo é irreversível!</p>
-            <p:commandButton action="#{sessionBean.deletarConta()}" style="float: right" class="btn btn-primary" value="Sim"/>
+            <p:commandButton rendered="#{sessionBean.clienteLogged}" action="#{clienteBean.deletarCliente()}" style="float: right" class="btn btn-primary" value="Sim"/>
+            <p:commandButton rendered="#{sessionBean.consultorLogged}" action="#{consultorBean.deletarConsultor()}" style="float: right" class="btn btn-primary" value="Sim"/>
             <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" class="btn btn-primary" value="Não"/>
         </p:dialog>
 
         <p:dialog modal="true" id="dialog2" widgetVar="dialogEditarSucesso" draggable="false" resizable="false" header="Sucesso!"
-                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <p>Dados editados com sucesso!</p>
-            <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
+            <p:commandButton action="#{helperBean.redirecionaMinhaConta()}" style="float: right" class="btn btn-primary" value="OK"/>
         </p:dialog>
 
         <p:dialog modal="true" id="dialog3" widgetVar="dialogEditarErro" draggable="false" resizable="false" header="Erro na edição!"
-                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <p>Algum dado digitado está inválido!</p>
-            <p:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: right" class="btn btn-primary" value="OK"/>
+            <p:commandButton action="#{helperBean.redirecionaMinhaConta()}" style="float: right" class="btn btn-primary" value="OK"/>
+        </p:dialog>
+
+        <p:dialog modal="true" widgetVar="dialogErroDuplicado" draggable="false" resizable="false" header="Erro!"
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Campo digitado já está cadastrado!</p>
+            <p:commandButton action="#{helperBean.redirecionaMinhaConta()}" style="float: right" class="btn btn-primary" value="OK"/>
         </p:dialog>
 
         <p:dialog modal="true" id="dialog4" widgetVar="dialogSaldo" draggable="false" resizable="false" header="Adicionar Saldo!"
-                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+                  closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" class="custom-dialog">
             <h:form>
-                <h:selectOneRadio value="#{sessionBean.valorSaldo}" layout="pageDirection" class="table">
+                <h:selectOneRadio id="valorSaldo" value="#{clienteBean.valorSaldo}" layout="pageDirection" class="table" required="true" requiredMessage="Selecione um valor!">
                     <f:selectItem itemValue="100" itemLabel="R$ 100,00"/>  
                     <f:selectItem itemValue="300" itemLabel="R$ 300,00"/>
                     <f:selectItem itemValue="500" itemLabel="R$ 500,00"/>
-                </h:selectOneRadio> 
-                <h:commandButton class="btn btn-primary" value="Adicionar" style="float: right; margin-left: 100px;" action="#{sessionBean.adicionarSaldo()}"/>
+                </h:selectOneRadio>
+                <h:message for="valorSaldo" class="error-message"/>
+                <h:commandButton class="btn btn-primary" value="Adicionar" style="float: right; margin-left: 100px;" action="#{clienteBean.adicionarSaldo()}"/>
                 <h:commandButton action="minha-conta.xhtml?faces-redirect=true" style="float: left" styleClass="btn btn-primary" value="Cancelar"/>
             </h:form>
         </p:dialog>
@@ -394,7 +388,6 @@
         <script src="resources/js/bootstrap.js"></script>
         <script src="resources/js/jquery.mask.js"></script>
         <script src="resources/js/custom.mask.js"></script>
-        <script src="resources/js/intro.js"></script>
         <script src="resources/js/dataTable.js"></script>
         <script src="resources/js/keyTable.js"></script>
         <script>

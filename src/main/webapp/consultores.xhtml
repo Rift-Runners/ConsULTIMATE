@@ -37,16 +37,16 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
+                                        <ui:repeat var="consultor" value="#{consultorBean.listaConsultoresAtivos()}">
                                             <tr>
                                                 <td><h:outputText value="#{consultor.nome}"/></td>
                                                 <td><h:outputText value="#{consultor.area}"/></td>
                                                 <td><h:outputText value="#{consultor.cidade}"/></td>
                                                 <td><h:outputText value="#{consultor.uf}"/></td>
-                                                <td><h:outputText value="#{mainController.stringMinimizada(consultor.descricao, 100)} ..."/></td>
+                                                <td><h:outputText value="#{helperBean.stringMinimizada(consultor.descricao, 100)} ..."/></td>
                                                 <td>
                                                     <h:form>
-                                                        <h:commandButton  class="btn btn-primary btn-lg font-tracktype" action="#{sessionBean.visualizaConsultor()}" value="Consultar!">
+                                                        <h:commandButton  class="btn btn-primary btn-lg font-tracktype" action="#{helperBean.redirecionaConsultorDetalhes()}" value="Consultar!">
                                                             <f:setPropertyActionListener target="#{sessionBean.consultorVisualizado}" value="#{consultor}" />
                                                         </h:commandButton>
                                                     </h:form>

@@ -35,12 +35,12 @@
                                     <div class="input-group margin-bottom10">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                                         <h:inputSecret p:placeholder="Senha" class="form-control"
-                                                       id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}" />
+                                                       id="loginSenha" required="true" requiredMessage="Campo obrigatório." value="#{sessionBean.senha}"/>
                                     </div>
                                     <h:message for="loginSenha" class="error-message"/>
                                     <div class="login-buttons">                           
                                         <h:link class="btn btn-info btn-lg font-tracktype" outcome="cadastro.xhtml?faces-redirect=true" id="cadastroBtn" value="Registre-se!" />  
-                                        <pr:commandButton update="form" class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.entrar()}" id="loginBtn" value="Entrar" />  
+                                        <pr:commandButton update="form" class="btn btn-info btn-lg font-tracktype margin-left10" action="#{sessionBean.login()}" id="loginBtn" value="Entrar" />  
                                     </div>
                                     <pr:commandButton class="btn esqueceu-link font-tracktype" value="Esqueceu sua senha?" onclick="PF('dialogEsqueceuSenha').show();" />
                                 </h:form>
@@ -55,7 +55,7 @@
         <pr:dialog modal="true" widgetVar="dialogInvalida" draggable="false" resizable="false" header="Credenciais inválidas!"
                    closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <p>Usuário e/ou Senha inválidos!</p>
-            <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="OK"/>
+            <pr:commandButton action="#{helperBean.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="OK"/>
         </pr:dialog>
 
         <pr:dialog modal="true" widgetVar="dialogEsqueceuSenha" draggable="false" resizable="false" header="Esqueceu a senha!"
@@ -64,9 +64,9 @@
             <p>informando as instruções necessárias para recuperar os dados cadastrados!</p>
             <h:form>
                 <h:outputLabel for="emailEsqueceu" value="Email:"/>
-                <pr:inputText value="#{mainController.emailRecuperaSenha}" id="emailEsqueceu" required="true" requiredMessage="Campo obrigatório" />
+                <pr:inputText value="#{helperBean.emailRecuperaSenha}" id="emailEsqueceu" required="true" requiredMessage="Campo obrigatório" />
                 <h:message for="emailEsqueceu" class="error-message"/>
-                <pr:commandButton action="#{mainController.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="Enviar!"/>
+                <pr:commandButton action="#{helperBean.redirecionaLogin()}" style="float: right" class="btn btn-primary" value="Enviar!"/>
             </h:form>
         </pr:dialog>
 

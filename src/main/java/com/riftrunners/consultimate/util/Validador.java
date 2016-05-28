@@ -3,27 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.riftrunners.consultimate.utils;
+package com.riftrunners.consultimate.util;
 
-import com.riftrunners.consultimate.controller.MainController;
 import java.util.regex.Pattern;
-import javax.faces.context.FacesContext;
 import com.riftrunners.consultimate.model.entity.Cliente;
 import com.riftrunners.consultimate.model.entity.Consultor;
-import com.riftrunners.consultimate.model.entity.ListasDados;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
-public class Validators {
+public class Validador {
 
-    public Validators() {
-    }
-
-    public ListasDados listaControladorAplicacao() {
-        MainController controladorPrincipal = (MainController) FacesContext.getCurrentInstance().getExternalContext().getApplicationMap().get("mainController");
-        return controladorPrincipal.getListasDeDados();
+    public Validador() {
     }
 
     public boolean validaEmail(String emailInput) {
@@ -73,7 +65,7 @@ public class Validators {
     public boolean validaTelefone(String telInput) {
         return (telInput.length() != 14 || telInput.length() != 15);
     }
-    
+
     public boolean validaCnpj(String telInput) {
         return (telInput.length() != 17);
     }
@@ -111,4 +103,5 @@ public class Validators {
 //        }
 //        return false;
     }
+
 }

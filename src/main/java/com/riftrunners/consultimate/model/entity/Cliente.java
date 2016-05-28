@@ -5,21 +5,50 @@
  */
 package com.riftrunners.consultimate.model.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- * @author Guilherme Matuella
  * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
-public class Cliente {
+@Entity(name = "cliente")
+@Table(name = "cliente")
+public class Cliente implements Serializable {
 
-    private String nome, cidade, uf, endereco, telefone, email, cpf, rg, usuario, senha;
-    private List<Transacao> transacoesEfetuadas;
-    private int saldo;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "cliente_id")
+    private Long id;
+    private String nome, cidade, uf, endereco, telefone, senha;
+    @Column(unique = true)
+    private String email, cpf, rg, usuario;
+    private Double saldo;
+    private Boolean status = true;
 
     public Cliente() {
-        this.transacoesEfetuadas = new ArrayList();
+    }
+
+    public Cliente(Long id, String nome, String cidade, String uf, String endereco, String telefone, String senha, String email, String cpf, String rg, String usuario, Double saldo, Boolean status) {
+        this.id = id;
+        this.nome = nome;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.senha = senha;
+        this.email = email;
+        this.cpf = cpf;
+        this.rg = rg;
+        this.usuario = usuario;
+        this.saldo = saldo;
+        this.status = status;
     }
 
     //CopyConstructor
@@ -35,30 +64,15 @@ public class Cliente {
         this.usuario = outroCliente.getUsuario();
         this.senha = outroCliente.getSenha();
         this.saldo = outroCliente.getSaldo();
-        this.transacoesEfetuadas = outroCliente.getTransacoesEfetuadas();
+        this.status = outroCliente.getStatus();
     }
 
-    public Cliente(String nome, String cidade, String uf, String endereco, String telefone, String email, String cpf, String rg, String usuario, String senha) {
-        this.nome = nome;
-        this.cidade = cidade;
-        this.uf = uf;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
-        this.cpf = cpf;
-        this.rg = rg;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.saldo = 0;
-        this.transacoesEfetuadas = new ArrayList();
+    public Long getId() {
+        return id;
     }
 
-    public int getSaldo() {
-        return saldo;
-    }
-
-    public void setSaldo(int saldo) {
-        this.saldo = saldo;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -101,6 +115,14 @@ public class Cliente {
         this.telefone = telefone;
     }
 
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -133,19 +155,93 @@ public class Cliente {
         this.usuario = usuario;
     }
 
-    public String getSenha() {
-        return senha;
+    public Double getSaldo() {
+        return saldo;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setSaldo(Double saldo) {
+        this.saldo = saldo;
     }
 
-    public List<Transacao> getTransacoesEfetuadas() {
-        return transacoesEfetuadas;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void addTransacao(Transacao transacao) {
-        this.transacoesEfetuadas.add(transacao);
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + Objects.hashCode(this.cidade);
+        hash = 47 * hash + Objects.hashCode(this.uf);
+        hash = 47 * hash + Objects.hashCode(this.endereco);
+        hash = 47 * hash + Objects.hashCode(this.telefone);
+        hash = 47 * hash + Objects.hashCode(this.senha);
+        hash = 47 * hash + Objects.hashCode(this.email);
+        hash = 47 * hash + Objects.hashCode(this.cpf);
+        hash = 47 * hash + Objects.hashCode(this.rg);
+        hash = 47 * hash + Objects.hashCode(this.usuario);
+        hash = 47 * hash + Objects.hashCode(this.saldo);
+        hash = 47 * hash + Objects.hashCode(this.status);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cliente other = (Cliente) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.uf, other.uf)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.cpf, other.cpf)) {
+            return false;
+        }
+        if (!Objects.equals(this.rg, other.rg)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.saldo, other.saldo)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
+        return true;
+    }
+
 }

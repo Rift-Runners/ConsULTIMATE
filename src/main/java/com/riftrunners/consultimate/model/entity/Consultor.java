@@ -5,28 +5,59 @@
  */
 package com.riftrunners.consultimate.model.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.io.Serializable;
+import java.util.Objects;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
- * @author Guilherme Matuella
  * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
-public class Consultor {
+@Entity(name = "consultor")
+@Table(name = "consultor")
+public class Consultor implements Serializable {
 
-    private String nome, cidade, uf, endereco, telefone, email, cnpj, descricao, area, usuario, senha;
-    private int valorHora;
-    private List<Transacao> transacoesEfetuadas;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "consultor_id")
+    private Long id;
+    private String nome, cidade, uf, endereco, telefone, descricao, area, senha;
+    @Column(unique = true)
+    private String email, cnpj, usuario;
+    @Column(name = "valor_hora")
+    private Double valorHora;
+    private Boolean status = true;
 
     public Consultor() {
-        this.transacoesEfetuadas = new ArrayList();
+    }
+
+    public Consultor(Long id, String nome, String cidade, String uf, String endereco, String telefone, String descricao, String area, String senha, String email, String cnpj, String usuario, Double valorHora, Boolean status) {
+        this.id = id;
+        this.nome = nome;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.descricao = descricao;
+        this.area = area;
+        this.senha = senha;
+        this.email = email;
+        this.cnpj = cnpj;
+        this.usuario = usuario;
+        this.valorHora = valorHora;
+        this.status = status;
     }
 
     //CopyConstructor
     public Consultor(Consultor outroConsultor) {
         this.nome = outroConsultor.getNome();
-        this.cidade =  outroConsultor.getCidade();
-        this.uf =  outroConsultor.getUf();
+        this.cidade = outroConsultor.getCidade();
+        this.uf = outroConsultor.getUf();
         this.endereco = outroConsultor.getEndereco();
         this.telefone = outroConsultor.getTelefone();
         this.email = outroConsultor.getEmail();
@@ -36,23 +67,15 @@ public class Consultor {
         this.valorHora = outroConsultor.getValorHora();
         this.usuario = outroConsultor.getUsuario();
         this.senha = outroConsultor.getSenha();
-        this.transacoesEfetuadas = outroConsultor.getTransacoesEfetuadas();
+        this.status = outroConsultor.getStatus();
     }
 
-    public Consultor(String nome, String cidade, String uf, String endereco, String telefone, String email, String cnpj, String descricao, String area, String usuario, String senha, int valorHora) {
-        this.nome = nome;
-        this.cidade = cidade;
-        this.uf = uf;
-        this.endereco = endereco;
-        this.telefone = telefone;
-        this.email = email;
-        this.cnpj = cnpj;
-        this.descricao = descricao;
-        this.area = area;
-        this.usuario = usuario;
-        this.senha = senha;
-        this.valorHora = valorHora;
-        this.transacoesEfetuadas = new ArrayList();
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -95,22 +118,6 @@ public class Consultor {
         this.telefone = telefone;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getCnpj() {
-        return cnpj;
-    }
-
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-
     public String getDescricao() {
         return descricao;
     }
@@ -127,14 +134,6 @@ public class Consultor {
         this.area = area;
     }
 
-    public String getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(String usuario) {
-        this.usuario = usuario;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -143,19 +142,121 @@ public class Consultor {
         this.senha = senha;
     }
 
-    public int getValorHora() {
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCnpj() {
+        return cnpj;
+    }
+
+    public void setCnpj(String cnpj) {
+        this.cnpj = cnpj;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public Double getValorHora() {
         return valorHora;
     }
 
-    public void setValorHora(int valorHora) {
+    public void setValorHora(Double valorHora) {
         this.valorHora = valorHora;
     }
 
-    public List<Transacao> getTransacoesEfetuadas() {
-        return transacoesEfetuadas;
+    public Boolean getStatus() {
+        return status;
     }
 
-    public void addTransacao(Transacao transacao) {
-        this.transacoesEfetuadas.add(transacao);
+    public void setStatus(Boolean status) {
+        this.status = status;
     }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.id);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.cidade);
+        hash = 37 * hash + Objects.hashCode(this.uf);
+        hash = 37 * hash + Objects.hashCode(this.endereco);
+        hash = 37 * hash + Objects.hashCode(this.telefone);
+        hash = 37 * hash + Objects.hashCode(this.descricao);
+        hash = 37 * hash + Objects.hashCode(this.area);
+        hash = 37 * hash + Objects.hashCode(this.senha);
+        hash = 37 * hash + Objects.hashCode(this.email);
+        hash = 37 * hash + Objects.hashCode(this.cnpj);
+        hash = 37 * hash + Objects.hashCode(this.usuario);
+        hash = 37 * hash + Objects.hashCode(this.valorHora);
+        hash = 37 * hash + Objects.hashCode(this.status);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Consultor other = (Consultor) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
+        if (!Objects.equals(this.uf, other.uf)) {
+            return false;
+        }
+        if (!Objects.equals(this.endereco, other.endereco)) {
+            return false;
+        }
+        if (!Objects.equals(this.telefone, other.telefone)) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.area, other.area)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (!Objects.equals(this.email, other.email)) {
+            return false;
+        }
+        if (!Objects.equals(this.cnpj, other.cnpj)) {
+            return false;
+        }
+        if (!Objects.equals(this.usuario, other.usuario)) {
+            return false;
+        }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.valorHora, other.valorHora)) {
+            return false;
+        }
+        if (!Objects.equals(this.status, other.status)) {
+            return false;
+        }
+        return true;
+    }
+
 }

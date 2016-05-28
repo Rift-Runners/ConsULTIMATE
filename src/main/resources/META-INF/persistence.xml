@@ -4,12 +4,16 @@
              version="2.0" xmlns="http://java.sun.com/xml/ns/persistence">
     <persistence-unit name="ConsultimatePU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.ejb.HibernatePersistence</provider>
+        <class>com.riftrunners.consultimate.model.entity.Administrador</class>
+        <class>com.riftrunners.consultimate.model.entity.Cliente</class>
+        <class>com.riftrunners.consultimate.model.entity.Transacao</class>
+        <class>com.riftrunners.consultimate.model.entity.Consultor</class>
         <properties>
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
             <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
             <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/consultimate"/>
             <property name="hibernate.connection.username" value="postgres"/>
-            <property name="hibernate.connection.password" value="8134000"/>
+            <property name="hibernate.connection.password" value="damon@13"/>
              
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="false" />

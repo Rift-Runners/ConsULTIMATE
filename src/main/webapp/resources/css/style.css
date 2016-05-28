@@ -515,4 +515,8 @@ body{
     z-index: -1;   
     position: absolute;
 }
+.custom-dialog{
+  border: #204d74 solid 2px;
+  border-radius: 3px;  
+}
 /*END - Contato*/

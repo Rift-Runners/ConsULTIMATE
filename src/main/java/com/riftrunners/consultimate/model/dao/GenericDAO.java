@@ -10,8 +10,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
+ * @param <PK>
+ * @param <T>
  */
 public class GenericDAO<PK, T> {
 
@@ -24,7 +26,7 @@ public class GenericDAO<PK, T> {
     }
 
     public T getById(PK pk) {
-        return (T)entityManager.find(getTypeClass(), pk);
+        return (T) entityManager.find(getTypeClass(), pk);
     }
 
     public void save(T entity) {
@@ -49,4 +51,9 @@ public class GenericDAO<PK, T> {
                 .getGenericSuperclass()).getActualTypeArguments()[1];
         return c;
     }
+
+    public EntityManager getEntityManager() {
+        return entityManager;
+    }
+    
 }

@@ -8,42 +8,46 @@ package com.riftrunners.consultimate.manager;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
+@SuppressWarnings("FieldMayBeFinal")
 public class SimpleEntityManager {
+
     private EntityManager entityManager;
     private EntityManagerFactory factory;
-     
+
     public SimpleEntityManager(EntityManagerFactory factory) {
         this.factory = factory;
         this.entityManager = factory.createEntityManager();
     }
-     
-    public SimpleEntityManager(String persistenceUnitName){
+
+    public SimpleEntityManager(String persistenceUnitName) {
         factory = Persistence.createEntityManagerFactory(persistenceUnitName);
         this.entityManager = factory.createEntityManager();
     }
- 
-    public void beginTransaction(){
+
+    public void beginTransaction() {
         entityManager.getTransaction().begin();
     }
-     
-    public void commit(){
+
+    public void commit() {
         entityManager.getTransaction().commit();
     }
-     
-    public void close(){
+
+    public void close() {
         entityManager.close();
         factory.close();
     }
-     
-    public void rollBack(){
+
+    public void rollBack() {
         entityManager.getTransaction().rollback();
     }
-     
-    public EntityManager getEntityManager(){
+
+    public EntityManager getEntityManager() {
         return entityManager;
     }
+
 }

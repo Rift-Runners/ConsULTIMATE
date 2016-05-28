@@ -19,11 +19,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * @author Guilherme Matuella
  * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
 @WebFilter(filterName = "FiltroVisitante", description = "Filtro dedicado ao controle dos visitantes e seus respectivos acessos",
-        urlPatterns = {"/faces/login.xhtml", "/faces/cadastro.xhtml", "/faces/esqueceu-senha.xhtml"})
+        urlPatterns = {"/faces/login.xhtml", "/faces/cadastro.xhtml"})
 public class FiltroVisitante implements Filter {
 
     @Inject

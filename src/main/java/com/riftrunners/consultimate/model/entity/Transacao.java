@@ -5,20 +5,49 @@
  */
 package com.riftrunners.consultimate.model.entity;
 
+import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 /**
- *
- * @author Guilherme
+ * @author Diego Peixoto
+ * @author Guilherme Matuella
  */
-public class Transacao {
+@Entity(name="transacao")
+@Table(name="transacao")
+public class Transacao implements Serializable {
 
-    private Cliente cliente;
-    private Consultor consultor;
-    private int valor, horas;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "transacao_id")
+    private Long id;
+    private Double valor;
+    private Integer horas;
+    @Column(name = "data_da_compra")
+    @Temporal(TemporalType.DATE)
     private Date dataDaCompra;
+    @ManyToOne(targetEntity = Cliente.class, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "cliente_id")
+    private Cliente cliente;
+    @ManyToOne(targetEntity = Consultor.class, cascade = CascadeType.REFRESH)
+    @JoinColumn(name = "consultor_id")
+    private Consultor consultor;
 
-    public Transacao(Cliente cliente, Consultor consultor, int valor, int horas) {
+    public Transacao() {
+    }
+
+    public Transacao(Cliente cliente, Consultor consultor, Double valor, Integer horas) {
         this.cliente = cliente;
         this.consultor = consultor;
         this.valor = valor;
@@ -42,19 +71,19 @@ public class Transacao {
         this.consultor = consultor;
     }
 
-    public int getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(int valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
-    public int getHoras() {
+    public Integer getHoras() {
         return horas;
     }
 
-    public void setHoras(int horas) {
+    public void setHoras(Integer horas) {
         this.horas = horas;
     }
 
@@ -64,6 +93,59 @@ public class Transacao {
 
     public void setDataDaCompra(Date dataDaCompra) {
         this.dataDaCompra = dataDaCompra;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 83 * hash + Objects.hashCode(this.id);
+        hash = 83 * hash + Objects.hashCode(this.cliente);
+        hash = 83 * hash + Objects.hashCode(this.consultor);
+        hash = 83 * hash + Objects.hashCode(this.valor);
+        hash = 83 * hash + Objects.hashCode(this.horas);
+        hash = 83 * hash + Objects.hashCode(this.dataDaCompra);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Transacao other = (Transacao) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.cliente, other.cliente)) {
+            return false;
+        }
+        if (!Objects.equals(this.consultor, other.consultor)) {
+            return false;
+        }
+        if (!Objects.equals(this.valor, other.valor)) {
+            return false;
+        }
+        if (!Objects.equals(this.horas, other.horas)) {
+            return false;
+        }
+        if (!Objects.equals(this.dataDaCompra, other.dataDaCompra)) {
+            return false;
+        }
+        return true;
     }
 
 }

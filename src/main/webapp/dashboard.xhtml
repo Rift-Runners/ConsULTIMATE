@@ -45,34 +45,36 @@
                                                 <th>Saldo</th>
                                                 <th>Usuário</th>
                                                 <th>Senha</th>
+                                                <th>Status</th>
                                                 <th>Editar</th>
                                                 <th>Excluir</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ui:repeat var="cliente" value="#{mainController.listasDeDados.listaClientes}">
+                                            <ui:repeat var="cliente" value="#{clienteBean.listarClientes()}">
                                                 <tr>
                                                     <td><h:outputText value="#{cliente.nome}"/></td>
                                                     <td><h:outputText value="#{cliente.cidade}"/></td>
                                                     <td><h:outputText value="#{cliente.uf}"/></td>
                                                     <td><h:outputText value="#{cliente.endereco}"/></td>
                                                     <td><h:outputText value="#{cliente.telefone}"/></td>
-                                                    <td><h:outputText value="#{mainController.stringMinimizada(cliente.email, 15)}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(cliente.email, 15)}"/></td>
                                                     <td><h:outputText value="#{cliente.cpf}"/></td>
                                                     <td><h:outputText value="#{cliente.rg}"/></td>
                                                     <td><h:outputText value="#{cliente.saldo}"/></td>
                                                     <td><h:outputText value="#{cliente.usuario}"/></td>
                                                     <td><h:outputText value="#{cliente.senha}"/></td>
+                                                    <td><h:outputText value="#{helperBean.maskStatus(cliente.status)}"/></td>
                                                     <td>
-                                                        <p:commandLink update="cliente-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogClienteEdit').show();">
+                                                        <p:commandLink update="cliente-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogClienteEdit').show();" rendered="#{cliente.status}">
                                                             <i class="glyphicon glyphicon-pencil"></i>
-                                                            <f:setPropertyActionListener target="#{adminBean.clienteEditado}" value="#{cliente}" />
+                                                            <f:setPropertyActionListener target="#{administradorBean.clienteEditado}" value="#{cliente}" />
                                                         </p:commandLink>
                                                     </td>
                                                     <td> 
-                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogClienteDel').show();">
+                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogClienteDel').show();" rendered="#{cliente.status}">
                                                             <i class="glyphicon glyphicon-trash"></i>
-                                                            <f:setPropertyActionListener target="#{adminBean.clienteEditado}" value="#{cliente}" />
+                                                            <f:setPropertyActionListener target="#{administradorBean.clienteEditado}" value="#{cliente}" />
                                                         </p:commandLink>
                                                     </td>
                                                 </tr>
@@ -99,34 +101,36 @@
                                                 <th>Área</th>
                                                 <th>Usuário</th>
                                                 <th>Senha</th>
+                                                <th>Status</th>
                                                 <th>Editar</th>
                                                 <th>Excluir</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <ui:repeat var="consultor" value="#{mainController.listasDeDados.listaConsultores}">
+                                            <ui:repeat var="consultor" value="#{consultorBean.listaConsultores()}">
                                                 <tr>
                                                     <td><h:outputText value="#{consultor.nome}"/></td>
                                                     <td><h:outputText value="#{consultor.cidade}"/></td>
                                                     <td><h:outputText value="#{consultor.uf}"/></td>
                                                     <td><h:outputText value="#{consultor.endereco}"/></td>
                                                     <td><h:outputText value="#{consultor.telefone}"/></td>
-                                                    <td><h:outputText value="#{mainController.stringMinimizada(consultor.email, 15)}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.email, 15)}"/></td>
                                                     <td><h:outputText value="#{consultor.cnpj}"/></td>
-                                                    <td><h:outputText value="#{mainController.stringMinimizada(consultor.descricao, 15)}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.descricao, 15)}"/></td>
                                                     <td><h:outputText value="#{consultor.area}"/></td>
                                                     <td><h:outputText value="#{consultor.usuario}"/></td>
                                                     <td><h:outputText value="#{consultor.senha}"/></td>
+                                                    <td><h:outputText value="#{helperBean.maskStatus(consultor.status)}"/></td>
                                                     <td>
-                                                        <p:commandLink update="consultor-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogConsultorEdit').show();">
+                                                        <p:commandLink update="consultor-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogConsultorEdit').show();" rendered="#{consultor.status}">
                                                             <i class="glyphicon glyphicon-pencil"></i>
-                                                            <f:setPropertyActionListener target="#{adminBean.consultorEditado}" value="#{consultor}" />
+                                                            <f:setPropertyActionListener target="#{administradorBean.consultorEditado}" value="#{consultor}" />
                                                         </p:commandLink>
                                                     </td>
                                                     <td> 
-                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogConsultorDel').show();">
+                                                        <p:commandLink style="color: red; font-size:20px;" onclick="PF('dialogConsultorDel').show();" rendered="#{consultor.status}">
                                                             <i class="glyphicon glyphicon-trash"></i>
-                                                            <f:setPropertyActionListener target="#{adminBean.consultorEditado}" value="#{consultor}" />
+                                                            <f:setPropertyActionListener target="#{administradorBean.consultorEditado}" value="#{consultor}" />
                                                         </p:commandLink>
                                                     </td>
                                                 </tr>
@@ -153,7 +157,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <ui:repeat var="entry" value="#{mainController.consultorPorArea().entrySet().toArray()}">
+                                                        <ui:repeat var="entry" value="#{administradorBean.consultorPorArea().entrySet().toArray()}">
                                                             <tr class="text-center">
                                                                 <td>#{entry.key}</td>
                                                                 <td>#{entry.value}</td>
@@ -178,7 +182,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <ui:repeat var="entry" value="#{mainController.transacoesPorArea().entrySet().toArray()}">
+                                                        <ui:repeat var="entry" value="#{administradorBean.transacoesPorArea().entrySet().toArray()}">
                                                             <tr class="text-center">
                                                                 <td>#{entry.key}</td>
                                                                 <td>#{entry.value}</td>
@@ -203,7 +207,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <ui:repeat var="entry" value="#{mainController.consultoresMaisVendem().entrySet().toArray()}">
+                                                        <ui:repeat var="entry" value="#{administradorBean.consultoresMaisVendem().entrySet().toArray()}">
                                                             <tr class="text-center">
                                                                 <td>#{entry.key}</td>
                                                                 <td>R$ #{entry.value}</td>
@@ -223,114 +227,114 @@
         </div>
 
 
-        <p:dialog modal="true" id="dialog" widgetVar="dialogClienteEdit" draggable="false" resizable="false" header="Confirmar Editar #{adminBean.clienteEditado.nome}!"
+        <p:dialog modal="true" id="dialog" widgetVar="dialogClienteEdit" draggable="false" resizable="false" header="Confirmar Editar #{administradorBean.clienteEditado.nome}!"
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <h:form id="cliente-selecionado">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Nome: </th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.nome}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.nome}"/></td>
                         </tr>
                         <tr>
                             <th>Cidade</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.cidade}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.cidade}"/></td>
                         </tr>
                         <tr>
                             <th>UF</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.uf}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.uf}"/></td>
                         </tr>
                         <tr>
                             <th>Endereço</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.endereco}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.endereco}"/></td>
                         </tr>
                         <tr>
                             <th>Telefone</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.telefone}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.telefone}"/></td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.email}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.email}"/></td>
                         </tr>
                         <tr>
                             <th>CPF</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.cpf}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.cpf}"/></td>
                         </tr>
                         <tr>
                             <th>RG</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.rg}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.rg}"/></td>
                         </tr>
                         <tr>
                             <th>Saldo</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.saldo}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.saldo}"/></td>
                         </tr>
                         <tr>
                             <th>Usuário</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.usuario}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.usuario}"/></td>
                         </tr>
                         <tr>
                             <th>Senha</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.clienteEditado.senha}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.clienteEditado.senha}"/></td>
                         </tr>
                     </thead>
                 </table>
-                <p:commandButton action="#{adminBean.editarSelecionado()}" style="float: right" class="btn btn-primary" value="Salvar"/>
+                <p:commandButton action="#{administradorBean.editarCliente()}" style="float: right" class="btn btn-primary" value="Salvar"/>
                 <p:commandButton onclick="PF('dialogClienteEdit').hide()" style="float: left" class="btn btn-primary" value="Cancelar"/>
             </h:form>
         </p:dialog>
 
-        <p:dialog modal="true" id="dialog2" widgetVar="dialogConsultorEdit" draggable="false" resizable="false" header="Editar #{adminBean.consultorEditado.nome}!"
+        <p:dialog modal="true" id="dialog2" widgetVar="dialogConsultorEdit" draggable="false" resizable="false" header="Editar #{administradorBean.consultorEditado.nome}!"
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <h:form id="consultor-selecionado">
                 <table class="table">
                     <thead>
                         <tr>
                             <th>Nome: </th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.nome}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.nome}"/></td>
                         </tr>
                         <tr>
                             <th>Cidade</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.cidade}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.cidade}"/></td>
                         </tr>
                         <tr>
                             <th>UF</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.uf}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.uf}"/></td>
                         </tr>
                         <tr>
                             <th>Endereço</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.endereco}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.endereco}"/></td>
                         </tr>
                         <tr>
                             <th>Telefone</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.telefone}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.telefone}"/></td>
                         </tr>
                         <tr>
                             <th>Email</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.email}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.email}"/></td>
                         </tr>
                         <tr>
                             <th>CNPJ</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.cnpj}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.cnpj}"/></td>
                         </tr>
                         <tr>
                             <th>Descrição</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.descricao}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.descricao}"/></td>
                         </tr>
                         <tr>
                             <th>Área</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.area}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.area}"/></td>
                         </tr>
                         <tr>
                             <th>Usuário</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.usuario}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.usuario}"/></td>
                         </tr>
                         <tr>
                             <th>Senha</th>
-                            <td><h:inputText class="form-control" value="#{adminBean.consultorEditado.senha}"/></td>
+                            <td><h:inputText class="form-control" value="#{administradorBean.consultorEditado.senha}"/></td>
                         </tr>
                     </thead>
                 </table>
-                <p:commandButton action="#{adminBean.editarSelecionado()}" style="float: right" class="btn btn-primary" value="Salvar"/>
+                <p:commandButton action="#{administradorBean.editarConsultor()}" style="float: right" class="btn btn-primary" value="Salvar"/>
                 <p:commandButton onclick="PF('dialogConsultorEdit').hide()" style="float: left" class="btn btn-primary" value="Cancelar"/>
             </h:form>
         </p:dialog>
@@ -339,7 +343,7 @@
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <p>Deseja mesmo excluir esta conta?</p>
             <p>Note que este processo é irreversível!</p>
-            <p:commandButton action="#{adminBean.deletarCliente()}" style="float: right" class="btn btn-primary" value="Deletar"/>
+            <p:commandButton action="#{administradorBean.deletarCliente()}" style="float: right" class="btn btn-primary" value="Deletar"/>
             <p:commandButton onclick="PF('dialogClienteDel').hide()" style="float: left" class="btn btn-primary" value="Cancelar"/>
         </p:dialog>
 
@@ -347,8 +351,14 @@
                   closable="true" closeOnEscape="true" position="center center" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
             <p>Deseja mesmo excluir o consultor?</p>
             <p>Note que este processo é irreversível!</p>
-            <p:commandButton action="#{adminBean.deletarConsultor()}" style="float: right" styleClass="btn btn-primary" value="Deletar"/>
+            <p:commandButton action="#{administradorBean.deletarConsultor()}" style="float: right" styleClass="btn btn-primary" value="Deletar"/>
             <p:commandButton onclick="PF('dialogConsultorDel').hide()" style="float: left" class="btn btn-primary" value="Cancelar"/>
+        </p:dialog>
+
+        <p:dialog modal="true" widgetVar="dialogErroDuplicado" draggable="false" resizable="false" header="Erro!"
+                   closable="true" closeOnEscape="true" hideEffect="drop" showEffect="drop" style="border: #204d74 solid 2px; border-radius: 3px;">
+            <p>Campo digitado já está cadastrado!</p>
+            <p:commandButton onclick="PF('dialogErroDuplicado').hide()" style="float: right" class="btn btn-primary" value="OK"/>
         </p:dialog>
 
         <script src="resources/js/jquery-2.2.1.js"></script>
