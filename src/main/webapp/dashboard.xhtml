@@ -31,7 +31,7 @@
                         <div id="clientes-cadastrados" class="panel panel-info conteudo escondido">
                             <div class="panel-body">
                                 <h:form id="tabela-clientes-adm">
-                                    <table class="tabela display text-center" cellspacing="0" width="100%">
+                                    <table class="tabela display text-center" style="table-layout:fixed;" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>Nome</th>
@@ -43,8 +43,8 @@
                                                 <th>CPF</th>
                                                 <th>RG</th>
                                                 <th>Saldo</th>
-                                                <th>Usuário</th>
-                                                <th>Senha</th>
+<!--                                                <th>Usuário</th>
+                                                <th>Senha</th>-->
                                                 <th>Status</th>
                                                 <th>Editar</th>
                                                 <th>Excluir</th>
@@ -62,8 +62,8 @@
                                                     <td><h:outputText value="#{cliente.cpf}"/></td>
                                                     <td><h:outputText value="#{cliente.rg}"/></td>
                                                     <td><h:outputText value="#{cliente.saldo}"/></td>
-                                                    <td><h:outputText value="#{cliente.usuario}"/></td>
-                                                    <td><h:outputText value="#{cliente.senha}"/></td>
+<!--                                                    <td><h:outputText value="#{cliente.usuario}"/></td>
+                                                    <td><h:outputText value="#{cliente.senha}"/></td>-->
                                                     <td><h:outputText value="#{helperBean.maskStatus(cliente.status)}"/></td>
                                                     <td>
                                                         <p:commandLink update="cliente-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogClienteEdit').show();" rendered="#{cliente.status}">
@@ -87,7 +87,7 @@
                         <div id="consultores-cadastrados" class="panel panel-info conteudo escondido">
                             <div class="panel-body">
                                 <h:form id="tabela-consultores-adm">
-                                    <table class="tabela display text-center" cellspacing="0" width="100%">
+                                    <table class="tabela display text-center"  style="table-layout:fixed;" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                 <th>Nome</th>
@@ -97,10 +97,10 @@
                                                 <th>Telefone</th>
                                                 <th>Email</th>
                                                 <th>CNPJ</th>
-                                                <th>Descrição</th>
+                                                <!--<th>Descrição</th>-->
                                                 <th>Área</th>
-                                                <th>Usuário</th>
-                                                <th>Senha</th>
+<!--                                                <th>Usuário</th>
+                                                <th>Senha</th>-->
                                                 <th>Status</th>
                                                 <th>Editar</th>
                                                 <th>Excluir</th>
@@ -112,14 +112,14 @@
                                                     <td><h:outputText value="#{consultor.nome}"/></td>
                                                     <td><h:outputText value="#{consultor.cidade}"/></td>
                                                     <td><h:outputText value="#{consultor.uf}"/></td>
-                                                    <td><h:outputText value="#{consultor.endereco}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.endereco, 13)}"/></td>
                                                     <td><h:outputText value="#{consultor.telefone}"/></td>
-                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.email, 15)}"/></td>
+                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.email, 13)}"/></td>
                                                     <td><h:outputText value="#{consultor.cnpj}"/></td>
-                                                    <td><h:outputText value="#{helperBean.stringMinimizada(consultor.descricao, 15)}"/></td>
+                                                    <!--<td><h:outputText value="#{helperBean.stringMinimizada(consultor.descricao, 15)}"/></td>-->
                                                     <td><h:outputText value="#{consultor.area}"/></td>
-                                                    <td><h:outputText value="#{consultor.usuario}"/></td>
-                                                    <td><h:outputText value="#{consultor.senha}"/></td>
+<!--                                                    <td><h:outputText value="#{consultor.usuario}"/></td>
+                                                    <td><h:outputText value="#{consultor.senha}"/></td>-->
                                                     <td><h:outputText value="#{helperBean.maskStatus(consultor.status)}"/></td>
                                                     <td>
                                                         <p:commandLink update="consultor-selecionado" style="color: black; font-size:20px;" onclick="PF('dialogConsultorEdit').show();" rendered="#{consultor.status}">
@@ -143,7 +143,7 @@
                         <div id="analise-de-negocios" class="conteudo escondido">
                             <div class="container-fluid">
                                 <div class="row margin-bottom25">
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="panel panel-info">
                                             <div class="panel-heading">
                                                 <h1 class="panel-title text-center font-tracktype">Consultores por Área</h1>
@@ -168,7 +168,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="panel panel-info">
                                             <div class="panel-heading">
                                                 <h1 class="panel-title text-center font-tracktype">Transações por Área</h1>
@@ -193,7 +193,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-6">
                                         <div class="panel panel-info">
                                             <div class="panel-heading">
                                                 <h1 class="panel-title text-center font-tracktype">Consultores que Mais Vendem</h1>
@@ -211,6 +211,31 @@
                                                             <tr class="text-center">
                                                                 <td>#{entry.key}</td>
                                                                 <td>R$ #{entry.value}</td>
+                                                            </tr>
+                                                        </ui:repeat>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="panel panel-info">
+                                            <div class="panel-heading">
+                                                <h1 class="panel-title text-center font-tracktype">Consultores que Mais Vendem</h1>
+                                            </div>
+                                            <div class="panel-body">
+                                                <table class="tabela display table-padding-bottom10" cellspacing="0" width="100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Usuários</th>
+                                                            <th>Total de Ativos</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <ui:repeat var="entry" value="#{administradorBean.usuariosAtivos().entrySet().toArray()}">
+                                                            <tr class="text-center">
+                                                                <td>#{entry.key}</td>
+                                                                <td>#{entry.value}</td>
                                                             </tr>
                                                         </ui:repeat>
                                                     </tbody>

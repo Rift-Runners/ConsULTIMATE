@@ -105,6 +105,10 @@ public class ClienteService {
     public List<Cliente> findAll() {
         return dao.findAll();
     }
+    
+    public Integer getClientesTotal() {
+        return dao.getTotalClientesAtivos();
+    }
 
     public Cliente getClienteLogin(String usuario, String senha) {
         for (Cliente clienteCadastrado : dao.findAll()) {

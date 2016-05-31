@@ -148,4 +148,15 @@ public class AdministradorBean implements Serializable {
         return mapaAreas;
     }
 
+    public Map<String, Integer> usuariosAtivos() {
+        Map<String, Integer> mapaUsuarios = new TreeMap();
+        SimpleEntityManager simpleEntityManager = new SimpleEntityManager("ConsultimatePU");
+        ConsultorService consultorService = new ConsultorService(simpleEntityManager);
+        mapaUsuarios.put("Consultores", consultorService.getConsultoresTotal());
+        ClienteService clienteService = new ClienteService(new SimpleEntityManager("ConsultimatePU"));
+        mapaUsuarios.put("Clientes", clienteService.getClientesTotal());
+        
+        return mapaUsuarios;
+    }
+
 }

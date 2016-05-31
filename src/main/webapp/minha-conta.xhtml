@@ -106,7 +106,7 @@
                                         <h:outputText id="display" />
                                         <p:inputTextarea required="true" requiredMessage="Campo obrigatório" rows="13" cols="30" 
                                                          class="form-control" counter="display" maxlength="1000" counterTemplate="{0} caracteres restantes." 
-                                                         autoResize="false" value="#{sessionBean.consultorEditado.descricao}"/>
+                                                         autoResize="false" value="#{consultorBean.consultorEditado.descricao}"/>
                                         <h:message for="consultorDescricao" class="error-message"/> <br/>
                                         <p:commandLink update="dados-consultor" action="#{consultorBean.editarConsultor()}" styleClass="btn btn-info">
                                             Salvar Descrição <i class="glyphicon glyphicon-floppy-saved"></i>
@@ -199,15 +199,6 @@
                                                                  class="input-editavel" id="clienteEmail"
                                                                  value="#{clienteBean.clienteEditado.email}"/>
                                                     <h:message for="clienteEmail" class="error-message"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th class="font-tracktype">Senha:</th>
-                                                <td>
-                                                    <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                                 class="input-editavel" id="clienteSenha"
-                                                                 value="#{clienteBean.clienteEditado.senha}"/>
-                                                    <h:message for="clienteSenha" class="error-message"/>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -308,18 +299,9 @@
                                             <th class="font-tracktype">Valor por hora:</th>
                                             <td>
                                                 <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="input-editavel moneyMask" id="consultorValor"
+                                                             class="input-editavel" id="consultorValor"
                                                              value="#{consultorBean.consultorEditado.valorHora}"/>
                                                 <h:message for="consultorValor" class="error-message"/>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <th class="font-tracktype">Senha:</th>
-                                            <td>
-                                                <h:inputText required="true" requiredMessage="Campo obrigatório"
-                                                             class="input-editavel" id="consultorSenha"
-                                                             value="#{consultorBean.consultorEditado.senha}"/>
-                                                <h:message for="consultorSenha" class="error-message"/>
                                             </td>
                                         </tr>
                                     </table>
